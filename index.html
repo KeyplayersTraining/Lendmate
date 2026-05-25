@@ -493,6 +493,29 @@ input,select,textarea{font-family:inherit}
 /* ═══════════════════════════════════════
    LendMate VA Training Academy — Engine
    ═══════════════════════════════════════ */
+
+// ▼▼▼ GOOGLE SHEETS WEBHOOK ▼▼▼
+// Paste your Apps Script web app URL below (see SETUP-GUIDE.md)
+const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzHC_94RfK9WvmjXgkeOaK1dTnzEdjyk_sdPoKTPYaJOtovsQOkgGhxaLvaZT1jnFPu/exec';
+
+function sendToSheet(payload) {
+  if (!WEBHOOK_URL || WEBHOOK_URL === 'PASTE_YOUR_WEBHOOK_URL_HERE') {
+    console.warn('[LendMate] Webhook not configured — quiz result saved locally only.');
+    return;
+  }
+  fetch(WEBHOOK_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).then(() => {
+    console.log('[LendMate] Quiz result sent to Google Sheet.');
+  }).catch(err => {
+    console.error('[LendMate] Failed to send quiz result:', err);
+    toast('Result saved locally — sheet sync failed', 'warning');
+  });
+}
+// ▲▲▲ END WEBHOOK ▲▲▲
 const S={
   user:{name:'Maria Santos',email:'maria.santos@lendmate.ca',role:'trainee',initials:'MS'},
   currentPage:'dashboard',currentModule:null,currentQuiz:null,
@@ -745,6 +768,25 @@ function submitQuiz(id){
   });
   const pct=Math.round(cor/qs.length*100),pass=pct>=m.ps;
   if(pass){S.qs[id]=pct;if(!S.certs.includes(id))S.certs.push(id);S.done.add(id);S.prog.delete(id);S.mp[id]=100}
+
+  // ── Send result to Google Sheet ──
+  const certRef = pass ? 'LM-'+id.replace('mod-','').toUpperCase()+'-'+Date.now().toString(36).toUpperCase() : '';
+  const quizName = document.getElementById('quiz-name')?.value || S.user.name;
+  sendToSheet({
+    traineeName:   quizName,
+    traineeEmail:  S.user.email,
+    traineeRole:   S.user.role,
+    moduleId:      id,
+    moduleTitle:   m.title,
+    scorePct:      pct,
+    correctCount:  cor,
+    totalQuestions: qs.length,
+    passed:        pass,
+    passThreshold: m.ps,
+    certRef:       certRef,
+    answers:       window._qa.map((a,i)=>({question:i+1, selected:a, correct:qs[i]?.a, isCorrect:a===qs[i]?.a}))
+  });
+
   const rd=document.getElementById('quiz-result');rd.style.display='block';
   rd.innerHTML=`<div class="quiz-res"><div class="res-icon">${pass?'&#x1f389;':'&#x1f4da;'}</div><div class="res-score ${pass?'pass':'fail'}">${pct}%</div><div class="res-msg">${pass?'Congratulations! You Passed!':'Not Quite There Yet'}</div><div class="res-sub">${cor}/${qs.length} correct${pass?' — Certificate earned!':' — Need '+m.ps+'% to pass'}</div><div style="display:flex;gap:10px;justify-content:center;margin-top:16px">${!pass?`<button class="btn btn-p" onclick="nav('quiz-take','${id}')">Retake</button>`:''} ${pass?`<button class="btn btn-p" onclick="showCert('${id}',${pct})">View Certificate</button>`:''}<button class="btn btn-g" onclick="nav('quizzes')">Back</button></div></div>`;
   rd.scrollIntoView({behavior:'smooth'});if(pass)toast('Certificate earned!','success');
