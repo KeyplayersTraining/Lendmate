@@ -496,20 +496,22 @@ input,select,textarea{font-family:inherit}
 
 // ▼▼▼ GOOGLE SHEETS WEBHOOK ▼▼▼
 // Paste your Apps Script web app URL below (see SETUP-GUIDE.md)
-const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzHC_94RfK9WvmjXgkeOaK1dTnzEdjyk_sdPoKTPYaJOtovsQOkgGhxaLvaZT1jnFPu/exec';
+const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxbmwKCx6BiPxqZSYS5JA0aJ6TFBDxtCCQFG-MMN3bzWd0rh-Bvqt1DkV6c0O4h9bgG/exec';
 
 function sendToSheet(payload) {
   if (!WEBHOOK_URL || WEBHOOK_URL === 'PASTE_YOUR_WEBHOOK_URL_HERE') {
     console.warn('[LendMate] Webhook not configured — quiz result saved locally only.');
     return;
   }
+  // Use text/plain to avoid CORS preflight blocking with no-cors mode
   fetch(WEBHOOK_URL, {
     method: 'POST',
     mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'text/plain' },
     body: JSON.stringify(payload)
   }).then(() => {
     console.log('[LendMate] Quiz result sent to Google Sheet.');
+    toast('Result synced to sheet','success');
   }).catch(err => {
     console.error('[LendMate] Failed to send quiz result:', err);
     toast('Result saved locally — sheet sync failed', 'warning');
