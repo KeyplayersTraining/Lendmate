@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LendMate | Mortgage Compliance Package Training</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap');
+
+:root {
+  --pink: #C855A0;
+  --purple: #8B5CF6;
+  --grad: linear-gradient(135deg, #C855A0 0%, #8B5CF6 100%);
+  --grad-r: linear-gradient(135deg, #8B5CF6 0%, #C855A0 100%);
+  --soft: linear-gradient(135deg, rgba(200,85,160,0.07) 0%, rgba(139,92,246,0.07) 100%);
+  --bg: #F9F8FE;
+  --white: #ffffff;
+  --text: #1a1a2e;
+  --muted: #64748b;
+  --border: #e5e0f5;
+  --bsoft: #ede9fb;
+  --green: #10b981;
+  --amber: #f59e0b;
+  --red: #ef4444;
+  --blue: #3b82f6;
+  --shadow: 0 2px 16px rgba(139,92,246,0.08);
+  --shadow-lg: 0 8px 40px rgba(139,92,246,0.16);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:15px;line-height:1.6;}
+
+/* HEADER */
+.hdr{background:var(--white);border-bottom:1px solid var(--border);padding:13px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(139,92,246,0.06);}
+.logo{display:flex;align-items:center;gap:10px;}
+.lm{width:34px;height:34px;background:var(--grad);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;flex-shrink:0;}
+.lname{font-size:17px;font-weight:700;}.lname span{color:var(--pink);}
+.lsub{font-size:10px;color:var(--muted);}
+.hbadge{background:var(--soft);border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:600;color:var(--purple);}
+
+/* PROGRESS */
+.pgbar{background:var(--white);border-bottom:1px solid var(--border);padding:10px 28px 12px;}
+.pgtop{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);font-weight:500;margin-bottom:7px;}
+.pgtrack{height:5px;background:var(--bsoft);border-radius:10px;overflow:hidden;}
+.pgfill{height:100%;background:var(--grad);border-radius:10px;transition:width 0.5s ease;width:0%;}
+.pills{display:flex;gap:5px;margin-top:9px;flex-wrap:wrap;}
+.pill{font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px;border:1px solid var(--border);background:var(--white);color:var(--muted);transition:all 0.3s;cursor:default;}
+.pill.active{background:var(--grad);color:#fff;border-color:transparent;}
+.pill.done{background:rgba(16,185,129,0.1);color:var(--green);border-color:rgba(16,185,129,0.3);}
+
+/* MAIN */
+.main{max-width:880px;margin:0 auto;padding:36px 20px 80px;}
+.screen{display:none;}
+.screen.active{display:block;animation:fu 0.35s ease;}
+@keyframes fu{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+
+/* CARD */
+.card{background:var(--white);border-radius:18px;border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden;}
+.ch{padding:22px 28px;background:var(--grad);color:#fff;}
+.ch .tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.8;margin-bottom:6px;}
+.ch h2{font-family:'DM Serif Display',serif;font-size:24px;line-height:1.2;}
+.ch p{font-size:13px;opacity:0.85;margin-top:6px;line-height:1.5;}
+.cb{padding:28px;}
+
+/* HERO */
+.hero{text-align:center;padding:48px 28px 40px;background:var(--white);border-radius:20px;border:1px solid var(--border);box-shadow:var(--shadow);position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--grad);}
+.hico{width:70px;height:70px;background:var(--grad);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 22px;box-shadow:0 8px 24px rgba(200,85,160,0.3);}
+.hero h1{font-family:'DM Serif Display',serif;font-size:30px;line-height:1.2;margin-bottom:12px;}
+.hero h1 span{color:var(--pink);font-style:italic;}
+.hero p{color:var(--muted);font-size:14px;line-height:1.75;max-width:560px;margin:0 auto 28px;}
+.hstats{display:flex;gap:18px;justify-content:center;margin-bottom:30px;flex-wrap:wrap;}
+.hstat{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);font-weight:500;}
+.hstat .si{width:28px;height:28px;background:var(--soft);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;border:1px solid var(--border);}
+.opanel{background:var(--soft);border:1px solid var(--border);border-radius:14px;padding:18px 22px;text-align:left;margin-bottom:28px;}
+.opanel h3{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--purple);margin-bottom:14px;}
+.ogrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.oi{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:500;}
+.on{width:20px;height:20px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;flex-shrink:0;}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:12px 24px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
+.bp{background:var(--grad);color:#fff;box-shadow:0 4px 14px rgba(200,85,160,0.28);}
+.bp:hover{transform:translateY(-1px);box-shadow:0 7px 22px rgba(200,85,160,0.42);}
+.bs{background:var(--white);color:var(--purple);border:1.5px solid var(--border);}
+.bs:hover{border-color:var(--purple);background:var(--soft);}
+.bgrp{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+
+/* CONTENT */
+.slabel{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--purple);margin-bottom:13px;display:flex;align-items:center;gap:8px;}
+.slabel::after{content:'';flex:1;height:1px;background:var(--border);}
+.intro-t{font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:22px;padding-bottom:20px;border-bottom:1px solid var(--border);}
+
+/* DOC BOXES */
+.twobox{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+.threebox{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
+.dbox{background:var(--soft);border:1px solid var(--border);border-radius:12px;padding:16px;}
+.dbox h4{font-size:12px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px;color:var(--pink);}
+.dbox ul{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.dbox ul li{font-size:13px;color:var(--text);line-height:1.5;display:flex;align-items:flex-start;gap:7px;}
+.dbox ul li::before{content:'→';color:var(--purple);font-weight:700;flex-shrink:0;font-size:11px;margin-top:2px;}
+.dbox.red{border-color:rgba(239,68,68,0.25);background:rgba(239,68,68,0.04);}
+.dbox.red h4{color:#dc2626;}
+.dbox.red ul li::before{color:var(--red);}
+.dbox.green{border-color:rgba(16,185,129,0.25);background:rgba(16,185,129,0.04);}
+.dbox.green h4{color:#059669;}
+.dbox.green ul li::before{color:var(--green);}
+.dbox.amber{border-color:rgba(245,158,11,0.25);background:rgba(245,158,11,0.04);}
+.dbox.amber h4{color:#d97706;}
+.dbox.amber ul li::before{color:var(--amber);}
+
+/* STEP ITEMS */
+.slist{display:flex;flex-direction:column;gap:10px;}
+.si{display:flex;gap:14px;align-items:flex-start;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:14px;transition:border-color 0.2s,box-shadow 0.2s;}
+.si:hover{border-color:var(--purple);box-shadow:var(--shadow-lg);}
+.snum{min-width:32px;height:32px;background:var(--grad);border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:12px;flex-shrink:0;}
+.scon h4{font-size:13px;font-weight:700;margin-bottom:3px;}
+.scon p{font-size:13px;color:var(--muted);line-height:1.5;}
+.scon ul{list-style:none;margin-top:5px;display:flex;flex-direction:column;gap:3px;}
+.scon ul li{font-size:12px;color:var(--muted);display:flex;align-items:flex-start;gap:6px;line-height:1.5;}
+.scon ul li::before{content:'•';color:var(--pink);font-weight:900;flex-shrink:0;}
+
+/* ALERTS */
+.alert{border-radius:11px;padding:13px 16px;font-size:13px;line-height:1.6;display:flex;gap:9px;align-items:flex-start;margin-top:14px;}
+.alert.info{background:rgba(139,92,246,0.06);border:1px solid rgba(139,92,246,0.2);color:#5b21b6;}
+.alert.warn{background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.25);color:#92400e;}
+.alert.ok{background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.25);color:#065f46;}
+.alert.red{background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.25);color:#991b1b;}
+.alert .ai{font-size:15px;flex-shrink:0;margin-top:1px;}
+
+/* WORKFLOW STEPS */
+.wf-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:20px;}
+.wf-step{background:var(--soft);border:1px solid var(--border);border-radius:12px;padding:14px 10px;text-align:center;position:relative;}
+.wf-step::after{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:700;font-size:16px;z-index:1;}
+.wf-step:last-child::after{display:none;}
+.wf-num{width:32px;height:32px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:12px;margin:0 auto 8px;}
+.wf-step h4{font-size:11px;font-weight:700;color:var(--text);}
+.wf-step p{font-size:10px;color:var(--muted);margin-top:3px;line-height:1.4;}
+
+/* PRINCIPLES */
+.princ-list{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+.princ-item{display:flex;gap:14px;align-items:flex-start;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:14px;}
+.princ-icon{width:32px;height:32px;background:var(--grad);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.princ-item h4{font-size:13px;font-weight:700;margin-bottom:2px;}
+.princ-item p{font-size:13px;color:var(--muted);line-height:1.5;}
+
+/* FINAL SUBMISSION STEPS */
+.sub-steps{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.sub-step{display:flex;align-items:center;gap:14px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:13px 16px;}
+.sub-step .n{width:28px;height:28px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:12px;flex-shrink:0;}
+.sub-step p{font-size:14px;font-weight:500;}
+
+/* TABLE */
+.twrap{border-radius:12px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow);margin-bottom:16px;}
+.dtable{width:100%;border-collapse:collapse;font-size:13px;}
+.dtable th{padding:10px 14px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:0.07em;background:var(--soft);border-bottom:2px solid var(--border);color:var(--purple);}
+.dtable td{padding:10px 14px;border-bottom:1px solid var(--bsoft);color:var(--text);line-height:1.5;vertical-align:middle;}
+.dtable tr:last-child td{border-bottom:none;}
+.dtable tr:hover td{background:var(--soft);}
+
+/* NAV */
+.nfooter{display:flex;justify-content:space-between;align-items:center;margin-top:26px;padding-top:20px;border-top:1px solid var(--border);}
+
+/* QUIZ */
+.qhdr{padding:20px 26px;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:space-between;}
+.qhdr h2{font-family:'DM Serif Display',serif;font-size:21px;}
+.qctr{background:rgba(255,255,255,0.2);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:600;}
+.qbody{padding:28px;}
+.qpbar{height:4px;background:var(--border);border-radius:4px;margin-bottom:24px;overflow:hidden;}
+.qpfill{height:100%;background:var(--grad);border-radius:4px;transition:width 0.4s ease;}
+.qtbadge{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 10px;border-radius:20px;margin-bottom:12px;}
+.qtbadge.mc{background:rgba(139,92,246,0.1);color:var(--purple);}
+.qtbadge.tf{background:rgba(200,85,160,0.1);color:var(--pink);}
+.qtext{font-size:16px;font-weight:600;line-height:1.5;margin-bottom:20px;}
+.opts{display:flex;flex-direction:column;gap:9px;margin-bottom:20px;}
+.opt{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border:1.5px solid var(--border);border-radius:11px;cursor:pointer;transition:all 0.2s;background:var(--white);}
+.opt:hover:not(.locked){border-color:var(--purple);background:var(--soft);}
+.opt.sel{border-color:var(--purple);background:rgba(139,92,246,0.06);}
+.opt.correct{border-color:var(--green);background:rgba(16,185,129,0.06);}
+.opt.wrong{border-color:var(--red);background:rgba(239,68,68,0.05);}
+.oltr{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;background:var(--border);color:var(--muted);flex-shrink:0;transition:all 0.2s;}
+.opt.sel .oltr{background:var(--purple);color:#fff;}
+.opt.correct .oltr{background:var(--green);color:#fff;}
+.opt.wrong .oltr{background:var(--red);color:#fff;}
+.otxt{font-size:13px;line-height:1.5;color:var(--text);padding-top:4px;}
+.fb{border-radius:11px;padding:13px 16px;font-size:13px;line-height:1.6;margin-bottom:18px;display:none;}
+.fb.show{display:flex;gap:9px;align-items:flex-start;}
+.fb.correct{background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.3);color:#065f46;}
+.fb.incorrect{background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.25);color:#991b1b;}
+
+/* CERTIFICATE */
+.cwrap{background:var(--white);border-radius:20px;border:2px solid var(--border);box-shadow:0 12px 48px rgba(139,92,246,0.14);padding:44px 36px;position:relative;overflow:hidden;margin-bottom:18px;text-align:center;}
+.cwrap::before{content:'';position:absolute;top:0;left:0;right:0;height:6px;background:var(--grad);}
+.cwrap::after{content:'';position:absolute;bottom:0;left:0;right:0;height:6px;background:var(--grad);}
+.cinner{border:1px solid var(--border);border-radius:14px;padding:36px;background:linear-gradient(135deg,rgba(200,85,160,0.03) 0%,rgba(139,92,246,0.03) 100%);}
+.cseal{width:76px;height:76px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 18px;box-shadow:0 8px 28px rgba(200,85,160,0.32);}
+.cbrand{font-size:12px;font-weight:700;color:var(--pink);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:4px;}
+.ctitle{font-family:'DM Serif Display',serif;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:18px;}
+.cpres{font-size:12px;color:var(--muted);margin-bottom:6px;}
+.cname{font-family:'DM Serif Display',serif;font-size:34px;color:var(--text);margin-bottom:18px;min-height:44px;}
+.cdesc{font-size:13px;color:var(--muted);line-height:1.7;max-width:420px;margin:0 auto 22px;}
+.cmod{font-size:15px;font-weight:700;color:var(--purple);padding:9px 22px;background:var(--soft);border-radius:8px;display:inline-block;margin-bottom:26px;}
+.cdiv{height:1px;background:var(--border);margin-bottom:22px;}
+.cstats{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;}
+.cstat .clabel{font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:3px;}
+.cstat .cval{font-size:14px;font-weight:700;color:var(--text);}
+.sbadge{display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:40px;font-size:19px;font-weight:700;margin-bottom:22px;}
+.sbadge.pass{background:rgba(16,185,129,0.1);border:2px solid var(--green);color:#065f46;}
+.sbadge.fail{background:rgba(239,68,68,0.07);border:2px solid var(--red);color:#991b1b;}
+.srows{margin-bottom:22px;}
+.srow{display:flex;align-items:center;justify-content:space-between;background:var(--soft);border:1px solid var(--border);border-radius:10px;padding:13px 18px;margin-bottom:9px;}
+.srow .sl{font-size:13px;font-weight:600;}
+.srow .sv{font-size:13px;font-weight:700;color:var(--purple);}
+.ninwrap{margin-bottom:18px;text-align:center;}
+.ninwrap label{font-size:13px;font-weight:600;color:var(--muted);display:block;margin-bottom:8px;}
+.nin{width:100%;max-width:360px;padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--text);outline:none;transition:border-color 0.2s;}
+.nin:focus{border-color:var(--purple);}
+.pnote{font-size:12px;color:var(--muted);text-align:center;margin-top:8px;}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  .twobox,.threebox,.ogrid,.wf-grid{grid-template-columns:1fr;}
+  .wf-step::after{display:none;}
+  .cstats{gap:18px;}
+  .cb,.qbody{padding:18px;}
+  .main{padding:22px 14px 60px;}
+  .hero{padding:32px 18px 28px;}
+}
+
+@media print{
+  .hdr,.pgbar,.nfooter,.bgrp,.pnote,.btn{display:none!important;}
+  .screen{display:none!important;}
+  #s-cert{display:block!important;}
+  #cert-pass{display:block!important;}
+  body{background:white;}
+  .cwrap{box-shadow:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="logo">
+    <div class="lm">LM</div>
+    <div>
+      <div class="lname"><span>LendMate</span> VA Solutions</div>
+      <div class="lsub">Training Academy</div>
+    </div>
+  </div>
+  <div class="hbadge">🛡 Compliance Package Module</div>
+</div>
+
+<div class="pgbar">
+  <div class="pgtop"><span id="plabel">Not started</span><span id="ppct">0%</span></div>
+  <div class="pgtrack"><div class="pgfill" id="pfill"></div></div>
+  <div class="pills" id="pills"></div>
+</div>
+
+<div class="main">
+
+<!-- ═══ INTRO ═══ -->
+<div class="screen active" id="s-intro">
+  <div class="hero">
+    <div class="hico">🛡</div>
+    <h1>Canadian Mortgage <span>Compliance Package</span> Training</h1>
+    <p>A standardized end-to-end process for building, reviewing, and submitting mortgage compliance packages in Canada. Every file must be audit-ready, accurate, and fully compliant.</p>
+    <div class="hstats">
+      <div class="hstat"><div class="si">⏱</div> ~25 minutes</div>
+      <div class="hstat"><div class="si">📚</div> 7 Lessons</div>
+      <div class="hstat"><div class="si">🎯</div> 2 Quizzes</div>
+      <div class="hstat"><div class="si">🏆</div> Certificate</div>
+    </div>
+    <div class="opanel">
+      <h3>Module Outline</h3>
+      <div class="ogrid">
+        <div class="oi"><div class="on">1</div> What Is a Compliance Package?</div>
+        <div class="oi"><div class="on">2</div> Client &amp; Financial Documents</div>
+        <div class="oi"><div class="on">3</div> Property, Disclosure &amp; Regulatory Forms</div>
+        <div class="oi"><div class="on">4</div> The 6-Step Compliance Workflow</div>
+        <div class="oi"><div class="on">5</div> Provincial Compliance Principles</div>
+        <div class="oi"><div class="on">6</div> Common Errors &amp; Best Practices</div>
+        <div class="oi"><div class="on">7</div> Audit Readiness &amp; Final Submission</div>
+      </div>
+    </div>
+    <div class="bgrp">
+      <button class="btn bp" onclick="go('l1')">Start Training →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LESSON 1: WHAT IS A COMPLIANCE PACKAGE ═══ -->
+<div class="screen" id="s-l1">
+  <div class="card">
+    <div class="ch">
+      <div class="tag">Lesson 1 of 7</div>
+      <h2>What Is a Compliance Package?</h2>
+      <p>The official record of how the mortgage was approved, disclosed, and supported.</p>
+    </div>
+    <div class="cb">
+      <p class="intro-t">A compliance package is the complete documentation set required to demonstrate that a mortgage transaction meets all applicable standards. It is the official record of how the mortgage was approved, disclosed, and supported — and it must be ready for review at any time by regulators, lenders, or auditors.</p>
+
+      <div class="slabel">Why It Exists</div>
+      <div class="twobox">
+        <div class="dbox">
+          <h4>🏛 Federal Regulations</h4>
+          <ul>
+            <li>PIPEDA privacy requirements must be documented and signed</li>
+            <li>AML (Anti-Money Laundering) obligations under FINTRAC must be met</li>
+            <li>Applies to every mortgage file regardless of province</li>
+          </ul>
+        </div>
+        <div class="dbox">
+          <h4>📋 Provincial Rules</h4>
+          <ul>
+            <li>Province-specific mortgage brokerage regulations vary</li>
+            <li>Forms, disclosures, and timelines differ by province</li>
+            <li>Your broker's compliance team sets province-specific requirements</li>
+          </ul>
+        </div>
+        <div class="dbox">
+          <h4>🏦 Lender Requirements</h4>
+          <ul>
+            <li>Underwriting and disclosure standards set by each lender</li>
+            <li>Package must meet lender's specific checklist to avoid conditions</li>
+            <li>Non-compliance results in file rejection or delays</li>
+          </ul>
+        </div>
+        <div class="dbox">
+          <h4>🔍 Internal Audit</h4>
+          <ul>
+            <li>Brokerage standards for audit readiness at all times</li>
+            <li>Every file must be organized, complete, and traceable</li>
+            <li>Gaps in documentation expose the brokerage to regulatory risk</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="slabel">Key Terms You Need to Know</div>
+      <div class="twrap">
+        <table class="dtable">
+          <thead><tr><th>Term</th><th>What It Means for You</th></tr></thead>
+          <tbody>
+            <tr><td><strong>PIPEDA</strong></td><td>Personal Information Protection and Electronic Documents Act. Requires signed privacy consent from every borrower before their information is used.</td></tr>
+            <tr><td><strong>FINTRAC / AML</strong></td><td>Financial Transactions and Reports Analysis Centre of Canada. Anti-Money Laundering declarations must be completed on every file.</td></tr>
+            <tr><td><strong>Audit-Ready</strong></td><td>Every document is present, consistent, signed, and traceable. A file can be pulled for review at any time without scrambling to find anything.</td></tr>
+            <tr><td><strong>Disclosure</strong></td><td>The borrower has been informed of all mortgage terms and has acknowledged understanding. This must be documented.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="alert info">
+        <span class="ai">💡</span>
+        <span>A compliance package is not just paperwork. It is the legal defence of the entire mortgage transaction. If a document is missing, the file is incomplete — regardless of how smoothly the deal closed.</span>
+      </div>
+
+      <div class="nfooter">
+        <button class="btn bs" onclick="go('intro')">← Back</button>
+        <button class="btn bp" onclick="go('l2')">Next: Client &amp; Financial Docs →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LESSON 2: CLIENT & FINANCIAL DOCUMENTS ═══ -->
+<div class="screen" id="s-l2">
+  <div class="card">
+    <div class="ch">
+      <div class="tag">Lesson 2 of 7</div>
+      <h2>Core Components: Client &amp; Financial Documents</h2>
+      <p>Every compliance package starts with verified identity and confirmed income.</p>
+    </div>
+    <div class="cb">
+      <p class="intro-t">The first two document categories form the foundation of the compliance package. Without verified identity and confirmed income, nothing else in the file can be validated. These documents must be current, consistent, and match each other exactly.</p>
+
+      <div class="slabel">Category 1: Client Identification &amp; Consent</div>
+      <div class="slist" style="margin-bottom:20px;">
+        <div class="si">
+          <div class="snum">🪪</div>
+          <div class="scon">
+            <h4>Government-Issued Photo ID (Verified)</h4>
+            <p>Driver's license or passport. Must be valid (not expired). The name on ID must match the name on every other document in the file exactly. No nicknames, no initials only.</p>
+            <ul><li>Both sides of driver's license required</li><li>Passport photo page for passports</li><li>VA must confirm expiry date is valid</li></ul>
+          </div>
+        </div>
+        <div class="si">
+          <div class="snum">✍</div>
+          <div class="scon">
+            <h4>Credit Bureau Authorization (Signed)</h4>
+            <p>The borrower's signed consent allowing the lender to pull their credit report. Must be obtained before any credit inquiry is made. This is a legal requirement, not optional.</p>
+          </div>
+        </div>
+        <div class="si">
+          <div class="snum">📋</div>
+          <div class="scon">
+            <h4>Mortgage Application (Full and Consistent)</h4>
+            <p>The completed application form. Every field must be filled in. Information must be consistent with all supporting documents — employment, income, and liability information must match.</p>
+          </div>
+        </div>
+        <div class="si">
+          <div class="snum">🔒</div>
+          <div class="scon">
+            <h4>Privacy Consent (PIPEDA Compliance)</h4>
+            <p>Signed consent authorizing collection, use, and disclosure of the borrower's personal information. Required under federal law. Must be in the file before any data is processed.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slabel">Category 2: Income &amp; Financial Verification</div>
+      <div class="twobox">
+        <div class="dbox">
+          <h4>💼 Employed Borrowers</h4>
+          <ul>
+            <li>Pay stubs (recent and consistent with application)</li>
+            <li>T4 slips for the last 1 to 2 years</li>
+            <li>Employment verification letter (if required by lender)</li>
+            <li>Bank statements for asset verification (last 90 days)</li>
+          </ul>
+        </div>
+        <div class="dbox">
+          <h4>🗂 Self-Employed Borrowers</h4>
+          <ul>
+            <li>T1 General for the last 2 years</li>
+            <li>Notice of Assessment (NOA) from CRA</li>
+            <li>Business registration documents</li>
+            <li>Bank statements for asset verification (last 90 days)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="alert warn">
+        <span class="ai">⚠️</span>
+        <span><strong>Consistency check:</strong> The income shown on pay stubs must match the income stated on the application. Any discrepancy — even a small one — will generate a lender condition and delay the file.</span>
+      </div>
+
+      <div class="nfooter">
+        <button class="btn bs" onclick="go('l1')">← Back</button>
+        <button class="btn bp" onclick="go('l3')">Next: Property &amp; Regulatory Docs →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LESSON 3: PROPERTY, DISCLOSURE & REGULATORY ═══ -->
+<div class="screen" id="s-l3">
+  <div class="card">
+    <div class="ch">
+      <div class="tag">Lesson 3 of 7</div>
+      <h2>Core Components: Property, Disclosure &amp; Regulatory Forms</h2>
+      <p>Three more document categories that complete the compliance package.</p>
+    </div>
+    <div class="cb">
+      <p class="intro-t">Once identity and income are confirmed, the compliance package requires property documentation, mortgage disclosures, and regulatory compliance forms. These three categories make the transaction legally defensible and confirm the borrower has been properly informed.</p>
+
+      <div class="slabel">Category 3: Property &amp; Transaction</div>
+      <div class="dbox" style="margin-bottom:20px;">
+        <h4>🏠 Required Property Documents</h4>
+        <ul>
+          <li>Purchase and sale agreement (APS) — fully signed by all parties with all addendums</li>
+          <li>MLS listing (if applicable) — for resale properties</li>
+          <li>Property tax statement — confirms current tax status</li>
+          <li>Insurance confirmation — proof of active home insurance with lender as additional insured</li>
+        </ul>
+      </div>
+
+      <div class="slabel">Category 4: Mortgage Disclosures</div>
+      <div class="dbox" style="margin-bottom:20px;">
+        <h4>📄 Required Disclosure Documents</h4>
+        <ul>
+          <li>Commitment letter — the lender's conditional approval with all conditions listed</li>
+          <li>Cost of borrowing disclosure — total interest and fees over the mortgage term</li>
+          <li>Rate, term, and amortization disclosure — all mortgage terms clearly stated</li>
+          <li>Payment schedule and variable rate explanation (if applicable)</li>
+        </ul>
+      </div>
+
+      <div class="slabel">Category 5: Compliance &amp; Regulatory Forms</div>
+      <div class="slist" style="margin-bottom:16px;">
+        <div class="si">
+          <div class="snum">📜</div>
+          <div class="scon">
+            <h4>Brokerage Disclosure of Services &amp; Compensation</h4>
+            <p>Discloses to the borrower how the broker is compensated and what services they provide. Mandatory in all provinces. Must be signed before any mortgage advice is given.</p>
+          </div>
+        </div>
+        <div class="si">
+          <div class="snum">⚖️</div>
+          <div class="scon">
+            <h4>Conflict of Interest Disclosure</h4>
+            <p>Discloses any relationship between the broker and the lender that could influence recommendations. Required by law in all provinces.</p>
+          </div>
+        </div>
+        <div class="si">
+          <div class="snum">🔍</div>
+          <div class="scon">
+            <h4>AML / FINTRAC Declarations</h4>
+            <p>Anti-Money Laundering declarations required under federal law. Every borrower must complete these. Missing FINTRAC declarations can result in regulatory fines for the brokerage.</p>
+          </div>
+        </div>
+        <div class="si">
+          <div class="snum">✅</div>
+          <div class="scon">
+            <h4>Borrower Acknowledgment Forms</h4>
+            <p>Confirms the borrower has received, reviewed, and understood all disclosures. These must be signed — not just presented. Unsigned acknowledgments are non-compliant.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert red">
+        <span class="ai">🚫</span>
+        <span><strong>Non-negotiable:</strong> AML/FINTRAC declarations and borrower acknowledgment forms must be present and signed in every file. Missing these two items is a direct regulatory compliance failure.</span>
+      </div>
+
+      <div class="nfooter">
+        <button class="btn bs" onclick="go('l2')">← Back</button>
+        <button class="btn bp" onclick="go('l4')">Next: The 6-Step Workflow →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LESSON 4: COMPLIANCE WORKFLOW ═══ -->
+<div class="screen" id="s-l4">
+  <div class="card">
+    <div class="ch">
+      <div class="tag">Lesson 4 of 7</div>
+      <h2>The 6-Step Compliance Workflow</h2>
+      <p>Every file must follow this process from intake through final submission.</p>
+    </div>
+    <div class="cb">
+      <p class="intro-t">Every file must follow this six-step process to ensure completeness, accuracy, and audit readiness from intake through final submission. Each step builds on the last. Skipping or rushing any phase increases the risk of compliance errors, lender rejections, or audit failures.</p>
+
+      <div class="slabel">The 6 Steps at a Glance</div>
+      <div class="wf-grid">
+        <div class="wf-step"><div class="wf-num">1</div><h4>Intake Review</h4><p>Verify completeness and consistency</p></div>
+        <div class="wf-step"><div class="wf-num">2</div><h4>Document Collection</h4><p>Gather, validate, and confirm currency</p></div>
+        <div class="wf-step"><div class="wf-num">3</div><h4>Disclosure Verify</h4><p>Confirm terms match and are disclosed</p></div>
+        <div class="wf-step"><div class="wf-num">4</div><h4>Checklist</h4><p>All forms signed and complete</p></div>
+        <div class="wf-step"><div class="wf-num">5</div><h4>Final QC</h4><p>Cross-check numbers and names</p></div>
+      </div>
+
+      <div class="slabel">Steps 1 to 3: Intake to Disclosure</div>
+      <div class="slist" style="margin-bottom:20px;">
+        <div class="si">
+          <div class="snum">1</div>
+          <div class="scon">
+            <h4>File Intake Review</h4>
+            <p>Confirm application completeness. Verify borrower identity matches all documents and that property and mortgage details are consistent throughout the file.</p>
+            <ul>
+              <li>Check all fields on the application are completed</li>
+              <li>Confirm borrower name matches ID exactly</li>
+              <li>Verify property address is consistent across all documents</li>
+            </ul>
+          </div>
+        </div>
+        <div class="si">
+          <div class="snum">2</div>
+          <div class="scon">
+            <h4>Document Collection</h4>
+            <p>Request missing documentation from the borrower or third parties. Confirm documents are current (generally within 90 days) and validate authenticity — no edits or inconsistencies.</p>
+            <ul>
+              <li>Pay stubs and bank statements within 90 days</li>
+              <li>Employment letters dated within 30 to 60 days</li>
+              <li>Flag any document that appears altered — do not accept it</li>
+            </ul>
+          </div>
+        </div>
+        <div class="si">
+          <div class="snum">3</div>
+          <div class="scon">
+            <h4>Disclosure Verification</h4>
+            <p>Confirm mortgage terms match the approval sheet. Verify all disclosures are complete and accurate, and ensure borrower understanding is documented.</p>
+            <ul>
+              <li>Rate, term, and amortization in disclosures must match commitment letter</li>
+              <li>Cost of borrowing disclosure must be signed by borrower</li>
+              <li>Borrower acknowledgment must confirm they have read and understood disclosures</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="slabel">Steps 4 to 6: Checklist to Submission</div>
+      <div class="slist" style="margin-bottom:16px;">
+        <div class="si">
+          <div class="snum">4</div>
+          <div class="scon">
+            <h4>Checklist Completion</h4>
+            <p>Confirm all required forms are included. Ensure all signatures and initials are completed and verify any province-specific requirements are met.</p>
+            <ul>
+              <li>Work through the compliance checklist line by line</li>
+              <li>Do not mark anything complete unless you have physically verified it</li>
+              <li>Check that every signature field has been signed — not just initialled if a signature is required</li>
+            </ul>
+          </div>
+        </div>
+        <div class="si">
+          <div class="snum">5</div>
+          <div class="scon">
+            <h4>Final QC Review</h4>
+            <p>Cross-check all numbers — rate, payment, amortization. Confirm legal names match ID exactly and ensure no missing pages or attachments remain.</p>
+            <ul>
+              <li>Compare rate and payment in the disclosure against the commitment letter</li>
+              <li>Confirm every attachment referenced in a document is actually present in the file</li>
+              <li>Check page count on multi-page documents — missing pages are a common failure point</li>
+            </ul>
+          </div>
+        </div>
+        <div class="si">
+          <div class="snum">6</div>
+          <div class="scon">
+            <h4>Submission &amp; Filing</h4>
+            <p>Upload to lender/compliance system. Save the full package in the internal audit folder and record the submission and completion date.</p>
+            <ul>
+              <li>Upload only when broker has confirmed the file is ready</li>
+              <li>Save a copy to the internal audit folder immediately after submission</li>
+              <li>Log the date and time of submission in the file notes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert ok">
+        <span class="ai">✅</span>
+        <span><strong>Rule:</strong> Never skip a step because the file "looks complete." Use the checklist every time for every file. The checklist is your protection against errors.</span>
+      </div>
+
+      <div class="nfooter">
+        <button class="btn bs" onclick="go('l3')">← Back</button>
+        <button class="btn bp" onclick="go('q1')">Take Quiz 1 →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ QUIZ 1 ═══ -->
+<div class="screen" id="s-q1">
+  <div class="card">
+    <div class="qhdr"><h2>Quiz 1: Lessons 1 to 4</h2><div class="qctr" id="q1ctr">Q 1 of 6</div></div>
+    <div class="qbody">
+      <div class="qpbar"><div class="qpfill" id="q1pf"></div></div>
+      <div id="q1body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LESSON 5: PROVINCIAL COMPLIANCE PRINCIPLES ═══ -->
+<div class="screen" id="s-l5">
+  <div class="card">
+    <div class="ch">
+      <div class="tag">Lesson 5 of 7</div>
+      <h2>Provincial Compliance: Key Principles</h2>
+      <p>Core compliance principles that apply in every province across Canada.</p>
+    </div>
+    <div class="cb">
+      <p class="intro-t">While core requirements are consistent across Canada, each province has specific regulatory emphasis and documentation expectations. All brokers and VA staff must ensure compliance with the following five principles in every province. These are non-negotiable across all files.</p>
+
+      <div class="slabel">The 5 Universal Compliance Principles</div>
+      <div class="princ-list">
+        <div class="princ-item">
+          <div class="princ-icon">📢</div>
+          <div>
+            <h4>Full Disclosure</h4>
+            <p>Accurate disclosure of all mortgage terms to the borrower. The borrower must receive and sign disclosures covering the rate, term, amortization, payment schedule, and cost of borrowing before they commit to the mortgage.</p>
+          </div>
+        </div>
+        <div class="princ-item">
+          <div class="princ-icon">🪪</div>
+          <div>
+            <h4>Identity &amp; Consent</h4>
+            <p>Clear documentation of borrower identity and consent. Government-issued photo ID must be verified. Privacy consent (PIPEDA) and credit bureau authorization must be signed before any information is processed.</p>
+          </div>
+        </div>
+        <div class="princ-item">
+          <div class="princ-icon">✅</div>
+          <div>
+            <h4>Suitability Proof</h4>
+            <p>Evidence the mortgage suits the borrower's financial situation. Income verification, asset documentation, and liability cross-checks must demonstrate the borrower can service the debt. This protects both the borrower and the brokerage.</p>
+          </div>
+        </div>
+        <div class="princ-item">
+          <div class="princ-icon">🏛</div>
+          <div>
+            <h4>Federal Compliance</h4>
+            <p>AML (FINTRAC) and privacy (PIPEDA) requirements must be met on every file. FINTRAC declarations must be completed. PIPEDA consent must be signed. These are federal legal obligations that apply regardless of province.</p>
+          </div>
+        </div>
+        <div class="princ-item">
+          <div class="princ-icon">🗂</div>
+          <div>
+            <h4>Record Keeping</h4>
+            <p>Proper documentation must be maintained for audit and regulatory review. Files must be organized, complete, and retrievable. Canadian mortgage brokerages are subject to regulatory audits and must be able to produce complete files on demand.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert info">
+        <span class="ai">💡</span>
+        <span>Your broker's compliance team sets the province-specific forms and timelines. Your job is to apply these five principles to every file and flag anything that does not meet them before the file leaves your desk.</span>
+      </div>
+
+      <div class="nfooter">
+        <button class="btn bs" onclick="go('q1')">← Back</button>
+        <button class="btn bp" onclick="go('l6')">Next: Errors &amp; Best Practices →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LESSON 6: COMMON ERRORS & BEST PRACTICES ═══ -->
+<div class="screen" id="s-l6">
+  <div class="card">
+    <div class="ch">
+      <div class="tag">Lesson 6 of 7</div>
+      <h2>Common Errors &amp; Best Practices</h2>
+      <p>The most frequent compliance failures — and how to prevent every one of them.</p>
+    </div>
+    <div class="cb">
+      <p class="intro-t">These are the compliance errors that appear most frequently on mortgage files. Each one is preventable. Knowing them in advance is your first line of defence against rejections, audit findings, and regulatory issues.</p>
+
+      <div class="slabel">7 Common Compliance Errors</div>
+      <div class="slist" style="margin-bottom:20px;">
+        <div class="si"><div class="snum" style="background:linear-gradient(135deg,#ef4444,#dc2626);">!</div><div class="scon"><h4>Mismatch Between Mortgage Approval and Disclosure</h4><p>The rate, term, or amortization in the disclosure documents does not match what is on the commitment letter. This is a direct disclosure failure.</p></div></div>
+        <div class="si"><div class="snum" style="background:linear-gradient(135deg,#ef4444,#dc2626);">!</div><div class="scon"><h4>Missing Borrower Initials on Disclosure Pages</h4><p>Disclosure pages require initials, not just a signature at the end. Missing initials mean the borrower has not confirmed they read each page.</p></div></div>
+        <div class="si"><div class="snum" style="background:linear-gradient(135deg,#ef4444,#dc2626);">!</div><div class="scon"><h4>Outdated Income or Bank Statements</h4><p>Pay stubs older than 30 days or bank statements older than 90 days will be rejected. Always check document dates before uploading.</p></div></div>
+        <div class="si"><div class="snum" style="background:linear-gradient(135deg,#ef4444,#dc2626);">!</div><div class="scon"><h4>Incorrect Legal Names vs. ID</h4><p>The borrower's legal name on the mortgage documents does not match their government-issued ID. Even a middle initial difference is a compliance error.</p></div></div>
+        <div class="si"><div class="snum" style="background:linear-gradient(135deg,#ef4444,#dc2626);">!</div><div class="scon"><h4>Missing AML or Consent Documentation</h4><p>FINTRAC declarations or PIPEDA privacy consent forms are missing from the file. These are federal requirements — there are no exceptions.</p></div></div>
+        <div class="si"><div class="snum" style="background:linear-gradient(135deg,#ef4444,#dc2626);">!</div><div class="scon"><h4>Incomplete Provincial Disclosure Forms</h4><p>Province-specific forms are present but not fully completed or signed. Partially completed forms are treated as missing forms by regulators.</p></div></div>
+        <div class="si"><div class="snum" style="background:linear-gradient(135deg,#ef4444,#dc2626);">!</div><div class="scon"><h4>Missing Audit Trail or File Notes</h4><p>No record of key decisions, communications, or file updates. Without an audit trail, the file cannot be defended in a regulatory review.</p></div></div>
+      </div>
+
+      <div class="slabel">5 Best Practices to Prevent Every Error</div>
+      <div class="twobox">
+        <div class="dbox green">
+          <h4>✅ What to Do Every Time</h4>
+          <ul>
+            <li>Reconcile commitment letter vs. compliance package before submitting</li>
+            <li>Use a standardized checklist for every single file — no exceptions</li>
+            <li>Ensure consistent naming conventions across all documents</li>
+            <li>Maintain a clear audit trail with dated notes for every file decision</li>
+            <li>Review files completely before sending to lender or compliance team</li>
+          </ul>
+        </div>
+        <div class="dbox red">
+          <h4>❌ Never Do This</h4>
+          <ul>
+            <li>Never assume a document is current without checking the date</li>
+            <li>Never accept a document that appears edited or altered</li>
+            <li>Never submit without verifying signatures and initials are complete</li>
+            <li>Never skip the final QC because you are under time pressure</li>
+            <li>Never use a nickname or short form of a borrower's legal name</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="nfooter">
+        <button class="btn bs" onclick="go('l5')">← Back</button>
+        <button class="btn bp" onclick="go('l7')">Next: Audit Readiness →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LESSON 7: AUDIT READINESS & FINAL SUBMISSION ═══ -->
+<div class="screen" id="s-l7">
+  <div class="card">
+    <div class="ch">
+      <div class="tag">Lesson 7 of 7</div>
+      <h2>Audit Readiness &amp; Final Submission</h2>
+      <p>A file is audit-ready when all documents are complete, consistent, signed, and traceable.</p>
+    </div>
+    <div class="cb">
+      <p class="intro-t">A file is audit-ready when all documents are complete, consistent, signed, and traceable. Follow this final submission workflow for every file. A fully compliant file protects the borrower, the brokerage, and the broker.</p>
+
+      <div class="slabel">What "Audit-Ready" Means in Practice</div>
+      <div class="threebox" style="margin-bottom:20px;">
+        <div class="dbox">
+          <h4>✅ Complete</h4>
+          <ul>
+            <li>Every required document is present</li>
+            <li>All forms are filled in completely</li>
+            <li>No blank fields on any required form</li>
+          </ul>
+        </div>
+        <div class="dbox">
+          <h4>🔁 Consistent</h4>
+          <ul>
+            <li>Names match across all documents</li>
+            <li>Numbers match between disclosure and approval</li>
+            <li>Dates are current and within acceptable windows</li>
+          </ul>
+        </div>
+        <div class="dbox">
+          <h4>🔍 Traceable</h4>
+          <ul>
+            <li>Audit trail shows who did what and when</li>
+            <li>File notes document key decisions</li>
+            <li>Submission date and time are logged</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="slabel">Final Submission Workflow — Follow This Every Time</div>
+      <div class="sub-steps">
+        <div class="sub-step"><div class="n">1</div><p>Complete the compliance checklist — line by line, no shortcuts</p></div>
+        <div class="sub-step"><div class="n">2</div><p>Perform final QC review — cross-check all numbers and confirm all names match ID</p></div>
+        <div class="sub-step"><div class="n">3</div><p>Confirm lender requirements are met — every lender has a specific checklist</p></div>
+        <div class="sub-step"><div class="n">4</div><p>Upload to lender or compliance system — only when directed by the broker</p></div>
+        <div class="sub-step"><div class="n">5</div><p>Save the complete package in internal audit folder — immediately after submission</p></div>
+        <div class="sub-step"><div class="n">6</div><p>Log completion for audit tracking — record date, time, and who submitted</p></div>
+      </div>
+
+      <div class="slabel">Ontario-Specific Reminders</div>
+      <div class="dbox amber" style="margin-bottom:16px;">
+        <h4>🏙 Ontario File Compliance Notes</h4>
+        <ul>
+          <li>Cost of Borrowing Disclosure is mandatory under MBLAA — must be signed before commitment</li>
+          <li>Brokerage disclosure of compensation and services must be in every Ontario file</li>
+          <li>For condo purchases: confirm Status Certificate has been received and is in the file</li>
+          <li>Standard Charge Terms (SCT) reference number must appear on all Ontario mortgage documents</li>
+          <li>All FINTRAC AML declarations must be completed — Ontario regulators audit these specifically</li>
+        </ul>
+      </div>
+
+      <div class="alert ok">
+        <span class="ai">✅</span>
+        <span>A fully compliant file protects the borrower, the brokerage, and the broker — every time. Your thoroughness is the last line of defence before the file reaches the lender or regulator.</span>
+      </div>
+
+      <div class="nfooter">
+        <button class="btn bs" onclick="go('l6')">← Back</button>
+        <button class="btn bp" onclick="go('q2')">Take Final Quiz →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ QUIZ 2 ═══ -->
+<div class="screen" id="s-q2">
+  <div class="card">
+    <div class="qhdr"><h2>Quiz 2: Lessons 5 to 7</h2><div class="qctr" id="q2ctr">Q 1 of 6</div></div>
+    <div class="qbody">
+      <div class="qpbar"><div class="qpfill" id="q2pf"></div></div>
+      <div id="q2body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CERTIFICATE ═══ -->
+<div class="screen" id="s-cert">
+  <div id="cert-pass" style="display:none;">
+    <div class="ninwrap">
+      <label>Enter your full name for the certificate:</label>
+      <input type="text" class="nin" id="cname-in" placeholder="e.g. Maria Santos" oninput="document.getElementById('cname-disp').innerText=this.value||'Your Name'"/>
+    </div>
+    <div class="cwrap" id="certificate">
+      <div class="cinner">
+        <div class="cseal">🏆</div>
+        <div class="cbrand">LendMate VA Solutions</div>
+        <div class="ctitle">Certificate of Completion</div>
+        <div class="cpres">This certifies that</div>
+        <div class="cname" id="cname-disp">Your Name</div>
+        <div class="cdesc">has successfully completed the following training module and demonstrated competency in the required knowledge areas.</div>
+        <div class="cmod">Canadian Mortgage Compliance Package Training</div>
+        <div class="cdiv"></div>
+        <div class="cstats">
+          <div class="cstat"><div class="clabel">Overall Score</div><div class="cval" id="cscore">-</div></div>
+          <div class="cstat"><div class="clabel">Date Completed</div><div class="cval" id="cdate">-</div></div>
+          <div class="cstat"><div class="clabel">Module Version</div><div class="cval">Comp v1.0</div></div>
+        </div>
+      </div>
+    </div>
+    <p class="pnote">Take a screenshot of this certificate and send it to your supervisor to confirm completion.</p>
+    <div class="bgrp" style="margin-top:16px;">
+      <button class="btn bp" onclick="window.print()">🖨 Print Certificate</button>
+      <button class="btn bs" onclick="go('intro')">← Restart Module</button>
+    </div>
+  </div>
+
+  <div id="cert-fail" style="display:none;">
+    <div class="card">
+      <div class="qhdr" style="background:linear-gradient(135deg,#ef4444,#dc2626);">
+        <h2>Review &amp; Retry</h2><div class="qctr">Results</div>
+      </div>
+      <div class="qbody" style="text-align:center;">
+        <div style="font-size:48px;margin-bottom:16px;">📋</div>
+        <div class="sbadge fail" id="fail-badge" style="margin:0 auto 20px;">Total: -</div>
+        <p style="font-size:14px;color:var(--muted);margin-bottom:22px;line-height:1.7;">You need <strong>70% or higher</strong> to earn the certificate. Review the lessons and retake as many times as needed.</p>
+        <div class="srows">
+          <div class="srow"><span class="sl">Quiz 1: Lessons 1 to 4</span><span class="sv" id="fq1">-</span></div>
+          <div class="srow"><span class="sl">Quiz 2: Lessons 5 to 7</span><span class="sv" id="fq2">-</span></div>
+        </div>
+        <div class="bgrp">
+          <button class="btn bp" onclick="retake()">Retake Quizzes</button>
+          <button class="btn bs" onclick="go('l1')">Review Lessons</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const Q1 = [
+  {
+    type:'mc',
+    q:'What is the primary purpose of a compliance package in a Canadian mortgage transaction?',
+    opts:[
+      'To satisfy the borrower\'s request for documentation',
+      'To demonstrate that the mortgage transaction meets all applicable standards and serve as the official audit record',
+      'To provide the lawyer with documents needed for closing',
+      'To track the broker\'s commission and compensation'
+    ],
+    ans:1,
+    exp:'A compliance package is the complete documentation set required to demonstrate that a mortgage transaction meets all applicable standards. It is the official record of how the mortgage was approved, disclosed, and supported — and must be audit-ready at all times.'
+  },
+  {
+    type:'tf',
+    q:'True or False: The PIPEDA privacy consent form is optional if the borrower verbally agrees to share their information.',
+    opts:['True','False'],
+    ans:1,
+    exp:'False. PIPEDA consent must be documented in writing and signed. A verbal agreement does not satisfy the legal requirement. The signed privacy consent form must be in the file before any of the borrower\'s personal information is collected, used, or disclosed.'
+  },
+  {
+    type:'mc',
+    q:'You receive an employment letter dated 75 days ago. What is the correct action?',
+    opts:[
+      'Accept it since 75 days is close enough to 90 days',
+      'Upload it and note the date in the file for the lender to decide',
+      'Flag it to the broker — employment letters must be within 30 to 60 days, not 90 days',
+      'Request a new letter only if the lender specifically asks for it'
+    ],
+    ans:2,
+    exp:'Employment letters must be dated within 30 to 60 days. A 75-day-old letter exceeds this window and must be flagged to the broker for a fresh letter. The 90-day window applies to bank statements, not employment letters.'
+  },
+  {
+    type:'tf',
+    q:'True or False: FINTRAC AML declarations are only required for high-value mortgage transactions over $1,000,000.',
+    opts:['True','False'],
+    ans:1,
+    exp:'False. FINTRAC AML declarations are required on every mortgage file regardless of the transaction value. These are federal legal obligations that apply to all mortgage transactions in Canada. Missing FINTRAC declarations can result in regulatory fines for the brokerage.'
+  },
+  {
+    type:'mc',
+    q:'During disclosure verification (Step 3 of the workflow), you notice the rate in the cost of borrowing disclosure is 5.99% but the commitment letter shows 5.89%. What do you do?',
+    opts:[
+      'Accept the disclosure since the difference is minor',
+      'Change the disclosure to 5.89% to match the commitment letter',
+      'Flag the mismatch to the broker immediately — the disclosure and commitment letter must match exactly',
+      'Send the file to the lender and let them identify the discrepancy'
+    ],
+    ans:2,
+    exp:'Any mismatch between the mortgage approval and the disclosure is a direct compliance failure. You cannot change the document yourself. Flag it to the broker immediately so the correct disclosure can be issued and re-signed before the file proceeds.'
+  },
+  {
+    type:'mc',
+    q:'What is the correct order of the final three steps in the compliance workflow?',
+    opts:[
+      'Final QC → Checklist Completion → Submission & Filing',
+      'Checklist Completion → Final QC → Submission & Filing',
+      'Submission & Filing → Final QC → Checklist Completion',
+      'Checklist Completion → Submission & Filing → Final QC'
+    ],
+    ans:1,
+    exp:'The correct order is: Checklist Completion (Step 4) → Final QC Review (Step 5) → Submission & Filing (Step 6). The checklist ensures everything is present. Final QC cross-checks numbers and names. Submission comes only after both checks are complete.'
+  }
+];
+
+const Q2 = [
+  {
+    type:'mc',
+    q:'Which of the five universal compliance principles specifically addresses the requirement for FINTRAC declarations and PIPEDA consent?',
+    opts:['Full Disclosure','Suitability Proof','Federal Compliance','Record Keeping'],
+    ans:2,
+    exp:'Federal Compliance covers AML (FINTRAC) and privacy (PIPEDA) requirements. These are federal legal obligations that apply to all mortgage files in every province. The other principles address different aspects of compliance — disclosure, suitability, and documentation management.'
+  },
+  {
+    type:'tf',
+    q:'True or False: A borrower\'s signature at the end of a disclosure document is sufficient — you do not need to verify that initials are present on each individual page.',
+    opts:['True','False'],
+    ans:1,
+    exp:'False. Disclosure pages require initials on each page, not just a final signature. Missing initials on required pages mean the borrower has not confirmed they read each page — which is a compliance error. Always verify both signatures and initials are complete.'
+  },
+  {
+    type:'mc',
+    q:'After submitting a file to the lender, what must you do immediately as part of the final submission workflow?',
+    opts:[
+      'Notify the borrower that the file has been submitted',
+      'Save the complete package in the internal audit folder and log the submission date and time',
+      'Wait for the lender to confirm receipt before saving anything',
+      'Archive the file in the broker\'s email folder'
+    ],
+    ans:1,
+    exp:'Immediately after submission, you must save the complete package in the internal audit folder and log the submission date, time, and who submitted. This creates the audit trail required for regulatory compliance. Do not wait for lender confirmation before saving.'
+  },
+  {
+    type:'mc',
+    q:'A borrower\'s legal name is "Alexander James Thompson" but their application has been filled out as "Alex Thompson." What is the correct action?',
+    opts:[
+      'Accept it since Alex is a common short form of Alexander',
+      'Update all documents to use "Alex Thompson" for consistency',
+      'Flag the name discrepancy to the broker — all documents must use the legal name exactly as it appears on government-issued ID',
+      'Use the short name on informal documents and legal name on formal documents'
+    ],
+    ans:2,
+    exp:'All mortgage documents must use the borrower\'s legal name exactly as it appears on their government-issued ID. Using "Alex Thompson" instead of "Alexander James Thompson" is a compliance error. Flag it to the broker so the application can be corrected before submission.'
+  },
+  {
+    type:'tf',
+    q:'True or False: In Ontario, the Cost of Borrowing Disclosure must be signed by the borrower before the commitment letter is issued.',
+    opts:['True','False'],
+    ans:0,
+    exp:'True. In Ontario, the Cost of Borrowing Disclosure is mandatory under the Mortgage Brokerages, Lenders and Administrators Act (MBLAA) and must be provided and signed before the borrower commits to the mortgage. This is an Ontario-specific compliance requirement.'
+  },
+  {
+    type:'mc',
+    q:'Which of the following combinations correctly describes what "audit-ready" means for a mortgage compliance file?',
+    opts:[
+      'Submitted to the lender and approved',
+      'Complete, consistent, signed, and traceable',
+      'Organized in chronological order with the commitment letter on top',
+      'Reviewed by the broker and marked as final'
+    ],
+    ans:1,
+    exp:'A file is audit-ready when all four conditions are met: Complete (every required document is present), Consistent (names, numbers, and dates match across all documents), Signed (all signatures and initials are in place), and Traceable (audit trail shows who did what and when).'
+  }
+];
+
+const SCREENS=['intro','l1','l2','l3','l4','q1','l5','l6','l7','q2','cert'];
+const LABELS=['Intro','What is Compliance?','Client Docs','Property Docs','Workflow','Quiz 1','Principles','Errors','Audit Ready','Quiz 2','Certificate'];
+
+let cur='intro';
+let q1S={cur:0,scores:[],answered:false};
+let q2S={cur:0,scores:[],answered:false};
+
+function go(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s-'+id).classList.add('active');
+  cur=id;
+  window.scrollTo({top:0,behavior:'smooth'});
+  updateProg();
+  if(id==='q1')renderQ(Q1,q1S,'q1body','q1ctr','q1pf',1);
+  if(id==='q2')renderQ(Q2,q2S,'q2body','q2ctr','q2pf',2);
+}
+
+function updateProg(){
+  const idx=SCREENS.indexOf(cur);
+  const pct=Math.round((idx/(SCREENS.length-1))*100);
+  document.getElementById('pfill').style.width=pct+'%';
+  document.getElementById('ppct').innerText=pct+'%';
+  document.getElementById('plabel').innerText=LABELS[idx]||'';
+  const pc=document.getElementById('pills');
+  pc.innerHTML='';
+  SCREENS.forEach((s,i)=>{
+    const p=document.createElement('div');
+    p.className='pill'+(i===idx?' active':i<idx?' done':'');
+    p.innerText=LABELS[i];
+    pc.appendChild(p);
+  });
+}
+
+function renderQ(qs,state,bodyId,ctrId,pfId,qNum){
+  const q=qs[state.cur];
+  const L=['A','B','C','D'];
+  document.getElementById(ctrId).innerText=`Q ${state.cur+1} of ${qs.length}`;
+  document.getElementById(pfId).style.width=((state.cur+1)/qs.length*100)+'%';
+  const bc=q.type==='tf'?'tf':'mc';
+  const bt=q.type==='tf'?'True / False':'Multiple Choice';
+  const oh=q.opts.map((o,i)=>{
+    const l=q.type==='tf'?(i===0?'T':'F'):L[i];
+    return `<div class="opt" id="opt-${qNum}-${i}" onclick="pick(${i},${qNum})"><div class="oltr">${l}</div><div class="otxt">${o}</div></div>`;
+  }).join('');
+  const nl=state.cur<qs.length-1?'Next Question →':(qNum===1?'Continue to Lesson 5 →':'See My Results →');
+  document.getElementById(bodyId).innerHTML=`
+    <span class="qtbadge ${bc}">${bt}</span>
+    <div class="qtext">${q.q}</div>
+    <div class="opts" id="opts-${qNum}">${oh}</div>
+    <div class="fb" id="fb-${qNum}"></div>
+    <div style="display:flex;justify-content:flex-end;">
+      <button class="btn bp" id="nxt-${qNum}" onclick="nextQ(${qNum})" style="display:none;">${nl}</button>
+    </div>`;
+  state.answered=false;
+}
+
+function pick(idx,qNum){
+  const state=qNum===1?q1S:q2S;
+  const qs=qNum===1?Q1:Q2;
+  if(state.answered)return;
+  state.answered=true;
+  const q=qs[state.cur];
+  document.getElementById('opts-'+qNum).classList.add('locked');
+  q.opts.forEach((_,i)=>{
+    const el=document.getElementById('opt-'+qNum+'-'+i);
+    el.classList.add('locked');
+    if(i===q.ans)el.classList.add('correct');
+    else if(i===idx)el.classList.add('wrong');
+  });
+  const ok=idx===q.ans;
+  state.scores.push(ok?1:0);
+  const fb=document.getElementById('fb-'+qNum);
+  fb.className='fb show '+(ok?'correct':'incorrect');
+  fb.innerHTML=`<span style="font-size:15px;flex-shrink:0;">${ok?'✅':'❌'}</span><span><strong>${ok?'Correct!':'Not quite.'}</strong> ${q.exp}</span>`;
+  document.getElementById('nxt-'+qNum).style.display='inline-flex';
+}
+
+function nextQ(qNum){
+  const state=qNum===1?q1S:q2S;
+  const qs=qNum===1?Q1:Q2;
+  state.cur++;
+  if(state.cur<qs.length){
+    renderQ(qs,state,`q${qNum}body`,`q${qNum}ctr`,`q${qNum}pf`,qNum);
+  } else {
+    if(qNum===1)go('l5');
+    else showResults();
+  }
+}
+
+function retake(){
+  q1S={cur:0,scores:[],answered:false};
+  q2S={cur:0,scores:[],answered:false};
+  go('q1');
+}
+
+function showResults(){
+  go('cert');
+  const s1=q1S.scores.reduce((a,b)=>a+b,0)/Q1.length;
+  const s2=q2S.scores.reduce((a,b)=>a+b,0)/Q2.length;
+  const total=(s1+s2)/2;
+  const p1=Math.round(s1*100)+'%';
+  const p2=Math.round(s2*100)+'%';
+  const pt=Math.round(total*100)+'%';
+  if(total>=0.70){
+    document.getElementById('cert-pass').style.display='block';
+    document.getElementById('cert-fail').style.display='none';
+    document.getElementById('cscore').innerText=pt;
+    document.getElementById('cdate').innerText=new Date().toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'});
+  } else {
+    document.getElementById('cert-pass').style.display='none';
+    document.getElementById('cert-fail').style.display='block';
+    document.getElementById('fail-badge').innerText='Total: '+pt;
+    document.getElementById('fq1').innerText=p1;
+    document.getElementById('fq2').innerText=p2;
+  }
+}
+
+updateProg();
+</script>
+</body>
+</html>

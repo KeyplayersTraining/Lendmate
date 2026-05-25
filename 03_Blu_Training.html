@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blu (BluMortgage) Training | LendMate VA Academy</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap');
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{--pink:#C855A0;--pink-l:#f5d0ea;--pink-xl:#fdf0f9;--purple:#8B5CF6;--purple-l:#ede9fe;--purple-xl:#f5f3ff;--grad:linear-gradient(135deg,#C855A0 0%,#8B5CF6 100%);--grad-soft:linear-gradient(135deg,#fdf0f9 0%,#f5f3ff 100%);--dark:#1a0a2e;--text:#1a1a2e;--muted:#6b6b8a;--border:#e8e0f5;--white:#ffffff;--cream:#faf9ff;--green:#059669;--green-l:#d1fae5;--red:#dc2626;--red-l:#fee2e2;--amber:#d97706;--amber-l:#fef3c7;}
+html{scroll-behavior:smooth;}body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);padding:28px 20px 60px;line-height:1.6;}.page{max-width:960px;margin:0 auto;}
+.prog-wrap{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);padding:10px 20px;margin:-28px -20px 28px;display:flex;align-items:center;gap:14px;box-shadow:0 2px 12px rgba(139,92,246,.08);}.prog-label{font-size:10px;font-weight:700;color:var(--muted);white-space:nowrap;}.prog-track{flex:1;height:6px;background:var(--purple-l);border-radius:10px;overflow:hidden;}.prog-fill{height:100%;background:var(--grad);border-radius:10px;transition:width .4s;width:0%;}.prog-pct{font-size:12px;font-weight:700;color:var(--purple);min-width:34px;text-align:right;}
+.cover{background:var(--grad);border-radius:20px;padding:42px 46px 34px;margin-bottom:10px;position:relative;overflow:hidden;}.cover::before{content:'';position:absolute;right:-80px;top:-80px;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.07);}.cover-badge{display:inline-flex;align-items:center;background:rgba(255,255,255,.18);color:#fff;font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:14px;}.cover h1{font-family:'DM Serif Display',serif;color:#fff;font-size:30px;font-weight:400;margin-bottom:10px;line-height:1.25;}.cover h1 em{font-style:italic;opacity:.9;}.cover-sub{color:rgba(255,255,255,.85);font-size:13.5px;max-width:540px;line-height:1.65;}.cover-meta{display:flex;gap:26px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.2);flex-wrap:wrap;}.cm-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:3px;}.cm-val{font-size:12px;color:rgba(255,255,255,.9);font-weight:500;}
+.outline{background:var(--white);border-radius:14px;padding:20px 24px;margin-bottom:10px;box-shadow:0 2px 16px rgba(139,92,246,.06);border:1px solid var(--border);}.outline-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}.outline-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}.outline-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:var(--cream);border:1px solid var(--border);text-decoration:none;color:var(--text);font-size:12.5px;font-weight:600;transition:all .15s;}.outline-item:hover{background:var(--purple-xl);border-color:var(--purple-l);color:var(--purple);}.outline-num{width:22px;height:22px;border-radius:6px;background:var(--grad);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}.outline-item.quiz-link{background:var(--amber-l);border-color:#fcd34d;color:var(--amber);}.outline-item.quiz-link .outline-num{background:var(--amber);}
+.section{background:var(--white);border-radius:18px;padding:32px 36px;margin-bottom:10px;box-shadow:0 2px 20px rgba(139,92,246,.07);border:1px solid var(--border);}.sh{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px;padding-bottom:18px;border-bottom:2px solid var(--border);}.sh-icon{width:44px;height:44px;border-radius:12px;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}.sh-text h2{font-size:18px;font-weight:700;color:var(--dark);}.sh-text p{font-size:12.5px;color:var(--muted);margin-top:3px;}.sst{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin:24px 0 12px;display:flex;align-items:center;gap:10px;}.sst::after{content:'';flex:1;height:1px;background:var(--border);}
+.lesson-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}.lesson-card{background:var(--grad-soft);border:1px solid var(--pink-l);border-left:3px solid var(--pink);border-radius:12px;padding:16px 18px;}.lesson-card.full{grid-column:1/-1;}.lc-title{font-size:13px;font-weight:700;color:var(--dark);margin-bottom:6px;}.lc-body{font-size:12.5px;color:var(--muted);line-height:1.65;}.lc-badge{display:inline-block;margin-top:8px;font-size:10px;font-weight:700;padding:2px 10px;border-radius:4px;}.lc-badge.tip{background:var(--purple-l);color:var(--purple);}.lc-badge.note{background:var(--green-l);color:var(--green);}.lc-badge.warn{background:var(--amber-l);color:var(--amber);}
+.pipeline-stages{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:12px 0;}
+.ps{background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:12px 10px;text-align:center;}
+.ps-num{width:24px;height:24px;border-radius:50%;background:var(--grad);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;}
+.ps-label{font-size:11px;font-weight:700;color:var(--dark);margin-bottom:4px;}
+.ps-desc{font-size:10.5px;color:var(--muted);line-height:1.4;}
+.info-box{border-radius:12px;padding:16px 20px;margin:12px 0;}.info-box.purple{background:var(--purple-xl);border:1px solid var(--purple-l);}.info-box.amber{background:var(--amber-l);border:1px solid #fcd34d;}.info-box.green{background:var(--green-l);border:1px solid #86efac;}.info-box.red{background:var(--red-l);border:1px solid #fca5a5;}.ib-title{font-size:11px;font-weight:700;margin-bottom:8px;}.info-box.purple .ib-title{color:var(--purple);}.info-box.amber .ib-title{color:var(--amber);}.info-box.green .ib-title{color:var(--green);}.info-box.red .ib-title{color:var(--red);}.ib-body{font-size:12.5px;line-height:1.7;color:var(--text);}
+.quiz-intro{background:var(--amber-l);border-radius:12px;padding:16px 20px;margin-bottom:24px;border:1px solid #fcd34d;}.qi-title{font-size:12px;font-weight:700;color:var(--amber);margin-bottom:6px;}.qi-body{font-size:12.5px;color:#78350f;line-height:1.65;}
+.name-row{display:flex;gap:12px;align-items:center;margin-bottom:28px;}.name-row label{font-size:13px;font-weight:600;color:var(--dark);white-space:nowrap;}.name-row input{flex:1;padding:10px 16px;border:2px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);background:var(--cream);outline:none;transition:border-color .15s;}.name-row input:focus{border-color:var(--purple);}
+.q-block{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border);}.q-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}.q-num{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:6px;}.q-text{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:14px;line-height:1.5;}.q-options{display:flex;flex-direction:column;gap:8px;}.q-option{display:flex;align-items:center;gap:12px;padding:11px 16px;border:2px solid var(--border);border-radius:10px;cursor:pointer;font-size:13px;color:var(--text);transition:all .15s;user-select:none;background:var(--white);}.q-option:hover{border-color:var(--purple);background:var(--purple-xl);}.q-option input{accent-color:var(--purple);width:16px;height:16px;flex-shrink:0;}.q-option.correct{border-color:var(--green);background:var(--green-l);font-weight:600;}.q-option.wrong{border-color:var(--red);background:var(--red-l);}.q-option.show-correct{border-color:var(--green);background:var(--green-l);}.q-feedback{margin-top:10px;font-size:12px;padding:9px 13px;border-radius:8px;line-height:1.6;}.q-feedback.correct{background:var(--green-l);color:#064e3b;border:1px solid #86efac;}.q-feedback.wrong{background:var(--red-l);color:#7f1d1d;border:1px solid #fca5a5;}
+.submit-btn{display:block;margin:28px auto 0;padding:13px 46px;background:var(--grad);color:#fff;border:none;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 4px 20px rgba(200,85,160,.3);transition:opacity .15s,transform .1s;}.submit-btn:hover{opacity:.92;transform:translateY(-1px);}
+.result-pass{background:var(--green-l);border:2px solid #86efac;border-radius:14px;padding:26px 30px;text-align:center;}.result-fail{background:var(--red-l);border:2px solid #fca5a5;border-radius:14px;padding:26px 30px;text-align:center;}.result-score{font-size:50px;font-weight:700;margin-bottom:6px;line-height:1;}.result-pass .result-score{color:var(--green);}.result-fail .result-score{color:var(--red);}.result-msg{font-size:15px;font-weight:700;margin-bottom:6px;}.result-sub{font-size:13px;color:var(--muted);}.retry-btn{margin-top:16px;padding:10px 30px;background:var(--red);color:#fff;border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
+#certificate{display:none;margin-bottom:10px;}.cert-wrap{background:var(--white);border-radius:20px;padding:52px 46px;text-align:center;box-shadow:0 8px 50px rgba(139,92,246,.15);border:3px solid var(--pink);position:relative;}.cert-corner{position:absolute;width:88px;height:88px;border-style:solid;border-color:var(--purple);border-width:0;}.cert-corner.tl{top:0;left:0;border-top-width:5px;border-left-width:5px;border-radius:18px 0 0 0;}.cert-corner.tr{top:0;right:0;border-top-width:5px;border-right-width:5px;border-radius:0 18px 0 0;}.cert-corner.bl{bottom:0;left:0;border-bottom-width:5px;border-left-width:5px;border-radius:0 0 0 18px;}.cert-corner.br{bottom:0;right:0;border-bottom-width:5px;border-right-width:5px;border-radius:0 0 18px 0;}.cert-badge{display:inline-block;background:var(--grad);color:#fff;font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:5px 18px;border-radius:20px;margin-bottom:14px;}.cert-org{font-size:13px;color:var(--muted);margin-bottom:20px;}.cert-div{width:180px;height:2px;background:var(--grad);margin:0 auto 20px;border-radius:2px;}.cert-intro{font-size:14px;color:var(--muted);margin-bottom:8px;}.cert-name{font-family:'DM Serif Display',serif;font-size:36px;color:var(--dark);margin-bottom:10px;font-style:italic;}.cert-completed{font-size:14px;color:var(--muted);margin-bottom:6px;}.cert-module{font-size:19px;font-weight:700;color:var(--pink);margin-bottom:20px;}.cert-score-badge{display:inline-block;background:var(--grad-soft);border:2px solid var(--pink-l);border-radius:50px;padding:8px 28px;font-size:15px;font-weight:700;color:var(--purple);margin-bottom:24px;}.cert-sigs{display:flex;justify-content:center;gap:70px;margin-bottom:18px;}.cert-sig-line{width:130px;height:1px;background:#ccc;margin-bottom:6px;}.cert-sig-name{font-size:11px;font-weight:600;color:var(--muted);}.cert-sig-role{font-size:10px;color:#aaa;}.cert-ref{font-size:10px;color:#ccc;font-family:'DM Mono',monospace;margin-top:4px;}.print-btn{margin-top:20px;padding:10px 30px;background:var(--grad);color:#fff;border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
+.footer{background:var(--dark);border-radius:14px;padding:16px 30px;margin-top:10px;display:flex;justify-content:space-between;align-items:center;}.footer-left{font-size:11px;color:rgba(255,255,255,.5);}.footer-right{font-family:'DM Mono',monospace;font-size:10px;color:#c4b5fd;}
+@media print{body{background:#fff;padding:0;}.prog-wrap,.outline,#quiz-section,.footer{display:none!important;}#certificate{display:block!important;}.section{box-shadow:none;border:1px solid #eee;}}
+.anchor{display:block;height:0;visibility:hidden;}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="prog-wrap"><div class="prog-label">PROGRESS</div><div class="prog-track"><div class="prog-fill" id="pb-fill"></div></div><div class="prog-pct" id="pb-pct">0%</div></div>
+
+<div class="cover">
+  <div class="cover-badge">🏠 LendMate VA Training Academy</div>
+  <h1>Blu (BluMortgage)<br><em>CRM Training Module</em></h1>
+  <p class="cover-sub">Learn how Blu works as a mortgage CRM and workflow automation tool — deal management, pipeline stages, automations, integrations, and compliance best practices.</p>
+  <div class="cover-meta">
+    <div><div class="cm-label">Platform</div><div class="cm-val">Blu / BluMortgage</div></div>
+    <div><div class="cm-label">Module</div><div class="cm-val">CRM-BLU-003</div></div>
+    <div><div class="cm-label">Pass Score</div><div class="cm-val">70% (11/15 questions)</div></div>
+    <div><div class="cm-label">Built On</div><div class="cm-val">Salesforce CRM</div></div>
+  </div>
+</div>
+
+<div class="outline">
+  <div class="outline-title">Training Outline</div>
+  <div class="outline-grid">
+    <a href="#s1" class="outline-item"><div class="outline-num">1</div>Platform Basics</a>
+    <a href="#s2" class="outline-item"><div class="outline-num">2</div>Contacts &amp; Automation</a>
+    <a href="#s3" class="outline-item"><div class="outline-num">3</div>Deal Management</a>
+    <a href="#s4" class="outline-item"><div class="outline-num">4</div>Integrations &amp; Communication</a>
+    <a href="#s5" class="outline-item"><div class="outline-num">5</div>Compliance &amp; Data</a>
+    <a href="#quiz" class="outline-item quiz-link"><div class="outline-num">✎</div>Knowledge Quiz</a>
+  </div>
+</div>
+
+<span class="anchor" id="s1"></span>
+<div class="section" data-s="1">
+  <div class="sh"><div class="sh-icon">🖥️</div><div class="sh-text"><h2>Platform Basics</h2><p>What Blu is, what it is built on, and how to navigate it as a VA.</p></div></div>
+  <div class="sst">What is Blu</div>
+  <div class="lesson-grid">
+    <div class="lesson-card"><div class="lc-title">Primary Purpose</div><div class="lc-body">Blu (BluMortgage) is a <strong>CRM and workflow automation platform</strong> specifically built for mortgage professionals. It manages leads, contacts, deals, and automates follow-up communications. Unlike Filogix or Finmo, Blu's primary strength is pipeline visibility and automated workflows — not direct lender submission.</div><span class="lc-badge tip">CRM + automation — not a submission platform</span></div>
+    <div class="lesson-card"><div class="lc-title">What it is Built On</div><div class="lc-body">Blu is built on top of <strong>Salesforce</strong> — the world's most widely used CRM platform. This means Blu inherits Salesforce's structure for contacts, deals, and automation rules. If you have used Salesforce before, Blu will feel familiar. If not, the core concepts are contacts, deals, and pipelines.</div><span class="lc-badge note">Built on Salesforce — know this fact</span></div>
+    <div class="lesson-card full"><div class="lc-title">Key Navigation Tabs</div><div class="lc-body"><strong>Deals tab:</strong> Shows all active deals — this is your primary working area as a VA. <strong>Contacts:</strong> All leads, borrowers, and referral partners. <strong>Tasks:</strong> Pending actions and follow-ups assigned to you or auto-generated. <strong>Campaigns:</strong> Marketing automations — typically managed by the broker, not VAs.</div></div>
+  </div>
+</div>
+
+<span class="anchor" id="s2"></span>
+<div class="section" data-s="2">
+  <div class="sh"><div class="sh-icon">⚡</div><div class="sh-text"><h2>Contacts &amp; Automation</h2><p>How leads enter Blu, what triggers automations, and what the pipeline stages mean.</p></div></div>
+  <div class="sst">What Triggers Automations</div>
+  <div class="info-box purple"><div class="ib-title">The Key Trigger: Deal Stage Change</div><div class="ib-body">In Blu, automations are triggered by <strong>deal stage changes</strong> — not by the lead's income bracket, number of dependents, or time of day the lead was added. When a deal moves from one stage to the next, Blu automatically fires the actions set up for that stage: emails, tasks, reminders, and internal notifications.</div></div>
+  <div class="sst">Pipeline Stages</div>
+  <div class="pipeline-stages">
+    <div class="ps"><div class="ps-num">1</div><div class="ps-label">New Lead</div><div class="ps-desc">Lead has entered the system — initial contact not yet made</div></div>
+    <div class="ps"><div class="ps-num">2</div><div class="ps-label">Documents Collected</div><div class="ps-desc">Borrower has provided all required documentation</div></div>
+    <div class="ps"><div class="ps-num">3</div><div class="ps-label">Approval</div><div class="ps-desc">Conditional approval received from lender</div></div>
+    <div class="ps"><div class="ps-num">4</div><div class="ps-label">Closed Won</div><div class="ps-desc">Mortgage has funded successfully</div></div>
+    <div class="ps"><div class="ps-num">5</div><div class="ps-label">Closed Lost</div><div class="ps-desc">Deal did not proceed — borrower withdrew or declined</div></div>
+  </div>
+  <div class="lesson-grid" style="margin-top:12px;">
+    <div class="lesson-card"><div class="lc-title">What "Closed Won" Means</div><div class="lc-body">"Closed Won" in Blu means the mortgage has been <strong>funded successfully</strong>. The deal is complete. The borrower has received their funds and the transaction has closed at the lawyer's office. Do not mark a deal Closed Won until funding is confirmed.</div><span class="lc-badge note">Closed Won = funded. Not approved, not signed.</span></div>
+    <div class="lesson-card"><div class="lc-title">Automation Workflows</div><div class="lc-body">Blu Automation Workflows automatically send emails, create tasks, and set reminders when a deal stage changes. They can also update deal stages automatically based on rules. This removes manual follow-up gaps. As a VA, you execute tasks created by automations — you do not build or edit automations without broker permission.</div><span class="lc-badge warn">Never edit automations without broker authorization</span></div>
+  </div>
+</div>
+
+<span class="anchor" id="s3"></span>
+<div class="section" data-s="3">
+  <div class="sh"><div class="sh-icon">📋</div><div class="sh-text"><h2>Deal Management</h2><p>How to create deals, what information is required, and what Blu can automate within deals.</p></div></div>
+  <div class="sst">Creating a New Deal</div>
+  <div class="lesson-grid">
+    <div class="lesson-card"><div class="lc-title">What to Enter First</div><div class="lc-body">When creating a new deal, the first required fields are <strong>deal name and associated contact(s)</strong>. The deal name is typically the borrower's name or file reference. You must link at least one contact (the primary borrower) before the deal can be saved.</div><span class="lc-badge tip">Deal name + linked contact = minimum to save</span></div>
+    <div class="lesson-card"><div class="lc-title">What Blu Can Auto-Update</div><div class="lc-body">Blu can automatically update <strong>deal stage progression</strong> based on workflow rules — for example, moving a deal from "Documents Collected" to "Approval" when certain conditions are met. It cannot calculate mortgage penalties, update birthdays, or calculate land transfer taxes automatically.</div><span class="lc-badge note">Automation handles stage changes — not mortgage math</span></div>
+  </div>
+</div>
+
+<span class="anchor" id="s4"></span>
+<div class="section" data-s="4">
+  <div class="sh"><div class="sh-icon">🔗</div><div class="sh-text"><h2>Integrations &amp; Communication</h2><p>How Blu connects to other tools and how communication works inside the CRM.</p></div></div>
+  <div class="sst">Key Integrations</div>
+  <div class="lesson-grid">
+    <div class="lesson-card"><div class="lc-title">Finmo Integration</div><div class="lc-body">The most common tool that integrates with Blu is <strong>Finmo</strong> — the mortgage application and document collection platform. This integration allows deals in Blu to connect to applications in Finmo, keeping the CRM and the mortgage application in sync. TurboTax, Canva, and Zillow are not Blu integrations.</div><span class="lc-badge tip">Blu + Finmo = the standard integration stack</span></div>
+    <div class="lesson-card"><div class="lc-title">Email Integration</div><div class="lc-body">For automations that must reliably send emails from within Blu, use a <strong>connected email integration</strong> — Office 365 sync or Gmail sync. Personal email accounts or the broker's direct Gmail are not suitable for automation delivery. Always use the connected integration to ensure emails send correctly.</div><span class="lc-badge warn">Personal Gmail ≠ automation email — use integration</span></div>
+    <div class="lesson-card full"><div class="lc-title">Text Messaging in Blu</div><div class="lc-body">Blu's text messaging integration allows VAs and brokers to send SMS messages to borrowers directly from inside the CRM. All messages are logged in the deal record, creating a full communication audit trail. This is not mass marketing spam — it is one-to-one communication tied to a specific deal. Use it professionally and purposefully.</div><span class="lc-badge note">All Blu texts are logged — treat them as formal communication</span></div>
+  </div>
+</div>
+
+<span class="anchor" id="s5"></span>
+<div class="section" data-s="5">
+  <div class="sh"><div class="sh-icon">🔒</div><div class="sh-text"><h2>Compliance &amp; Data Handling</h2><p>Why logging communication matters and what data must be protected.</p></div></div>
+  <div class="sst">Communication Logging</div>
+  <div class="info-box green"><div class="ib-title">Why You Must Log All Communication</div><div class="ib-body">Every borrower communication — calls, emails, texts, and in-person conversations — must be logged in Blu. This creates a <strong>full audit trail</strong> that meets compliance requirements. If a compliance issue arises and the communication is not logged, it effectively did not happen from a legal standpoint. Log immediately after each interaction.</div></div>
+  <div class="sst">Data Protection</div>
+  <div class="lesson-grid">
+    <div class="lesson-card"><div class="lc-title">Most Sensitive Information</div><div class="lc-body">A borrower's <strong>credit and financial information</strong> — income, debts, credit score, banking details — is the most sensitive category of data in Blu. This data must be stored securely and never shared outside the platform without explicit broker authorization. A postal code or middle name does not carry the same protection level.</div><span class="lc-badge warn">Financial + credit data = highest protection level</span></div>
+    <div class="lesson-card"><div class="lc-title">Who Can Edit Automations</div><div class="lc-body">Only <strong>Admins or team members explicitly granted permission</strong> can edit automation workflows in Blu. Real estate agents, referral partners, and borrowers do not have this access. As a VA, you work within automations — you do not change them. If an automation is broken or behaving incorrectly, escalate to the broker.</div><span class="lc-badge tip">Automation edits = broker/Admin only</span></div>
+  </div>
+</div>
+
+<span class="anchor" id="quiz"></span>
+<div id="quiz-section">
+<div class="section" data-s="q" style="border:2px solid var(--amber-l);">
+  <div class="sh"><div class="sh-icon">✎</div><div class="sh-text"><h2>Knowledge Quiz — Blu (BluMortgage)</h2><p>15 questions · 70% to pass · Enter your name to generate your certificate.</p></div></div>
+  <div class="quiz-intro"><div class="qi-title">Before You Start</div><div class="qi-body">Answer all 15 questions, then click Submit. You need at least 11 correct (70%) to pass. Review the lessons above before starting.</div></div>
+  <div class="name-row"><label for="va-name">Your Full Name:</label><input type="text" id="va-name" placeholder="e.g. Maria Santos"></div>
+  <div id="quiz-questions"></div>
+  <div id="quiz-result" style="display:none;margin-top:24px;"></div>
+  <button class="submit-btn" onclick="submitQuiz()">Submit Quiz →</button>
+</div>
+</div>
+
+<div id="certificate"><div class="cert-wrap">
+  <div class="cert-corner tl"></div><div class="cert-corner tr"></div><div class="cert-corner bl"></div><div class="cert-corner br"></div>
+  <div class="cert-badge">Certificate of Completion</div><div class="cert-org">LendMate VA Training Academy</div><div class="cert-div"></div>
+  <div class="cert-intro">This certifies that</div><div class="cert-name" id="cert-name"></div>
+  <div class="cert-completed">has successfully completed</div><div class="cert-module">Blu (BluMortgage) — CRM Training Module</div>
+  <div class="cert-score-badge" id="cert-score"></div><div class="cert-div"></div>
+  <div class="cert-sigs"><div><div class="cert-sig-line"></div><div class="cert-sig-name">Training Team</div><div class="cert-sig-role">KeyPlayers</div></div><div><div class="cert-sig-name" id="cert-date" style="margin-bottom:6px;"></div><div class="cert-sig-line"></div><div class="cert-sig-name">Date Issued</div></div></div>
+  <div class="cert-ref" id="cert-ref"></div><button class="print-btn" onclick="window.print()">🖨 Print Certificate</button>
+</div></div>
+<div class="footer"><div class="footer-left">KeyPlayers · LendMate VA Training Academy · lendmate.ca</div><div class="footer-right">CRM-BLU-003 · Blu / BluMortgage</div></div>
+</div>
+
+<script>
+const questions=[
+  {q:"What is Blu (BluMortgage) primarily used for?",options:["Property inspection and appraisal","CRM and workflow automation for mortgage professionals","Borrower self-directed mortgage applications","Real estate listing management"],correct:1,feedback:"Blu is a mortgage-specific CRM and workflow automation tool. It manages leads, contacts, deals, and automates communication. It is not a direct lender submission platform like Filogix or Finmo."},
+  {q:"Which tab in Blu shows the full list of active deals that a VA works from daily?",options:["Contacts","Tasks","Deals","Campaigns"],correct:2,feedback:"The Deals tab is the primary working area showing all active files. Contacts are for borrower/partner records, Tasks are for pending actions, and Campaigns are for marketing automations managed by the broker."},
+  {q:"Blu is built on top of which CRM platform?",options:["Salesforce","HubSpot","Pipedrive","Zoho"],correct:0,feedback:"BluMortgage is built on Salesforce — the world's most widely used CRM platform. This gives Blu its core structure for contacts, deals, pipelines, and automation rules."},
+  {q:"In Blu, what typically triggers automation workflows to fire?",options:["The lead's income bracket","A change in the deal stage","The number of dependents on the file","The time of day the lead was entered"],correct:1,feedback:"Deal stage changes are the primary trigger for Blu automations. When a deal moves from one stage to the next, Blu fires the automated actions configured for that stage — emails, tasks, reminders, etc."},
+  {q:"A deal has received conditional approval from the lender. Which pipeline stage best represents this?",options:["New Lead","Documents Collected","Approval","Closed Won"],correct:2,feedback:"The 'Approval' stage represents conditional approval from the lender. 'Closed Won' means the mortgage has funded — that is different and comes later in the pipeline."},
+  {q:"What is the purpose of Blu's Automation Workflows?",options:["To perform property valuations automatically","To automatically send emails, create tasks, and set reminders","To track real-time mortgage rates","To publish property listings online"],correct:1,feedback:"Automation Workflows in Blu automatically send emails, generate tasks, and create reminders when deal stages change. They keep the file moving without manual intervention for routine follow-ups."},
+  {q:"When creating a new deal in Blu, what information is required first?",options:["Lender preferences and rate selection","Deal name and associated contact(s)","Insurance provider details","Property appraiser information"],correct:1,feedback:"A deal name and at least one linked contact (the primary borrower) are the minimum required fields to save a new deal. All other information is added as the deal progresses."},
+  {q:"Which of the following can Blu automatically update based on workflow rules?",options:["Mortgage penalty calculations","Contact birthdays","Deal stage progression","Land transfer tax amounts"],correct:2,feedback:"Blu workflow rules can automatically update deal stage progression based on defined conditions. Mortgage penalties, birthdays, and land transfer taxes are calculated outside of Blu's automation capabilities."},
+  {q:"What does 'Closed Won' represent in Blu's deal pipeline?",options:["The borrower has abandoned the application","The mortgage has funded successfully","The file is still in processing with the lender","The lender has declined the application"],correct:1,feedback:"'Closed Won' means the mortgage has funded — the deal is complete. The funds have been disbursed and the transaction has closed at the lawyer's office. Do not mark a deal Closed Won until funding is confirmed."},
+  {q:"Which tool most commonly integrates with Blu for document collection and borrower applications?",options:["TurboTax","Finmo","Canva","Zillow"],correct:1,feedback:"Finmo is the standard integration with Blu for mortgage applications and document collection. This integration keeps the CRM deal (Blu) linked to the mortgage application (Finmo)."},
+  {q:"For automations that must reliably send emails through Blu, which email type is recommended?",options:["The broker's personal Gmail account","A connected email integration such as Office 365 or Gmail sync","The borrower's email address","Any email — they all work the same in Blu"],correct:1,feedback:"A connected email integration — Office 365 or Gmail sync — ensures automations send reliably. Using a personal email account directly bypasses Blu's delivery system and automations may not fire correctly."},
+  {q:"What is the benefit of Blu's text messaging integration?",options:["It sends mass marketing messages to all borrowers simultaneously","It allows one-to-one communication with borrowers directly from inside the CRM, with all messages logged","It generates automated underwriting decisions based on borrower responses","It sends fax messages to lenders"],correct:1,feedback:"Blu's text messaging allows direct, logged communication with borrowers from inside the CRM. Every message is recorded in the deal file, creating a full audit trail. It is for professional one-to-one communication — not mass marketing."},
+  {q:"Why is it important to log all borrower communication in Blu?",options:["It increases the marketing score for the deal","It provides a full audit trail and meets compliance requirements","It backs up emails to an external server","It reduces Blu's storage usage"],correct:1,feedback:"Logging all communication creates a compliance-ready audit trail. If a dispute or compliance review occurs, unlogged communications effectively did not happen. Log every call, email, text, and in-person interaction immediately after it occurs."},
+  {q:"Which of the following represents sensitive information that must be stored securely in Blu?",options:["The borrower's favourite sports team","The borrower's middle name","The borrower's credit and financial information","The borrower's postal code"],correct:2,feedback:"Credit and financial information — income, debts, credit score, banking details — is the most sensitive category. It is legally protected and must never be shared outside the platform without explicit broker authorization."},
+  {q:"Who can edit automation workflows in Blu?",options:["Any borrower with a Blu account","Only Admins or team members with explicit permission","Real estate agents linked to the deal","Referral partners on the file"],correct:1,feedback:"Only Admins or team members specifically granted permission can edit automation workflows. VAs work within automations — they do not modify them. If an automation is incorrect, escalate to the broker or Admin."}
+];
+
+function buildQuiz(){
+  const c=document.getElementById('quiz-questions');c.innerHTML='';
+  questions.forEach((q,i)=>{
+    const b=document.createElement('div');b.className='q-block';
+    b.innerHTML=`<div class="q-num">Question ${i+1} of ${questions.length}</div><div class="q-text">${q.q}</div><div class="q-options">${q.options.map((o,j)=>`<label class="q-option" id="opt${i}_${j}"><input type="radio" name="q${i}" value="${j}"><span>${o}</span></label>`).join('')}</div><div class="q-feedback" id="fb${i}" style="display:none;"></div>`;
+    c.appendChild(b);
+  });
+}
+function submitQuiz(){
+  const name=document.getElementById('va-name').value.trim();
+  if(!name){alert('Please enter your name before submitting.');return;}
+  let score=0,all=true;
+  questions.forEach((q,i)=>{
+    const sel=document.querySelector(`input[name="q${i}"]:checked`);
+    if(!sel){all=false;return;}
+    const val=parseInt(sel.value);const fb=document.getElementById('fb'+i);
+    q.options.forEach((_,j)=>{const o=document.getElementById(`opt${i}_${j}`);o.style.pointerEvents='none';if(j===q.correct)o.classList.add('show-correct');});
+    const ch=document.getElementById(`opt${i}_${val}`);
+    if(val===q.correct){score++;ch.classList.add('correct');fb.className='q-feedback correct';fb.innerHTML=`✓ Correct. ${q.feedback}`;}
+    else{ch.classList.add('wrong');fb.className='q-feedback wrong';fb.innerHTML=`✗ Incorrect. ${q.feedback}`;}
+    fb.style.display='block';
+  });
+  if(!all){alert('Please answer all questions before submitting.');return;}
+  const pass=score>=11;const rd=document.getElementById('quiz-result');rd.style.display='block';
+  if(pass){rd.innerHTML=`<div class="result-pass"><div class="result-score">${score}/${questions.length}</div><div class="result-msg">Passed.</div><div class="result-sub">Score: ${score}/${questions.length}. Screenshot your certificate below and send to your trainer.</div></div>`;showCert(name,score);}
+  else{rd.innerHTML=`<div class="result-fail"><div class="result-score">${score}/${questions.length}</div><div class="result-msg">Not passed — you need 11/15 to pass.</div><div class="result-sub">Review the incorrect answers and retry.</div><button class="retry-btn" onclick="resetQuiz()">↺ Retry</button></div>`;}
+  rd.scrollIntoView({behavior:'smooth',block:'start'});document.querySelector('.submit-btn').style.display='none';
+}
+function showCert(name,score){
+  const c=document.getElementById('certificate');c.style.display='block';
+  document.getElementById('cert-name').textContent=name;
+  document.getElementById('cert-score').textContent=`Score: ${score}/${questions.length} — ${Math.round(score/questions.length*100)}%`;
+  const now=new Date();
+  document.getElementById('cert-date').textContent=now.toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('cert-ref').textContent=`Certificate ID: LM-BLU-${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}-${Math.floor(Math.random()*9000+1000)}`;
+  setTimeout(()=>c.scrollIntoView({behavior:'smooth',block:'start'}),400);
+}
+function resetQuiz(){
+  document.getElementById('quiz-result').style.display='none';document.getElementById('quiz-result').innerHTML='';
+  document.getElementById('certificate').style.display='none';document.getElementById('va-name').value='';
+  document.querySelector('.submit-btn').style.display='block';buildQuiz();
+  document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'});
+}
+const secs=document.querySelectorAll('.section[data-s]');
+function updateProg(){const sy=window.scrollY+window.innerHeight*.6;let v=0;secs.forEach(s=>{if(s.offsetTop<=sy)v++;});const p=Math.round(v/secs.length*100);document.getElementById('pb-fill').style.width=p+'%';document.getElementById('pb-pct').textContent=p+'%';}
+window.addEventListener('scroll',updateProg,{passive:true});updateProg();buildQuiz();
+</script>
+</body>
+</html>

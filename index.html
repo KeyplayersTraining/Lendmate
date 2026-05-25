@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LendMate VA Training Academy</title>
+<meta name="description" content="Centralized training portal for Mortgage Virtual Assistants in the Canadian mortgage industry. Modules, quizzes, CRM walkthroughs, SOPs, and progress tracking.">
+<meta property="og:title" content="LendMate VA Training Academy">
+<meta property="og:description" content="Training portal for Mortgage Virtual Assistants — Canadian mortgage industry">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══ RESET & VARIABLES ═══ */
+:root{
+  --pink:#C855A0;--pink-l:#f5d0ea;--pink-xl:#fdf0f9;
+  --purple:#8B5CF6;--purple-l:#ede9fe;--purple-xl:#f5f3ff;
+  --grad:linear-gradient(135deg,#C855A0 0%,#8B5CF6 100%);
+  --grad-soft:linear-gradient(135deg,#fdf0f9 0%,#f5f3ff 100%);
+  --dark:#1A1A1A;--text:#4A4A4A;--muted:#6B6B6B;
+  --border:#e8e0f5;--white:#fff;--bg:#F5F3FF;
+  --green:#059669;--green-l:#d1fae5;--red:#dc2626;--red-l:#fee2e2;
+  --amber:#d97706;--amber-l:#fef3c7;--gold:#F59E0B;
+  --sidebar-w:260px;--header-h:62px;
+  --radius:14px;--shadow:0 2px 16px rgba(139,92,246,.07);--shadow-lg:0 8px 32px rgba(139,92,246,.12);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}button{cursor:pointer;font-family:inherit}
+input,select,textarea{font-family:inherit}
+
+/* ═══ LAYOUT ═══ */
+.app{display:flex;min-height:100vh}
+
+/* ═══ SIDEBAR ═══ */
+.sidebar{width:var(--sidebar-w);background:var(--white);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;transition:transform .3s}
+.sb-brand{padding:18px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:11px}
+.sb-logo{width:38px;height:38px;background:var(--grad);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:700}
+.sb-brand h2{font-size:14px;font-weight:700;color:var(--dark);letter-spacing:-.3px}
+.sb-brand span{display:block;font-size:9px;font-weight:600;color:var(--purple);text-transform:uppercase;letter-spacing:1.2px}
+.sb-nav{flex:1;padding:14px 10px;overflow-y:auto}
+.sb-section{margin-bottom:22px}
+.sb-section-title{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:0 10px;margin-bottom:4px}
+.sb-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;font-size:13px;font-weight:500;color:var(--text);transition:all .15s;cursor:pointer;margin-bottom:1px;border:none;background:none;width:100%;text-align:left}
+.sb-item:hover{background:var(--purple-xl);color:var(--purple)}
+.sb-item.active{background:var(--grad);color:#fff;font-weight:600}
+.sb-item .icon{width:20px;text-align:center;font-size:15px;flex-shrink:0}
+.sb-item .badge{margin-left:auto;background:var(--pink);color:#fff;font-size:9px;font-weight:700;padding:1px 7px;border-radius:10px}
+.sb-item.active .badge{background:rgba(255,255,255,.3)}
+.sb-user{padding:14px 16px;border-top:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.sb-avatar{width:34px;height:34px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700}
+.sb-uname{font-size:12px;font-weight:600;color:var(--dark)}
+.sb-urole{font-size:10px;color:var(--muted)}
+
+/* ═══ MAIN ═══ */
+.main{flex:1;margin-left:var(--sidebar-w);min-height:100vh}
+
+/* ═══ HEADER ═══ */
+.header{height:var(--header-h);background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;position:sticky;top:0;z-index:50}
+.hd-search{display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:7px 14px;width:320px;transition:border-color .2s}
+.hd-search:focus-within{border-color:var(--purple)}
+.hd-search input{border:none;background:transparent;outline:none;font-size:13px;color:var(--text);width:100%}
+.hd-right{margin-left:auto;display:flex;align-items:center;gap:12px}
+.hd-btn{width:34px;height:34px;border-radius:10px;border:1px solid var(--border);background:var(--white);display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--muted);position:relative;transition:all .15s}
+.hd-btn:hover{border-color:var(--purple);color:var(--purple)}
+.hd-btn .dot{position:absolute;top:5px;right:5px;width:7px;height:7px;background:var(--pink);border-radius:50%;border:2px solid var(--white)}
+.mobile-toggle{display:none;width:34px;height:34px;border-radius:10px;border:1px solid var(--border);background:var(--white);align-items:center;justify-content:center;font-size:18px;color:var(--muted);margin-right:12px}
+
+/* ═══ PAGE ═══ */
+.page{padding:24px 28px;display:none}
+.page.active{display:block;animation:fadeIn .35s ease}
+.page-hd{margin-bottom:22px}
+.page-hd h1{font-size:22px;font-weight:700;color:var(--dark);letter-spacing:-.5px}
+.page-hd p{font-size:13px;color:var(--muted);margin-top:3px}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);margin-bottom:6px}
+.breadcrumb a{color:var(--purple);cursor:pointer}
+
+/* ═══ CARDS ═══ */
+.card{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden}
+.card-hd{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.card-title{font-size:13px;font-weight:700;color:var(--dark)}
+.card-bd{padding:18px}
+
+/* ═══ STATS ═══ */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.stat{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);padding:18px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
+.stat:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.stat.grad{background:var(--grad);border:none}
+.stat.grad *{color:#fff!important}
+.stat.grad .stat-ic{background:rgba(255,255,255,.2)}
+.stat-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.stat-ic{width:38px;height:38px;border-radius:10px;background:var(--purple-xl);display:flex;align-items:center;justify-content:center;font-size:17px}
+.stat-chg{font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px}
+.stat-chg.up{background:var(--green-l);color:var(--green)}
+.stat-val{font-size:26px;font-weight:700;color:var(--dark)}
+.stat-lbl{font-size:11px;color:var(--muted);margin-top:1px}
+
+/* ═══ PROGRESS ═══ */
+.prog{width:100%;height:8px;background:var(--purple-l);border-radius:10px;overflow:hidden}
+.prog-fill{height:100%;background:var(--grad);border-radius:10px;transition:width .6s ease}
+.prog.sm{height:5px}.prog.lg{height:12px}
+
+/* ═══ MODULES ═══ */
+.mod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.mod-card{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden;transition:transform .2s,box-shadow .2s;cursor:pointer}
+.mod-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.mod-thumb{height:130px;background:var(--grad-soft);display:flex;align-items:center;justify-content:center;font-size:44px;position:relative}
+.mod-thumb .mod-cat{position:absolute;top:10px;left:10px;background:rgba(255,255,255,.9);backdrop-filter:blur(4px);padding:3px 9px;border-radius:6px;font-size:9px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:.5px}
+.mod-thumb .mod-st{position:absolute;top:10px;right:10px;padding:3px 9px;border-radius:6px;font-size:9px;font-weight:700}
+.mod-st.done{background:var(--green-l);color:var(--green)}
+.mod-st.prog{background:var(--amber-l);color:var(--amber)}
+.mod-st.new{background:var(--purple-l);color:var(--purple)}
+.mod-body{padding:14px 16px}
+.mod-t{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:3px}
+.mod-d{font-size:12px;color:var(--muted);margin-bottom:10px;line-height:1.5}
+.mod-meta{display:flex;align-items:center;justify-content:space-between}
+.mod-les{font-size:10px;color:var(--muted)}
+.mod-prog{display:flex;align-items:center;gap:8px;flex:1;margin-left:14px}
+.mod-prog .prog{flex:1}
+.mod-prog span{font-size:10px;font-weight:700;color:var(--purple);min-width:28px}
+
+/* ═══ FILTER ═══ */
+.filters{display:flex;align-items:center;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.fchip{padding:6px 13px;border-radius:20px;font-size:11px;font-weight:600;border:1px solid var(--border);background:var(--white);color:var(--muted);cursor:pointer;transition:all .15s}
+.fchip:hover{border-color:var(--purple);color:var(--purple)}
+.fchip.on{background:var(--grad);color:#fff;border-color:transparent}
+
+/* ═══ BUTTONS ═══ */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:10px;font-size:13px;font-weight:600;border:none;transition:all .15s}
+.btn-p{background:var(--grad);color:#fff;box-shadow:0 4px 16px rgba(200,85,160,.25)}
+.btn-p:hover{opacity:.9;transform:translateY(-1px)}
+.btn-o{background:transparent;border:1.5px solid var(--pink);color:var(--pink)}
+.btn-o:hover{background:var(--pink-xl)}
+.btn-g{background:var(--purple-xl);color:var(--purple);border:1px solid var(--purple-l)}
+.btn-g:hover{background:var(--purple-l)}
+.btn-sm{padding:5px 12px;font-size:11px;border-radius:8px}
+.btn-lg{padding:13px 26px;font-size:15px}
+.btn-suc{background:var(--green);color:#fff}
+.btn-dan{background:var(--red);color:#fff}
+
+/* ═══ QUIZ ═══ */
+.q-card{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);padding:22px 26px;margin-bottom:14px;box-shadow:var(--shadow)}
+.q-num{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink);margin-bottom:6px}
+.q-type{display:inline-block;font-size:8px;font-weight:700;padding:2px 7px;border-radius:4px;margin-left:6px}
+.q-type.mc{background:var(--purple-l);color:var(--purple)}.q-type.tf{background:var(--pink-xl);color:var(--pink)}.q-type.sc{background:var(--amber-l);color:var(--amber)}
+.q-text{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:14px;line-height:1.5}
+.q-opts{display:flex;flex-direction:column;gap:7px}
+.q-opt{display:flex;align-items:center;gap:11px;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;transition:all .15s;font-size:13px}
+.q-opt:hover{border-color:var(--purple);background:var(--purple-xl)}
+.q-opt.sel{border-color:var(--purple);background:rgba(139,92,246,.06);font-weight:600}
+.q-opt.correct{border-color:var(--green);background:var(--green-l)}
+.q-opt.wrong{border-color:var(--red);background:var(--red-l)}
+.q-ltr{width:24px;height:24px;border-radius:6px;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--muted);flex-shrink:0;transition:all .15s}
+.q-opt.sel .q-ltr{background:var(--purple);color:#fff}
+.q-opt.correct .q-ltr{background:var(--green);color:#fff}
+.q-opt.wrong .q-ltr{background:var(--red);color:#fff}
+.q-fb{margin-top:8px;padding:9px 12px;border-radius:8px;font-size:12px;line-height:1.5;display:none}
+.q-fb.show{display:flex;gap:7px;align-items:flex-start}
+.q-fb.ok{background:var(--green-l);color:#065f46;border:1px solid #86efac}
+.q-fb.no{background:var(--red-l);color:#7f1d1d;border:1px solid #fca5a5}
+
+/* ═══ RESULT ═══ */
+.quiz-res{text-align:center;padding:36px 28px;background:var(--white);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow-lg)}
+.res-icon{font-size:60px;margin-bottom:12px}
+.res-score{font-size:52px;font-weight:700;margin-bottom:6px}
+.res-score.pass{color:var(--green)}.res-score.fail{color:var(--red)}
+.res-msg{font-size:17px;font-weight:700;color:var(--dark);margin-bottom:4px}
+.res-sub{font-size:13px;color:var(--muted);margin-bottom:22px}
+
+/* ═══ CERTIFICATE ═══ */
+.cert{background:var(--white);border-radius:20px;padding:44px 36px;text-align:center;box-shadow:var(--shadow-lg);border:3px solid var(--pink);position:relative;overflow:hidden;max-width:680px;margin:0 auto}
+.cert::before,.cert::after{content:'';position:absolute;left:0;right:0;height:6px;background:var(--grad)}
+.cert::before{top:0}.cert::after{bottom:0}
+.cert-corner{position:absolute;width:76px;height:76px;border-style:solid;border-color:var(--purple);border-width:0}
+.cert-corner.tl{top:0;left:0;border-top-width:4px;border-left-width:4px;border-radius:18px 0 0 0}
+.cert-corner.tr{top:0;right:0;border-top-width:4px;border-right-width:4px;border-radius:0 18px 0 0}
+.cert-corner.bl{bottom:0;left:0;border-bottom-width:4px;border-left-width:4px;border-radius:0 0 0 18px}
+.cert-corner.br{bottom:0;right:0;border-bottom-width:4px;border-right-width:4px;border-radius:0 0 18px 0}
+.cert-seal{width:68px;height:68px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 14px;box-shadow:0 6px 22px rgba(200,85,160,.3)}
+.cert-badge{display:inline-block;background:var(--grad);color:#fff;font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:4px 16px;border-radius:20px;margin-bottom:10px}
+.cert-org{font-size:11px;color:var(--muted);margin-bottom:16px}
+.cert-div{width:140px;height:2px;background:var(--grad);margin:0 auto 16px;border-radius:2px}
+.cert-intro{font-size:12px;color:var(--muted);margin-bottom:4px}
+.cert-name{font-family:'DM Serif Display',serif;font-size:32px;color:var(--dark);margin-bottom:8px;font-style:italic}
+.cert-completed{font-size:12px;color:var(--muted);margin-bottom:4px}
+.cert-module{font-size:17px;font-weight:700;color:var(--pink);margin-bottom:16px}
+.cert-sc{display:inline-block;background:var(--grad-soft);border:2px solid var(--pink-l);border-radius:50px;padding:7px 22px;font-size:13px;font-weight:700;color:var(--purple);margin-bottom:20px}
+.cert-sigs{display:flex;justify-content:center;gap:56px;margin-bottom:14px}
+.cert-sig-line{width:110px;height:1px;background:#ccc;margin-bottom:5px}
+.cert-sig-name{font-size:10px;font-weight:600;color:var(--muted)}
+.cert-sig-role{font-size:9px;color:#aaa}
+.cert-ref{font-size:9px;color:#ccc;font-family:'DM Mono',monospace;margin-top:3px}
+
+/* ═══ CRM ═══ */
+.crm-tabs{display:flex;gap:3px;background:var(--white);border-radius:12px;padding:3px;border:1px solid var(--border);margin-bottom:18px;overflow-x:auto}
+.crm-tab{padding:7px 15px;border-radius:8px;font-size:12px;font-weight:600;color:var(--muted);background:transparent;border:none;white-space:nowrap;transition:all .15s}
+.crm-tab.active{background:var(--grad);color:#fff}
+.crm-tab:hover:not(.active){background:var(--purple-xl);color:var(--purple)}
+.crm-step{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);padding:18px 22px;margin-bottom:10px;display:flex;gap:14px;box-shadow:var(--shadow);transition:transform .15s}
+.crm-step:hover{transform:translateX(4px)}
+.crm-step-num{width:34px;height:34px;border-radius:50%;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.crm-step h4{font-size:13px;font-weight:700;color:var(--dark);margin-bottom:3px}
+.crm-step p{font-size:12px;color:var(--muted);line-height:1.6}
+
+/* ═══ LEADERBOARD ═══ */
+.lb-item{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--border);transition:background .15s}
+.lb-item:hover{background:var(--purple-xl)}
+.lb-item:last-child{border-bottom:none}
+.lb-rank{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.lb-rank.g{background:#fef3c7;color:#92400e}.lb-rank.s{background:#f1f5f9;color:#475569}.lb-rank.b{background:#fed7aa;color:#9a3412}.lb-rank.n{background:var(--border);color:var(--muted)}
+.lb-name{flex:1;font-size:12px;font-weight:600;color:var(--dark)}
+.lb-score{font-size:12px;font-weight:700;color:var(--purple)}
+
+/* ═══ ADMIN TABLE ═══ */
+.adm-table{width:100%;border-collapse:separate;border-spacing:0}
+.adm-table th{text-align:left;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 14px;border-bottom:1px solid var(--border)}
+.adm-table td{padding:10px 14px;font-size:12px;border-bottom:1px solid var(--border)}
+.adm-table tr:hover td{background:var(--purple-xl)}
+.pill{display:inline-block;padding:2px 9px;border-radius:20px;font-size:9px;font-weight:700}
+.pill.act{background:var(--green-l);color:var(--green)}.pill.pen{background:var(--amber-l);color:var(--amber)}.pill.ina{background:var(--red-l);color:var(--red)}
+
+/* ═══ PROFILE ═══ */
+.prof-hd{background:var(--grad);border-radius:var(--radius);padding:28px;display:flex;align-items:center;gap:22px;color:#fff;margin-bottom:22px}
+.prof-av{width:66px;height:66px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;border:3px solid rgba(255,255,255,.4)}
+.prof-info h2{font-size:20px;font-weight:700}
+.prof-info p{font-size:12px;color:rgba(255,255,255,.8);margin-top:2px}
+.prof-stats{margin-left:auto;display:flex;gap:28px}
+.prof-s{text-align:center}
+.prof-s .pv{font-size:22px;font-weight:700}
+.prof-s .pl{font-size:10px;color:rgba(255,255,255,.7)}
+
+/* ═══ TABS ═══ */
+.tab-bar{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:18px}
+.tab-i{padding:9px 18px;font-size:12px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-2px;cursor:pointer;transition:all .15s;background:none;border-top:none;border-left:none;border-right:none}
+.tab-i:hover{color:var(--purple)}.tab-i.on{color:var(--purple);border-bottom-color:var(--purple)}
+
+/* ═══ SOP ═══ */
+.sop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.sop-card{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);padding:18px;box-shadow:var(--shadow);display:flex;align-items:center;gap:14px;transition:all .15s;cursor:pointer}
+.sop-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.sop-ic{width:42px;height:42px;border-radius:10px;background:var(--grad-soft);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.sop-info{flex:1}.sop-t{font-size:13px;font-weight:700;color:var(--dark)}.sop-m{font-size:10px;color:var(--muted);margin-top:2px}
+
+/* ═══ ACTIVITY ═══ */
+.act-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.act-item:last-child{border-bottom:none}
+.act-dot{width:7px;height:7px;border-radius:50%;background:var(--purple);margin-top:6px;flex-shrink:0}
+.act-text{font-size:12px;color:var(--text)}.act-time{font-size:10px;color:var(--muted);margin-top:1px}
+
+/* ═══ NOTES ═══ */
+.notes-ta{width:100%;min-height:90px;border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;font-size:12px;color:var(--text);resize:vertical;outline:none;transition:border-color .15s}
+.notes-ta:focus{border-color:var(--purple)}
+
+/* ═══ NOTIFICATION ═══ */
+.notif-panel{position:fixed;top:0;right:-380px;width:380px;height:100vh;background:var(--white);border-left:1px solid var(--border);box-shadow:-4px 0 24px rgba(0,0,0,.08);z-index:200;transition:right .3s;display:flex;flex-direction:column}
+.notif-panel.open{right:0}
+.notif-hd{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.notif-hd h3{font-size:15px;font-weight:700;color:var(--dark)}
+.notif-close{width:28px;height:28px;border-radius:8px;border:1px solid var(--border);background:var(--white);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--muted);cursor:pointer}
+.notif-list{flex:1;overflow-y:auto;padding:10px}
+.notif-item{display:flex;gap:10px;padding:10px;border-radius:10px;margin-bottom:3px;transition:background .15s;cursor:pointer}
+.notif-item:hover{background:var(--purple-xl)}
+.notif-item.unread{background:var(--pink-xl)}
+.notif-ic{width:34px;height:34px;border-radius:10px;background:var(--grad-soft);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.notif-text p{font-size:12px;color:var(--dark)}.notif-text span{font-size:10px;color:var(--muted)}
+
+/* ═══ LOGIN ═══ */
+.login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--grad-soft)}
+.login-card{background:var(--white);border-radius:20px;padding:44px 36px;width:400px;box-shadow:var(--shadow-lg);border:1px solid var(--border);text-align:center}
+.login-logo{width:52px;height:52px;background:var(--grad);border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:700;margin:0 auto 18px}
+.login-card h1{font-size:20px;font-weight:700;color:var(--dark);margin-bottom:3px}
+.login-sub{font-size:12px;color:var(--muted);margin-bottom:24px}
+.login-field{margin-bottom:12px;text-align:left}
+.login-field label{display:block;font-size:11px;font-weight:600;color:var(--dark);margin-bottom:4px}
+.login-field input{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:13px;color:var(--text);outline:none;background:var(--bg);transition:border-color .15s}
+.login-field input:focus{border-color:var(--purple);background:var(--white)}
+.login-btn{width:100%;padding:12px;background:var(--grad);color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 18px rgba(200,85,160,.25);margin-top:6px;transition:opacity .15s}
+.login-btn:hover{opacity:.9}
+.login-foot{margin-top:18px;font-size:11px;color:var(--muted)}
+.login-foot a{color:var(--purple);font-weight:600;cursor:pointer}
+.login-role{display:flex;gap:8px;margin-bottom:16px;justify-content:center}
+.role-chip{padding:6px 14px;border-radius:20px;font-size:11px;font-weight:600;border:1.5px solid var(--border);background:var(--white);color:var(--muted);cursor:pointer;transition:all .15s}
+.role-chip.on{background:var(--grad);color:#fff;border-color:transparent}
+
+/* ═══ TOAST ═══ */
+.toast{position:fixed;bottom:22px;right:22px;background:var(--dark);color:#fff;padding:12px 22px;border-radius:12px;font-size:12px;font-weight:600;box-shadow:0 8px 28px rgba(0,0,0,.2);z-index:300;transform:translateY(70px);opacity:0;transition:all .3s}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.ok{background:var(--green)}
+
+/* ═══ OVERLAY ═══ */
+.overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.4);z-index:99}
+.overlay.show{display:block}
+
+/* ═══ LESSON CONTENT ═══ */
+.lesson-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.lesson-card{background:var(--grad-soft);border:1px solid var(--pink-l);border-left:3px solid var(--pink);border-radius:12px;padding:14px 16px}
+.lesson-card.full{grid-column:1/-1}
+.lc-title{font-size:12px;font-weight:700;color:var(--dark);margin-bottom:4px}
+.lc-body{font-size:12px;color:var(--muted);line-height:1.6}
+.lc-badge{display:inline-block;margin-top:6px;font-size:9px;font-weight:700;padding:2px 8px;border-radius:4px}
+.lc-badge.tip{background:var(--purple-l);color:var(--purple)}
+.lc-badge.note{background:var(--green-l);color:var(--green)}
+.lc-badge.warn{background:var(--amber-l);color:var(--amber)}
+.info-box{border-radius:12px;padding:14px 18px;margin:10px 0}
+.info-box.purple{background:var(--purple-xl);border:1px solid var(--purple-l)}
+.info-box.amber{background:var(--amber-l);border:1px solid #fcd34d}
+.info-box.green{background:var(--green-l);border:1px solid #86efac}
+.ib-title{font-size:10px;font-weight:700;margin-bottom:6px}
+.info-box.purple .ib-title{color:var(--purple)}
+.info-box.amber .ib-title{color:var(--amber)}
+.info-box.green .ib-title{color:var(--green)}
+.ib-body{font-size:12px;line-height:1.6;color:var(--text)}
+.steps{display:flex;flex-direction:column}
+.step{display:flex;gap:14px}
+.step-left{display:flex;flex-direction:column;align-items:center}
+.step-num{width:30px;height:30px;border-radius:50%;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.step-line{width:2px;flex:1;min-height:12px;background:var(--border);margin:3px 0}
+.step-body{flex:1;padding-bottom:16px}
+.step-title{font-size:12px;font-weight:700;color:var(--dark);margin-bottom:3px;padding-top:3px}
+.step-detail{font-size:12px;color:var(--muted);line-height:1.6}
+.section-title{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin:20px 0 10px;display:flex;align-items:center;gap:10px}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ═══ ANIMATIONS ═══ */
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══ HELPERS ═══ */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.hidden{display:none!important}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:1024px){.stats{grid-template-columns:repeat(2,1fr)}.grid-2,.grid-3{grid-template-columns:1fr}}
+@media(max-width:768px){
+  .sidebar{transform:translateX(-100%)}.sidebar.open{transform:translateX(0)}
+  .main{margin-left:0}.mobile-toggle{display:flex}
+  .hd-search{width:180px}.stats{grid-template-columns:1fr}
+  .mod-grid{grid-template-columns:1fr}.page{padding:14px}
+  .prof-hd{flex-direction:column;text-align:center}.prof-stats{margin-left:0}
+  .cert{padding:28px 18px}.cert-name{font-size:24px}
+  .sop-grid{grid-template-columns:1fr}.lesson-grid{grid-template-columns:1fr}
+}
+@media print{
+  body{background:#fff}.sidebar,.header,.page>*:not(.cert){display:none!important}
+  .main{margin-left:0}.cert{box-shadow:none;page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ LOGIN PAGE ═══ -->
+<div id="login-page" class="login-page">
+  <div class="login-card">
+    <div class="login-logo">LM</div>
+    <h1>LendMate VA Academy</h1>
+    <p class="login-sub">Sign in to your training portal</p>
+    <div class="login-role">
+      <div class="role-chip on" onclick="selectRole(this,'trainee')">Trainee</div>
+      <div class="role-chip" onclick="selectRole(this,'trainer')">Trainer</div>
+      <div class="role-chip" onclick="selectRole(this,'admin')">Admin</div>
+    </div>
+    <div class="login-field"><label>Email Address</label><input type="email" id="login-email" placeholder="you@lendmate.ca" value="maria.santos@lendmate.ca"></div>
+    <div class="login-field"><label>Password</label><input type="password" id="login-pass" placeholder="Enter password" value="demo1234"></div>
+    <button class="login-btn" onclick="doLogin()">Sign In</button>
+    <p class="login-foot">Forgot password? <a>Reset here</a> &middot; <a href="https://lendmate.ca" target="_blank">lendmate.ca</a></p>
+  </div>
+</div>
+
+<!-- ═══ APP SHELL ═══ -->
+<div id="app-shell" class="app" style="display:none">
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sb-brand">
+    <div class="sb-logo">LM</div>
+    <div><h2>LendMate</h2><span>VA Training Academy</span></div>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-section">
+      <div class="sb-section-title">Main</div>
+      <button class="sb-item active" data-page="dashboard"><span class="icon">&#x1f3e0;</span> Dashboard</button>
+      <button class="sb-item" data-page="modules"><span class="icon">&#x1f4da;</span> Module Library <span class="badge">15</span></button>
+      <button class="sb-item" data-page="crm"><span class="icon">&#x1f4bb;</span> CRM Training <span class="badge">5</span></button>
+      <button class="sb-item" data-page="quizzes"><span class="icon">&#x270f;</span> Quiz Center</button>
+      <button class="sb-item" data-page="sop"><span class="icon">&#x1f4cb;</span> SOP Library</button>
+    </div>
+    <div class="sb-section">
+      <div class="sb-section-title">Progress</div>
+      <button class="sb-item" data-page="progress"><span class="icon">&#x1f4c8;</span> Progress Tracker</button>
+      <button class="sb-item" data-page="certificates"><span class="icon">&#x1f3c6;</span> Certificates</button>
+      <button class="sb-item" data-page="leaderboard"><span class="icon">&#x1f451;</span> Leaderboard</button>
+    </div>
+    <div class="sb-section">
+      <div class="sb-section-title">Account</div>
+      <button class="sb-item" data-page="profile"><span class="icon">&#x1f464;</span> My Profile</button>
+      <button class="sb-item" data-page="bookmarks"><span class="icon">&#x1f516;</span> Bookmarks</button>
+      <button class="sb-item" data-page="admin" id="admin-nav"><span class="icon">&#x2699;</span> Admin Panel</button>
+    </div>
+  </nav>
+  <div class="sb-user">
+    <div class="sb-avatar" id="sb-avatar">MS</div>
+    <div><div class="sb-uname" id="sb-uname">Maria Santos</div><div class="sb-urole" id="sb-urole">Trainee</div></div>
+  </div>
+</aside>
+
+<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<!-- MAIN -->
+<div class="main">
+  <header class="header">
+    <button class="mobile-toggle" onclick="toggleSidebar()">&#9776;</button>
+    <div class="hd-search"><span>&#x1f50d;</span><input type="text" placeholder="Search modules, quizzes, SOPs..." id="global-search" oninput="handleSearch(this.value)"></div>
+    <div class="hd-right">
+      <button class="hd-btn" onclick="toggleNotif()" title="Notifications">&#x1f514;<span class="dot"></span></button>
+      <button class="hd-btn" title="Bookmarks" onclick="nav('bookmarks')">&#x1f516;</button>
+      <button class="hd-btn" title="Settings" onclick="nav('profile')">&#x2699;</button>
+    </div>
+  </header>
+
+  <!-- DASHBOARD -->
+  <div class="page active" id="pg-dashboard">
+    <div class="page-hd"><h1>Welcome back, <span id="dash-name">Maria</span> &#x1f44b;</h1><p>Here's your training progress at a glance</p></div>
+    <div class="stats" id="dash-stats">
+      <div class="stat grad"><div class="stat-top"><div class="stat-ic">&#x1f4da;</div><div class="stat-chg up">+2 this week</div></div><div class="stat-val" id="s-completed">4</div><div class="stat-lbl">Modules Completed</div></div>
+      <div class="stat"><div class="stat-top"><div class="stat-ic">&#x1f4ca;</div></div><div class="stat-val" id="s-progress">42%</div><div class="stat-lbl">Overall Progress</div></div>
+      <div class="stat"><div class="stat-top"><div class="stat-ic">&#x270f;</div></div><div class="stat-val" id="s-quizzes">3</div><div class="stat-lbl">Quizzes Passed</div></div>
+      <div class="stat"><div class="stat-top"><div class="stat-ic">&#x1f3c6;</div></div><div class="stat-val" id="s-certs">2</div><div class="stat-lbl">Certificates Earned</div></div>
+    </div>
+    <div class="grid-2">
+      <div class="card"><div class="card-hd"><span class="card-title">Recently Viewed</span><button class="btn btn-sm btn-g" onclick="nav('modules')">View All</button></div><div class="card-bd" id="recent-modules"></div></div>
+      <div class="card"><div class="card-hd"><span class="card-title">Upcoming Quizzes</span><button class="btn btn-sm btn-g" onclick="nav('quizzes')">View All</button></div><div class="card-bd" id="upcoming-quizzes"></div></div>
+    </div>
+    <div class="grid-2" style="margin-top:14px">
+      <div class="card"><div class="card-hd"><span class="card-title">Activity Log</span></div><div class="card-bd" id="activity-log"></div></div>
+      <div class="card"><div class="card-hd"><span class="card-title">&#x1f4e2; Announcements</span></div><div class="card-bd">
+        <div style="padding:10px 14px;background:var(--amber-l);border-radius:10px;border:1px solid #fcd34d;margin-bottom:8px"><div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px">New Module Available</div><div style="font-size:12px;color:#78350f;line-height:1.5">Hurricane CRM Training is now live. Complete it by June 5th for your quarterly certification.</div></div>
+        <div style="padding:10px 14px;background:var(--green-l);border-radius:10px;border:1px solid #86efac"><div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:3px">Training Update</div><div style="font-size:12px;color:#065f46;line-height:1.5">Compliance training updated with latest FSRA guidelines. Re-take if completed before May 2026.</div></div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- MODULE LIBRARY -->
+  <div class="page" id="pg-modules"><div class="page-hd"><h1>&#x1f4da; Training Module Library</h1><p>Browse all training modules for Mortgage Virtual Assistants</p></div><div class="filters" id="mod-filters"></div><div class="mod-grid" id="mod-grid"></div></div>
+
+  <!-- MODULE DETAIL -->
+  <div class="page" id="pg-module-detail"><div class="breadcrumb"><a onclick="nav('modules')">Modules</a> <span class="sep">/</span> <span id="md-breadcrumb">Module</span></div><div id="module-detail-content"></div></div>
+
+  <!-- CRM TRAINING -->
+  <div class="page" id="pg-crm"><div class="page-hd"><h1>&#x1f4bb; CRM Training Center</h1><p>Step-by-step walkthroughs for mortgage CRM platforms</p></div><div class="crm-tabs" id="crm-tabs"></div><div id="crm-content"></div></div>
+
+  <!-- QUIZ CENTER -->
+  <div class="page" id="pg-quizzes"><div class="page-hd"><h1>&#x270f; Quiz Center</h1><p>Test your knowledge and earn certificates</p></div><div class="mod-grid" id="quiz-grid"></div></div>
+
+  <!-- QUIZ TAKE -->
+  <div class="page" id="pg-quiz-take"><div class="breadcrumb"><a onclick="nav('quizzes')">Quizzes</a> <span class="sep">/</span> <span id="qt-breadcrumb">Quiz</span></div><div id="quiz-take-content"></div></div>
+
+  <!-- SOP LIBRARY -->
+  <div class="page" id="pg-sop"><div class="page-hd"><h1>&#x1f4cb; SOP Library</h1><p>Standard Operating Procedures for daily VA tasks</p></div><div class="sop-grid" id="sop-grid"></div></div>
+
+  <!-- PROGRESS -->
+  <div class="page" id="pg-progress"><div class="page-hd"><h1>&#x1f4c8; Progress Tracker</h1><p>Your detailed training progress across all modules</p></div><div id="progress-content"></div></div>
+
+  <!-- CERTIFICATES -->
+  <div class="page" id="pg-certificates"><div class="page-hd"><h1>&#x1f3c6; My Certificates</h1><p>Certificates earned from completed training modules</p></div><div id="certs-content"></div></div>
+
+  <!-- LEADERBOARD -->
+  <div class="page" id="pg-leaderboard"><div class="page-hd"><h1>&#x1f451; Leaderboard</h1><p>See how you rank among fellow trainees</p></div><div id="leaderboard-content"></div></div>
+
+  <!-- PROFILE -->
+  <div class="page" id="pg-profile"><div class="page-hd"><h1>&#x1f464; My Profile</h1></div><div id="profile-content"></div></div>
+
+  <!-- BOOKMARKS -->
+  <div class="page" id="pg-bookmarks"><div class="page-hd"><h1>&#x1f516; Bookmarked Lessons</h1><p>Quick access to your saved training content</p></div><div id="bookmarks-content"></div></div>
+
+  <!-- ADMIN PANEL -->
+  <div class="page" id="pg-admin"><div class="page-hd"><h1>&#x2699; Admin Panel</h1><p>Manage users, modules, and training analytics</p></div><div id="admin-content"></div></div>
+
+</div>
+
+<!-- NOTIFICATION PANEL -->
+<div class="notif-panel" id="notif-panel">
+  <div class="notif-hd"><h3>Notifications</h3><button class="notif-close" onclick="toggleNotif()">&#x2715;</button></div>
+  <div class="notif-list" id="notif-list"></div>
+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ═══════════════════════════════════════
+   LendMate VA Training Academy — Engine
+   ═══════════════════════════════════════ */
+const S={
+  user:{name:'Maria Santos',email:'maria.santos@lendmate.ca',role:'trainee',initials:'MS'},
+  currentPage:'dashboard',currentModule:null,currentQuiz:null,
+  done:new Set(['mod-1','mod-2','mod-6','mod-10']),
+  prog:new Set(['mod-3','mod-5','mod-7']),
+  mp:{'mod-1':100,'mod-2':100,'mod-3':65,'mod-5':40,'mod-6':100,'mod-7':30,'mod-10':100},
+  qs:{'mod-1':87,'mod-2':93,'mod-6':80,'mod-10':100},
+  bm:new Set(['mod-3','mod-5','mod-8']),
+  notes:{},
+  certs:['mod-1','mod-2','mod-6','mod-10'],
+  selRole:'trainee',
+  notifs:[
+    {icon:'&#x1f4da;',text:'New module: Hurricane CRM Training',time:'2 hours ago',unread:true},
+    {icon:'&#x270f;',text:'Quiz reminder: Finmo CRM due in 3 days',time:'5 hours ago',unread:true},
+    {icon:'&#x1f3c6;',text:'Certificate earned for Compliance Training',time:'1 day ago',unread:false},
+    {icon:'&#x1f4e2;',text:'FSRA compliance update available',time:'2 days ago',unread:false},
+    {icon:'&#x2705;',text:'Filogix Expert marked as complete',time:'3 days ago',unread:false}
+  ]
+};
+
+const MODS=[
+  {id:'mod-1',title:'Filogix Expert CRM Training',desc:'Navigate Filogix Expert — create mortgage applications, enter borrower data, submit files to lenders.',cat:'CRM Training',icon:'&#x1f4bb;',lessons:6,dur:'45 min',diff:'Intermediate',quiz:true,qc:15,ps:70},
+  {id:'mod-2',title:'Finmo CRM Training',desc:'Manage mortgage applications in Finmo — borrower invitations to lender submissions.',cat:'CRM Training',icon:'&#x1f4bb;',lessons:6,dur:'40 min',diff:'Intermediate',quiz:true,qc:15,ps:70},
+  {id:'mod-3',title:'Blu CRM Training',desc:'Learn the Blu mortgage platform — client management, deal pipelines, document handling.',cat:'CRM Training',icon:'&#x1f4bb;',lessons:5,dur:'35 min',diff:'Intermediate',quiz:true,qc:12,ps:70},
+  {id:'mod-4',title:'Velocity CRM Training',desc:'Master Velocity for mortgage processing — deal tracking, task management, submissions.',cat:'CRM Training',icon:'&#x1f4bb;',lessons:5,dur:'35 min',diff:'Intermediate',quiz:true,qc:12,ps:70},
+  {id:'mod-5',title:'Hurricane CRM Training',desc:'Complete walkthrough of Hurricane CRM for mortgage deal management and pipeline tracking.',cat:'CRM Training',icon:'&#x1f4bb;',lessons:5,dur:'35 min',diff:'Intermediate',quiz:true,qc:12,ps:70},
+  {id:'mod-6',title:'Compliance & FSRA Basics',desc:'Canadian mortgage compliance — PIPEDA, FSRA regulations, and privacy law fundamentals.',cat:'Compliance',icon:'&#x1f6e1;',lessons:8,dur:'60 min',diff:'Advanced',quiz:true,qc:20,ps:80},
+  {id:'mod-7',title:'Down Payment Verification',desc:'Complete reference for verifying borrower down payment sources in Canadian mortgages.',cat:'Documents',icon:'&#x1f4b0;',lessons:7,dur:'50 min',diff:'Advanced',quiz:true,qc:15,ps:70},
+  {id:'mod-8',title:'Document Collection Cheatsheet',desc:'Quick reference for all required mortgage documents — income, ID, property, compliance.',cat:'Documents',icon:'&#x1f4c4;',lessons:4,dur:'25 min',diff:'Beginner',quiz:false},
+  {id:'mod-9',title:'E-Sign Process Training',desc:'Send, track, and manage electronic signatures for mortgage documents.',cat:'E-Sign',icon:'&#x270d;',lessons:5,dur:'30 min',diff:'Beginner',quiz:true,qc:10,ps:70},
+  {id:'mod-10',title:'Mortgage Workflow Training',desc:'End-to-end mortgage workflow from initial contact to funding — the complete VA guide.',cat:'Workflow',icon:'&#x1f504;',lessons:10,dur:'75 min',diff:'Advanced',quiz:true,qc:20,ps:70},
+  {id:'mod-11',title:'Canadian Mortgage Process',desc:'Overview of the Canadian mortgage industry, key players, regulatory bodies, transaction types.',cat:'Mortgage Basics',icon:'&#x1f1e8;&#x1f1e6;',lessons:6,dur:'40 min',diff:'Beginner',quiz:true,qc:12,ps:70},
+  {id:'mod-12',title:'Income Documents Review',desc:'Review and verify income documents — T4s, pay stubs, NOAs, self-employment income.',cat:'Income & Assets',icon:'&#x1f4b5;',lessons:5,dur:'35 min',diff:'Intermediate',quiz:true,qc:12,ps:70},
+  {id:'mod-13',title:'Client Communication',desc:'Professional communication standards — email templates, phone scripts, escalation protocols.',cat:'Workflow',icon:'&#x1f4ac;',lessons:4,dur:'25 min',diff:'Beginner',quiz:false},
+  {id:'mod-14',title:'Lender Conditions & Submission',desc:'How to read, fulfill, and track lender conditions after mortgage approval.',cat:'Lender Submission',icon:'&#x1f3e6;',lessons:5,dur:'35 min',diff:'Advanced',quiz:true,qc:10,ps:70},
+  {id:'mod-15',title:'Email & Admin Task Management',desc:'Inbox management, task prioritization, and administrative best practices.',cat:'Workflow',icon:'&#x1f4e7;',lessons:4,dur:'20 min',diff:'Beginner',quiz:false}
+];
+
+const QD={
+  'mod-1':[
+    {q:'What is the primary purpose of Filogix Expert?',t:'mc',o:['A CRM for managing client relationships','A mortgage origination platform for creating and submitting applications','An email management tool for brokers','A document storage system'],a:1,f:'Filogix Expert is a mortgage origination platform used by Canadian brokers.'},
+    {q:'What three transaction types does Filogix support?',t:'mc',o:['Purchase, Refinance, Switch/Transfer','New Build, Resale, Commercial','Residential, Investment, Pre-approval','First-time, Renewal, Bridge'],a:0,f:'Filogix supports Purchase, Refinance, and Switch/Transfer.'},
+    {q:'Consent forms must be uploaded before a credit check can be run.',t:'tf',o:['True','False'],a:0,f:'Running credit without consent violates Canadian privacy law (PIPEDA).'},
+    {q:'Where should all borrower personal data be entered?',t:'mc',o:['In the Notes section','In the Mortgage Request tab','In the Borrower Details section','In the Documents tab'],a:2,f:'All borrower personal data goes into the Borrower Details section.'},
+    {q:'How does Filogix calculate qualifying income?',t:'mc',o:['The VA manually calculates it','It automatically calculates based on income types entered','The broker enters the final number','It pulls data from the CRA directly'],a:1,f:'Filogix calculates qualifying income automatically based on income types and amounts you enter.'},
+    {q:'Cryptocurrency staking returns are an accepted income type in Filogix.',t:'tf',o:['True','False'],a:1,f:'Crypto income is not accepted in Filogix. Flag to broker.'},
+    {q:'What should you do to edit an existing liability entry?',t:'mc',o:['Delete the record and create a new one','Double-click the liability to open its fields','Email the broker to make the change','Create a note explaining the correction'],a:1,f:'Double-click to edit — never delete and re-enter.'},
+    {q:'A VA notices an error in the borrower\'s name. What is the correct action?',t:'sc',o:['Ignore it — the lender will catch it','Fix it immediately to match the government ID','Ask the borrower on social media','Create a new file with the correct spelling'],a:1,f:'The name must match exactly to the government ID.'},
+    {q:'Where are property details entered in Filogix?',t:'mc',o:['In the Mortgage Request section','In the Borrower Details section','In the Property Details tab','In the Notes section'],a:2,f:'Property data goes in the Property Details tab.'},
+    {q:'What should you check as the last step before submitting a file?',t:'mc',o:['Your email inbox','The Errors/Warnings panel','The broker\'s calendar','The lender\'s website'],a:1,f:'The Errors/Warnings panel flags incomplete or incorrect fields.'}
+  ],
+  'mod-2':[
+    {q:'What type of platform is Finmo?',t:'mc',o:['A CRM system','A mortgage origination and submission platform','An email client','A banking portal'],a:1,f:'Finmo is a mortgage application and submission platform.'},
+    {q:'What view do VAs primarily work in within Finmo?',t:'mc',o:['Contacts','Library','Pipeline','Settings'],a:2,f:'The Pipeline is the VA\'s daily working view.'},
+    {q:'Finmo Smart Docs automatically generates document requests based on application data.',t:'tf',o:['True','False'],a:0,f:'Smart Docs sends targeted requests based on file data.'},
+    {q:'What is the most commonly requested income verification document?',t:'mc',o:['MLS listing','Purchase agreement','Pay stub or T4','Void cheque'],a:2,f:'Pay stubs and T4s are standard income verification.'},
+    {q:'For non-integrated lenders, the application must be exported as a PDF.',t:'tf',o:['True','False'],a:0,f:'Export PDF is the correct approach for non-integrated lenders.'},
+    {q:'What type of data requires the highest level of confidentiality?',t:'mc',o:['Property address','Employment history','Credit bureau details','Marital status'],a:2,f:'Credit data must be handled with the highest confidentiality.'},
+    {q:'A borrower asks you to share their credit score with their realtor. What do you do?',t:'sc',o:['Share it since they asked','Share only the score, not the report','Never share without explicit broker authorization','Post it in shared Drive'],a:2,f:'Never share credit data outside the platform without broker authorization.'},
+    {q:'Only Admins can change team settings in Finmo.',t:'tf',o:['True','False'],a:0,f:'Only Admin role users can change team settings.'}
+  ],
+  'mod-6':[
+    {q:'PIPEDA is Canada\'s federal privacy law.',t:'tf',o:['True','False'],a:0,f:'PIPEDA governs how organizations handle personal information.'},
+    {q:'Which body oversees mortgage brokers in Ontario?',t:'mc',o:['CMHC','Bank of Canada','FSRA','CRA'],a:2,f:'FSRA oversees mortgage brokers in Ontario.'},
+    {q:'You can share client info with anyone at the brokerage without restriction.',t:'tf',o:['True','False'],a:1,f:'Client info should only be shared on a need-to-know basis.'},
+    {q:'What must be obtained before pulling a credit bureau report?',t:'mc',o:['A void cheque','Written consent from the borrower','Proof of employment','A signed purchase agreement'],a:1,f:'Written consent is legally required under PIPEDA.'},
+    {q:'A client\'s friend calls asking about their application status. What do you do?',t:'sc',o:['Provide a general update','Confirm the client has an application','Decline to confirm or deny and direct them to the client','Share full details'],a:2,f:'You cannot confirm or deny a client relationship to third parties.'}
+  ],
+  'mod-7':[
+    {q:'Minimum down payment for a property under $500K in Canada?',t:'mc',o:['3%','5%','10%','20%'],a:1,f:'Minimum is 5% for properties under $500,000.'},
+    {q:'Gift funds from a parent can be used as a down payment.',t:'tf',o:['True','False'],a:0,f:'Gift funds from immediate family are acceptable with a signed gift letter.'},
+    {q:'What document is required when down payment funds are a gift?',t:'mc',o:['A promissory note','A gift letter confirming no repayment','A loan agreement','A credit report from the giver'],a:1,f:'A signed gift letter stating no expectation of repayment.'},
+    {q:'The borrower\'s down payment source does not need to be verified.',t:'tf',o:['True','False'],a:1,f:'All sources must be verifiable with a 90-day paper trail.'},
+    {q:'How many days of bank statements are typically required?',t:'mc',o:['30 days','60 days','90 days','120 days'],a:2,f:'Lenders typically require 90-day paper trail.'}
+  ],
+  'mod-10':[
+    {q:'What is the first stage of the mortgage workflow?',t:'mc',o:['Lender submission','Pre-qualification / Initial contact','Document collection','Property appraisal'],a:1,f:'The workflow begins with pre-qualification.'},
+    {q:'During which stage does the VA collect income and asset documents?',t:'mc',o:['Pre-qualification','Application stage','Post-approval','Funding'],a:1,f:'Document collection happens during the application stage.'},
+    {q:'The mortgage is complete once the lender issues an approval letter.',t:'tf',o:['True','False'],a:1,f:'Approval is not the end — conditions, signing, and funding remain.'},
+    {q:'What happens after lender conditions are fulfilled?',t:'mc',o:['The file is archived','The lawyer/notary prepares closing documents','The VA discards the file','Payments start immediately'],a:1,f:'After conditions are met, the file goes to legal for closing.'}
+  ]
+};
+
+const SOPS=[
+  {title:'New Client Intake Procedure',cat:'Workflow',icon:'&#x1f464;',u:'May 2026'},
+  {title:'Document Collection Checklist',cat:'Documents',icon:'&#x1f4dd;',u:'May 2026'},
+  {title:'Credit Bureau Pull Protocol',cat:'Compliance',icon:'&#x1f6e1;',u:'Apr 2026'},
+  {title:'Lender Submission Checklist',cat:'Lender',icon:'&#x1f3e6;',u:'May 2026'},
+  {title:'Client Communication Templates',cat:'Comms',icon:'&#x1f4e7;',u:'Mar 2026'},
+  {title:'Escalation Procedure',cat:'Workflow',icon:'&#x26a0;',u:'Apr 2026'},
+  {title:'File Audit & Quality Check',cat:'Compliance',icon:'&#x2705;',u:'May 2026'},
+  {title:'E-Sign Setup Guide',cat:'E-Sign',icon:'&#x270d;',u:'Mar 2026'},
+  {title:'Pipeline Status Definitions',cat:'CRM',icon:'&#x1f4ca;',u:'May 2026'},
+  {title:'End-of-Day Reporting Template',cat:'Admin',icon:'&#x1f4cb;',u:'Apr 2026'}
+];
+
+const LB=[
+  {n:'Ana Torres',s:2450,b:['&#x1f3c6;','&#x2b50;','&#x1f3af;'],m:12},
+  {n:'Maria Santos',s:1980,b:['&#x2b50;','&#x1f4da;'],m:10},
+  {n:'John Rivera',s:1850,b:['&#x1f3af;','&#x1f4d6;'],m:9},
+  {n:'Priya Sharma',s:1720,b:['&#x1f4da;'],m:8},
+  {n:'Carlos Mendez',s:1590,b:['&#x1f4d6;'],m:7},
+  {n:'Sarah Kim',s:1340,b:[],m:6},
+  {n:'David Chen',s:1200,b:[],m:5},
+  {n:'Lisa Nguyen',s:980,b:[],m:4}
+];
+
+// ── LOGIN ──
+function selectRole(el,r){document.querySelectorAll('.role-chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');S.selRole=r}
+function doLogin(){
+  const e=document.getElementById('login-email').value;
+  const n=e.split('@')[0].replace('.',' ').replace(/\b\w/g,l=>l.toUpperCase());
+  S.user={name:n,email:e,role:S.selRole,initials:n.split(' ').map(w=>w[0]).join('').toUpperCase()};
+  document.getElementById('login-page').style.display='none';
+  document.getElementById('app-shell').style.display='flex';
+  document.getElementById('sb-avatar').textContent=S.user.initials;
+  document.getElementById('sb-uname').textContent=S.user.name;
+  document.getElementById('sb-urole').textContent=S.user.role.charAt(0).toUpperCase()+S.user.role.slice(1);
+  document.getElementById('dash-name').textContent=S.user.name.split(' ')[0];
+  if(S.user.role!=='admin')document.getElementById('admin-nav').style.display='none';
+  renderDashboard();toast('Welcome back, '+S.user.name.split(' ')[0]+'!');
+}
+
+// ── NAV ──
+function nav(p,d){
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.sb-item').forEach(i=>i.classList.remove('active'));
+  const pg=document.getElementById('pg-'+p);
+  if(pg){pg.classList.add('active');pg.style.animation='none';pg.offsetHeight;pg.style.animation=''}
+  const nb=document.querySelector(`.sb-item[data-page="${p}"]`);if(nb)nb.classList.add('active');
+  S.currentPage=p;
+  const R={dashboard:renderDashboard,modules:renderModules,'module-detail':()=>renderModuleDetail(d),crm:renderCRM,quizzes:renderQuizzes,'quiz-take':()=>renderQuizTake(d),sop:renderSOPs,progress:renderProgress,certificates:renderCertificates,leaderboard:renderLeaderboard,profile:renderProfile,bookmarks:renderBookmarks,admin:renderAdmin};
+  if(R[p])R[p]();
+  window.scrollTo(0,0);
+  if(window.innerWidth<768){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
+}
+document.querySelectorAll('.sb-item[data-page]').forEach(b=>b.addEventListener('click',()=>nav(b.dataset.page)));
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
+function toggleNotif(){document.getElementById('notif-panel').classList.toggle('open')}
+function toast(m,t){const e=document.getElementById('toast');e.textContent=m;e.className='toast show'+(t==='success'?' ok':'');setTimeout(()=>e.className='toast',3000)}
+
+// ── HELPERS ──
+function gms(id){return S.done.has(id)?'done':S.prog.has(id)?'prog':'new'}
+function gmsl(s){return s==='done'?'Completed':s==='prog'?'In Progress':'Not Started'}
+function gmp(id){return S.mp[id]||0}
+
+// ── DASHBOARD ──
+function renderDashboard(){
+  document.getElementById('s-completed').textContent=S.done.size;
+  document.getElementById('s-progress').textContent=Math.round(Object.values(S.mp).reduce((a,b)=>a+b,0)/MODS.length)+'%';
+  document.getElementById('s-quizzes').textContent=Object.keys(S.qs).length;
+  document.getElementById('s-certs').textContent=S.certs.length;
+  const recent=MODS.filter(m=>S.prog.has(m.id)||S.done.has(m.id)).slice(0,4);
+  document.getElementById('recent-modules').innerHTML=recent.map(m=>{const p=gmp(m.id);return`<div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);cursor:pointer" onclick="nav('module-detail','${m.id}')"><div style="width:36px;height:36px;border-radius:8px;background:var(--grad-soft);display:flex;align-items:center;justify-content:center;font-size:18px">${m.icon}</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:var(--dark)">${m.title}</div><div style="display:flex;align-items:center;gap:8px;margin-top:4px"><div class="prog sm" style="flex:1"><div class="prog-fill" style="width:${p}%"></div></div><span style="font-size:10px;font-weight:700;color:var(--purple)">${p}%</span></div></div></div>`}).join('');
+  const up=MODS.filter(m=>m.quiz&&!S.qs[m.id]).slice(0,4);
+  document.getElementById('upcoming-quizzes').innerHTML=up.map(m=>`<div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);cursor:pointer" onclick="nav('quiz-take','${m.id}')"><div style="width:36px;height:36px;border-radius:8px;background:var(--amber-l);display:flex;align-items:center;justify-content:center;font-size:16px">&#x270f;</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:var(--dark)">${m.title}</div><div style="font-size:10px;color:var(--muted)">${m.qc} questions &middot; ${m.ps}% to pass</div></div><button class="btn btn-sm btn-p" onclick="event.stopPropagation();nav('quiz-take','${m.id}')">Start</button></div>`).join('');
+  document.getElementById('activity-log').innerHTML=[{t:'Completed Filogix Expert CRM Training',d:'Today, 2:15 PM'},{t:'Scored 87% on Filogix Quiz',d:'Today, 2:30 PM'},{t:'Started Hurricane CRM module',d:'Yesterday, 4:00 PM'},{t:'Downloaded Document Cheatsheet',d:'Yesterday, 10:30 AM'},{t:'Earned Compliance Certificate',d:'3 days ago'}].map(a=>`<div class="act-item"><div class="act-dot"></div><div><div class="act-text">${a.t}</div><div class="act-time">${a.d}</div></div></div>`).join('');
+  renderNotifs();
+}
+function renderNotifs(){document.getElementById('notif-list').innerHTML=S.notifs.map(n=>`<div class="notif-item ${n.unread?'unread':''}"><div class="notif-ic">${n.icon}</div><div class="notif-text"><p>${n.text}</p><span>${n.time}</span></div></div>`).join('')}
+
+// ── MODULES ──
+function renderModules(f){
+  const cats=['All',...new Set(MODS.map(m=>m.cat))];const af=f||'All';
+  document.getElementById('mod-filters').innerHTML=cats.map(c=>`<button class="fchip ${c===af?'on':''}" onclick="renderModules('${c}')">${c}</button>`).join('');
+  const fl=af==='All'?MODS:MODS.filter(m=>m.cat===af);
+  document.getElementById('mod-grid').innerHTML=fl.map(m=>{const st=gms(m.id),p=gmp(m.id);return`<div class="mod-card" onclick="nav('module-detail','${m.id}')"><div class="mod-thumb">${m.icon}<div class="mod-cat">${m.cat}</div><div class="mod-st ${st}">${gmsl(st)}</div></div><div class="mod-body"><div class="mod-t">${m.title}</div><div class="mod-d">${m.desc}</div><div class="mod-meta"><span class="mod-les">${m.lessons} lessons &middot; ${m.dur}</span><div class="mod-prog"><div class="prog sm"><div class="prog-fill" style="width:${p}%"></div></div><span>${p}%</span></div></div></div></div>`}).join('');
+}
+
+// ── MODULE DETAIL ──
+function renderModuleDetail(id){
+  const m=MODS.find(x=>x.id===id);if(!m)return;S.currentModule=m;
+  document.getElementById('md-breadcrumb').textContent=m.title;
+  const st=gms(m.id),p=gmp(m.id),bk=S.bm.has(m.id),ct=getContent(m.id);
+  document.getElementById('module-detail-content').innerHTML=`
+    <div style="background:var(--grad);border-radius:var(--radius);padding:28px 32px;color:#fff;margin-bottom:18px;position:relative;overflow:hidden">
+      <div style="position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.07)"></div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="background:rgba(255,255,255,.18);padding:3px 12px;border-radius:20px;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase">${m.cat}</span><span style="background:rgba(255,255,255,.18);padding:3px 12px;border-radius:20px;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase">${m.diff}</span></div>
+      <h1 style="font-size:22px;font-weight:700;margin-bottom:6px">${m.icon} ${m.title}</h1>
+      <p style="font-size:13px;color:rgba(255,255,255,.85);max-width:520px">${m.desc}</p>
+      <div style="display:flex;gap:20px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.2)">
+        <div><div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.6)">Lessons</div><div style="font-size:12px;color:rgba(255,255,255,.9)">${m.lessons}</div></div>
+        <div><div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.6)">Duration</div><div style="font-size:12px;color:rgba(255,255,255,.9)">${m.dur}</div></div>
+        <div><div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.6)">Progress</div><div style="font-size:12px;color:rgba(255,255,255,.9)">${p}%</div></div>
+        ${m.quiz?`<div><div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.6)">Quiz</div><div style="font-size:12px;color:rgba(255,255,255,.9)">${m.qc} Q &middot; ${m.ps}% pass</div></div>`:''}
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;margin-bottom:18px">
+      <button class="btn ${bk?'btn-p':'btn-o'}" onclick="toggleBm('${m.id}')">&#x2605; ${bk?'Bookmarked':'Bookmark'}</button>
+      ${m.quiz?`<button class="btn btn-g" onclick="nav('quiz-take','${m.id}')">&#x270f; Take Quiz</button>`:''}
+      ${st!=='done'?`<button class="btn btn-suc" onclick="completeMod('${m.id}')">&#x2705; Mark Complete</button>`:'<button class="btn btn-suc" disabled>&#x2705; Completed</button>'}
+    </div>
+    <div class="card" style="margin-bottom:18px"><div class="card-hd"><span class="card-title">Training Content</span></div><div class="card-bd">${ct}</div></div>
+    <div class="card"><div class="card-hd"><span class="card-title">&#x1f4dd; My Notes</span><button class="btn btn-sm btn-g" onclick="saveNotes('${m.id}')">Save</button></div><div class="card-bd"><textarea class="notes-ta" id="notes-${m.id}" placeholder="Take notes...">${S.notes[m.id]||''}</textarea></div></div>`;
+}
+function getContent(id){
+  const C={
+    'mod-1':`<div class="section-title">Section 1: Platform Overview</div><div class="lesson-grid"><div class="lesson-card"><div class="lc-title">Primary Purpose</div><div class="lc-body">Filogix Expert is a mortgage origination platform used by Canadian mortgage brokers. VAs use it to create and manage mortgage applications, enter borrower data, and submit files directly to lenders and insurers (CMHC, Sagen, Canada Guaranty).</div><span class="lc-badge tip">Most common platform in Canadian brokerage</span></div><div class="lesson-card"><div class="lc-title">Application Types</div><div class="lc-body">Supports three transaction types: <strong>Purchase</strong>, <strong>Refinance</strong>, and <strong>Switch/Transfer</strong>. Each has its own required fields.</div><span class="lc-badge note">Know which type before opening a file</span></div></div><div class="section-title">Section 2: Client Information</div><div class="info-box purple"><div class="ib-title">Where to Enter Personal Information</div><div class="ib-body">All borrower data goes into the <strong>Borrower Details section</strong>. Minimum required: <strong>Full name and date of birth</strong>.</div></div><div class="lesson-grid"><div class="lesson-card"><div class="lc-title">Adding a Co-Applicant</div><div class="lc-body">Use <strong>"Add Applicant"</strong> inside the existing file. Never create duplicate files.</div><span class="lc-badge note">All borrowers in same file</span></div><div class="lesson-card"><div class="lc-title">Required Fields</div><div class="lc-body">Legal name (as on government ID) and date of birth.</div><span class="lc-badge tip">Match name exactly to ID</span></div></div><div class="section-title">Section 3: Employment & Income</div><div class="lesson-grid"><div class="lesson-card full"><div class="lc-title">Qualifying Income Calculation</div><div class="lc-body">Filogix calculates total qualifying income <strong>automatically</strong>. Your job is accurate data entry — the system does the math. Always cross-check against income documents.</div><span class="lc-badge note">Your job: accurate data entry</span></div></div><div class="section-title">Section 4: Documents & Submission</div><div class="steps"><div class="step"><div class="step-left"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-title">Select Lenders</div><div class="step-detail">Use the Lender List checkbox menu. Never submit without broker confirmation.</div></div></div><div class="step"><div class="step-left"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-title">Review Before Submitting</div><div class="step-detail">All data accurate, all documents uploaded, no Errors/Warnings outstanding.</div></div></div><div class="step"><div class="step-left"><div class="step-num">3</div></div><div class="step-body"><div class="step-title">Check Lender Responses</div><div class="step-detail">Monitor Lender Conditions/Messages section for responses.</div></div></div></div>`,
+    'mod-2':`<div class="section-title">Section 1: Platform Basics</div><div class="lesson-grid"><div class="lesson-card"><div class="lc-title">What is Finmo</div><div class="lc-body">A mortgage application and submission platform handling the full workflow — from borrower invitations to lender submissions.</div><span class="lc-badge tip">Not a CRM — mortgage origination</span></div><div class="lesson-card"><div class="lc-title">Key Navigation</div><div class="lc-body"><strong>Pipeline:</strong> Active applications. <strong>Tasks:</strong> Pending actions. <strong>Contacts:</strong> Borrower records. <strong>Library:</strong> Templates.</div><span class="lc-badge note">Pipeline = daily working tab</span></div></div><div class="section-title">Section 2: Borrower Application</div><div class="info-box purple"><div class="ib-title">Borrower Invitations</div><div class="ib-body">Borrowers receive a <strong>personalized application link</strong> — a secure portal where they complete their information directly.</div></div><div class="section-title">Section 3: Smart Docs</div><div class="lesson-grid"><div class="lesson-card full"><div class="lc-title">Smart Docs</div><div class="lc-body">Automatically generates document requests based on application data — targeted requests save time and reduce missed documents.</div><span class="lc-badge note">Automated, application-specific</span></div></div><div class="section-title">Section 4: Lender Submission</div><div class="steps"><div class="step"><div class="step-left"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-title">Map Documents</div><div class="step-detail">Map to lender's specific requirements inside Finmo before submission.</div></div></div><div class="step"><div class="step-left"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-title">Add Submission Note</div><div class="step-detail">Summary or rationale for the deal.</div></div></div><div class="step"><div class="step-left"><div class="step-num">3</div></div><div class="step-body"><div class="step-title">Non-Integrated Lenders</div><div class="step-detail">Export as PDF and send manually.</div></div></div></div>`
+  };
+  const m=MODS.find(x=>x.id===id);
+  return C[id]||`<div class="section-title">Module Overview</div><div class="info-box purple"><div class="ib-title">About This Module</div><div class="ib-body">${m.desc} Covers ${m.lessons} comprehensive sections for mortgage VAs.</div></div><div class="lesson-grid"><div class="lesson-card"><div class="lc-title">What You'll Learn</div><div class="lc-body">Key concepts, processes, and best practices. Real-world scenarios and practical examples.</div><span class="lc-badge tip">Estimated: ${m.dur}</span></div><div class="lesson-card"><div class="lc-title">Prerequisites</div><div class="lc-body">Basic understanding of the Canadian mortgage industry recommended.</div><span class="lc-badge note">${m.diff} level</span></div></div>${m.quiz?'<div class="info-box amber"><div class="ib-title">Assessment Required</div><div class="ib-body">Quiz with '+m.qc+' questions. Need '+m.ps+'% to pass and earn certificate.</div></div>':''}`;
+}
+
+// ── CRM ──
+function renderCRM(){
+  const cm=MODS.filter(m=>m.cat==='CRM Training');
+  document.getElementById('crm-tabs').innerHTML=cm.map((m,i)=>`<button class="crm-tab ${i===0?'active':''}" onclick="showCRM(this,${i})">${m.title.replace(' CRM Training','')}</button>`).join('');
+  showCRM(null,0);
+}
+function showCRM(el,i){
+  if(el){document.querySelectorAll('.crm-tab').forEach(t=>t.classList.remove('active'));el.classList.add('active')}
+  const cm=MODS.filter(m=>m.cat==='CRM Training'),m=cm[i];
+  const steps=[{t:'Log In & Navigate',d:'Access the platform securely and learn main navigation.'},{t:'Create / Open Application',d:'Start a new mortgage application or find an existing file.'},{t:'Enter Borrower Information',d:'Input client personal details, employment, and income.'},{t:'Upload Documents',d:'Attach supporting documents, ensure consent on file.'},{t:'Review & Submit',d:'Run final checks and submit to selected lenders.'},{t:'Track Conditions',d:'Monitor lender responses and fulfill conditions.'}];
+  document.getElementById('crm-content').innerHTML=`
+    <div style="background:var(--grad);border-radius:var(--radius);padding:24px 28px;color:#fff;margin-bottom:16px">
+      <h2 style="font-size:18px;font-weight:700;margin-bottom:4px">${m.icon} ${m.title}</h2><p style="font-size:12px;color:rgba(255,255,255,.8)">${m.desc}</p>
+      <div style="display:flex;gap:12px;margin-top:12px"><button class="btn btn-sm" style="background:rgba(255,255,255,.2);color:#fff" onclick="nav('module-detail','${m.id}')">Full Module</button>${m.quiz?`<button class="btn btn-sm" style="background:rgba(255,255,255,.2);color:#fff" onclick="nav('quiz-take','${m.id}')">Take Quiz</button>`:''}</div>
+    </div>
+    <h3 style="font-size:15px;font-weight:700;color:var(--dark);margin-bottom:12px">Step-by-Step Walkthrough</h3>
+    ${steps.map((s,j)=>`<div class="crm-step"><div class="crm-step-num">${j+1}</div><div><h4>${s.t}</h4><p>${s.d}</p></div></div>`).join('')}
+    <div class="info-box green" style="margin-top:16px"><div class="ib-title">Pipeline Tip</div><div class="ib-body">Always update deal status after each step to keep the broker informed.</div></div>`;
+}
+
+// ── QUIZZES ──
+function renderQuizzes(){
+  document.getElementById('quiz-grid').innerHTML=MODS.filter(m=>m.quiz).map(m=>{const p=S.qs[m.id]!==undefined;return`<div class="mod-card" onclick="nav('quiz-take','${m.id}')"><div class="mod-thumb" style="height:100px;background:${p?'linear-gradient(135deg,#d1fae5,#f5f3ff)':'var(--grad-soft)'}"><span style="font-size:36px">${p?'&#x2705;':'&#x270f;'}</span>${p?`<div class="mod-st done">Passed: ${S.qs[m.id]}%</div>`:`<div class="mod-st new">${m.qc} Q</div>`}</div><div class="mod-body"><div class="mod-t">${m.title} Quiz</div><div class="mod-d">${m.ps}% to pass &middot; ${m.qc} questions</div><button class="btn btn-sm ${p?'btn-g':'btn-p'}" style="margin-top:8px">${p?'Retake':'Start Quiz'}</button></div></div>`}).join('');
+}
+
+// ── QUIZ TAKE ──
+function renderQuizTake(id){
+  const m=MODS.find(x=>x.id===id);if(!m)return;S.currentQuiz=id;
+  document.getElementById('qt-breadcrumb').textContent=m.title+' Quiz';
+  const qs=QD[id]||[{q:'What is the primary focus of '+m.title+'?',t:'mc',o:['Client entertainment','Mortgage processing and compliance','Social media','Interior design'],a:1,f:m.title+' focuses on mortgage processing for VAs.'},{q:'Written consent must be obtained before pulling credit.',t:'tf',o:['True','False'],a:0,f:'Consent is always required under PIPEDA.'},{q:'Which document is most commonly needed for income verification?',t:'mc',o:['Utility bill','T4 or pay stub','Library card','Social media profile'],a:1,f:'T4s and pay stubs are standard income verification.'}];
+  const ltrs=['A','B','C','D'];
+  document.getElementById('quiz-take-content').innerHTML=`
+    <div style="background:var(--grad);border-radius:var(--radius);padding:24px 28px;color:#fff;margin-bottom:18px"><h2 style="font-size:18px;font-weight:700">${m.title} Quiz</h2><p style="font-size:12px;color:rgba(255,255,255,.8);margin-top:3px">${qs.length} questions &middot; ${m.ps}% to pass &middot; Certificate upon passing</p></div>
+    <div style="margin-bottom:14px"><label style="font-size:12px;font-weight:600;color:var(--dark);margin-bottom:4px;display:block">Your Full Name (for certificate):</label><input type="text" id="quiz-name" value="${S.user.name}" style="padding:9px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:13px;width:300px;outline:none"></div>
+    <div id="quiz-qs">${qs.map((q,i)=>{const tl=q.t==='tf'?'True/False':q.t==='sc'?'Scenario':'Multiple Choice';return`<div class="q-card" id="q-${i}"><div class="q-num">Question ${i+1} of ${qs.length}<span class="q-type ${q.t}">${tl}</span></div><div class="q-text">${q.q}</div><div class="q-opts">${q.o.map((o,j)=>`<div class="q-opt" onclick="selAns(${i},${j})"><div class="q-ltr">${ltrs[j]}</div><span>${o}</span></div>`).join('')}</div><div class="q-fb" id="fb-${i}"></div></div>`}).join('')}</div>
+    <div style="text-align:center;margin-top:20px"><button class="btn btn-p btn-lg" onclick="submitQuiz('${id}')">Submit Quiz</button></div>
+    <div id="quiz-result" style="display:none;margin-top:20px"></div><div id="quiz-cert" style="display:none;margin-top:20px"></div>`;
+  window._qa=new Array(qs.length).fill(-1);
+}
+function selAns(qi,oi){window._qa[qi]=oi;const c=document.getElementById('q-'+qi);c.querySelectorAll('.q-opt').forEach((o,i)=>{o.classList.remove('sel');if(i===oi)o.classList.add('sel')})}
+function submitQuiz(id){
+  const m=MODS.find(x=>x.id===id),qs=QD[id]||[{q:'Q',t:'mc',o:['A','B'],a:1,f:'F'}];let cor=0;
+  qs.forEach((q,i)=>{const c=document.getElementById('q-'+i),fb=document.getElementById('fb-'+i),opts=c.querySelectorAll('.q-opt'),ua=window._qa[i];
+    opts.forEach((o,j)=>{o.style.pointerEvents='none';if(j===q.a)o.classList.add('correct');if(j===ua&&ua!==q.a)o.classList.add('wrong')});
+    if(ua===q.a){cor++;fb.className='q-fb show ok';fb.innerHTML='&#x2705; '+q.f}else{fb.className='q-fb show no';fb.innerHTML='&#x274c; '+q.f}
+  });
+  const pct=Math.round(cor/qs.length*100),pass=pct>=m.ps;
+  if(pass){S.qs[id]=pct;if(!S.certs.includes(id))S.certs.push(id);S.done.add(id);S.prog.delete(id);S.mp[id]=100}
+  const rd=document.getElementById('quiz-result');rd.style.display='block';
+  rd.innerHTML=`<div class="quiz-res"><div class="res-icon">${pass?'&#x1f389;':'&#x1f4da;'}</div><div class="res-score ${pass?'pass':'fail'}">${pct}%</div><div class="res-msg">${pass?'Congratulations! You Passed!':'Not Quite There Yet'}</div><div class="res-sub">${cor}/${qs.length} correct${pass?' — Certificate earned!':' — Need '+m.ps+'% to pass'}</div><div style="display:flex;gap:10px;justify-content:center;margin-top:16px">${!pass?`<button class="btn btn-p" onclick="nav('quiz-take','${id}')">Retake</button>`:''} ${pass?`<button class="btn btn-p" onclick="showCert('${id}',${pct})">View Certificate</button>`:''}<button class="btn btn-g" onclick="nav('quizzes')">Back</button></div></div>`;
+  rd.scrollIntoView({behavior:'smooth'});if(pass)toast('Certificate earned!','success');
+}
+
+// ── CERTIFICATE ──
+function showCert(id,sc){
+  const m=MODS.find(x=>x.id===id),nm=document.getElementById('quiz-name')?.value||S.user.name;
+  const dt=new Date().toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'});
+  const ref='LM-'+id.replace('mod-','').toUpperCase()+'-'+Date.now().toString(36).toUpperCase();
+  const cd=document.getElementById('quiz-cert');cd.style.display='block';
+  cd.innerHTML=`<div class="cert"><div class="cert-corner tl"></div><div class="cert-corner tr"></div><div class="cert-corner bl"></div><div class="cert-corner br"></div><div class="cert-seal">&#x1f393;</div><div class="cert-badge">Certificate of Completion</div><div class="cert-org">LendMate VA Training Academy &middot; lendmate.ca</div><div class="cert-div"></div><div class="cert-intro">This is to certify that</div><div class="cert-name">${nm}</div><div class="cert-completed">has successfully completed the training module</div><div class="cert-module">${m.title}</div><div class="cert-sc">Score: ${sc}%</div><div class="cert-sigs"><div style="text-align:center"><div class="cert-sig-line"></div><div class="cert-sig-name">Training Director</div><div class="cert-sig-role">LendMate Academy</div></div><div style="text-align:center"><div class="cert-sig-line"></div><div class="cert-sig-name">Program Lead</div><div class="cert-sig-role">Mortgage VA Division</div></div></div><div style="font-size:11px;color:var(--muted);margin-bottom:4px">${dt}</div><div class="cert-ref">${ref}</div><div style="margin-top:16px"><button class="btn btn-p" onclick="window.print()">&#x1f5a8; Print Certificate</button></div></div>`;
+  cd.scrollIntoView({behavior:'smooth'});
+}
+
+// ── SOPs ──
+function renderSOPs(){document.getElementById('sop-grid').innerHTML=SOPS.map(s=>`<div class="sop-card"><div class="sop-ic">${s.icon}</div><div class="sop-info"><div class="sop-t">${s.title}</div><div class="sop-m">${s.cat} &middot; Updated ${s.u}</div></div><button class="btn btn-sm btn-g">View</button></div>`).join('')}
+
+// ── PROGRESS ──
+function renderProgress(){
+  const ov=Math.round(Object.values(S.mp).reduce((a,b)=>a+b,0)/MODS.length);
+  document.getElementById('progress-content').innerHTML=`
+    <div class="stats" style="grid-template-columns:repeat(3,1fr)"><div class="stat grad"><div class="stat-val">${ov}%</div><div class="stat-lbl">Overall Progress</div></div><div class="stat"><div class="stat-val">${S.done.size}/${MODS.length}</div><div class="stat-lbl">Completed</div></div><div class="stat"><div class="stat-val">${S.prog.size}</div><div class="stat-lbl">In Progress</div></div></div>
+    <div class="card"><div class="card-hd"><span class="card-title">All Modules</span></div><div class="card-bd">${MODS.map(m=>{const p=gmp(m.id),st=gms(m.id);return`<div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid var(--border)"><div style="font-size:20px">${m.icon}</div><div style="flex:1"><div style="font-size:12px;font-weight:600;color:var(--dark);margin-bottom:4px">${m.title}</div><div style="display:flex;align-items:center;gap:8px"><div class="prog sm" style="flex:1"><div class="prog-fill" style="width:${p}%"></div></div><span style="font-size:10px;font-weight:700;color:var(--purple)">${p}%</span></div></div><span class="pill ${st==='done'?'act':st==='prog'?'pen':'ina'}">${gmsl(st)}</span></div>`}).join('')}</div></div>`;
+}
+
+// ── CERTIFICATES ──
+function renderCertificates(){
+  if(!S.certs.length){document.getElementById('certs-content').innerHTML='<div style="text-align:center;padding:60px;color:var(--muted)"><div style="font-size:48px;margin-bottom:12px">&#x1f393;</div><h3 style="font-size:16px;color:var(--dark);margin-bottom:6px">No Certificates Yet</h3><p style="font-size:12px">Complete modules and pass quizzes to earn certificates.</p></div>';return}
+  document.getElementById('certs-content').innerHTML='<div class="mod-grid">'+S.certs.map(id=>{const m=MODS.find(x=>x.id===id);return`<div class="mod-card" onclick="showCertPage('${id}')"><div class="mod-thumb" style="height:120px;background:linear-gradient(135deg,#fdf0f9,#ede9fe)"><span style="font-size:40px">&#x1f393;</span></div><div class="mod-body"><div class="mod-t">${m.title}</div><div class="mod-d">Score: ${S.qs[id]||100}% &middot; Passed</div><button class="btn btn-sm btn-p" style="margin-top:6px">View</button></div></div>`}).join('')+'</div>';
+}
+function showCertPage(id){
+  const m=MODS.find(x=>x.id===id),sc=S.qs[id]||100,dt=new Date().toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'}),ref='LM-'+id.replace('mod-','').toUpperCase()+'-CERT';
+  document.getElementById('certs-content').innerHTML=`<div style="margin-bottom:16px"><button class="btn btn-g" onclick="renderCertificates()">&larr; Back</button></div><div class="cert"><div class="cert-corner tl"></div><div class="cert-corner tr"></div><div class="cert-corner bl"></div><div class="cert-corner br"></div><div class="cert-seal">&#x1f393;</div><div class="cert-badge">Certificate of Completion</div><div class="cert-org">LendMate VA Training Academy &middot; lendmate.ca</div><div class="cert-div"></div><div class="cert-intro">This is to certify that</div><div class="cert-name">${S.user.name}</div><div class="cert-completed">has successfully completed</div><div class="cert-module">${m.title}</div><div class="cert-sc">Score: ${sc}%</div><div class="cert-sigs"><div style="text-align:center"><div class="cert-sig-line"></div><div class="cert-sig-name">Training Director</div><div class="cert-sig-role">LendMate Academy</div></div><div style="text-align:center"><div class="cert-sig-line"></div><div class="cert-sig-name">Program Lead</div><div class="cert-sig-role">Mortgage VA Division</div></div></div><div style="font-size:11px;color:var(--muted);margin-bottom:4px">${dt}</div><div class="cert-ref">${ref}</div><div style="margin-top:16px"><button class="btn btn-p" onclick="window.print()">&#x1f5a8; Print</button></div></div>`;
+}
+
+// ── LEADERBOARD ──
+function renderLeaderboard(){
+  document.getElementById('leaderboard-content').innerHTML=`<div class="card"><div class="card-hd"><span class="card-title">&#x1f3c6; Top Performers</span></div><div class="card-bd">${LB.map((l,i)=>{const rc=i===0?'g':i===1?'s':i===2?'b':'n';return`<div class="lb-item"><div class="lb-rank ${rc}">${i+1}</div><div style="width:30px;height:30px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700">${l.n.split(' ').map(w=>w[0]).join('')}</div><div class="lb-name">${l.n} <span style="font-size:10px;color:var(--muted);font-weight:400">&middot; ${l.m} modules</span></div><div style="display:flex;gap:3px">${l.b.map(b=>'<span style="font-size:14px">'+b+'</span>').join('')}</div><div class="lb-score">${l.s.toLocaleString()} pts</div></div>`}).join('')}</div></div>
+  <div class="card" style="margin-top:14px"><div class="card-hd"><span class="card-title">&#x1f3c5; Badge Legend</span></div><div class="card-bd" style="display:flex;gap:20px;flex-wrap:wrap"><div style="font-size:12px">&#x1f3c6; <strong>Champion</strong> — All modules</div><div style="font-size:12px">&#x2b50; <strong>Star</strong> — 90%+ avg</div><div style="font-size:12px">&#x1f3af; <strong>Sharpshooter</strong> — 100% on any quiz</div><div style="font-size:12px">&#x1f4da; <strong>Scholar</strong> — 10+ modules</div><div style="font-size:12px">&#x1f4d6; <strong>Reader</strong> — 5+ modules</div></div></div>`;
+}
+
+// ── PROFILE ──
+function renderProfile(){
+  const cc=S.done.size,qc=Object.keys(S.qs).length,avg=qc>0?Math.round(Object.values(S.qs).reduce((a,b)=>a+b,0)/qc):0;
+  document.getElementById('profile-content').innerHTML=`
+    <div class="prof-hd"><div class="prof-av">${S.user.initials}</div><div class="prof-info"><h2>${S.user.name}</h2><p>${S.user.email} &middot; ${S.user.role.charAt(0).toUpperCase()+S.user.role.slice(1)}</p></div><div class="prof-stats"><div class="prof-s"><div class="pv">${cc}</div><div class="pl">Modules</div></div><div class="prof-s"><div class="pv">${qc}</div><div class="pl">Quizzes</div></div><div class="prof-s"><div class="pv">${avg}%</div><div class="pl">Avg Score</div></div></div></div>
+    <div class="grid-2"><div class="card"><div class="card-hd"><span class="card-title">Account Settings</span></div><div class="card-bd"><div class="login-field"><label>Full Name</label><input type="text" value="${S.user.name}"></div><div class="login-field"><label>Email</label><input type="email" value="${S.user.email}"></div><div class="login-field"><label>Role</label><input type="text" value="${S.user.role.charAt(0).toUpperCase()+S.user.role.slice(1)}" disabled></div><button class="btn btn-p" style="margin-top:8px">Save Changes</button></div></div>
+    <div class="card"><div class="card-hd"><span class="card-title">Training Stats</span></div><div class="card-bd">${[['Modules Completed',cc+'/'+MODS.length],['Quizzes Passed',qc],['Average Score',avg+'%'],['Certificates',S.certs.length],['Bookmarked',S.bm.size]].map(r=>`<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="font-size:12px;color:var(--muted)">${r[0]}</span><span style="font-size:12px;font-weight:700">${r[1]}</span></div>`).join('')}</div></div></div>`;
+}
+
+// ── BOOKMARKS ──
+function renderBookmarks(){
+  const bk=MODS.filter(m=>S.bm.has(m.id));
+  if(!bk.length){document.getElementById('bookmarks-content').innerHTML='<div style="text-align:center;padding:60px;color:var(--muted)"><div style="font-size:48px;margin-bottom:12px">&#x1f4da;</div><h3 style="font-size:16px;color:var(--dark);margin-bottom:6px">No Bookmarks Yet</h3><p style="font-size:12px">Bookmark modules for quick access.</p></div>';return}
+  document.getElementById('bookmarks-content').innerHTML='<div class="mod-grid">'+bk.map(m=>`<div class="mod-card" onclick="nav('module-detail','${m.id}')"><div class="mod-thumb">${m.icon}<div class="mod-cat">${m.cat}</div></div><div class="mod-body"><div class="mod-t">${m.title}</div><div class="mod-d">${m.desc}</div><div style="display:flex;gap:8px;margin-top:8px"><button class="btn btn-sm btn-p" onclick="event.stopPropagation();nav('module-detail','${m.id}')">Open</button><button class="btn btn-sm btn-o" onclick="event.stopPropagation();toggleBm('${m.id}');renderBookmarks()">Remove</button></div></div></div>`).join('')+'</div>';
+}
+
+// ── ADMIN ──
+function renderAdmin(){
+  const tr=[{n:'Maria Santos',e:'maria@lendmate.ca',m:4,q:3,s:'Active',l:'Today'},{n:'John Rivera',e:'john@lendmate.ca',m:3,q:2,s:'Active',l:'Yesterday'},{n:'Priya Sharma',e:'priya@lendmate.ca',m:2,q:1,s:'Active',l:'2 days ago'},{n:'Carlos Mendez',e:'carlos@lendmate.ca',m:1,q:0,s:'Pending',l:'5 days ago'},{n:'Sarah Kim',e:'sarah@lendmate.ca',m:0,q:0,s:'Inactive',l:'2 weeks ago'}];
+  document.getElementById('admin-content').innerHTML=`
+    <div class="tab-bar"><button class="tab-i on" onclick="document.querySelectorAll('.asec').forEach(s=>s.style.display='none');document.getElementById('au').style.display='block';document.querySelectorAll('.tab-i').forEach(t=>t.classList.remove('on'));this.classList.add('on')">Users</button><button class="tab-i" onclick="document.querySelectorAll('.asec').forEach(s=>s.style.display='none');document.getElementById('aa').style.display='block';document.querySelectorAll('.tab-i').forEach(t=>t.classList.remove('on'));this.classList.add('on')">Analytics</button><button class="tab-i" onclick="document.querySelectorAll('.asec').forEach(s=>s.style.display='none');document.getElementById('am').style.display='block';document.querySelectorAll('.tab-i').forEach(t=>t.classList.remove('on'));this.classList.add('on')">Manage Modules</button></div>
+    <div class="asec" id="au"><div class="card"><div class="card-hd"><span class="card-title">Trainee Management</span><button class="btn btn-sm btn-p">+ Add Trainee</button></div><div class="card-bd" style="padding:0"><table class="adm-table"><thead><tr><th>Name</th><th>Email</th><th>Modules</th><th>Quizzes</th><th>Status</th><th>Last Active</th><th></th></tr></thead><tbody>${tr.map(t=>`<tr><td style="font-weight:600;color:var(--dark)">${t.n}</td><td>${t.e}</td><td>${t.m}</td><td>${t.q}</td><td><span class="pill ${t.s==='Active'?'act':t.s==='Pending'?'pen':'ina'}">${t.s}</span></td><td style="color:var(--muted)">${t.l}</td><td><button class="btn btn-sm btn-g">View</button></td></tr>`).join('')}</tbody></table></div></div></div>
+    <div class="asec" id="aa" style="display:none"><div class="stats" style="grid-template-columns:repeat(3,1fr)"><div class="stat"><div class="stat-val">5</div><div class="stat-lbl">Total Trainees</div></div><div class="stat"><div class="stat-val">78%</div><div class="stat-lbl">Avg Completion</div></div><div class="stat"><div class="stat-val">85%</div><div class="stat-lbl">Avg Quiz Score</div></div></div><div class="card"><div class="card-hd"><span class="card-title">Completion by Module</span></div><div class="card-bd">${MODS.slice(0,8).map(m=>{const p=Math.floor(Math.random()*60)+40;return`<div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--border)"><span style="font-size:12px;flex:1">${m.title}</span><div class="prog sm" style="width:100px"><div class="prog-fill" style="width:${p}%"></div></div><span style="font-size:10px;font-weight:700;color:var(--purple);min-width:28px">${p}%</span></div>`}).join('')}</div></div></div>
+    <div class="asec" id="am" style="display:none"><div class="card"><div class="card-hd"><span class="card-title">Module Management</span><button class="btn btn-sm btn-p">+ Add Module</button></div><div class="card-bd" style="padding:0"><table class="adm-table"><thead><tr><th>Module</th><th>Category</th><th>Lessons</th><th>Quiz</th><th>Difficulty</th><th></th></tr></thead><tbody>${MODS.map(m=>`<tr><td style="font-weight:600;color:var(--dark)">${m.icon} ${m.title}</td><td>${m.cat}</td><td>${m.lessons}</td><td>${m.quiz?m.qc+' Q':'No'}</td><td><span class="pill ${m.diff==='Beginner'?'act':m.diff==='Intermediate'?'pen':'ina'}">${m.diff}</span></td><td><button class="btn btn-sm btn-g">Edit</button></td></tr>`).join('')}</tbody></table></div></div></div>`;
+}
+
+// ── ACTIONS ──
+function toggleBm(id){if(S.bm.has(id)){S.bm.delete(id);toast('Removed')}else{S.bm.add(id);toast('Bookmarked!','success')}if(S.currentPage==='module-detail')renderModuleDetail(id)}
+function completeMod(id){S.done.add(id);S.prog.delete(id);S.mp[id]=100;toast('Module complete!','success');renderModuleDetail(id)}
+function saveNotes(id){const ta=document.getElementById('notes-'+id);if(ta){S.notes[id]=ta.value;toast('Notes saved!','success')}}
+function handleSearch(v){if(!v||v.length<2)return;const q=v.toLowerCase(),r=MODS.filter(m=>m.title.toLowerCase().includes(q)||m.desc.toLowerCase().includes(q)||m.cat.toLowerCase().includes(q));if(r.length>0){nav('modules');document.getElementById('mod-grid').innerHTML=r.map(m=>`<div class="mod-card" onclick="nav('module-detail','${m.id}')"><div class="mod-thumb">${m.icon}<div class="mod-cat">${m.cat}</div><div class="mod-st ${gms(m.id)}">${gmsl(gms(m.id))}</div></div><div class="mod-body"><div class="mod-t">${m.title}</div><div class="mod-d">${m.desc}</div></div></div>`).join('')}}
+
+renderNotifs();
+</script>
+</body>
+</html>

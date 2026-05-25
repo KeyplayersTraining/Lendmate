@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LendMate | eSign & Signing Package Training</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap');
+
+  :root {
+    --pink: #C855A0;
+    --purple: #8B5CF6;
+    --gradient: linear-gradient(135deg, #C855A0 0%, #8B5CF6 100%);
+    --gradient-soft: linear-gradient(135deg, rgba(200,85,160,0.08) 0%, rgba(139,92,246,0.08) 100%);
+    --bg: #F9F8FE;
+    --white: #ffffff;
+    --text: #1a1a2e;
+    --text-muted: #6b7280;
+    --border: #e8e4f5;
+    --success: #10b981;
+    --error: #ef4444;
+    --warn: #f59e0b;
+    --card-shadow: 0 2px 20px rgba(139,92,246,0.08);
+    --card-shadow-hover: 0 8px 40px rgba(139,92,246,0.18);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ---- HEADER ---- */
+  .header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(139,92,246,0.06);
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .logo-mark {
+    width: 36px;
+    height: 36px;
+    background: var(--gradient);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: -0.5px;
+  }
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .logo-text span { color: var(--pink); }
+  .logo-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+  .header-badge {
+    background: var(--gradient-soft);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--purple);
+  }
+
+  /* ---- PROGRESS BAR ---- */
+  .progress-container {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 32px;
+  }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .progress-track {
+    height: 6px;
+    background: var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--gradient);
+    border-radius: 10px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+  .section-dots {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: background 0.3s;
+  }
+  .dot.done { background: var(--gradient); background: var(--success); }
+  .dot.active { background: var(--pink); }
+
+  /* ---- MAIN LAYOUT ---- */
+  .main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* ---- SCREENS ---- */
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* ---- HERO / INTRO ---- */
+  .hero {
+    text-align: center;
+    padding: 48px 32px 40px;
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--gradient);
+  }
+  .hero-icon {
+    width: 72px;
+    height: 72px;
+    background: var(--gradient);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin: 0 auto 24px;
+    box-shadow: 0 8px 24px rgba(200,85,160,0.3);
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .hero h1 span { color: var(--pink); font-style: italic; }
+  .hero p {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 560px;
+    margin: 0 auto 32px;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .hero-meta-item .icon {
+    width: 28px;
+    height: 28px;
+    background: var(--gradient-soft);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+  .outline-box {
+    background: var(--gradient-soft);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 24px;
+    text-align: left;
+    margin-bottom: 32px;
+  }
+  .outline-box h3 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--purple);
+    margin-bottom: 14px;
+  }
+  .outline-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .outline-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .outline-num {
+    width: 22px;
+    height: 22px;
+    background: var(--gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ---- BUTTONS ---- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-primary {
+    background: var(--gradient);
+    color: white;
+    box-shadow: 0 4px 16px rgba(200,85,160,0.35);
+  }
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(200,85,160,0.45);
+  }
+  .btn-secondary {
+    background: var(--white);
+    color: var(--purple);
+    border: 1.5px solid var(--border);
+  }
+  .btn-secondary:hover {
+    border-color: var(--purple);
+    background: var(--gradient-soft);
+  }
+  .btn-group {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ---- LESSON CARD ---- */
+  .lesson-card {
+    background: var(--white);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    margin-bottom: 0;
+  }
+  .lesson-header {
+    background: var(--gradient);
+    padding: 24px 32px;
+    color: white;
+  }
+  .lesson-tag {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.8;
+    margin-bottom: 8px;
+  }
+  .lesson-header h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    line-height: 1.2;
+  }
+  .lesson-body {
+    padding: 32px;
+  }
+  .lesson-intro {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ---- CONTENT BLOCKS ---- */
+  .content-section {
+    margin-bottom: 28px;
+  }
+  .content-section h3 {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--purple);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .content-section h3::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .info-card {
+    background: var(--gradient-soft);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .info-card h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--pink);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .info-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .info-card ul li {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .info-card ul li::before {
+    content: '→';
+    color: var(--purple);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 11px;
+  }
+
+  .step-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .step-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .step-item:hover {
+    border-color: var(--purple);
+    box-shadow: var(--card-shadow-hover);
+  }
+  .step-num {
+    width: 36px;
+    height: 36px;
+    background: var(--gradient);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .step-content h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--text);
+  }
+  .step-content p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .step-content ul {
+    list-style: none;
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .step-content ul li {
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    line-height: 1.5;
+  }
+  .step-content ul li::before {
+    content: '•';
+    color: var(--pink);
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+
+  .alert-box {
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 13px;
+    line-height: 1.6;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-top: 16px;
+  }
+  .alert-box.warning {
+    background: rgba(245,158,11,0.08);
+    border: 1px solid rgba(245,158,11,0.25);
+    color: #92400e;
+  }
+  .alert-box.info {
+    background: rgba(139,92,246,0.06);
+    border: 1px solid rgba(139,92,246,0.2);
+    color: #5b21b6;
+  }
+  .alert-box.success {
+    background: rgba(16,185,129,0.07);
+    border: 1px solid rgba(16,185,129,0.25);
+    color: #065f46;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+  .error-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .error-card {
+    border: 1px solid #fecaca;
+    background: rgba(239,68,68,0.04);
+    border-radius: 12px;
+    padding: 14px;
+  }
+  .error-card h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: #dc2626;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .error-card p {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .timeline-item {
+    display: flex;
+    gap: 16px;
+    position: relative;
+  }
+  .timeline-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 17px;
+    top: 36px;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+  .timeline-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+    z-index: 1;
+  }
+  .timeline-dot.d1 { background: var(--success); }
+  .timeline-dot.d2 { background: var(--warn); }
+  .timeline-dot.d4 { background: var(--error); }
+  .timeline-content {
+    padding-bottom: 20px;
+  }
+  .timeline-content h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .timeline-content p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .checklist-icon {
+    width: 24px;
+    height: 24px;
+    background: var(--gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  .email-template {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--text);
+  }
+  .email-template .subject {
+    font-weight: 700;
+    color: var(--purple);
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+
+  /* ---- QUIZ ---- */
+  .quiz-wrap {
+    background: var(--white);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+  }
+  .quiz-header {
+    background: var(--gradient);
+    padding: 20px 28px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .quiz-header h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+  }
+  .quiz-counter {
+    background: rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .quiz-body {
+    padding: 32px;
+  }
+  .quiz-progress-bar {
+    height: 4px;
+    background: var(--border);
+    border-radius: 4px;
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .quiz-progress-fill {
+    height: 100%;
+    background: var(--gradient);
+    border-radius: 4px;
+    transition: width 0.4s ease;
+  }
+  .question-text {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 24px;
+    color: var(--text);
+  }
+  .question-type-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+  }
+  .badge-mc { background: rgba(139,92,246,0.1); color: var(--purple); }
+  .badge-tf { background: rgba(200,85,160,0.1); color: var(--pink); }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 18px;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--white);
+  }
+  .option:hover:not(.locked) {
+    border-color: var(--purple);
+    background: var(--gradient-soft);
+  }
+  .option.selected {
+    border-color: var(--purple);
+    background: rgba(139,92,246,0.06);
+  }
+  .option.correct {
+    border-color: var(--success);
+    background: rgba(16,185,129,0.06);
+  }
+  .option.wrong {
+    border-color: var(--error);
+    background: rgba(239,68,68,0.06);
+  }
+  .option-letter {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    background: var(--border);
+    color: var(--text-muted);
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .option.selected .option-letter { background: var(--purple); color: white; }
+  .option.correct .option-letter { background: var(--success); color: white; }
+  .option.wrong .option-letter { background: var(--error); color: white; }
+  .option-text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text);
+    padding-top: 4px;
+  }
+
+  .feedback-box {
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    display: none;
+  }
+  .feedback-box.show { display: flex; gap: 10px; align-items: flex-start; }
+  .feedback-box.correct {
+    background: rgba(16,185,129,0.08);
+    border: 1px solid rgba(16,185,129,0.3);
+    color: #065f46;
+  }
+  .feedback-box.incorrect {
+    background: rgba(239,68,68,0.07);
+    border: 1px solid rgba(239,68,68,0.25);
+    color: #991b1b;
+  }
+  .feedback-box strong { font-weight: 700; }
+
+  /* ---- CERTIFICATE ---- */
+  .cert-screen {
+    text-align: center;
+  }
+  .cert-wrap {
+    background: var(--white);
+    border-radius: 20px;
+    border: 2px solid var(--border);
+    box-shadow: 0 12px 48px rgba(139,92,246,0.15);
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .cert-wrap::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: var(--gradient);
+  }
+  .cert-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 6px;
+    background: var(--gradient);
+  }
+  .cert-border {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 40px;
+    background: linear-gradient(135deg, rgba(200,85,160,0.03) 0%, rgba(139,92,246,0.03) 100%);
+  }
+  .cert-logo {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--pink);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 6px;
+  }
+  .cert-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 13px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+  }
+  .cert-name-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .cert-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    color: var(--text);
+    margin-bottom: 20px;
+    min-height: 46px;
+  }
+  .cert-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 420px;
+    margin: 0 auto 28px;
+  }
+  .cert-module {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--purple);
+    margin-bottom: 28px;
+    padding: 10px 24px;
+    background: var(--gradient-soft);
+    border-radius: 8px;
+    display: inline-block;
+  }
+  .cert-meta {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+    margin-top: 4px;
+  }
+  .cert-meta-item {
+    text-align: center;
+  }
+  .cert-meta-item .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  .cert-meta-item .value {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .score-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    border-radius: 40px;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+  .score-badge.pass {
+    background: rgba(16,185,129,0.1);
+    border: 2px solid var(--success);
+    color: #065f46;
+  }
+  .score-badge.fail {
+    background: rgba(239,68,68,0.08);
+    border: 2px solid var(--error);
+    color: #991b1b;
+  }
+  .cert-seal {
+    width: 80px;
+    height: 80px;
+    background: var(--gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    margin: 0 auto 20px;
+    box-shadow: 0 8px 28px rgba(200,85,160,0.35);
+  }
+
+  /* ---- NAV FOOTER ---- */
+  .nav-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ---- SCORE SUMMARY ---- */
+  .score-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--gradient-soft);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+  }
+  .score-row .label { font-size: 14px; font-weight: 600; }
+  .score-row .val {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--purple);
+  }
+
+  /* ---- LOCKED STATE ---- */
+  .locked { pointer-events: none; }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 600px) {
+    .info-grid, .error-grid { grid-template-columns: 1fr; }
+    .outline-list { grid-template-columns: 1fr; }
+    .cert-meta { gap: 20px; flex-wrap: wrap; }
+    .lesson-body { padding: 20px; }
+    .quiz-body { padding: 20px; }
+    .main { padding: 24px 16px 60px; }
+  }
+
+  .print-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .screen.active { animation: fadeIn 0.35s ease; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">
+    <div class="logo-mark">LM</div>
+    <div>
+      <div class="logo-text"><span>LendMate</span> VA Solutions</div>
+      <div class="logo-sub">Training Academy</div>
+    </div>
+  </div>
+  <div class="header-badge">📋 eSign Module</div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-container">
+  <div class="progress-label">
+    <span id="progress-text">Not started</span>
+    <span id="progress-pct">0%</span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+  <div class="section-dots" id="section-dots"></div>
+</div>
+
+<div class="main">
+
+<!-- SCREEN 0: INTRO -->
+<div class="screen active" id="screen-0">
+  <div class="hero">
+    <div class="hero-icon">📄</div>
+    <h1>Canadian Mortgage <span>eSign</span> & Signing Package</h1>
+    <p>A focused training module for LendMate VAs. You will learn the complete eSign workflow used in Canadian mortgage transactions, common errors to avoid, and best practices for every signing package.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><div class="icon">⏱</div> ~20 minutes</div>
+      <div class="hero-meta-item"><div class="icon">📚</div> 5 Lessons</div>
+      <div class="hero-meta-item"><div class="icon">✅</div> 2 Quizzes</div>
+      <div class="hero-meta-item"><div class="icon">🏆</div> Certificate</div>
+    </div>
+    <div class="outline-box">
+      <h3>Module Outline</h3>
+      <ul class="outline-list">
+        <li><div class="outline-num">1</div> What is an eSign Package?</li>
+        <li><div class="outline-num">2</div> The 6-Step Workflow</li>
+        <li><div class="outline-num">3</div> Prepare & Quality Control</li>
+        <li><div class="outline-num">4</div> Upload, Send & Monitor</div></li>
+        <li><div class="outline-num">5</div> Common Errors & Best Practices</li>
+        <li><div class="outline-num">Q</div> Quizzes + Certificate</li>
+      </ul>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="goTo(1)">Start Training →</button>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 1: LESSON 1 - What is an eSign Package -->
+<div class="screen" id="screen-1">
+  <div class="lesson-card">
+    <div class="lesson-header">
+      <div class="lesson-tag">Lesson 1 of 6</div>
+      <h2>What is an eSign Package?</h2>
+    </div>
+    <div class="lesson-body">
+      <p class="lesson-intro">An eSign package is a digital set of documents sent to borrowers, brokers, or third parties for electronic review and signature. It uses secure platforms like <strong>DocuSign</strong> or <strong>SignNow</strong>. As a LendMate VA, you will be responsible for preparing and managing these packages.</p>
+
+      <div class="content-section">
+        <h3>Definition</h3>
+        <p style="font-size:14px;line-height:1.7;color:var(--text-muted);margin-bottom:14px;">An eSign package replaces physical document signing. Instead of printing, couriering, and waiting for wet signatures, the entire process is done digitally. This speeds up mortgage processing significantly and reduces the risk of lost documents.</p>
+        <div class="alert-box info">
+          <span class="alert-icon">ℹ️</span>
+          <span>In Canadian mortgage transactions, the eSign package is sent after the lender issues the Mortgage Commitment Letter. This is one of your core responsibilities as a VA.</span>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Common Documents in an eSign Package</h3>
+        <div class="info-grid">
+          <div class="info-card">
+            <h4>📋 Core Documents</h4>
+            <ul>
+              <li>Mortgage Commitment Letter</li>
+              <li>Mortgage Disclosure / Cost of Borrowing</li>
+              <li>PAD (Pre-Authorized Debit) Form</li>
+              <li>ID Verification Forms</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h4>📎 Supporting Documents</h4>
+            <ul>
+              <li>Insurance Acknowledgements</li>
+              <li>Condo / Property Specific Disclosures</li>
+              <li>Borrower Declarations</li>
+              <li>Province-specific forms</li>
+            </ul>
+          </div>
+        </div>
+        <div class="alert-box warning" style="margin-top:14px;">
+          <span class="alert-icon">⚠️</span>
+          <span><strong>Important:</strong> The exact documents vary per lender and per province. Always confirm with your lender's checklist before assembling the package.</span>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Platforms Used</h3>
+        <div class="info-grid">
+          <div class="info-card">
+            <h4>🖊 DocuSign</h4>
+            <ul>
+              <li>Most commonly used by major lenders</li>
+              <li>Audit trail built-in</li>
+              <li>Email-based signing flow</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h4>🖊 SignNow</h4>
+            <ul>
+              <li>Used by some brokers and smaller lenders</li>
+              <li>Similar functionality to DocuSign</li>
+              <li>Mobile-friendly for borrowers</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-footer">
+        <button class="btn btn-secondary" onclick="goTo(0)">← Back</button>
+        <button class="btn btn-primary" onclick="goTo(2)">Next: The Workflow →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 2: LESSON 2 - The 6-Step Workflow -->
+<div class="screen" id="screen-2">
+  <div class="lesson-card">
+    <div class="lesson-header">
+      <div class="lesson-tag">Lesson 2 of 6</div>
+      <h2>The Standard eSign Workflow</h2>
+    </div>
+    <div class="lesson-body">
+      <p class="lesson-intro">Every eSign package follows the same six steps. This applies across all provinces. Skipping or rushing any step increases the risk of errors, lender rejection, and delays for the borrower.</p>
+
+      <div class="content-section">
+        <h3>The 6 Steps</h3>
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Prepare</h4>
+              <p>Gather and assemble all required documents based on lender requirements and the mortgage commitment letter.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Quality Control (QC)</h4>
+              <p>Review every document before uploading. Check names, terms, signatures fields, and province-specific forms.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Upload</h4>
+              <p>Upload all documents into the eSign platform in the correct signing order. Assign signer roles properly.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Send</h4>
+              <p>Send to the verified borrower email address with clear instructions and a stated completion deadline.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <h4>Monitor</h4>
+              <p>Track signing status daily. Follow up on Day 2-3 if not started. Escalate on Day 4+.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">6</div>
+            <div class="step-content">
+              <h4>Complete & Download</h4>
+              <p>Download the fully executed package. Verify all signatures and timestamps, then save in the file management system.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert-box info">
+        <span class="alert-icon">💡</span>
+        <span>Think of these six steps as a chain. Each one depends on the one before it. A mistake in Step 1 will still cause a problem at Step 6 even if Steps 2-5 were done correctly.</span>
+      </div>
+
+      <div class="nav-footer">
+        <button class="btn btn-secondary" onclick="goTo(1)">← Back</button>
+        <button class="btn btn-primary" onclick="goTo(3)">Next: Prepare & QC →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 3: LESSON 3 - Prepare & QC -->
+<div class="screen" id="screen-3">
+  <div class="lesson-card">
+    <div class="lesson-header">
+      <div class="lesson-tag">Lesson 3 of 6</div>
+      <h2>Steps 1 & 2: Prepare & Quality Control</h2>
+    </div>
+    <div class="lesson-body">
+      <p class="lesson-intro">The first two steps are where most errors originate. This is your foundation. If preparation and QC are done correctly, the rest of the process will be smooth.</p>
+
+      <div class="content-section">
+        <h3>Step 1: Prepare Documents</h3>
+        <div class="info-grid">
+          <div class="info-card">
+            <h4>✔ What to Confirm</h4>
+            <ul>
+              <li>Lender requirements and all conditions</li>
+              <li>Borrower names match ID exactly (no nicknames)</li>
+              <li>Property address is correct and complete</li>
+              <li>All financial terms are accurate</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h4>💰 Financial Terms to Check</h4>
+            <ul>
+              <li>Mortgage rate (fixed or variable)</li>
+              <li>Amortization period (e.g., 25 years)</li>
+              <li>Term length (e.g., 5 years)</li>
+              <li>Payment frequency (monthly, bi-weekly, etc.)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Step 2: Quality Control (QC)</h3>
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-num" style="background:linear-gradient(135deg,#10b981,#059669)">✓</div>
+            <div class="step-content">
+              <h4>Check Signature & Initial Fields</h4>
+              <p>Confirm no signature or initial fields are missing from any document. Every required field must have a tag in the eSign platform.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num" style="background:linear-gradient(135deg,#10b981,#059669)">✓</div>
+            <div class="step-content">
+              <h4>Verify All Exhibits & Attachments</h4>
+              <p>All supporting documents must be included. A missing exhibit can cause lender rejection of the entire package.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num" style="background:linear-gradient(135deg,#10b981,#059669)">✓</div>
+            <div class="step-content">
+              <h4>Validate Legal Names & Spelling</h4>
+              <p>The borrower's name must match their government-issued ID exactly. One letter difference can invalidate the signing.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num" style="background:linear-gradient(135deg,#10b981,#059669)">✓</div>
+            <div class="step-content">
+              <h4>Confirm Province-Specific Forms</h4>
+              <p>Ontario, Alberta, and BC each have different required disclosure forms. Using the wrong province's form is a compliance error.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert-box warning">
+        <span class="alert-icon">⚠️</span>
+        <span><strong>Golden Rule:</strong> Never skip QC, even if you are under time pressure. A five-minute check now prevents a 48-hour delay later.</span>
+      </div>
+
+      <div class="nav-footer">
+        <button class="btn btn-secondary" onclick="goTo(2)">← Back</button>
+        <button class="btn btn-primary" onclick="goTo(4)">Next: Upload & Send →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 4: LESSON 4 - Upload, Send, Monitor -->
+<div class="screen" id="screen-4">
+  <div class="lesson-card">
+    <div class="lesson-header">
+      <div class="lesson-tag">Lesson 4 of 6</div>
+      <h2>Steps 3-5: Upload, Send & Monitor</h2>
+    </div>
+    <div class="lesson-body">
+      <p class="lesson-intro">Once QC is complete, you move into execution. Uploading correctly, sending to the right address, and actively monitoring are all critical to keeping the transaction on track.</p>
+
+      <div class="content-section">
+        <h3>Step 3: Upload to eSign Platform</h3>
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-num">3a</div>
+            <div class="step-content">
+              <h4>Upload in Correct Signing Order</h4>
+              <p>Documents must appear in a logical order for the borrower. Typically: Commitment Letter first, then disclosures, then forms.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3b</div>
+            <div class="step-content">
+              <h4>Set Signer Roles Correctly</h4>
+              <p>Each signer type has a specific role:</p>
+              <ul>
+                <li>Borrower (primary)</li>
+                <li>Co-Borrower (if applicable)</li>
+                <li>Guarantor (if applicable)</li>
+                <li>Witness (only required for specific documents)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3c</div>
+            <div class="step-content">
+              <h4>Add Signing Instructions</h4>
+              <p>Include clear, simple instructions for each recipient so they know exactly what to do and in what order.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Step 4: Send the Package</h3>
+        <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:14px;">Use the standardized LendMate email template. Personalize the borrower's name and always state the completion deadline.</p>
+        <div class="email-template">
+          <div class="subject">Subject: Mortgage Documents for Electronic Signature</div>
+          Dear [Borrower Name],<br><br>
+          Please find your mortgage documents attached for electronic signature. Kindly review all documents carefully and complete the signing process by <strong>[Deadline Date]</strong>.<br><br>
+          If you have any questions, please let us know.<br><br>
+          Thank you,<br>
+          [Your Name]
+        </div>
+        <div class="alert-box warning" style="margin-top:12px;">
+          <span class="alert-icon">⚠️</span>
+          <span>Always confirm the borrower's email address before sending. An incorrect address creates audit trail gaps and delays the transaction. Double-check against the file, not just your memory.</span>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Step 5: Monitor & Follow Up</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot d1">D1</div>
+            <div class="timeline-content">
+              <h4>Day 1 - Send + Confirm</h4>
+              <p>Send the package and a confirmation email. Log the send date in the file.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot d2">D3</div>
+            <div class="timeline-content">
+              <h4>Day 2-3 - Reminder</h4>
+              <p>If signing has not started, send a polite reminder. Check the platform for status.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot d4">D4</div>
+            <div class="timeline-content">
+              <h4>Day 4+ - Escalate</h4>
+              <p>Send a follow-up call or escalation email. Notify your broker or supervisor if the borrower is unresponsive.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-footer">
+        <button class="btn btn-secondary" onclick="goTo(3)">← Back</button>
+        <button class="btn btn-primary" onclick="goTo(5)">Next: Errors & Best Practices →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 5: LESSON 5 - Errors & Best Practices -->
+<div class="screen" id="screen-5">
+  <div class="lesson-card">
+    <div class="lesson-header">
+      <div class="lesson-tag">Lesson 5 of 6</div>
+      <h2>Common Errors & Best Practices</h2>
+    </div>
+    <div class="lesson-body">
+      <p class="lesson-intro">These are the four most common errors VAs make when handling eSign packages. Knowing them is the first step to avoiding them.</p>
+
+      <div class="content-section">
+        <h3>4 Errors to Avoid</h3>
+        <div class="error-grid">
+          <div class="error-card">
+            <h4>❌ Name Mismatch</h4>
+            <p>Borrower spelling in the documents does not match their government-issued ID. This can invalidate the entire signing.</p>
+          </div>
+          <div class="error-card">
+            <h4>❌ Missing Initials</h4>
+            <p>Required initial fields on disclosure pages are left blank. Lenders will reject the package.</p>
+          </div>
+          <div class="error-card">
+            <h4>❌ Wrong Province Forms</h4>
+            <p>Using Ontario disclosure forms for a BC transaction, or vice versa. Each province has its own required documents.</p>
+          </div>
+          <div class="error-card">
+            <h4>❌ Incorrect Terms</h4>
+            <p>Wrong mortgage rate, wrong term length, or missing condo/strata documents for a condo property.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Best Practices</h3>
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-num" style="background:linear-gradient(135deg,#C855A0,#8B5CF6)">★</div>
+            <div class="step-content">
+              <h4>Cross-check commitment letter vs. lender instructions</h4>
+              <p>Never assume the lender's package template is fully complete. Always verify it matches the commitment letter terms.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num" style="background:linear-gradient(135deg,#C855A0,#8B5CF6)">★</div>
+            <div class="step-content">
+              <h4>Use a checklist before every send</h4>
+              <p>Do not rely on memory. Use a QC checklist for every single package, regardless of how routine the file seems.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num" style="background:linear-gradient(135deg,#C855A0,#8B5CF6)">★</div>
+            <div class="step-content">
+              <h4>Keep an audit trail</h4>
+              <p>Log every action: when you sent, when you followed up, when the borrower signed, when you downloaded. This protects everyone.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num" style="background:linear-gradient(135deg,#C855A0,#8B5CF6)">★</div>
+            <div class="step-content">
+              <h4>Standardize folder naming</h4>
+              <p>Use consistent folder names so anyone on the team can find the completed package immediately. Example: <code>[LastName_FirstName_YYYY-MM]</code></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Completion Checklist</h3>
+        <div class="checklist">
+          <div class="checklist-item"><div class="checklist-icon">✓</div> All signatures present on every document</div>
+          <div class="checklist-item"><div class="checklist-icon">✓</div> All initials completed on required pages</div>
+          <div class="checklist-item"><div class="checklist-icon">✓</div> All documents downloaded from eSign platform</div>
+          <div class="checklist-item"><div class="checklist-icon">✓</div> Final package saved in file management system</div>
+          <div class="checklist-item"><div class="checklist-icon">✓</div> Lender conditions updated to reflect completion</div>
+        </div>
+      </div>
+
+      <div class="nav-footer">
+        <button class="btn btn-secondary" onclick="goTo(4)">← Back</button>
+        <button class="btn btn-primary" onclick="goTo(6)">Take Quiz 1 →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 6: QUIZ 1 -->
+<div class="screen" id="screen-6">
+  <div class="quiz-wrap" id="quiz1-wrap">
+    <div class="quiz-header">
+      <h2>Quiz 1: Foundations</h2>
+      <div class="quiz-counter" id="q1-counter">Question 1 of 6</div>
+    </div>
+    <div class="quiz-body">
+      <div class="quiz-progress-bar">
+        <div class="quiz-progress-fill" id="q1-progress-fill" style="width:16.66%"></div>
+      </div>
+      <div id="quiz1-content"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 8: QUIZ 2 -->
+<div class="screen" id="screen-7">
+  <div class="quiz-wrap" id="quiz2-wrap">
+    <div class="quiz-header">
+      <h2>Quiz 2: Application & Scenarios</h2>
+      <div class="quiz-counter" id="q2-counter">Question 1 of 6</div>
+    </div>
+    <div class="quiz-body">
+      <div class="quiz-progress-bar">
+        <div class="quiz-progress-fill" id="q2-progress-fill" style="width:16.66%"></div>
+      </div>
+      <div id="quiz2-content"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 9: CERTIFICATE -->
+<div class="screen" id="screen-8">
+  <div class="cert-screen">
+    <div id="cert-pass-content" style="display:none">
+      <div class="cert-wrap" id="certificate">
+        <div class="cert-border">
+          <div class="cert-seal">🏆</div>
+          <div class="cert-logo">LendMate VA Solutions</div>
+          <div class="cert-title">Certificate of Completion</div>
+          <div class="cert-name-label">This certifies that</div>
+          <div class="cert-name" id="cert-name-display">Your Name</div>
+          <div class="cert-desc">has successfully completed the following training module and demonstrated understanding of the required competencies.</div>
+          <div class="cert-module">Canadian Mortgage eSign & Signing Package Training</div>
+          <div class="cert-meta">
+            <div class="cert-meta-item">
+              <div class="label">Score</div>
+              <div class="value" id="cert-score">-</div>
+            </div>
+            <div class="cert-meta-item">
+              <div class="label">Date Completed</div>
+              <div class="value" id="cert-date">-</div>
+            </div>
+            <div class="cert-meta-item">
+              <div class="label">Module</div>
+              <div class="value">eSign v1.0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="print-note">Take a screenshot of this certificate and send it to your supervisor to confirm completion.</p>
+      <div class="btn-group" style="margin-top:20px;">
+        <button class="btn btn-primary" onclick="window.print()">🖨 Print Certificate</button>
+        <button class="btn btn-secondary" onclick="goTo(0)">← Start Over</button>
+      </div>
+    </div>
+
+    <div id="cert-fail-content" style="display:none">
+      <div class="lesson-card">
+        <div class="lesson-header" style="background:linear-gradient(135deg,#ef4444,#dc2626)">
+          <div class="lesson-tag">Results</div>
+          <h2>Review & Retry</h2>
+        </div>
+        <div class="lesson-body" style="text-align:center;">
+          <div style="font-size:48px;margin-bottom:16px;">📋</div>
+          <div class="score-badge fail" style="margin:0 auto 20px;" id="cert-fail-score">Score: -</div>
+          <p style="font-size:15px;color:var(--text-muted);margin-bottom:24px;line-height:1.7;">You need a score of <strong>70% or higher</strong> to earn the certificate. Review the lessons and try again. You can retake the quizzes as many times as needed.</p>
+          <div class="score-row"><span class="label">Quiz 1 Score</span><span class="val" id="fail-q1">-</span></div>
+          <div class="score-row"><span class="label">Quiz 2 Score</span><span class="val" id="fail-q2">-</span></div>
+          <div class="btn-group" style="margin-top:24px;">
+            <button class="btn btn-primary" onclick="retryQuizzes()">Retry Quizzes</button>
+            <button class="btn btn-secondary" onclick="goTo(1)">Review Lessons</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end .main -->
+
+<script>
+// ---- STATE ----
+let currentScreen = 0;
+const totalScreens = 9;
+const PASS_THRESHOLD = 0.70;
+
+// Progress tracking: which lessons are done
+let lessonsDone = new Set();
+
+// ---- QUIZ DATA ----
+const quiz1Questions = [
+  {
+    type: 'mc',
+    q: 'What is the definition of an eSign package in a Canadian mortgage transaction?',
+    options: [
+      'A physical folder of mortgage documents sent by courier',
+      'A digital set of documents sent for electronic review and signature using a secure platform',
+      'An email confirmation from the lender after signing',
+      'A summary of the borrower\'s mortgage terms'
+    ],
+    answer: 1,
+    explanation: 'An eSign package is a digital set of documents sent to borrowers, brokers, or third parties for electronic review and signature using a secure platform such as DocuSign or SignNow.'
+  },
+  {
+    type: 'tf',
+    q: 'True or False: The PAD (Pre-Authorized Debit) Form is commonly included in an eSign package.',
+    options: ['True', 'False'],
+    answer: 0,
+    explanation: 'True. The PAD form is a standard document in the eSign package. It authorizes the lender to debit the borrower\'s bank account for mortgage payments.'
+  },
+  {
+    type: 'mc',
+    q: 'In the standard eSign workflow, which step comes IMMEDIATELY after Quality Control (QC)?',
+    options: ['Send', 'Monitor', 'Upload', 'Complete & Download'],
+    answer: 2,
+    explanation: 'The correct order is: Prepare > QC > Upload > Send > Monitor > Complete. After QC is done, you upload the documents to the eSign platform.'
+  },
+  {
+    type: 'mc',
+    q: 'During the Prepare step, what financial terms must you verify in the documents?',
+    options: [
+      'Borrower\'s credit score and employment status',
+      'Rate, amortization, term, and payment frequency',
+      'Property tax amount and insurance premium',
+      'Lender\'s legal fees and appraisal cost'
+    ],
+    answer: 1,
+    explanation: 'During preparation, you must check all financial terms: rate, amortization, term, and payment frequency. These must exactly match the commitment letter.'
+  },
+  {
+    type: 'tf',
+    q: 'True or False: You can skip the QC step if you are under time pressure, as long as you double-check after sending.',
+    options: ['True', 'False'],
+    answer: 1,
+    explanation: 'False. QC must always be done BEFORE sending. You cannot QC a package after it has already been sent. A five-minute check prevents a 48-hour delay.'
+  },
+  {
+    type: 'mc',
+    q: 'Which of the following is NOT one of the four common eSign errors to avoid?',
+    options: [
+      'Name mismatch between documents and government-issued ID',
+      'Missing initials on disclosure pages',
+      'Sending the package too early in the morning',
+      'Using the wrong province-specific forms'
+    ],
+    answer: 2,
+    explanation: 'The four common errors are: Name Mismatch, Missing Initials, Wrong Province Forms, and Incorrect Terms. Time of day for sending is not a listed error.'
+  }
+];
+
+const quiz2Questions = [
+  {
+    type: 'mc',
+    q: 'A borrower\'s mortgage commitment letter shows her name as "Jennifer Smith" but her driver\'s license reads "Jennifer Ann Smith-Reyes". Which name should appear in the eSign documents?',
+    options: [
+      '"Jennifer Smith" as shown in the commitment letter',
+      '"Jennifer Ann Smith-Reyes" exactly as it appears on her government-issued ID',
+      'Either version is acceptable as long as the first name matches',
+      'Use initials: "J. A. Smith-Reyes" to keep it short'
+    ],
+    answer: 1,
+    explanation: 'The borrower\'s name in all eSign documents must match their government-issued ID exactly. This is non-negotiable. If the commitment letter has the wrong name, flag it with the broker before proceeding.'
+  },
+  {
+    type: 'mc',
+    q: 'You sent an eSign package on Monday. It is now Thursday and the borrower has not started signing. What is the correct action?',
+    options: [
+      'Wait until next week before following up',
+      'Immediately cancel and re-send the package',
+      'Send an escalation email or make a follow-up call, and notify your broker or supervisor',
+      'Send a reminder email only; escalation is not your responsibility'
+    ],
+    answer: 2,
+    explanation: 'Day 4+ is the escalation point. You should send a follow-up call or email AND notify your broker or supervisor. Escalation is part of your responsibility as a VA.'
+  },
+  {
+    type: 'tf',
+    q: 'True or False: You should confirm the borrower\'s email address before sending the eSign package, even if you have sent to them before.',
+    options: ['True', 'False'],
+    answer: 0,
+    explanation: 'True. Always confirm the borrower\'s email address before every send. An incorrect address creates audit trail gaps and can delay the transaction. This applies even if you believe you have the correct address on file.'
+  },
+  {
+    type: 'mc',
+    q: 'During the QC step, you notice that initial fields are missing on two disclosure pages. What should you do?',
+    options: [
+      'Send the package anyway and ask the borrower to initial those pages manually',
+      'Add the missing initial fields in the eSign platform before sending',
+      'Skip those pages since initials are optional on disclosure documents',
+      'Send the package and note the missing initials in an email to the lender'
+    ],
+    answer: 1,
+    explanation: 'Missing initial fields must be corrected in the eSign platform before the package is sent. This is exactly what the QC step is for. Sending an incomplete package will result in lender rejection and require the package to be voided and re-sent.'
+  },
+  {
+    type: 'mc',
+    q: 'After the borrower completes signing, what is the FINAL step before the file is considered closed for the eSign process?',
+    options: [
+      'Send the borrower a thank-you email',
+      'Download the executed package, verify all signatures and timestamps, save in the file system, and update lender conditions',
+      'Archive the DocuSign envelope and move on',
+      'Notify the borrower that the package is complete'
+    ],
+    answer: 1,
+    explanation: 'The completion checklist requires: download the executed package, verify all signatures and timestamps, save in the file management system, AND update lender conditions to reflect completion. All four actions are required.'
+  },
+  {
+    type: 'tf',
+    q: 'True or False: As a VA, you are expected to be a legal expert on provincial mortgage law and determine which forms are legally required.',
+    options: ['True', 'False'],
+    answer: 1,
+    explanation: 'False. Your role is to include the correct forms as directed by the broker or lender checklist. Legal determinations are the responsibility of the broker and lender. When in doubt, ask your supervisor before sending.'
+  }
+];
+
+// ---- QUIZ STATE ----
+let q1State = { current: 0, scores: [], answered: false };
+let q2State = { current: 0, scores: [], answered: false };
+
+// ---- NAVIGATION ----
+function goTo(n) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + n).classList.add('active');
+  currentScreen = n;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  updateProgress(n);
+
+  if (n >= 1 && n <= 5) lessonsDone.add(n);
+  if (n === 6) renderQuiz1();
+  if (n === 7) renderQuiz2();
+}
+
+// ---- PROGRESS ----
+function updateProgress(n) {
+  const labels = ['Intro', 'What is eSign?', 'Workflow', 'Prepare & QC', 'Upload & Send', 'Errors', 'Quiz 1', 'Quiz 2', 'Certificate'];
+  const pct = Math.round((n / (totalScreens - 1)) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-pct').innerText = pct + '%';
+  document.getElementById('progress-text').innerText = labels[n] || '';
+
+  const dots = document.getElementById('section-dots');
+  dots.innerHTML = '';
+  for (let i = 1; i < totalScreens; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i < n ? ' done' : (i === n ? ' active' : ''));
+    d.title = labels[i];
+    dots.appendChild(d);
+  }
+}
+
+// ---- QUIZ RENDER ----
+function renderQuestion(questions, state, containerId, counterId, progressId, quizNum) {
+  const q = questions[state.current];
+  const container = document.getElementById(containerId);
+  const letters = ['A', 'B', 'C', 'D'];
+
+  document.getElementById(counterId).innerText = `Question ${state.current + 1} of ${questions.length}`;
+  document.getElementById(progressId).style.width = ((state.current + 1) / questions.length * 100) + '%';
+
+  let optionsHTML = q.options.map((opt, i) => `
+    <div class="option" id="opt-${quizNum}-${i}" onclick="selectOption(${i}, ${quizNum})">
+      <div class="option-letter">${q.type === 'tf' ? (i === 0 ? 'T' : 'F') : letters[i]}</div>
+      <div class="option-text">${opt}</div>
+    </div>
+  `).join('');
+
+  container.innerHTML = `
+    <span class="question-type-badge ${q.type === 'tf' ? 'badge-tf' : 'badge-mc'}">${q.type === 'tf' ? 'True / False' : 'Multiple Choice'}</span>
+    <div class="question-text">${q.text || q.q}</div>
+    <div class="options" id="options-${quizNum}">${optionsHTML}</div>
+    <div class="feedback-box" id="feedback-${quizNum}"></div>
+    <div style="display:flex;justify-content:flex-end;">
+      <button class="btn btn-primary" id="next-btn-${quizNum}" onclick="nextQuestion(${quizNum})" style="display:none;">
+        ${state.current < questions.length - 1 ? 'Next Question →' : (quizNum === 1 ? 'Take Quiz 2 →' : 'See Results →')}
+      </button>
+    </div>
+  `;
+  state.answered = false;
+}
+
+function renderQuiz1() {
+  q1State = { current: 0, scores: [], answered: false };
+  renderQuestion(quiz1Questions, q1State, 'quiz1-content', 'q1-counter', 'q1-progress-fill', 1);
+}
+function renderQuiz2() {
+  q2State = { current: 0, scores: [], answered: false };
+  renderQuestion(quiz2Questions, q2State, 'quiz2-content', 'q2-counter', 'q2-progress-fill', 2);
+}
+
+function selectOption(idx, quizNum) {
+  const state = quizNum === 1 ? q1State : q2State;
+  const questions = quizNum === 1 ? quiz1Questions : quiz2Questions;
+  if (state.answered) return;
+  state.answered = true;
+
+  const q = questions[state.current];
+  const opts = document.getElementById('options-' + quizNum);
+  opts.classList.add('locked');
+
+  // Mark options
+  for (let i = 0; i < q.options.length; i++) {
+    const el = document.getElementById('opt-' + quizNum + '-' + i);
+    el.classList.add('locked');
+    if (i === q.answer) el.classList.add('correct');
+    else if (i === idx && idx !== q.answer) el.classList.add('wrong');
+  }
+
+  const isCorrect = idx === q.answer;
+  state.scores.push(isCorrect ? 1 : 0);
+
+  const fb = document.getElementById('feedback-' + quizNum);
+  fb.className = 'feedback-box show ' + (isCorrect ? 'correct' : 'incorrect');
+  fb.innerHTML = `<span class="alert-icon">${isCorrect ? '✅' : '❌'}</span><span><strong>${isCorrect ? 'Correct!' : 'Not quite.'}</strong> ${q.explanation}</span>`;
+
+  document.getElementById('next-btn-' + quizNum).style.display = 'inline-flex';
+}
+
+function nextQuestion(quizNum) {
+  const state = quizNum === 1 ? q1State : q2State;
+  const questions = quizNum === 1 ? quiz1Questions : quiz2Questions;
+  state.current++;
+  if (state.current < questions.length) {
+    const containerId = 'quiz' + quizNum + '-content';
+    const counterId = 'q' + quizNum + '-counter';
+    const progressId = 'q' + quizNum + '-progress-fill';
+    renderQuestion(questions, state, containerId, counterId, progressId, quizNum);
+  } else {
+    if (quizNum === 1) goTo(7);
+    else showCertificate();
+  }
+}
+
+function showCertificate() {
+  goTo(8);
+  const q1Score = q1State.scores.reduce((a, b) => a + b, 0) / quiz1Questions.length;
+  const q2Score = q2State.scores.reduce((a, b) => a + b, 0) / quiz2Questions.length;
+  const total = (q1Score + q2Score) / 2;
+  const q1Pct = Math.round(q1Score * 100);
+  const q2Pct = Math.round(q2Score * 100);
+  const totalPct = Math.round(total * 100);
+
+  if (total >= PASS_THRESHOLD) {
+    document.getElementById('cert-pass-content').style.display = 'block';
+    document.getElementById('cert-fail-content').style.display = 'none';
+    document.getElementById('cert-score').innerText = totalPct + '%';
+    const now = new Date();
+    document.getElementById('cert-date').innerText = now.toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' });
+    document.getElementById('cert-name-display').innerText = 'LendMate VA';
+  } else {
+    document.getElementById('cert-pass-content').style.display = 'none';
+    document.getElementById('cert-fail-content').style.display = 'block';
+    document.getElementById('cert-fail-score').innerText = 'Total: ' + totalPct + '%';
+    document.getElementById('fail-q1').innerText = q1Pct + '%';
+    document.getElementById('fail-q2').innerText = q2Pct + '%';
+  }
+}
+
+function retryQuizzes() {
+  goTo(6);
+}
+
+// Init progress dots
+updateProgress(0);
+</script>
+
+<style>
+@media print {
+  .header, .progress-container, .nav-footer, .btn-group, .print-note, .btn { display: none !important; }
+  .cert-wrap { box-shadow: none !important; }
+  body { background: white; }
+  .screen { display: block !important; }
+  #screen-0, #screen-1, #screen-2, #screen-3, #screen-4, #screen-5, #screen-6, #screen-7 { display: none !important; }
+  #screen-8 { display: block !important; }
+  .cert-pass-content { display: block !important; }
+}
+</style>
+</body>
+</html>

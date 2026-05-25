@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Down Payment Verification — Full Reference | LendMate VA Training</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@400;500&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gd:      #1a3c2e;
+    --gm:      #2d6a4f;
+    --ga:      #52b788;
+    --gl:      #95d5b2;
+    --gxl:     #d8f3e8;
+    --cream:   #f7f3ec;
+    --amber:   #e9c46a;
+    --red:     #e05c5c;
+    --redl:    #fce8e8;
+    --blue:    #4a90d9;
+    --bluel:   #e8f2fb;
+    --orange:  #e07b39;
+    --orangel: #fdf0e6;
+    --text:    #1a1a1a;
+    --muted:   #5a6472;
+    --border:  #e0ece6;
+    --white:   #ffffff;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    padding: 32px 24px;
+    line-height: 1.6;
+  }
+
+  .page { max-width: 960px; margin: 0 auto; }
+
+  /* ─── COVER HEADER ─── */
+  .cover {
+    background: var(--gd);
+    border-radius: 16px;
+    padding: 36px 40px 30px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    right: -60px; top: -60px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(82,183,136,0.1);
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    right: 100px; bottom: -100px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(82,183,136,0.07);
+  }
+  .cover-badge {
+    display: inline-block;
+    background: var(--ga);
+    color: var(--gd);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 3px 12px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .cover h1 {
+    color: #fff;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    margin-bottom: 6px;
+  }
+  .cover-sub { color: var(--gl); font-size: 13px; }
+  .cover-meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    flex-wrap: wrap;
+  }
+  .cm-item { }
+  .cm-label { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gl); margin-bottom: 3px; }
+  .cm-val { font-size: 12px; color: rgba(255,255,255,0.85); }
+
+  /* ─── TOC ─── */
+  .toc {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 20px 28px;
+    margin-bottom: 8px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 12px rgba(26,60,46,0.06);
+  }
+  .toc-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: var(--gxl);
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gd);
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .toc-item:hover { background: #b7e4cc; }
+  .toc-num {
+    width: 20px; height: 20px;
+    background: var(--gm);
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ─── SECTION WRAPPER ─── */
+  .section {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 32px 36px;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 16px rgba(26,60,46,0.07);
+  }
+
+  /* ─── SECTION HEADER ─── */
+  .sh {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 2px solid var(--border);
+  }
+  .sh-num {
+    width: 40px; height: 40px;
+    background: var(--gm);
+    color: #fff;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .sh-text h2 { font-size: 18px; font-weight: 700; color: var(--gd); }
+  .sh-text p { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  /* ─── SUBSECTION TITLE ─── */
+  .sst {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gm);
+    margin: 24px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .sst::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .sst:first-child { margin-top: 0; }
+
+  /* ─── SOURCE CARDS ─── */
+  .source-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .source-card {
+    background: #f5faf7;
+    border-left: 3px solid var(--ga);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .source-card.full { grid-column: 1 / -1; }
+  .sc-label { font-size: 13px; font-weight: 700; color: var(--gd); margin-bottom: 5px; }
+  .sc-doc { font-size: 12.5px; color: var(--muted); line-height: 1.65; }
+  .sc-note {
+    display: inline-block;
+    margin-top: 7px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--gm);
+    background: var(--gxl);
+    padding: 2px 9px;
+    border-radius: 4px;
+    letter-spacing: 0.3px;
+  }
+  .sc-warn {
+    display: inline-block;
+    margin-top: 7px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #7a3d00;
+    background: var(--orangel);
+    padding: 2px 9px;
+    border-radius: 4px;
+  }
+
+  /* ─── INFO BOX ─── */
+  .info-box {
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 16px 0;
+  }
+  .info-box.blue { background: var(--bluel); border: 1px solid #c3d9ef; }
+  .info-box.green { background: var(--gxl); border: 1px solid #b2dfc8; }
+  .info-box.amber { background: #fff8e6; border: 1px solid #f0d080; }
+  .info-box.dark { background: var(--gd); border: none; color: #fff; }
+  .info-box.red { background: var(--redl); border: 1px solid #f0b8b8; }
+
+  .ib-title { font-size: 12px; font-weight: 700; margin-bottom: 10px; }
+  .info-box.blue .ib-title { color: var(--blue); }
+  .info-box.green .ib-title { color: var(--gm); }
+  .info-box.amber .ib-title { color: #7a5200; }
+  .info-box.dark .ib-title { color: var(--gl); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; }
+  .info-box.red .ib-title { color: #c0392b; }
+
+  .ib-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .ib-item .ik { font-size: 10px; font-weight: 700; color: var(--ga); letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 4px; }
+  .ib-item .iv { font-size: 12.5px; line-height: 1.6; color: rgba(255,255,255,0.85); }
+  .ib-body { font-size: 12.5px; line-height: 1.7; }
+  .info-box.blue .ib-body { color: #1a3a5c; }
+  .info-box.green .ib-body { color: var(--gd); }
+  .info-box.amber .ib-body { color: #5a3d00; }
+  .info-box.red .ib-body { color: #7a1f1f; }
+
+  /* ─── 4-COL STAT GRID ─── */
+  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .stat-card {
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+  }
+  .stat-val { font-size: 22px; font-weight: 700; color: var(--gd); line-height: 1; margin-bottom: 5px; }
+  .stat-label { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+  /* ─── TIER CARDS ─── */
+  .tier-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+  .tier { border-radius: 12px; padding: 18px; text-align: center; }
+  .tier-price { font-size: 11px; font-weight: 600; margin-bottom: 7px; opacity: 0.8; }
+  .tier-pct { font-size: 26px; font-weight: 700; line-height: 1; margin-bottom: 5px; }
+  .tier-note { font-size: 11px; opacity: 0.75; line-height: 1.4; }
+  .t1 { background: #e8f5ee; color: var(--gd); }
+  .t2 { background: #fff3d6; color: #7a5200; }
+  .t3 { background: var(--redl); color: #7a1f1f; }
+
+  /* ─── EXAMPLES GRID ─── */
+  .examples-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .ex-card {
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .ex-label { font-size: 9px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
+  .ex-price { font-size: 20px; font-weight: 700; color: var(--gd); margin-bottom: 8px; }
+  .ex-calc { font-family: 'DM Mono', monospace; font-size: 11.5px; color: var(--muted); line-height: 1.9; }
+  .ex-result {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gm);
+    padding-top: 10px;
+    border-top: 1px solid #e8e8e8;
+  }
+
+  /* ─── TABLES ─── */
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12.5px; }
+  thead th {
+    background: var(--gm);
+    color: #fff;
+    padding: 9px 14px;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+  thead th:first-child { border-radius: 6px 0 0 6px; }
+  thead th:last-child { border-radius: 0 6px 6px 0; }
+  tbody td { padding: 10px 14px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: #fafafa; }
+  .mono { font-family: 'DM Mono', monospace; font-weight: 600; }
+  .green-text { color: var(--gm); }
+  .red-text { color: var(--red); }
+
+  /* ─── TAGS ─── */
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 4px;
+    letter-spacing: 0.3px;
+  }
+  .tag-conv { background: var(--gxl); color: var(--gm); }
+  .tag-hi { background: var(--redl); color: #c0392b; }
+  .tag-yes { background: var(--redl); color: #c0392b; }
+  .tag-no { background: #f0f0f0; color: var(--muted); }
+  .tag-ins { background: #fff3d6; color: #7a5200; }
+
+  /* ─── FLAG LIST ─── */
+  .flag-list { display: flex; flex-direction: column; gap: 8px; }
+  .flag-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    background: var(--redl);
+    border-left: 3px solid var(--red);
+    border-radius: 9px;
+    padding: 10px 14px;
+    font-size: 12.5px;
+    color: #7a1f1f;
+    line-height: 1.55;
+  }
+  .flag-dot { flex-shrink: 0; font-size: 14px; margin-top: -1px; }
+
+  /* ─── CHECKLIST ─── */
+  .check-list { display: flex; flex-direction: column; gap: 7px; }
+  .check-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 12.5px;
+    line-height: 1.55;
+  }
+  .ci-icon {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-weight: 700;
+  }
+  .ci-green { background: #d4edda; color: var(--gm); }
+  .ci-red { background: var(--redl); color: var(--red); }
+
+  /* ─── INSURER ROW ─── */
+  .insurer-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 12px 0; }
+  .insurer-card {
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    border: 1px solid var(--border);
+    background: #fafafa;
+  }
+  .ins-icon { font-size: 28px; margin-bottom: 8px; }
+  .ins-name { font-size: 14px; font-weight: 700; color: var(--gd); margin-bottom: 4px; }
+  .ins-type { font-size: 11px; color: var(--muted); line-height: 1.5; }
+  .ins-share { font-size: 10px; font-weight: 700; color: var(--gm); margin-top: 7px; background: var(--gxl); padding: 2px 8px; border-radius: 4px; display: inline-block; }
+
+  /* ─── PREMIUM GRID ─── */
+  .prem-note { font-size: 11px; color: var(--muted); margin-top: 8px; line-height: 1.6; }
+
+  /* ─── WORKFLOW ─── */
+  .workflow { display: flex; flex-direction: column; gap: 0; }
+  .wf-step { display: flex; gap: 16px; align-items: flex-start; }
+  .wf-left { display: flex; flex-direction: column; align-items: center; }
+  .wf-num {
+    width: 32px; height: 32px;
+    background: var(--gm);
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .wf-line { width: 2px; flex: 1; min-height: 16px; background: var(--border); margin: 4px 0; }
+  .wf-body { flex: 1; padding-bottom: 20px; }
+  .wf-title { font-size: 14px; font-weight: 700; color: var(--gd); margin-bottom: 5px; padding-top: 4px; }
+  .wf-detail { font-size: 12.5px; color: var(--muted); line-height: 1.65; }
+  .wf-sub { font-size: 11.5px; color: var(--text); margin-top: 8px; padding: 10px 14px; background: #f7f7f7; border-radius: 8px; line-height: 1.7; }
+
+  /* ─── DO / DONT ─── */
+  .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .do-box { background: #f0fbf5; border: 1px solid #b2dfc8; border-radius: 12px; padding: 18px; }
+  .dont-box { background: var(--redl); border: 1px solid #f0b8b8; border-radius: 12px; padding: 18px; }
+  .box-title { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+  .do-box .box-title { color: var(--gm); }
+  .dont-box .box-title { color: var(--red); }
+  .box-list { display: flex; flex-direction: column; gap: 7px; }
+  .box-item { font-size: 12.5px; color: var(--text); line-height: 1.5; display: flex; gap: 9px; }
+  .box-item::before { content: '→'; flex-shrink: 0; font-weight: 700; }
+  .do-box .box-item::before { color: var(--gm); }
+  .dont-box .box-item::before { color: var(--red); }
+
+  /* ─── ESCALATION BOX ─── */
+  .esc-box {
+    background: var(--gd);
+    border-radius: 14px;
+    padding: 20px 26px;
+    margin-top: 20px;
+    color: #fff;
+  }
+  .esc-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gl); margin-bottom: 10px; }
+  .esc-script { font-size: 13px; color: #e8f5ee; line-height: 1.8; font-style: italic; }
+  .esc-script strong { color: var(--amber); font-style: normal; }
+  .esc-wrong { margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); }
+  .esc-wrong-label { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #f5a0a0; margin-bottom: 6px; }
+  .esc-wrong-text { font-size: 12.5px; color: #f5a0a0; font-style: italic; }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--gd);
+    border-radius: 12px;
+    padding: 16px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+  }
+  .footer-left { font-size: 11px; color: var(--gl); }
+  .footer-right { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--ga); }
+
+  /* ─── PRINT ─── */
+  @media print {
+    body { background: #fff; padding: 16px; }
+    .section { box-shadow: none; border: 1px solid #ddd; page-break-inside: avoid; }
+    .cover { page-break-after: always; }
+  }
+
+  /* ─── ANCHOR OFFSETS ─── */
+  .anchor { display: block; height: 0; visibility: hidden; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════════════ COVER ══════════════ -->
+  <div class="cover">
+    <div class="cover-badge">LendMate VA Training · Full Reference Document</div>
+    <h1>Down Payment Verification — Complete Guide</h1>
+    <p class="cover-sub">Everything a LendMate VA needs to know about verifying, documenting, and escalating down payment files</p>
+    <div class="cover-meta">
+      <div class="cm-item"><div class="cm-label">System</div><div class="cm-val">LOS / Client File</div></div>
+      <div class="cm-item"><div class="cm-label">Location</div><div class="cm-val">Assets &amp; Down Payment Folder</div></div>
+      <div class="cm-item"><div class="cm-label">Owner</div><div class="cm-val">VA (collect &amp; verify) → Broker (decide)</div></div>
+      <div class="cm-item"><div class="cm-label">Version</div><div class="cm-val">REF-DP-002 · v2.0</div></div>
+      <div class="cm-item"><div class="cm-label">Program</div><div class="cm-val">LendMate VA Training Academy</div></div>
+    </div>
+  </div>
+
+  <!-- ══════════════ TOC ══════════════ -->
+  <div class="toc">
+    <a href="#s1" class="toc-item"><div class="toc-num">1</div>Down Payment Sources</a>
+    <a href="#s2" class="toc-item"><div class="toc-num">2</div>Minimum Down Payment &amp; Math</a>
+    <a href="#s3" class="toc-item"><div class="toc-num">3</div>Red Flags &amp; FINTRAC</a>
+    <a href="#s4" class="toc-item"><div class="toc-num">4</div>LTV &amp; Mortgage Insurance</a>
+    <a href="#s5" class="toc-item"><div class="toc-num">5</div>VA Workflow</a>
+    <a href="#quiz" class="toc-item" style="background:#fff3d6; color:#7a5200;"><div class="toc-num" style="background:#c8860a;">✎</div>Knowledge Quiz</a>
+  </div>
+
+  <!-- ══════════════ SECTION 1: SOURCES ══════════════ -->
+  <span class="anchor" id="s1"></span>
+  <div class="section">
+    <div class="sh">
+      <div class="sh-num">1</div>
+      <div class="sh-text">
+        <h2>Down Payment Sources &amp; Required Proof</h2>
+        <p>Every single dollar of a down payment must have a documented, traceable source. No exceptions.</p>
+      </div>
+    </div>
+
+    <div class="sst">Acceptable Sources — What to Collect</div>
+    <div class="source-grid">
+      <div class="source-card">
+        <div class="sc-label">💰 Personal Savings</div>
+        <div class="sc-doc">90-day bank statement history — full PDF, all pages included, borrower's name visible on account, no date gaps anywhere in the 90 days</div>
+        <div class="sc-note">Most common source</div>
+      </div>
+      <div class="source-card">
+        <div class="sc-label">🎁 Gift from Immediate Family</div>
+        <div class="sc-doc">Signed gift letter (broker's template — not freeform) stating: amount is a gift, is NON-REPAYABLE at any time, donor is an immediate family member. PLUS bank proof of the transfer.</div>
+        <div class="sc-note">Both docs required — upload together</div>
+      </div>
+      <div class="source-card">
+        <div class="sc-label">🏦 RRSP — Home Buyers' Plan (HBP)</div>
+        <div class="sc-doc">Proof of RRSP withdrawal under the HBP program + withdrawal amount confirmed matches LOS entry. First-time buyers only. Max $35,000 per person / $70,000 per couple.</div>
+        <div class="sc-note">First-time buyer only</div>
+      </div>
+      <div class="source-card">
+        <div class="sc-label">🏠 Sale of Existing Property</div>
+        <div class="sc-doc">Sale agreement + final statement of adjustments. Label the file: "Sale Proceeds — [Property Address]". Closing date of existing property must precede the purchase closing date.</div>
+        <div class="sc-note">Label with address</div>
+      </div>
+      <div class="source-card full">
+        <div class="sc-label">📜 Inheritance</div>
+        <div class="sc-doc">Letter of inheritance (from lawyer or estate) + bank deposit proof showing funds landing in borrower's account. Upload both documents together as a single package — never one without the other.</div>
+        <div class="sc-warn">Never split into separate uploads</div>
+      </div>
+    </div>
+
+    <div class="sst">RRSP — Home Buyers' Plan Deep Dive</div>
+    <div class="info-box blue">
+      <div class="ib-title">🏦 RRSP Home Buyers' Plan — Full Rules</div>
+      <div class="ib-grid" style="color: var(--text);">
+        <div class="ib-item" style="color: var(--text);">
+          <div style="font-size:10px; font-weight:700; color:var(--blue); margin-bottom:4px; text-transform:uppercase; letter-spacing:0.8px;">Max Withdrawal</div>
+          <div style="font-size:12.5px; line-height:1.6;">$35,000 per person. $70,000 for couples purchasing together — each withdraws up to $35,000 from their own RRSP.</div>
+        </div>
+        <div class="ib-item" style="color: var(--text);">
+          <div style="font-size:10px; font-weight:700; color:var(--blue); margin-bottom:4px; text-transform:uppercase; letter-spacing:0.8px;">Who Qualifies</div>
+          <div style="font-size:12.5px; line-height:1.6;">First-time buyers only. CRA defines this as: has not owned a principal residence at any point during the 4 calendar years before the withdrawal year.</div>
+        </div>
+        <div class="ib-item" style="color: var(--text);">
+          <div style="font-size:10px; font-weight:700; color:var(--blue); margin-bottom:4px; text-transform:uppercase; letter-spacing:0.8px;">Repayment Rule</div>
+          <div style="font-size:12.5px; line-height:1.6;">Must repay the full amount back to your RRSP within 15 years. It's a loan from yourself — not a grant. Failure to repay each year = that portion added to taxable income.</div>
+        </div>
+        <div class="ib-item" style="color: var(--text);">
+          <div style="font-size:10px; font-weight:700; color:var(--blue); margin-bottom:4px; text-transform:uppercase; letter-spacing:0.8px;">VA Action</div>
+          <div style="font-size:12.5px; line-height:1.6;">Upload withdrawal confirmation. Confirm amount matches what's entered in the LOS. Note: HBP is NOT eligible for second homes or vacation properties — only principal residences.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sst">Gift Letter — What Must Be In It</div>
+    <div class="check-list">
+      <div class="check-item"><div class="ci-icon ci-green">✓</div>Date at the top of the letter</div>
+      <div class="check-item"><div class="ci-icon ci-green">✓</div>Dollar amount of the gift clearly stated</div>
+      <div class="check-item"><div class="ci-icon ci-green">✓</div>Names of both the donor(s) and recipient(s) — printed and signed</div>
+      <div class="check-item"><div class="ci-icon ci-green">✓</div>Property address the gift is being used toward</div>
+      <div class="check-item"><div class="ci-icon ci-green">✓</div>Statement that the funds are a genuine gift and are NOT required to be repaid at any time</div>
+      <div class="check-item"><div class="ci-icon ci-green">✓</div>Statement that no third party with interest in the sale provided the funds</div>
+      <div class="check-item"><div class="ci-icon ci-green">✓</div>Confirmation that the donor is an immediate family member</div>
+      <div class="check-item"><div class="ci-icon ci-green">✓</div>Signatures of both donor AND recipient — not just one</div>
+      <div class="check-item"><div class="ci-icon ci-red">✗</div>If donor is NOT an immediate family member → this is a red flag. Flag to broker immediately.</div>
+    </div>
+  </div>
+
+  <!-- ══════════════ SECTION 2: MIN DOWN PAYMENT ══════════════ -->
+  <span class="anchor" id="s2"></span>
+  <div class="section">
+    <div class="sh">
+      <div class="sh-num">2</div>
+      <div class="sh-text">
+        <h2>Minimum Down Payment Rules &amp; Math</h2>
+        <p>Canada's sliding-scale minimum down payment rules — every VA must know these cold.</p>
+      </div>
+    </div>
+
+    <div class="sst">The Three Tiers</div>
+    <div class="tier-row">
+      <div class="tier t1">
+        <div class="tier-price">Purchase Price: $0 – $500,000</div>
+        <div class="tier-pct">5%</div>
+        <div class="tier-note">of the full purchase price. Simple flat rate.</div>
+      </div>
+      <div class="tier t2">
+        <div class="tier-price">Purchase Price: $500,001 – $999,999</div>
+        <div class="tier-pct">5% + 10%</div>
+        <div class="tier-note">5% on the first $500,000 PLUS 10% on every dollar above $500,000</div>
+      </div>
+      <div class="tier t3">
+        <div class="tier-price">Purchase Price: $1,000,000+</div>
+        <div class="tier-pct">20%</div>
+        <div class="tier-note">Flat 20% minimum. No mortgage default insurance available at this price point — ever.</div>
+      </div>
+    </div>
+
+    <div class="sst">Worked Examples — Step by Step</div>
+    <div class="examples-grid">
+      <div class="ex-card">
+        <div class="ex-label">Example A — Simple</div>
+        <div class="ex-price">$400,000</div>
+        <div class="ex-calc">
+          Under $500K threshold<br>
+          5% × $400,000<br>
+          = 0.05 × 400,000
+        </div>
+        <div class="ex-result">Min Down Payment = $20,000</div>
+      </div>
+      <div class="ex-card">
+        <div class="ex-label">Example B — Split Calc</div>
+        <div class="ex-price">$750,000</div>
+        <div class="ex-calc">
+          5% × $500,000 = $25,000<br>
+          10% × $250,000 = $25,000<br>
+          $25,000 + $25,000
+        </div>
+        <div class="ex-result">Min Down Payment = $50,000</div>
+      </div>
+      <div class="ex-card">
+        <div class="ex-label">Example C — Over $1M</div>
+        <div class="ex-price">$1,200,000</div>
+        <div class="ex-calc">
+          Over $1M — flat 20%<br>
+          20% × $1,200,000<br>
+          No insurance available
+        </div>
+        <div class="ex-result">Min Down Payment = $240,000</div>
+      </div>
+    </div>
+
+    <div class="sst">Additional Worked Examples</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Purchase Price</th>
+          <th>First $500K @5%</th>
+          <th>Remainder @10%</th>
+          <th>Min Down Payment</th>
+          <th>Tier</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>$300,000</td><td>$15,000</td><td>—</td><td class="mono green-text">$15,000</td><td><span class="tag tag-conv">Tier 1</span></td></tr>
+        <tr><td>$500,000</td><td>$25,000</td><td>—</td><td class="mono green-text">$25,000</td><td><span class="tag tag-conv">Tier 1</span></td></tr>
+        <tr><td>$600,000</td><td>$25,000</td><td>$10,000</td><td class="mono green-text">$35,000</td><td><span class="tag tag-ins">Tier 2</span></td></tr>
+        <tr><td>$850,000</td><td>$25,000</td><td>$35,000</td><td class="mono green-text">$60,000</td><td><span class="tag tag-ins">Tier 2</span></td></tr>
+        <tr><td>$999,999</td><td>$25,000</td><td>$50,000</td><td class="mono green-text">$75,000</td><td><span class="tag tag-ins">Tier 2</span></td></tr>
+        <tr><td>$1,000,000</td><td colspan="2" style="text-align:center; color:var(--muted);">Flat 20% — no split calc</td><td class="mono red-text">$200,000</td><td><span class="tag tag-hi">Tier 3</span></td></tr>
+        <tr><td>$1,500,000</td><td colspan="2" style="text-align:center; color:var(--muted);">Flat 20% — no split calc</td><td class="mono red-text">$300,000</td><td><span class="tag tag-hi">Tier 3</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="sst">Why This Matters for the VA</div>
+    <div class="info-box green">
+      <div class="ib-body">
+        When a client submits bank statements, the VA must confirm the total documented funds are equal to or greater than the minimum down payment for that purchase price. If the documented amount falls short — flag to broker BEFORE submitting the file. Do NOT calculate the LTV yourself or decide whether the file qualifies. That is the broker's job. Your job is to verify the paper trail is there and the total adds up.
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ SECTION 3: RED FLAGS & FINTRAC ══════════════ -->
+  <span class="anchor" id="s3"></span>
+  <div class="section">
+    <div class="sh">
+      <div class="sh-num">3</div>
+      <div class="sh-text">
+        <h2>Red Flags &amp; FINTRAC</h2>
+        <p>What to look for, what it means legally, and exactly how to escalate it.</p>
+      </div>
+    </div>
+
+    <div class="sst">What Is FINTRAC?</div>
+    <div class="info-box dark">
+      <div class="ib-title">Financial Transactions &amp; Reports Analysis Centre of Canada</div>
+      <div class="ib-grid">
+        <div class="ib-item">
+          <div class="ik">What It Is</div>
+          <div class="iv">Canada's federal financial intelligence unit. Mandated to detect and prevent money laundering and terrorist financing. Reports to the Minister of Finance.</div>
+        </div>
+        <div class="ib-item">
+          <div class="ik">Why Brokerages Are Involved</div>
+          <div class="iv">Mortgage brokerages are legally "reporting entities" under the Proceeds of Crime (Money Laundering) and Terrorist Financing Act. They must verify identity, keep records, and report suspicious activity.</div>
+        </div>
+        <div class="ib-item">
+          <div class="ik">The VA's Role</div>
+          <div class="iv">OBSERVE and REPORT only. You are the first set of eyes on documents. You flag red flags to the broker using neutral language. You do NOT accuse, delete, dismiss, or contact the client directly about a red flag.</div>
+        </div>
+        <div class="ib-item">
+          <div class="ik">The $10,000 Rule</div>
+          <div class="iv">Any single cash transaction of $10,000 or more MUST be reported to FINTRAC by the brokerage within 15 business days. This is a legal requirement — not optional. VA flags it → broker handles the report. VA never files a FINTRAC report.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sst">KYC — Know Your Client: Source of Funds</div>
+    <table>
+      <thead>
+        <tr>
+          <th>KYC Requirement</th>
+          <th>What It Means</th>
+          <th>VA Task</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Identity Verification</strong></td>
+          <td>Two government-issued IDs per borrower, or one ID + credit file match</td>
+          <td>Collect IDs; confirm they are clear, unexpired, and names match all other docs</td>
+        </tr>
+        <tr>
+          <td><strong>Address Verification</strong></td>
+          <td>Utility bill or bank statement showing current name and address</td>
+          <td>Upload clearly labeled, within 90 days, name matches ID</td>
+        </tr>
+        <tr>
+          <td><strong>Occupation</strong></td>
+          <td>Client's current job title or type of business</td>
+          <td>Confirm it's entered accurately in the LOS application</td>
+        </tr>
+        <tr>
+          <td><strong>Source of Funds</strong></td>
+          <td>Where the down payment money actually came from</td>
+          <td>Ensure every source has documented, traceable proof in the file</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="sst">Red Flags — Escalate Immediately to Broker</div>
+    <div class="flag-list">
+      <div class="flag-item"><div class="flag-dot">⚠</div><div>Large cash deposit with no explanation or paper trail — especially one that appears right before the purchase date. Even if it's a round number with no corresponding income deposit.</div></div>
+      <div class="flag-item"><div class="flag-dot">⚠</div><div>Gift funds visible in bank statement but no signed gift letter has been collected. Funds must match letter — amount in statement = amount in gift letter.</div></div>
+      <div class="flag-item"><div class="flag-dot">⚠</div><div>Funds transferred from a non-family member with no supporting explanation. FINTRAC requires family-only gifts — anyone else raises a flag regardless of intent.</div></div>
+      <div class="flag-item"><div class="flag-dot">⚠</div><div>Overseas transfer with no context, explanation, or supporting documentation. Especially flagged when the source country has no clear connection to the borrower.</div></div>
+      <div class="flag-item"><div class="flag-dot">⚠</div><div>Bank statement shows incomplete dates, unusual date sequences, or missing pages. Even a single missing page means the 90-day window is not confirmed.</div></div>
+      <div class="flag-item"><div class="flag-dot">⚠</div><div>Screenshot submitted instead of official bank-generated PDF statement. Screenshots can be edited. Request the full official PDF — no exceptions.</div></div>
+      <div class="flag-item"><div class="flag-dot">⚠</div><div>Down payment amount is dramatically out of line with the client's stated income, employment type, or age. Apply the "reasonableness test." If it doesn't make sense, flag it.</div></div>
+      <div class="flag-item"><div class="flag-dot">⚠</div><div>Documents appear edited — mismatched fonts, inconsistent spacing, cut-off fields, or pages that don't match the overall document format.</div></div>
+      <div class="flag-item"><div class="flag-dot">⚠</div><div>Bank account ownership includes unknown parties — name on the account does not match the borrower or is a joint account with an unexplained third party.</div></div>
+      <div class="flag-item"><div class="flag-dot">⚠</div><div>Bank statement deposits don't reflect income consistency — deposits are irregular, come from many different sources, or there are "even dollar amount" balances (a known fraud indicator).</div></div>
+      <div class="flag-item"><div class="flag-dot">⚠</div><div>Earnest/deposit money already paid to seller is not reflected as a withdrawal in the bank statements. If they paid a deposit, it should show as a debit in the account.</div></div>
+      <div class="flag-item"><div class="flag-dot">⚠</div><div>Client avoids or delays ID verification, or gives information inconsistent with other docs. VA flags this to broker — do not press the client directly.</div></div>
+    </div>
+
+    <div class="sst">The $10,000 Cash Reporting Rule — Detail</div>
+    <div class="info-box amber">
+      <div class="ib-title">⚡ FINTRAC Large Cash Transaction Report (LCTR)</div>
+      <div class="ib-body">
+        Any single cash transaction of <strong>$10,000 or more</strong> must be reported to FINTRAC by the brokerage within <strong>15 business days</strong>. This is a federal legal requirement under the Proceeds of Crime (Money Laundering) and Terrorist Financing Act — there is no discretion involved.<br><br>
+        <strong>What triggers it:</strong> A single cash deposit of $10,000+, or two or more cash transactions that together total $10,000+ if the brokerage knows or suspects they are related.<br><br>
+        <strong>VA action:</strong> If you spot a cash deposit of $10,000 or more in a client's bank statement, flag it to the broker immediately using neutral language. The broker determines if a FINTRAC LCTR report is required and files it. The VA does not file reports.<br><br>
+        <strong>Note:</strong> "Structuring" — deliberately breaking large amounts into smaller deposits to avoid the $10,000 threshold — is itself a criminal offence under Canadian law. Multiple deposits of $9,000 that seem coordinated are just as much a flag as a single $10,000 deposit.
+      </div>
+    </div>
+
+    <div class="sst">Consequences of Non-Compliance</div>
+    <div class="info-box red">
+      <div class="ib-title">What Happens If Red Flags Are Ignored</div>
+      <div class="ib-body">
+        Brokerages that fail to detect and report suspicious activity face: administrative monetary penalties from FSRA, licence suspension or revocation, criminal charges under the MBLAA. A VA who ignores red flags and submits a file with fraud indicators puts the brokerage at risk of all of the above. Your job as a VA is to protect the broker by being the first line of defence — not to process files as fast as possible.
+      </div>
+    </div>
+
+    <div class="esc-box">
+      <div class="esc-label">Escalation Script — Use Every Time. Always Stay Neutral.</div>
+      <div class="esc-script">"Hi <strong>[Broker Name]</strong>, while reviewing <strong>[Client Name]</strong>'s bank statement, I noticed a <strong>[dollar amount]</strong> deposit on <strong>[date]</strong> with no visible source. Would you like me to request an explanation or supporting document from the client?"</div>
+      <div class="esc-wrong">
+        <div class="esc-wrong-label">❌ Never Say This</div>
+        <div class="esc-wrong-text">"I think the client is laundering money." — You never accuse. You observe and report. Stay completely neutral every time.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ SECTION 4: LTV & INSURANCE ══════════════ -->
+  <span class="anchor" id="s4"></span>
+  <div class="section">
+    <div class="sh">
+      <div class="sh-num">4</div>
+      <div class="sh-text">
+        <h2>LTV &amp; Mortgage Default Insurance</h2>
+        <p>How the down payment percentage connects to LTV, insurance requirement, and premium cost.</p>
+      </div>
+    </div>
+
+    <div class="sst">Loan-to-Value (LTV) Formula</div>
+    <div class="info-box green" style="text-align:center; padding:20px;">
+      <div style="font-family:'DM Mono',monospace; font-size:20px; font-weight:600; color:var(--gd); margin-bottom:6px;">LTV = Loan Amount ÷ Property Value × 100</div>
+      <div style="font-size:12px; color:var(--muted);">Loan Amount = Purchase Price − Down Payment</div>
+    </div>
+
+    <div class="sst">LTV Examples with Insurance Status</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Purchase Price</th>
+          <th>Down Payment</th>
+          <th>Loan Amount</th>
+          <th>LTV</th>
+          <th>Category</th>
+          <th>Insurance Required?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>$500,000</td><td>$100,000 (20%)</td><td>$400,000</td>
+          <td class="mono">80%</td>
+          <td><span class="tag tag-conv">Conventional</span></td>
+          <td><span class="tag tag-no">No</span></td>
+        </tr>
+        <tr>
+          <td>$600,000</td><td>$30,000 (5%)</td><td>$570,000</td>
+          <td class="mono red-text">95%</td>
+          <td><span class="tag tag-hi">High-Ratio</span></td>
+          <td><span class="tag tag-yes">Yes</span></td>
+        </tr>
+        <tr>
+          <td>$600,000</td><td>$150,000 (25%)</td><td>$450,000</td>
+          <td class="mono">75%</td>
+          <td><span class="tag tag-conv">Conventional</span></td>
+          <td><span class="tag tag-no">No</span></td>
+        </tr>
+        <tr>
+          <td>$800,000</td><td>$160,000 (20%)</td><td>$640,000</td>
+          <td class="mono">80%</td>
+          <td><span class="tag tag-conv">Conventional</span></td>
+          <td><span class="tag tag-no">No</span></td>
+        </tr>
+        <tr>
+          <td>$450,000</td><td>$22,500 (5%)</td><td>$427,500</td>
+          <td class="mono red-text">95%</td>
+          <td><span class="tag tag-hi">High-Ratio</span></td>
+          <td><span class="tag tag-yes">Yes</span></td>
+        </tr>
+        <tr>
+          <td>$1,100,000</td><td>$220,000 (20%)</td><td>$880,000</td>
+          <td class="mono">80%</td>
+          <td><span class="tag tag-hi">Uninsurable</span></td>
+          <td><span class="tag tag-no">No (over $1M)</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="sst">Canada's Three Mortgage Insurers</div>
+    <div class="insurer-row">
+      <div class="insurer-card">
+        <div class="ins-icon">🏛️</div>
+        <div class="ins-name">CMHC</div>
+        <div class="ins-type">Canada Mortgage &amp; Housing Corporation<br>Government-backed federal crown corporation</div>
+        <div class="ins-share">~70% market share</div>
+      </div>
+      <div class="insurer-card">
+        <div class="ins-icon">🏢</div>
+        <div class="ins-name">Sagen</div>
+        <div class="ins-type">Private insurer<br>Formerly Genworth Financial — rebranded 2020</div>
+        <div class="ins-share">Private</div>
+      </div>
+      <div class="insurer-card">
+        <div class="ins-icon">🇨🇦</div>
+        <div class="ins-name">Canada Guaranty</div>
+        <div class="ins-type">Private insurer<br>100% Canadian-owned (Ontario Teachers' Pension)</div>
+        <div class="ins-share">Private</div>
+      </div>
+    </div>
+
+    <div class="info-box amber">
+      <div class="ib-title">⚡ Critical Concept — Who Is Protected?</div>
+      <div class="ib-body">Mortgage default insurance protects the <strong>LENDER</strong> — not the borrower. The borrower pays the premium (added to the loan), but if they default and the lender loses money on the power of sale, the insurer reimburses the lender. The insurer then has the right to pursue the borrower for that amount. This is why CMHC, Sagen, or Canada Guaranty sometimes appear as creditors in bankruptcy proceedings.</div>
+    </div>
+
+    <div class="sst">CMHC Standard Premium Rates by LTV</div>
+    <table>
+      <thead>
+        <tr>
+          <th>LTV Range</th>
+          <th>Premium Rate</th>
+          <th>Example: $380,000 Loan</th>
+          <th>Example: $570,000 Loan</th>
+          <th>Added to Loan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Up to 65%</td><td class="mono green-text">0.60%</td><td>$2,280</td><td>$3,420</td><td>Added to mortgage balance</td></tr>
+        <tr><td>Up to 75%</td><td class="mono green-text">1.70%</td><td>$6,460</td><td>$9,690</td><td>Added to mortgage balance</td></tr>
+        <tr><td>Up to 80%</td><td class="mono">2.40%</td><td>$9,120</td><td>$13,680</td><td>Added to mortgage balance</td></tr>
+        <tr><td>Up to 85%</td><td class="mono">2.80%</td><td>$10,640</td><td>$15,960</td><td>Added to mortgage balance</td></tr>
+        <tr><td>Up to 90%</td><td class="mono">3.10%</td><td>$11,780</td><td>$17,670</td><td>Added to mortgage balance</td></tr>
+        <tr><td>Up to 95%</td><td class="mono red-text">4.00%</td><td>$15,200</td><td>$22,800</td><td>Added to mortgage balance</td></tr>
+      </tbody>
+    </table>
+    <div class="prem-note">Sagen standard rates are identical to CMHC's above. Canada Guaranty has the same standard rates with slight variations for self-employed (Low-Doc Advantage) and rental (Rental Advantage) products. Always verify current rates at cmhc.ca / sagen.ca / canadaguaranty.ca before quoting a client.</div>
+
+    <div class="sst">Insured vs. Insurable vs. Uninsurable</div>
+    <table>
+      <thead>
+        <tr><th>Category</th><th>What It Means</th><th>Typical Examples</th><th>VA Relevance</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tag tag-yes">Insured</span></td>
+          <td>Default insurance was purchased. Less than 20% down.</td>
+          <td>First-time buyers, 5–10% down, owner-occupied, under $1M</td>
+          <td>VA enters down payment accurately — LTV drives insurance requirement</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-ins">Insurable</span></td>
+          <td>File meets insurer guidelines but 20%+ down — no new insurance needed</td>
+          <td>20% down, good credit, property under $1M, max 25yr amortization</td>
+          <td>VA accurate data entry still critical — lender may portfolio-insure</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-hi">Uninsurable</span></td>
+          <td>File does NOT meet insurer guidelines — no insurance possible</td>
+          <td>Refinances, rental properties, purchases over $1M, 30yr amortization</td>
+          <td>VA still verifies DP docs — broker determines product type</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-box green">
+      <div class="ib-title">💡 VA Accuracy Warning</div>
+      <div class="ib-body">A simple data entry error in the LOS — entering the wrong purchase price or down payment amount — can shift the LTV and change whether the file is insured, insurable, or uninsurable. This is not a cosmetic error. It can affect the client's interest rate, the lender's product offering, and whether the deal closes. Double-check every number you enter against the source documents.</div>
+    </div>
+  </div>
+
+  <!-- ══════════════ SECTION 5: VA WORKFLOW ══════════════ -->
+  <span class="anchor" id="s5"></span>
+  <div class="section">
+    <div class="sh">
+      <div class="sh-num">5</div>
+      <div class="sh-text">
+        <h2>VA Workflow — Down Payment Verification</h2>
+        <p>Step-by-step process from receiving the file to handing off to broker.</p>
+      </div>
+    </div>
+
+    <div class="sst">Step-by-Step Process</div>
+    <div class="workflow">
+
+      <div class="wf-step">
+        <div class="wf-left"><div class="wf-num">1</div><div class="wf-line"></div></div>
+        <div class="wf-body">
+          <div class="wf-title">Identify the Down Payment Source(s) in the LOS</div>
+          <div class="wf-detail">Open the LOS application and locate what the broker entered as source of funds. There may be multiple sources (e.g. personal savings + partial gift). Note each source — you'll need to collect documents for all of them.</div>
+        </div>
+      </div>
+
+      <div class="wf-step">
+        <div class="wf-left"><div class="wf-num">2</div><div class="wf-line"></div></div>
+        <div class="wf-body">
+          <div class="wf-title">Collect the Correct Documents for Each Source</div>
+          <div class="wf-detail">Match each source to its required proof:</div>
+          <div class="wf-sub">
+            Savings → 90-day bank statement (full PDF, not screenshot)<br>
+            Gift → Signed gift letter (broker's template) + bank proof of transfer<br>
+            RRSP/HBP → Withdrawal confirmation with amount<br>
+            Sale of property → Sale agreement + statement of adjustments<br>
+            Inheritance → Inheritance letter + bank deposit confirmation<br>
+            <br>
+            Never accept one document when two are required. Never accept a screenshot for a bank statement.
+          </div>
+        </div>
+      </div>
+
+      <div class="wf-step">
+        <div class="wf-left"><div class="wf-num">3</div><div class="wf-line"></div></div>
+        <div class="wf-body">
+          <div class="wf-title">Review Each Document — Run Your Checks</div>
+          <div class="wf-detail">For bank statements: confirm 90 days covered with no gaps, all pages present, borrower's name matches, no large unexplained deposits, full PDF format. For gift letters: signed by both parties, non-repayable language present, donor is immediate family, bank transfer proof attached. For all docs: look for editing signs — mismatched fonts, spacing anomalies, cut-off fields.</div>
+        </div>
+      </div>
+
+      <div class="wf-step">
+        <div class="wf-left"><div class="wf-num">4</div><div class="wf-line"></div></div>
+        <div class="wf-body">
+          <div class="wf-title">Confirm Total Documented Funds ≥ Minimum Down Payment</div>
+          <div class="wf-detail">Add up all documented sources. The total must meet or exceed the minimum down payment for that purchase price. If it falls short — flag to broker before uploading. Do not submit an incomplete file and hope the broker catches it.</div>
+        </div>
+      </div>
+
+      <div class="wf-step">
+        <div class="wf-left"><div class="wf-num">5</div><div class="wf-line"></div></div>
+        <div class="wf-body">
+          <div class="wf-title">Name &amp; File Each Document Correctly</div>
+          <div class="wf-detail">File naming format: <span style="font-family:'DM Mono',monospace; background:#f0f0f0; padding:2px 6px; border-radius:4px; font-size:11.5px;">YYYY-MM-DD_DocumentType_ClientName.pdf</span></div>
+          <div class="wf-sub">
+            ✓ GOOD: 2025-05-01_BankStatement_RBC_90Days_JuanDelaCruz.pdf<br>
+            ✓ GOOD: 2025-05-02_GiftLetter_Parents_signed_MariaReyes.pdf<br>
+            ✓ GOOD: 2025-05-03_RRSPWithdrawal_HBP_JuanDelaCruz.pdf<br>
+            ✓ GOOD: 2025-05-01_SaleProceeds_123MainSt_AnaReyes.pdf<br>
+            <br>
+            ✗ BAD: screenshot.png<br>
+            ✗ BAD: doc(1).pdf<br>
+            ✗ BAD: Marias bank stuff.pdf<br>
+            <br>
+            Folder: Assets &amp; Down Payment (never in Income or other folders)
+          </div>
+        </div>
+      </div>
+
+      <div class="wf-step">
+        <div class="wf-left"><div class="wf-num">6</div><div class="wf-line"></div></div>
+        <div class="wf-body">
+          <div class="wf-title">Flag Any Red Flags to Broker — Before Moving Forward</div>
+          <div class="wf-detail">If any red flag is present — stop. Do not upload the file and move on. Flag to broker using neutral language before anything else happens. Never contact the client directly about a red flag.</div>
+        </div>
+      </div>
+
+      <div class="wf-step">
+        <div class="wf-left"><div class="wf-num">7</div><div class="wf-line"></div></div>
+        <div class="wf-body">
+          <div class="wf-title">Final Quality Check Before Handing to Broker</div>
+          <div class="wf-detail">Before submitting: All sources documented? All files named per convention? No missing pages? No screenshots? Folder correctly labelled? All amounts match LOS entries? Treat every file as if it will be audited tomorrow — because it might be.</div>
+        </div>
+      </div>
+
+    </div><!-- /workflow -->
+
+    <div class="sst">What the VA Does vs. Does Not Do</div>
+    <div class="do-dont">
+      <div class="do-box">
+        <div class="box-title">✓ VA Does</div>
+        <div class="box-list">
+          <div class="box-item">Collect and verify documents for each down payment source</div>
+          <div class="box-item">Check 90-day coverage, all pages, borrower name on bank statements</div>
+          <div class="box-item">Verify gift letter has all required elements and both signatures</div>
+          <div class="box-item">Name and file all docs correctly in the Assets &amp; Down Payment folder</div>
+          <div class="box-item">Confirm total documented funds meet the minimum DP requirement</div>
+          <div class="box-item">Flag every red flag to broker using neutral language before proceeding</div>
+          <div class="box-item">Enter data accurately into the LOS — numbers must match source docs</div>
+          <div class="box-item">Treat every file like it will be audited</div>
+        </div>
+      </div>
+      <div class="dont-box">
+        <div class="box-title">✗ VA Does NOT</div>
+        <div class="box-list">
+          <div class="box-item">Calculate LTV or decide if the file qualifies for a mortgage</div>
+          <div class="box-item">Choose or recommend a mortgage insurer (CMHC / Sagen / Canada Guaranty)</div>
+          <div class="box-item">Contact the client directly about a red flag — ever</div>
+          <div class="box-item">Accept screenshots as bank statements — full PDF only</div>
+          <div class="box-item">File a FINTRAC Large Cash Transaction Report (that's the broker)</div>
+          <div class="box-item">Accept a gift letter from a non-family member without flagging it</div>
+          <div class="box-item">Submit a file with a known red flag hoping someone else catches it</div>
+          <div class="box-item">Decide whether mortgage default insurance applies — that's the broker</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sst">File Folder Reminder</div>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:4px;">
+      <div style="display:flex; align-items:center; gap:8px; background:#f0f7f3; border:1px solid #c3dfd0; border-radius:9px; padding:10px 16px; font-size:12.5px; font-weight:600; color:var(--gd);">
+        📁 <span><strong>Assets &amp; Down Payment</strong> → Bank statements · Gift letters · RRSP withdrawals · Sale proceeds · Inheritance docs</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px; background:#fff5f0; border:1px solid #f5c6a0; border-radius:9px; padding:10px 16px; font-size:12.5px; font-weight:600; color:#7a3d00;">
+        📁 <span><strong>Income</strong> → Pay stubs (ADP, May statements) · Employment letters · T4s · NOAs — NOT here for down payment docs</span>
+      </div>
+    </div>
+
+    <div class="esc-box">
+      <div class="esc-label">Escalation Script — Memorize This. Use It Every Time.</div>
+      <div class="esc-script">"Hi <strong>[Broker Name]</strong>, while reviewing <strong>[Client Name]</strong>'s bank statement, I noticed a <strong>[dollar amount]</strong> deposit on <strong>[date]</strong> with no visible source. Would you like me to request an explanation or supporting document from the client?"</div>
+      <div class="esc-wrong">
+        <div class="esc-wrong-label">❌ Escalate When</div>
+        <div class="esc-wrong-text" style="font-style:normal; font-size:12.5px; color:rgba(255,255,255,0.75); line-height:1.7;">
+          Any red flag listed in Section 3 is present in the file · Documented DP total falls short of the minimum · Gift letter is missing a signature or the donor is not a family member · Bank statement is a screenshot · Any document looks altered or edited · Cash deposit of $10,000 or more is visible · Client's assets seem dramatically out of line with their income
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════ QUIZ ══════════════ -->
+  <span class="anchor" id="quiz"></span>
+  <div class="section" id="quiz-section">
+    <div class="sh">
+      <div class="sh-num">✎</div>
+      <div class="sh-text">
+        <h2>Knowledge Check — Down Payment Verification</h2>
+        <p>10 questions · Pass mark: 8/10 · Complete all questions then submit</p>
+      </div>
+    </div>
+
+    <div id="quiz-form">
+      <div id="quiz-questions"></div>
+      <div style="margin-top:24px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:200px;">
+          <label style="font-size:12px; font-weight:600; color:var(--muted); display:block; margin-bottom:6px; text-transform:uppercase; letter-spacing:1px;">Your Name (for certificate)</label>
+          <input id="va-name" type="text" placeholder="Enter your full name" style="width:100%; padding:11px 14px; border:1.5px solid var(--border); border-radius:9px; font-family:'DM Sans',sans-serif; font-size:13px; outline:none; color:var(--text);" onfocus="this.style.borderColor='var(--ga)'" onblur="this.style.borderColor='var(--border)'">
+        </div>
+        <button onclick="submitQuiz()" style="padding:12px 32px; background:var(--gm); color:#fff; border:none; border-radius:9px; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:700; cursor:pointer; margin-top:20px; transition:background 0.15s;" onmouseover="this.style.background='var(--gd)'" onmouseout="this.style.background='var(--gm)'">Submit Quiz</button>
+      </div>
+    </div>
+
+    <div id="quiz-result" style="display:none; margin-top:24px;"></div>
+  </div>
+
+  <!-- ══════════════ CERTIFICATE ══════════════ -->
+  <div id="certificate" style="display:none; margin-bottom:8px;">
+    <div style="background:var(--white); border-radius:16px; padding:50px 40px; text-align:center; box-shadow:0 4px 40px rgba(26,60,46,0.12); border:3px solid var(--ga); position:relative; overflow:hidden;">
+      <!-- decorative corners -->
+      <div style="position:absolute;top:0;left:0;width:80px;height:80px;border-right:none;border-bottom:none;border-top:6px solid var(--gm);border-left:6px solid var(--gm);border-radius:16px 0 0 0;"></div>
+      <div style="position:absolute;top:0;right:0;width:80px;height:80px;border-left:none;border-bottom:none;border-top:6px solid var(--gm);border-right:6px solid var(--gm);border-radius:0 16px 0 0;"></div>
+      <div style="position:absolute;bottom:0;left:0;width:80px;height:80px;border-right:none;border-top:none;border-bottom:6px solid var(--gm);border-left:6px solid var(--gm);border-radius:0 0 0 16px;"></div>
+      <div style="position:absolute;bottom:0;right:0;width:80px;height:80px;border-left:none;border-top:none;border-bottom:6px solid var(--gm);border-right:6px solid var(--gm);border-radius:0 0 16px 0;"></div>
+
+      <div style="font-size:48px; margin-bottom:12px;">🏆</div>
+      <div style="font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">Certificate of Completion</div>
+      <div style="font-size:13px; color:var(--muted); margin-bottom:20px;">LendMate VA Training Academy</div>
+      <div style="width:200px; height:2px; background:var(--ga); margin:0 auto 20px;"></div>
+      <div style="font-size:14px; color:var(--muted); margin-bottom:10px;">This certifies that</div>
+      <div id="cert-name" style="font-size:34px; font-weight:700; color:var(--gd); margin-bottom:10px; font-style:italic;"></div>
+      <div style="font-size:14px; color:var(--muted); margin-bottom:6px;">has successfully completed the</div>
+      <div style="font-size:18px; font-weight:700; color:var(--gm); margin-bottom:6px;">Down Payment Verification</div>
+      <div style="font-size:14px; color:var(--muted); margin-bottom:24px;">Knowledge Assessment</div>
+      <div id="cert-score" style="display:inline-block; background:var(--gxl); border:2px solid var(--ga); border-radius:50px; padding:8px 28px; font-size:16px; font-weight:700; color:var(--gm); margin-bottom:24px;"></div>
+      <div style="width:200px; height:2px; background:var(--ga); margin:0 auto 20px;"></div>
+      <div style="display:flex; justify-content:center; gap:60px; margin-bottom:20px;">
+        <div style="text-align:center;">
+          <div style="width:120px; height:1px; background:#ccc; margin-bottom:6px;"></div>
+          <div style="font-size:11px; color:var(--muted); font-weight:600;">Nick Lowe</div>
+          <div style="font-size:10px; color:var(--muted);">Training Head, KeyPlayers</div>
+        </div>
+        <div style="text-align:center;">
+          <div id="cert-date" style="font-size:11px; color:var(--muted); font-weight:600; margin-bottom:6px; height:16px;"></div>
+          <div style="width:120px; height:1px; background:#ccc; margin-bottom:6px;"></div>
+          <div style="font-size:11px; color:var(--muted); font-weight:600;">Date Issued</div>
+        </div>
+      </div>
+      <div style="font-size:10px; color:#ccc; font-family:'DM Mono',monospace;" id="cert-ref"></div>
+      <div style="margin-top:24px;">
+        <button onclick="window.print()" style="padding:10px 28px; background:var(--gm); color:#fff; border:none; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; cursor:pointer;" onmouseover="this.style.background='var(--gd)'" onmouseout="this.style.background='var(--gm)'">🖨 Print Certificate</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <div class="footer">
+    <div class="footer-left">KeyPlayers · LendMate VA Training &nbsp;·&nbsp; LendMate VA Training Academy</div>
+    <div class="footer-right">REF-DP-002 · v2.0 · Assets &amp; Down Payment</div>
+  </div>
+
+</div>
+
+<style>
+  /* ── QUIZ STYLES ── */
+  .q-block { margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
+  .q-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .q-num { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--ga); margin-bottom:6px; }
+  .q-text { font-size:14px; font-weight:600; color:var(--gd); margin-bottom:14px; line-height:1.5; }
+  .q-options { display:flex; flex-direction:column; gap:8px; }
+  .q-option {
+    display:flex; align-items:center; gap:12px;
+    padding:11px 16px;
+    border:1.5px solid var(--border);
+    border-radius:9px;
+    cursor:pointer;
+    font-size:13px;
+    color:var(--text);
+    transition:all 0.15s;
+    user-select:none;
+  }
+  .q-option:hover { border-color:var(--ga); background:#f5faf7; }
+  .q-option input[type=radio] { accent-color:var(--gm); width:16px; height:16px; flex-shrink:0; }
+  .q-option.correct { border-color:var(--gm); background:#e8f5ee; color:var(--gd); font-weight:600; }
+  .q-option.wrong { border-color:var(--red); background:var(--redl); color:#7a1f1f; }
+  .q-option.show-correct { border-color:var(--gm); background:#e8f5ee; color:var(--gd); }
+  .q-feedback { margin-top:10px; font-size:12px; padding:9px 13px; border-radius:8px; line-height:1.6; }
+  .q-feedback.correct { background:#e8f5ee; color:var(--gm); }
+  .q-feedback.wrong { background:var(--redl); color:#c0392b; }
+
+  .result-pass { background:var(--gxl); border:2px solid var(--ga); border-radius:14px; padding:24px 28px; text-align:center; }
+  .result-fail { background:var(--redl); border:2px solid var(--red); border-radius:14px; padding:24px 28px; text-align:center; }
+  .result-score { font-size:48px; font-weight:700; margin-bottom:6px; }
+  .result-pass .result-score { color:var(--gm); }
+  .result-fail .result-score { color:var(--red); }
+  .result-msg { font-size:15px; font-weight:600; margin-bottom:8px; }
+  .result-sub { font-size:13px; color:var(--muted); }
+
+  @media print {
+    body { background:#fff; padding:0; }
+    #quiz-section, .toc, nav { display:none !important; }
+    #certificate { display:block !important; margin:0; }
+    .footer, .cover-meta { display:none; }
+    .section { box-shadow:none; border:1px solid #eee; }
+  }
+</style>
+
+<script>
+const questions = [
+  {
+    q: "A client has provided a bank statement for down payment verification. What is the minimum history period required, and in what format must it be submitted?",
+    options: [
+      "30-day history — screenshot is acceptable",
+      "60-day history — PDF or screenshot",
+      "90-day history — full official PDF only, no screenshots",
+      "90-day history — any format including screenshots is fine"
+    ],
+    correct: 2,
+    feedback: "Correct. 90-day bank statement history is required as a full official PDF. Screenshots can be edited and are never acceptable. Every page must be present — a missing page means the 90-day window is not confirmed."
+  },
+  {
+    q: "A client's bank statement shows a $28,000 cash deposit made 3 weeks before their purchase date, with no corresponding explanation. What should the VA do?",
+    options: [
+      "Proceed with filing — it's the broker's job to review deposits",
+      "Delete the statement and ask the client to send a new one",
+      "Contact the client directly and ask what the deposit was for",
+      "Flag it to the broker immediately using neutral language before proceeding"
+    ],
+    correct: 3,
+    feedback: "Correct. The VA observes and reports — never accuses, never ignores, never contacts the client directly about a red flag. Flag to the broker with neutral language: 'I noticed a $28,000 deposit on [date] with no visible source. Would you like me to request an explanation?'"
+  },
+  {
+    q: "What is the minimum down payment for a home purchased at $750,000 in Canada?",
+    options: [
+      "$37,500 (5% of $750,000)",
+      "$75,000 (10% of $750,000)",
+      "$50,000 (5% on first $500K + 10% on remaining $250K)",
+      "$150,000 (20% of $750,000)"
+    ],
+    correct: 2,
+    feedback: "Correct. For purchases between $500,001 and $999,999, the calculation is: 5% × $500,000 = $25,000 PLUS 10% × $250,000 = $25,000. Total minimum = $50,000."
+  },
+  {
+    q: "Under Canada's FINTRAC rules, what is the threshold for a mandatory Large Cash Transaction Report (LCTR) that the brokerage must file?",
+    options: [
+      "$5,000 or more",
+      "$10,000 or more",
+      "$15,000 or more",
+      "$25,000 or more"
+    ],
+    correct: 1,
+    feedback: "Correct. Any single cash transaction of $10,000 or more must be reported to FINTRAC by the brokerage within 15 business days. This is a legal requirement with no discretion. The VA flags it — the broker files the report."
+  },
+  {
+    q: "A client says their family member gave them money for the down payment. Which combination of documents must the VA collect?",
+    options: [
+      "A bank statement showing the deposit — gift letter is optional",
+      "Signed gift letter only — the bank transfer is not required",
+      "Signed gift letter using the broker's template (non-repayable, immediate family) PLUS bank proof of the transfer",
+      "A statutory declaration from the donor — no additional docs needed"
+    ],
+    correct: 2,
+    feedback: "Correct. Both are required: (1) a signed gift letter using the broker's template that confirms the funds are a gift from an immediate family member and are non-repayable, AND (2) bank proof of the transfer. Never one without the other."
+  },
+  {
+    q: "A purchase price is $600,000 with a $30,000 down payment. What is the LTV and does it require mortgage default insurance?",
+    options: [
+      "LTV = 80% — no insurance required",
+      "LTV = 95% — insurance required",
+      "LTV = 90% — insurance required",
+      "LTV = 85% — insurance required"
+    ],
+    correct: 1,
+    feedback: "Correct. Loan amount = $600,000 − $30,000 = $570,000. LTV = $570,000 ÷ $600,000 × 100 = 95%. Any LTV above 80% is high-ratio and requires mortgage default insurance from CMHC, Sagen, or Canada Guaranty."
+  },
+  {
+    q: "The CMHC premium rate for a mortgage with an LTV of up to 95% is 4.00%. If the loan amount is $427,500, how much is the insurance premium added to the mortgage?",
+    options: [
+      "$4,275",
+      "$12,825",
+      "$17,100",
+      "$42,750"
+    ],
+    correct: 2,
+    feedback: "Correct. $427,500 × 4.00% = $17,100. This amount is added to the mortgage balance and paid back over the life of the mortgage. It protects the lender — not the borrower."
+  },
+  {
+    q: "Under the RRSP Home Buyers' Plan (HBP), what is the maximum amount a couple can withdraw combined to use as a down payment?",
+    options: [
+      "$35,000 total for both",
+      "$50,000 total for both",
+      "$70,000 total — each person can withdraw up to $35,000",
+      "There is no maximum under the HBP"
+    ],
+    correct: 2,
+    feedback: "Correct. Under the HBP, each first-time buyer can withdraw up to $35,000 from their own RRSP. A couple purchasing together can access up to $70,000 combined. The amount must be repaid to their RRSPs within 15 years."
+  },
+  {
+    q: "The VA is reviewing a client's down payment file and notices the bank statement shows only 45 days of history, and two of the pages appear to have mismatched fonts compared to the rest of the document. What is the correct action?",
+    options: [
+      "Accept it — 45 days is close enough to 90 and font differences happen",
+      "Request a fresh statement from the client directly without involving the broker",
+      "Flag both issues to the broker: insufficient history AND possible document tampering, before doing anything else",
+      "Request new pages from the client but don't mention the font issue"
+    ],
+    correct: 2,
+    feedback: "Correct. Two separate red flags are present: (1) the statement does not cover the required 90 days, and (2) mismatched fonts are a fraud indicator under FINTRAC guidelines. Both must be flagged to the broker using neutral language before any further action is taken."
+  },
+  {
+    q: "A client is purchasing a $1,200,000 home. Which of the following statements is correct?",
+    options: [
+      "Minimum down payment is $60,000 (5%) and CMHC insurance is available",
+      "Minimum down payment is $100,000 (split calc) and insurance is optional",
+      "Minimum down payment is $240,000 (20%) and mortgage default insurance is not available at this price point",
+      "Minimum down payment is $120,000 (10%) and CMHC insurance is required"
+    ],
+    correct: 2,
+    feedback: "Correct. For purchases of $1,000,000 or more, the minimum down payment is a flat 20%. In this case: 20% × $1,200,000 = $240,000. Mortgage default insurance is not available for properties over $1,000,000 — there are no exceptions."
+  }
+];
+
+function buildQuiz() {
+  const container = document.getElementById('quiz-questions');
+  questions.forEach((q, i) => {
+    const block = document.createElement('div');
+    block.className = 'q-block';
+    block.id = `q-block-${i}`;
+    let opts = q.options.map((o, j) => `
+      <label class="q-option" id="opt-${i}-${j}">
+        <input type="radio" name="q${i}" value="${j}">
+        <span>${o}</span>
+      </label>`).join('');
+    block.innerHTML = `
+      <div class="q-num">Question ${i + 1} of ${questions.length}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="q-options">${opts}</div>
+      <div class="q-feedback" id="fb-${i}" style="display:none;"></div>`;
+    container.appendChild(block);
+  });
+}
+
+function submitQuiz() {
+  const nameInput = document.getElementById('va-name').value.trim();
+  if (!nameInput) {
+    alert('Please enter your name before submitting.');
+    return;
+  }
+
+  let score = 0;
+  let allAnswered = true;
+
+  questions.forEach((q, i) => {
+    const selected = document.querySelector(`input[name="q${i}"]:checked`);
+    if (!selected) { allAnswered = false; return; }
+
+    const val = parseInt(selected.value);
+    const fb = document.getElementById(`fb-${i}`);
+
+    // Style all options
+    q.options.forEach((_, j) => {
+      const opt = document.getElementById(`opt-${i}-${j}`);
+      opt.style.pointerEvents = 'none';
+      if (j === q.correct) opt.classList.add('show-correct');
+    });
+
+    const chosenOpt = document.getElementById(`opt-${i}-${val}`);
+    if (val === q.correct) {
+      score++;
+      chosenOpt.classList.add('correct');
+      fb.className = 'q-feedback correct';
+      fb.innerHTML = `✓ Correct. ${q.feedback}`;
+    } else {
+      chosenOpt.classList.add('wrong');
+      fb.className = 'q-feedback wrong';
+      fb.innerHTML = `✗ Incorrect. ${q.feedback}`;
+    }
+    fb.style.display = 'block';
+  });
+
+  if (!allAnswered) {
+    alert('Please answer all 10 questions before submitting.');
+    return;
+  }
+
+  const passed = score >= 8;
+  const resultDiv = document.getElementById('quiz-result');
+  resultDiv.style.display = 'block';
+
+  if (passed) {
+    resultDiv.innerHTML = `
+      <div class="result-pass">
+        <div class="result-score">${score}/10</div>
+        <div class="result-msg">🎉 Excellent work! You passed.</div>
+        <div class="result-sub">You scored ${score} out of 10. Your certificate is ready below.</div>
+      </div>`;
+    showCertificate(nameInput, score);
+  } else {
+    resultDiv.innerHTML = `
+      <div class="result-fail">
+        <div class="result-score">${score}/10</div>
+        <div class="result-msg">Not quite — you need 8/10 to pass.</div>
+        <div class="result-sub">Review the sections highlighted above and try again. You got ${score} out of 10.</div>
+        <button onclick="resetQuiz()" style="margin-top:16px; padding:10px 28px; background:var(--red); color:#fff; border:none; border-radius:9px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; cursor:pointer;">↺ Retry Quiz</button>
+      </div>`;
+  }
+
+  resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.querySelector('button[onclick="submitQuiz()"]').style.display = 'none';
+}
+
+function showCertificate(name, score) {
+  const cert = document.getElementById('certificate');
+  cert.style.display = 'block';
+  document.getElementById('cert-name').textContent = name;
+  document.getElementById('cert-score').textContent = `Score: ${score} / 10 — ${score === 10 ? 'Perfect Score' : 'Pass'}`;
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-CA', { year:'numeric', month:'long', day:'numeric' });
+  document.getElementById('cert-date').textContent = dateStr;
+  const ref = `KP-LM-DP-${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}-${Math.floor(Math.random()*9000+1000)}`;
+  document.getElementById('cert-ref').textContent = `Certificate ID: ${ref}`;
+  setTimeout(() => cert.scrollIntoView({ behavior:'smooth', block:'start' }), 400);
+}
+
+function resetQuiz() {
+  const container = document.getElementById('quiz-questions');
+  container.innerHTML = '';
+  document.getElementById('quiz-result').style.display = 'none';
+  document.getElementById('quiz-result').innerHTML = '';
+  document.getElementById('certificate').style.display = 'none';
+  document.getElementById('va-name').value = '';
+  document.querySelector('button[onclick="submitQuiz()"]').style.display = 'inline-block';
+  buildQuiz();
+  document.getElementById('quiz-section').scrollIntoView({ behavior:'smooth' });
+}
+
+buildQuiz();
+</script>
+</body>
+</html>

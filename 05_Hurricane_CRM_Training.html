@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hurricane CRM Training | LendMate VA Academy</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap');
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{--pink:#C855A0;--pink-l:#f5d0ea;--pink-xl:#fdf0f9;--purple:#8B5CF6;--purple-l:#ede9fe;--purple-xl:#f5f3ff;--grad:linear-gradient(135deg,#C855A0 0%,#8B5CF6 100%);--grad-soft:linear-gradient(135deg,#fdf0f9 0%,#f5f3ff 100%);--dark:#1a0a2e;--text:#1a1a2e;--muted:#6b6b8a;--border:#e8e0f5;--white:#ffffff;--cream:#faf9ff;--green:#059669;--green-l:#d1fae5;--red:#dc2626;--red-l:#fee2e2;--amber:#d97706;--amber-l:#fef3c7;}
+html{scroll-behavior:smooth;}body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);padding:28px 20px 60px;line-height:1.6;}.page{max-width:960px;margin:0 auto;}
+.prog-wrap{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);padding:10px 20px;margin:-28px -20px 28px;display:flex;align-items:center;gap:14px;box-shadow:0 2px 12px rgba(139,92,246,.08);}.prog-label{font-size:10px;font-weight:700;color:var(--muted);}.prog-track{flex:1;height:6px;background:var(--purple-l);border-radius:10px;overflow:hidden;}.prog-fill{height:100%;background:var(--grad);border-radius:10px;transition:width .4s;width:0%;}.prog-pct{font-size:12px;font-weight:700;color:var(--purple);min-width:34px;text-align:right;}
+.cover{background:var(--grad);border-radius:20px;padding:42px 46px 34px;margin-bottom:10px;position:relative;overflow:hidden;}.cover::before{content:'';position:absolute;right:-80px;top:-80px;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.07);}.cover-badge{display:inline-flex;align-items:center;background:rgba(255,255,255,.18);color:#fff;font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:14px;}.cover h1{font-family:'DM Serif Display',serif;color:#fff;font-size:30px;font-weight:400;margin-bottom:10px;line-height:1.25;}.cover h1 em{font-style:italic;opacity:.9;}.cover-sub{color:rgba(255,255,255,.85);font-size:13.5px;max-width:540px;line-height:1.65;}.cover-meta{display:flex;gap:26px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.2);flex-wrap:wrap;}.cm-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:3px;}.cm-val{font-size:12px;color:rgba(255,255,255,.9);font-weight:500;}
+.outline{background:var(--white);border-radius:14px;padding:20px 24px;margin-bottom:10px;box-shadow:0 2px 16px rgba(139,92,246,.06);border:1px solid var(--border);}.outline-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}.outline-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}.outline-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:var(--cream);border:1px solid var(--border);text-decoration:none;color:var(--text);font-size:12.5px;font-weight:600;transition:all .15s;}.outline-item:hover{background:var(--purple-xl);border-color:var(--purple-l);color:var(--purple);}.outline-num{width:22px;height:22px;border-radius:6px;background:var(--grad);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}.outline-item.quiz-link{background:var(--amber-l);border-color:#fcd34d;color:var(--amber);}.outline-item.quiz-link .outline-num{background:var(--amber);}
+.section{background:var(--white);border-radius:18px;padding:32px 36px;margin-bottom:10px;box-shadow:0 2px 20px rgba(139,92,246,.07);border:1px solid var(--border);}.sh{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px;padding-bottom:18px;border-bottom:2px solid var(--border);}.sh-icon{width:44px;height:44px;border-radius:12px;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}.sh-text h2{font-size:18px;font-weight:700;color:var(--dark);}.sh-text p{font-size:12.5px;color:var(--muted);margin-top:3px;}.sst{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin:24px 0 12px;display:flex;align-items:center;gap:10px;}.sst::after{content:'';flex:1;height:1px;background:var(--border);}
+.lesson-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}.lesson-card{background:var(--grad-soft);border:1px solid var(--pink-l);border-left:3px solid var(--pink);border-radius:12px;padding:16px 18px;}.lesson-card.full{grid-column:1/-1;}.lc-title{font-size:13px;font-weight:700;color:var(--dark);margin-bottom:6px;}.lc-body{font-size:12.5px;color:var(--muted);line-height:1.65;}.lc-badge{display:inline-block;margin-top:8px;font-size:10px;font-weight:700;padding:2px 10px;border-radius:4px;}.lc-badge.tip{background:var(--purple-l);color:var(--purple);}.lc-badge.note{background:var(--green-l);color:var(--green);}.lc-badge.warn{background:var(--amber-l);color:var(--amber);}
+.info-box{border-radius:12px;padding:16px 20px;margin:12px 0;}.info-box.purple{background:var(--purple-xl);border:1px solid var(--purple-l);}.info-box.green{background:var(--green-l);border:1px solid #86efac;}.info-box.amber{background:var(--amber-l);border:1px solid #fcd34d;}.ib-title{font-size:11px;font-weight:700;margin-bottom:8px;}.info-box.purple .ib-title{color:var(--purple);}.info-box.green .ib-title{color:var(--green);}.info-box.amber .ib-title{color:var(--amber);}.ib-body{font-size:12.5px;line-height:1.7;color:var(--text);}
+.stages-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0;}
+.stage-card{background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center;}
+.stage-label{font-size:12px;font-weight:700;color:var(--dark);margin-bottom:4px;}
+.stage-desc{font-size:11px;color:var(--muted);line-height:1.4;}
+.quiz-intro{background:var(--amber-l);border-radius:12px;padding:16px 20px;margin-bottom:24px;border:1px solid #fcd34d;}.qi-title{font-size:12px;font-weight:700;color:var(--amber);margin-bottom:6px;}.qi-body{font-size:12.5px;color:#78350f;line-height:1.65;}
+.name-row{display:flex;gap:12px;align-items:center;margin-bottom:28px;}.name-row label{font-size:13px;font-weight:600;color:var(--dark);white-space:nowrap;}.name-row input{flex:1;padding:10px 16px;border:2px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);background:var(--cream);outline:none;transition:border-color .15s;}.name-row input:focus{border-color:var(--purple);}
+.q-block{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border);}.q-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}.q-num{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:6px;}.q-text{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:14px;line-height:1.5;}.q-options{display:flex;flex-direction:column;gap:8px;}.q-option{display:flex;align-items:center;gap:12px;padding:11px 16px;border:2px solid var(--border);border-radius:10px;cursor:pointer;font-size:13px;color:var(--text);transition:all .15s;user-select:none;background:var(--white);}.q-option:hover{border-color:var(--purple);background:var(--purple-xl);}.q-option input{accent-color:var(--purple);width:16px;height:16px;flex-shrink:0;}.q-option.correct{border-color:var(--green);background:var(--green-l);font-weight:600;}.q-option.wrong{border-color:var(--red);background:var(--red-l);}.q-option.show-correct{border-color:var(--green);background:var(--green-l);}.q-feedback{margin-top:10px;font-size:12px;padding:9px 13px;border-radius:8px;line-height:1.6;}.q-feedback.correct{background:var(--green-l);color:#064e3b;border:1px solid #86efac;}.q-feedback.wrong{background:var(--red-l);color:#7f1d1d;border:1px solid #fca5a5;}
+.submit-btn{display:block;margin:28px auto 0;padding:13px 46px;background:var(--grad);color:#fff;border:none;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 4px 20px rgba(200,85,160,.3);transition:opacity .15s,transform .1s;}.submit-btn:hover{opacity:.92;transform:translateY(-1px);}
+.result-pass{background:var(--green-l);border:2px solid #86efac;border-radius:14px;padding:26px 30px;text-align:center;}.result-fail{background:var(--red-l);border:2px solid #fca5a5;border-radius:14px;padding:26px 30px;text-align:center;}.result-score{font-size:50px;font-weight:700;margin-bottom:6px;line-height:1;}.result-pass .result-score{color:var(--green);}.result-fail .result-score{color:var(--red);}.result-msg{font-size:15px;font-weight:700;margin-bottom:6px;}.result-sub{font-size:13px;color:var(--muted);}.retry-btn{margin-top:16px;padding:10px 30px;background:var(--red);color:#fff;border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
+#certificate{display:none;margin-bottom:10px;}.cert-wrap{background:var(--white);border-radius:20px;padding:52px 46px;text-align:center;box-shadow:0 8px 50px rgba(139,92,246,.15);border:3px solid var(--pink);position:relative;}.cert-corner{position:absolute;width:88px;height:88px;border-style:solid;border-color:var(--purple);border-width:0;}.cert-corner.tl{top:0;left:0;border-top-width:5px;border-left-width:5px;border-radius:18px 0 0 0;}.cert-corner.tr{top:0;right:0;border-top-width:5px;border-right-width:5px;border-radius:0 18px 0 0;}.cert-corner.bl{bottom:0;left:0;border-bottom-width:5px;border-left-width:5px;border-radius:0 0 0 18px;}.cert-corner.br{bottom:0;right:0;border-bottom-width:5px;border-right-width:5px;border-radius:0 0 18px 0;}.cert-badge{display:inline-block;background:var(--grad);color:#fff;font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:5px 18px;border-radius:20px;margin-bottom:14px;}.cert-org{font-size:13px;color:var(--muted);margin-bottom:20px;}.cert-div{width:180px;height:2px;background:var(--grad);margin:0 auto 20px;border-radius:2px;}.cert-intro{font-size:14px;color:var(--muted);margin-bottom:8px;}.cert-name{font-family:'DM Serif Display',serif;font-size:36px;color:var(--dark);margin-bottom:10px;font-style:italic;}.cert-completed{font-size:14px;color:var(--muted);margin-bottom:6px;}.cert-module{font-size:19px;font-weight:700;color:var(--pink);margin-bottom:20px;}.cert-score-badge{display:inline-block;background:var(--grad-soft);border:2px solid var(--pink-l);border-radius:50px;padding:8px 28px;font-size:15px;font-weight:700;color:var(--purple);margin-bottom:24px;}.cert-sigs{display:flex;justify-content:center;gap:70px;margin-bottom:18px;}.cert-sig-line{width:130px;height:1px;background:#ccc;margin-bottom:6px;}.cert-sig-name{font-size:11px;font-weight:600;color:var(--muted);}.cert-sig-role{font-size:10px;color:#aaa;}.cert-ref{font-size:10px;color:#ccc;font-family:'DM Mono',monospace;margin-top:4px;}.print-btn{margin-top:20px;padding:10px 30px;background:var(--grad);color:#fff;border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
+.footer{background:var(--dark);border-radius:14px;padding:16px 30px;margin-top:10px;display:flex;justify-content:space-between;align-items:center;}.footer-left{font-size:11px;color:rgba(255,255,255,.5);}.footer-right{font-family:'DM Mono',monospace;font-size:10px;color:#c4b5fd;}
+@media print{body{background:#fff;padding:0;}.prog-wrap,.outline,#quiz-section,.footer{display:none!important;}#certificate{display:block!important;}.section{box-shadow:none;border:1px solid #eee;}}
+.anchor{display:block;height:0;visibility:hidden;}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="prog-wrap"><div class="prog-label">PROGRESS</div><div class="prog-track"><div class="prog-fill" id="pb-fill"></div></div><div class="prog-pct" id="pb-pct">0%</div></div>
+
+<div class="cover">
+  <div class="cover-badge">🏠 LendMate VA Training Academy</div>
+  <h1>Hurricane CRM<br><em>Training Module</em></h1>
+  <p class="cover-sub">Learn how to use Hurricane CRM — from managing leads and customer profiles to support tickets, analytics, and automation best practices as a LendMate VA.</p>
+  <div class="cover-meta">
+    <div><div class="cm-label">Platform</div><div class="cm-val">Hurricane CRM</div></div>
+    <div><div class="cm-label">Module</div><div class="cm-val">CRM-HUR-005</div></div>
+    <div><div class="cm-label">Pass Score</div><div class="cm-val">70% (18/25 questions)</div></div>
+    <div><div class="cm-label">VA Role</div><div class="cm-val">Manage · Track · Support · Report</div></div>
+  </div>
+</div>
+
+<div class="outline">
+  <div class="outline-title">Training Outline</div>
+  <div class="outline-grid">
+    <a href="#s1" class="outline-item"><div class="outline-num">1</div>CRM Basics</a>
+    <a href="#s2" class="outline-item"><div class="outline-num">2</div>Lead Management</a>
+    <a href="#s3" class="outline-item"><div class="outline-num">3</div>Customer Support</a>
+    <a href="#s4" class="outline-item"><div class="outline-num">4</div>Reporting &amp; Analytics</a>
+    <a href="#s5" class="outline-item"><div class="outline-num">5</div>Advanced Features</a>
+    <a href="#quiz" class="outline-item quiz-link"><div class="outline-num">✎</div>Knowledge Quiz (25 Qs)</a>
+  </div>
+</div>
+
+<span class="anchor" id="s1"></span>
+<div class="section" data-s="1">
+  <div class="sh"><div class="sh-icon">🌀</div><div class="sh-text"><h2>CRM Basics</h2><p>What Hurricane CRM is, what it stores, and how VAs use the dashboard.</p></div></div>
+  <div class="sst">What is Hurricane CRM</div>
+  <div class="lesson-grid">
+    <div class="lesson-card"><div class="lc-title">Primary Purpose</div><div class="lc-body">Hurricane CRM is a customer relationship management platform used to manage customer interactions, track leads, handle sales pipelines, and run support operations. For mortgage VAs, it provides structure for managing borrower and referral relationships, tracking opportunities, and ensuring no follow-up falls through the cracks.</div><span class="lc-badge tip">CRM = track, manage, follow up, report</span></div>
+    <div class="lesson-card"><div class="lc-title">What is Stored in a Customer Profile</div><div class="lc-body">Customer profiles store: <strong>contact information</strong> (name, phone, email, address), <strong>purchase or interaction history</strong>, and <strong>support ticket history</strong>. Customer hobbies, personal preferences, and lifestyle data are not stored in a CRM profile and are not relevant to mortgage operations.</div><span class="lc-badge note">Store only relevant professional data</span></div>
+    <div class="lesson-card full"><div class="lc-title">The Dashboard</div><div class="lc-body">The Hurricane CRM dashboard is your operational command center. It is used for <strong>viewing and managing leads and tasks</strong> — not for sending marketing emails automatically, running payroll, or managing physical inventory. When you log in, the dashboard shows your active leads, pending tasks, and pipeline status at a glance. Check it at the start of every shift.</div></div>
+  </div>
+  <div class="sst">Key Benefits of Using a CRM</div>
+  <div class="lesson-grid">
+    <div class="lesson-card"><div class="lc-title">Why CRM Matters</div><div class="lc-body">The primary benefit of a CRM system is <strong>improved customer engagement and sales efficiency</strong>. It keeps all customer data centralized, prevents lost follow-ups, and gives the broker visibility into pipeline activity. A well-maintained CRM is the difference between a reactive and a proactive mortgage operation.</div></div>
+    <div class="lesson-card"><div class="lc-title">CRM Analytics</div><div class="lc-body">Effective CRM analytics are powered by <strong>customer interactions and sales history</strong> — not office layout plans, employee vacation data, or weather forecasts. The data you enter into Hurricane CRM directly determines the quality of the insights the broker can draw from it. Accurate data entry is a VA's most important CRM responsibility.</div><span class="lc-badge warn">Garbage data in = useless analytics out</span></div>
+  </div>
+</div>
+
+<span class="anchor" id="s2"></span>
+<div class="section" data-s="2">
+  <div class="sh"><div class="sh-icon">🎯</div><div class="sh-text"><h2>Lead &amp; Sales Management</h2><p>How leads are handled, qualified, scored, and moved through the pipeline.</p></div></div>
+  <div class="sst">Lead Lifecycle</div>
+  <div class="stages-grid">
+    <div class="stage-card"><div class="stage-label">New Lead</div><div class="stage-desc">Lead enters system — review and qualify immediately</div></div>
+    <div class="stage-card"><div class="stage-label">Qualified</div><div class="stage-desc">Lead shows interest and fits target profile — convert to opportunity</div></div>
+    <div class="stage-card"><div class="stage-label">Opportunity</div><div class="stage-desc">Active potential deal — manage through pipeline stages</div></div>
+    <div class="stage-card"><div class="stage-label">Won / Lost</div><div class="stage-desc">Closed successfully or decided not to proceed</div></div>
+  </div>
+  <div class="sst">Lead Handling Rules</div>
+  <div class="lesson-grid">
+    <div class="lesson-card"><div class="lc-title">First Action on a New Lead</div><div class="lc-body">When a new lead is received, the first action is to <strong>review and qualify the lead</strong> — not close it immediately, not assign it to marketing, not delete duplicates as a first step. Qualification determines if the lead has potential before any further resources are invested.</div><span class="lc-badge tip">Review and qualify first — always</span></div>
+    <div class="lesson-card"><div class="lc-title">When a Lead Becomes an Opportunity</div><div class="lc-body">A lead becomes an opportunity when there is <strong>demonstrated interest or potential purchase intent</strong> from the contact. It is not based on time in the system (30 days is irrelevant), not when the lead score drops, and not when they unsubscribe. Demonstrated interest is the only trigger.</div></div>
+    <div class="lesson-card"><div class="lc-title">Lead Scoring</div><div class="lc-body"><strong>Lead Scoring</strong> is the Hurricane CRM feature that automatically prioritizes leads based on their engagement level and how well they match the target borrower profile. High engagement + strong profile fit = high-quality lead. Low or invalid contact data = low-quality lead. Use lead scores to prioritize your follow-up order.</div><span class="lc-badge note">Lead Scoring = automatic prioritization tool</span></div>
+    <div class="lesson-card"><div class="lc-title">High-Quality vs. Low-Quality Leads</div><div class="lc-body">A <strong>high-quality lead</strong> shows repeated interest and matches the target client profile. Low-quality leads include contacts who unsubscribed immediately, have invalid email addresses, or came from competitor client lists. Do not invest equal time in all leads — prioritize by quality and lead score.</div></div>
+    <div class="lesson-card full"><div class="lc-title">Handling Unresponsive Leads</div><div class="lc-body">If a lead is unresponsive for 3 months, the correct action is to <strong>re-engage with a targeted follow-up campaign</strong> — not delete the lead, not immediately mark as lost, and not convert it to an opportunity without any renewed contact. Re-engagement preserves the relationship and gives the lead another chance to convert. Mark as lost only after re-engagement attempts fail.</div><span class="lc-badge note">Unresponsive does not mean lost — re-engage first</span></div>
+  </div>
+</div>
+
+<span class="anchor" id="s3"></span>
+<div class="section" data-s="3">
+  <div class="sh"><div class="sh-icon">🎫</div><div class="sh-text"><h2>Customer Support Module</h2><p>How support tickets work in Hurricane CRM — from creation to resolution.</p></div></div>
+  <div class="sst">Ticket Handling Process</div>
+  <div class="lesson-grid">
+    <div class="lesson-card"><div class="lc-title">First Step When a Ticket is Submitted</div><div class="lc-body">When a customer submits a support ticket, the first step is to <strong>assign priority and route it to the correct team</strong>. Do not close it immediately, do not convert it to a lead, and do not delete the customer profile. Routing ensures the right person handles it within the right timeframe.</div><span class="lc-badge tip">Priority assignment + correct routing = step one</span></div>
+    <div class="lesson-card"><div class="lc-title">Standard Billing Issue Priority</div><div class="lc-body">A standard billing issue ticket is typically assigned <strong>Medium priority</strong> — not Critical (reserved for system outages or data loss), not High (reserved for urgent client-impacting issues), and not Low (reserved for minor informational requests). Use the priority matrix consistently.</div><span class="lc-badge note">Billing issues = Medium priority by default</span></div>
+    <div class="lesson-card"><div class="lc-title">Before Closing a Ticket</div><div class="lc-body">Before closing any support ticket, a <strong>resolution summary must be added</strong>. Do not delete customer data, do not convert to a sales opportunity, and do not archive the system. The resolution summary creates a record of what was done and how — it is required for every ticket before closure.</div><span class="lc-badge warn">No resolution summary = ticket cannot be closed</span></div>
+    <div class="lesson-card"><div class="lc-title">Ticket Escalation</div><div class="lc-body">A support ticket should be escalated when it <strong>remains unresolved beyond the defined SLA (Service Level Agreement) time</strong>. Do not escalate tickets that are resolved immediately, do not escalate based on customer politeness, and do not escalate low-priority tickets simply because they have waited. Escalate based on SLA breach.</div><span class="lc-badge warn">Escalate on SLA breach — not on client emotion</span></div>
+    <div class="lesson-card full"><div class="lc-title">Tracking Repeated Issues</div><div class="lc-body">The <strong>Ticket History</strong> feature in Hurricane CRM allows VAs to identify repeated support issues across multiple customers. This is valuable for spotting systemic problems — if many customers are raising the same issue, it signals a process or product problem that needs broker attention. Check Ticket History when patterns emerge.</div></div>
+  </div>
+  <div class="info-box green"><div class="ib-title">How CRM Automation Helps Support Teams</div><div class="ib-body">CRM automation in Hurricane helps by <strong>routing tickets to the right agent and sending automated follow-up emails</strong> at defined intervals. It does not automatically close tickets without review, predict weather, or eliminate all manual record-keeping. Automation handles routing and reminders — humans handle resolution.</div></div>
+</div>
+
+<span class="anchor" id="s4"></span>
+<div class="section" data-s="4">
+  <div class="sh"><div class="sh-icon">📊</div><div class="sh-text"><h2>Reporting &amp; Analytics</h2><p>What reports are available in Hurricane CRM and what they tell you.</p></div></div>
+  <div class="sst">Key Reports</div>
+  <div class="lesson-grid">
+    <div class="lesson-card"><div class="lc-title">Quarterly Sales Overview</div><div class="lc-body">The <strong>Quarterly Sales Overview</strong> report shows a salesperson's or team's performance over a quarter — number of deals closed, revenue generated, and pipeline activity. This is the report to reference when the broker asks about team performance for a specific quarter.</div></div>
+    <div class="lesson-card"><div class="lc-title">Conversion Rate Report</div><div class="lc-body">The conversion rate report shows the <strong>percentage of leads that became opportunities or closed sales</strong>. It does not track birthdays, count support tickets, or show employee attendance. Conversion rate is the key metric for measuring how effectively the team turns interest into closed business.</div></div>
+    <div class="lesson-card"><div class="lc-title">What CRM Analytics Can Do</div><div class="lc-body">Hurricane CRM analytics can: track conversion rates, predict sales trends, and analyze call transcripts. What it <strong>cannot</strong> do: control employee payroll. Analytics are for sales and customer insight — payroll is handled by a separate HR or accounting system entirely.</div><span class="lc-badge note">Analytics = sales insight. Not payroll control.</span></div>
+    <div class="lesson-card"><div class="lc-title">Why Tracking Interactions Matters</div><div class="lc-body">Tracking customer interactions over time helps <strong>optimize engagement and tailor marketing strategies</strong> to individual borrower behavior. It does not reduce electricity costs, eliminate the sales team, or guarantee zero negative reviews. The value is personalization and targeting — not operations savings.</div></div>
+    <div class="lesson-card full"><div class="lc-title">What Dashboards Display</div><div class="lc-body">Hurricane CRM dashboards display <strong>key metrics, lead statuses, and sales progress</strong> — not weather forecasts, employee medical records, or building floor plans. Dashboards give the broker and VA a real-time operational overview. Keep your dashboard data clean and current so it accurately reflects pipeline reality.</div></div>
+  </div>
+</div>
+
+<span class="anchor" id="s5"></span>
+<div class="section" data-s="5">
+  <div class="sh"><div class="sh-icon">⚙️</div><div class="sh-text"><h2>Advanced Features &amp; Best Practices</h2><p>How CRM automation works and how to keep the system clean and reliable.</p></div></div>
+  <div class="sst">CRM Automation Capabilities</div>
+  <div class="info-box purple"><div class="ib-title">What CRM Automation Can Do</div><div class="ib-body">Hurricane CRM automation can do all of the following simultaneously: send personalized follow-up emails, automatically escalate tickets that breach SLA, and update opportunity stages based on defined rules. When a broker or VA sets up automation correctly, these three actions happen without manual intervention — freeing up time for higher-value tasks.</div></div>
+  <div class="sst">CRM Maintenance Best Practices</div>
+  <div class="lesson-grid">
+    <div class="lesson-card full"><div class="lc-title">Three Non-Negotiable CRM Maintenance Rules</div><div class="lc-body">
+      <strong>1. Clean duplicate and outdated records regularly.</strong> Duplicate contacts corrupt analytics and lead scores. If you spot a duplicate, flag it for cleanup — do not let it sit.<br><br>
+      <strong>2. Keep customer data accurate and updated.</strong> Outdated phone numbers, old email addresses, and incorrect deal stages make the CRM unreliable. Update records immediately when information changes.<br><br>
+      <strong>3. Train all staff on proper CRM usage.</strong> A CRM is only as good as the data entered into it. Inconsistent usage across team members creates gaps and errors. Follow the same processes consistently.
+    </div><span class="lc-badge note">All three rules apply — not just one or two</span></div>
+  </div>
+</div>
+
+<span class="anchor" id="quiz"></span>
+<div id="quiz-section">
+<div class="section" data-s="q" style="border:2px solid var(--amber-l);">
+  <div class="sh"><div class="sh-icon">✎</div><div class="sh-text"><h2>Knowledge Quiz — Hurricane CRM</h2><p>25 questions · 70% to pass (18/25) · Enter your name to generate your certificate.</p></div></div>
+  <div class="quiz-intro"><div class="qi-title">Before You Start</div><div class="qi-body">Answer all 25 questions, then click Submit. You need at least 18 correct (70%) to pass. Review the lessons above before starting.</div></div>
+  <div class="name-row"><label for="va-name">Your Full Name:</label><input type="text" id="va-name" placeholder="e.g. Maria Santos"></div>
+  <div id="quiz-questions"></div>
+  <div id="quiz-result" style="display:none;margin-top:24px;"></div>
+  <button class="submit-btn" onclick="submitQuiz()">Submit Quiz →</button>
+</div>
+</div>
+
+<div id="certificate"><div class="cert-wrap">
+  <div class="cert-corner tl"></div><div class="cert-corner tr"></div><div class="cert-corner bl"></div><div class="cert-corner br"></div>
+  <div class="cert-badge">Certificate of Completion</div><div class="cert-org">LendMate VA Training Academy</div><div class="cert-div"></div>
+  <div class="cert-intro">This certifies that</div><div class="cert-name" id="cert-name"></div>
+  <div class="cert-completed">has successfully completed</div><div class="cert-module">Hurricane CRM — Training Module</div>
+  <div class="cert-score-badge" id="cert-score"></div><div class="cert-div"></div>
+  <div class="cert-sigs"><div><div class="cert-sig-line"></div><div class="cert-sig-name">Training Team</div><div class="cert-sig-role">KeyPlayers</div></div><div><div class="cert-sig-name" id="cert-date" style="margin-bottom:6px;"></div><div class="cert-sig-line"></div><div class="cert-sig-name">Date Issued</div></div></div>
+  <div class="cert-ref" id="cert-ref"></div><button class="print-btn" onclick="window.print()">🖨 Print Certificate</button>
+</div></div>
+<div class="footer"><div class="footer-left">KeyPlayers · LendMate VA Training Academy · lendmate.ca</div><div class="footer-right">CRM-HUR-005 · Hurricane CRM</div></div>
+</div>
+
+<script>
+const PASS=18;
+const questions=[
+  {q:"What is the main purpose of Hurricane CRM?",options:["Track weather patterns and environmental data","Manage customer interactions, leads, and sales activities","Monitor employee attendance and payroll","Automate physical inventory management"],correct:1,feedback:"Hurricane CRM is a customer relationship management system used to manage customer interactions, track leads, run sales pipelines, and handle support operations."},
+  {q:"Which of the following would NOT be stored in a standard customer profile in Hurricane CRM?",options:["Contact information such as phone and email","Purchase and interaction history","The customer's personal hobbies and interests","Support ticket history"],correct:2,feedback:"CRM profiles store professional and transactional data — contact info, purchase history, and support tickets. Personal hobbies are not relevant to mortgage operations and should not be stored."},
+  {q:"The Hurricane CRM dashboard is primarily used for:",options:["Viewing and managing leads and tasks","Sending marketing emails automatically","Conducting payroll operations","Managing physical office inventory"],correct:0,feedback:"The dashboard is your operational command center — it shows leads, tasks, and pipeline status. It is not for email marketing, payroll, or inventory management."},
+  {q:"What is a key benefit of using Hurricane CRM?",options:["Predicting natural disasters","Improving customer engagement and sales efficiency","Reducing the total number of employees","Eliminating the need for reporting entirely"],correct:1,feedback:"The primary benefit of a CRM is improved customer engagement and sales efficiency — centralized data, no lost follow-ups, and full pipeline visibility for the broker."},
+  {q:"What type of data powers effective CRM analytics in Hurricane?",options:["Customer interactions and sales history","Office layout and floor plans","Employee vacation preferences","Local weather forecasts"],correct:0,feedback:"CRM analytics are driven by customer interaction data and sales history. The quality of your analytics depends entirely on the accuracy and completeness of data you enter."},
+  {q:"What should you do first when a new lead enters Hurricane CRM?",options:["Close the lead immediately to keep the pipeline clean","Assign it to the marketing team","Review and qualify the lead to assess its potential","Delete duplicate records first"],correct:2,feedback:"The first action is always to review and qualify the lead. Qualification determines whether the lead has real potential before investing further resources. Do not close, assign, or delete first."},
+  {q:"A lead becomes an opportunity in Hurricane CRM when:",options:["The lead has been in the system for over 30 days","The lead unsubscribes from newsletters","There is demonstrated interest or potential purchase intent","The lead score drops to zero"],correct:2,feedback:"A lead converts to an opportunity based on demonstrated interest or purchase intent — not time in the system, not a dropped lead score, and not a newsletter unsubscribe."},
+  {q:"Which Hurricane CRM feature automatically prioritizes leads based on engagement and profile fit?",options:["Lead Scoring","Customer Feedback module","Ticket Escalation rules","Data Wipe function"],correct:0,feedback:"Lead Scoring automatically assigns priority to leads based on their engagement level and how well they match the target profile. Use lead scores to determine follow-up order."},
+  {q:"In Hurricane CRM, what does a 'lost opportunity' mean?",options:["The lead record has been permanently deleted","The customer decided not to purchase or proceed","The sales representative forgot to follow up","The lead was converted to a support ticket"],correct:1,feedback:"A lost opportunity means the customer made a deliberate decision not to purchase or proceed. It is not a deletion, not a forgotten follow-up, and not a ticket conversion."},
+  {q:"What is the purpose of opportunity stages in Hurricane CRM?",options:["Track the progress of a potential sale through the pipeline","Store employee vacation scheduling data","Automate system backup operations","Assign weather-related risk scores"],correct:0,feedback:"Opportunity stages track the progress of a potential sale as it moves through the pipeline. Each stage represents a milestone in the sales process from initial contact to close."},
+  {q:"Which of the following represents a high-quality lead in Hurricane CRM?",options:["A contact who shows repeated interest and matches the target profile","A contact who unsubscribes from all communications immediately","A contact with an invalid email address","A lead sourced from a competitor's client list"],correct:0,feedback:"A high-quality lead demonstrates repeated interest and matches the target client profile. Unsubscribes, invalid contact data, and competitor lists are indicators of low quality."},
+  {q:"A lead in Hurricane CRM has been unresponsive for 3 months. What is the recommended action?",options:["Permanently delete the lead from the system","Re-engage the lead with a targeted follow-up campaign","Immediately mark the lead as lost","Convert the lead to an opportunity without any new contact"],correct:1,feedback:"Three months of silence does not mean the lead is gone. Re-engage with a follow-up campaign first. Only mark as lost after re-engagement attempts have genuinely failed."},
+  {q:"When a customer submits a support ticket in Hurricane CRM, what is the first step?",options:["Assign priority and route it to the correct team","Close the ticket immediately","Convert it to a sales lead","Delete the customer profile"],correct:0,feedback:"The first step is always to assign priority and route the ticket to the correct team. Proper routing ensures the right person handles it within the appropriate SLA timeframe."},
+  {q:"A standard billing issue ticket in Hurricane CRM typically carries which priority level?",options:["Critical","High","Medium","Low"],correct:2,feedback:"Standard billing issues are Medium priority. Critical is for system failures or data loss. High is for urgent client-impacting situations. Low is for minor informational requests."},
+  {q:"What must be completed before closing a support ticket in Hurricane CRM?",options:["Delete all customer data associated with the ticket","Add a resolution summary describing what was done","Convert the ticket to a sales opportunity","Archive the entire CRM system"],correct:1,feedback:"A resolution summary is required before any ticket can be closed. It records what action was taken and how the issue was resolved — this is mandatory for every ticket."},
+  {q:"Which feature in Hurricane CRM helps track repeated support issues across multiple customers?",options:["Ticket History","Lead Scoring","Sales Pipeline","Payroll Tracker"],correct:0,feedback:"Ticket History allows VAs to identify patterns of repeated issues across customers. If multiple customers report the same problem, it signals a systemic issue that needs broker attention."},
+  {q:"When should a support ticket be escalated in Hurricane CRM?",options:["When the ticket is resolved immediately","When it remains unresolved beyond the defined SLA time","When the customer sends a thank-you message","When the ticket is assigned a low priority"],correct:1,feedback:"Escalate when the SLA time has been breached — meaning the ticket has remained unresolved longer than the defined response standard. Escalation is not triggered by customer emotion or ticket priority alone."},
+  {q:"How does CRM automation help support teams in Hurricane?",options:["By automatically closing all tickets without human review","By routing tickets to the right agent and sending automated follow-up emails","By predicting future weather-related disruptions","By permanently eliminating all manual record-keeping"],correct:1,feedback:"CRM automation routes tickets to the correct agent and sends follow-up emails at defined intervals. Humans still review and resolve tickets — automation handles the routing and reminders only."},
+  {q:"Which report in Hurricane CRM shows a salesperson's performance over a specific quarter?",options:["Customer Satisfaction Heatmap","Sales Forecast","Quarterly Sales Overview","System Audit Log"],correct:2,feedback:"The Quarterly Sales Overview report shows team or individual performance over a quarter — deals closed, revenue, and pipeline activity. Use this report when the broker asks about quarterly results."},
+  {q:"What insight does a conversion rate report in Hurricane CRM provide?",options:["Number of customer birthdays in a period","Percentage of leads that became opportunities or closed sales","Total count of support tickets submitted","Employee attendance percentage"],correct:1,feedback:"The conversion rate report shows what percentage of leads converted to opportunities or closed sales. It is the core metric for measuring how effectively the team turns interest into closed business."},
+  {q:"CRM analytics in Hurricane can do all of the following EXCEPT:",options:["Track conversion rates across the pipeline","Predict sales trends based on historical data","Analyze call transcripts for insight","Control employee payroll processing"],correct:3,feedback:"Hurricane CRM analytics can track conversions, predict trends, and analyze call transcripts. Payroll is handled by a separate HR or accounting system — it is completely outside CRM scope."},
+  {q:"Why is tracking customer interactions over time important in Hurricane CRM?",options:["It helps optimize engagement strategies and tailor marketing to individual behavior","It reduces office electricity consumption","It eliminates the need for a sales team","It guarantees customers will never leave negative reviews"],correct:0,feedback:"Tracking interactions over time enables the team to optimize engagement and tailor outreach to individual borrower behavior. The value is personalization and better targeting — not operations savings."},
+  {q:"What do dashboards in Hurricane CRM typically display?",options:["Weather forecasts and environmental data","Key metrics, lead statuses, and sales progress","Employee medical records","Building floor plans and office layouts"],correct:1,feedback:"Dashboards display key operational metrics — lead statuses, pipeline progress, task completion rates, and sales performance. Keep your dashboard data accurate so it reflects pipeline reality."},
+  {q:"CRM automation in Hurricane CRM can help by doing which of the following?",options:["Sending personalized follow-up emails only","Automatically escalating overdue tickets only","Updating opportunity stages only","All of the above — emails, escalations, and stage updates"],correct:3,feedback:"Hurricane CRM automation can simultaneously send personalized follow-up emails, escalate overdue tickets, and update opportunity stages. These three actions can all be automated together."},
+  {q:"Which of the following is a best practice for maintaining Hurricane CRM?",options:["Regularly cleaning duplicate and outdated records","Keeping customer data accurate and updated at all times","Training all staff on consistent CRM usage","All of the above"],correct:3,feedback:"All three are required CRM maintenance practices — not optional. Clean duplicates, keep data current, and ensure consistent team usage. All three apply simultaneously, not just one or two."}
+];
+
+function buildQuiz(){
+  const c=document.getElementById('quiz-questions');c.innerHTML='';
+  questions.forEach((q,i)=>{
+    const b=document.createElement('div');b.className='q-block';
+    b.innerHTML=`<div class="q-num">Question ${i+1} of ${questions.length}</div><div class="q-text">${q.q}</div><div class="q-options">${q.options.map((o,j)=>`<label class="q-option" id="opt${i}_${j}"><input type="radio" name="q${i}" value="${j}"><span>${o}</span></label>`).join('')}</div><div class="q-feedback" id="fb${i}" style="display:none;"></div>`;
+    c.appendChild(b);
+  });
+}
+function submitQuiz(){
+  const name=document.getElementById('va-name').value.trim();
+  if(!name){alert('Please enter your name before submitting.');return;}
+  let score=0,all=true;
+  questions.forEach((q,i)=>{
+    const sel=document.querySelector(`input[name="q${i}"]:checked`);
+    if(!sel){all=false;return;}
+    const val=parseInt(sel.value);const fb=document.getElementById('fb'+i);
+    q.options.forEach((_,j)=>{const o=document.getElementById(`opt${i}_${j}`);o.style.pointerEvents='none';if(j===q.correct)o.classList.add('show-correct');});
+    const ch=document.getElementById(`opt${i}_${val}`);
+    if(val===q.correct){score++;ch.classList.add('correct');fb.className='q-feedback correct';fb.innerHTML=`✓ Correct. ${q.feedback}`;}
+    else{ch.classList.add('wrong');fb.className='q-feedback wrong';fb.innerHTML=`✗ Incorrect. ${q.feedback}`;}
+    fb.style.display='block';
+  });
+  if(!all){alert('Please answer all questions before submitting.');return;}
+  const pass=score>=PASS;const rd=document.getElementById('quiz-result');rd.style.display='block';
+  if(pass){rd.innerHTML=`<div class="result-pass"><div class="result-score">${score}/${questions.length}</div><div class="result-msg">Passed.</div><div class="result-sub">Score: ${score}/${questions.length}. Screenshot your certificate below and send to your trainer.</div></div>`;showCert(name,score);}
+  else{rd.innerHTML=`<div class="result-fail"><div class="result-score">${score}/${questions.length}</div><div class="result-msg">Not passed — you need 18/25 to pass.</div><div class="result-sub">Review the incorrect answers and retry.</div><button class="retry-btn" onclick="resetQuiz()">↺ Retry</button></div>`;}
+  rd.scrollIntoView({behavior:'smooth',block:'start'});document.querySelector('.submit-btn').style.display='none';
+}
+function showCert(name,score){
+  const c=document.getElementById('certificate');c.style.display='block';
+  document.getElementById('cert-name').textContent=name;
+  document.getElementById('cert-score').textContent=`Score: ${score}/${questions.length} — ${Math.round(score/questions.length*100)}%`;
+  const now=new Date();
+  document.getElementById('cert-date').textContent=now.toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('cert-ref').textContent=`Certificate ID: LM-HUR-${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}-${Math.floor(Math.random()*9000+1000)}`;
+  setTimeout(()=>c.scrollIntoView({behavior:'smooth',block:'start'}),400);
+}
+function resetQuiz(){
+  document.getElementById('quiz-result').style.display='none';document.getElementById('quiz-result').innerHTML='';
+  document.getElementById('certificate').style.display='none';document.getElementById('va-name').value='';
+  document.querySelector('.submit-btn').style.display='block';buildQuiz();
+  document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'});
+}
+const secs=document.querySelectorAll('.section[data-s]');
+function updateProg(){const sy=window.scrollY+window.innerHeight*.6;let v=0;secs.forEach(s=>{if(s.offsetTop<=sy)v++;});const p=Math.round(v/secs.length*100);document.getElementById('pb-fill').style.width=p+'%';document.getElementById('pb-pct').textContent=p+'%';}
+window.addEventListener('scroll',updateProg,{passive:true});updateProg();buildQuiz();
+</script>
+</body>
+</html>

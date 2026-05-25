@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LendMate | Canadian Mortgage Document Cheat Sheet</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap');
+
+:root {
+  --pink: #C855A0;
+  --purple: #8B5CF6;
+  --grad: linear-gradient(135deg, #C855A0 0%, #8B5CF6 100%);
+  --grad-soft: linear-gradient(135deg, rgba(200,85,160,0.07) 0%, rgba(139,92,246,0.07) 100%);
+  --bg: #F9F8FE;
+  --white: #ffffff;
+  --text: #1a1a2e;
+  --muted: #64748b;
+  --border: #e5e0f5;
+  --border-soft: #ede9fb;
+  --green: #10b981;
+  --amber: #f59e0b;
+  --red: #ef4444;
+  --blue: #3b82f6;
+  --card-shadow: 0 2px 16px rgba(139,92,246,0.07);
+  --card-hover: 0 8px 36px rgba(139,92,246,0.15);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 15px; line-height: 1.6; }
+
+/* ── HEADER ── */
+.hdr {
+  background: var(--white); border-bottom: 1px solid var(--border);
+  padding: 13px 28px; display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(139,92,246,0.06);
+}
+.logo { display: flex; align-items: center; gap: 10px; }
+.lm { width: 34px; height: 34px; background: var(--grad); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 13px; }
+.lname { font-size: 17px; font-weight: 700; }
+.lname span { color: var(--pink); }
+.lsub { font-size: 10px; color: var(--muted); }
+.hbadge { background: var(--grad-soft); border: 1px solid var(--border); border-radius: 20px; padding: 5px 14px; font-size: 12px; font-weight: 600; color: var(--purple); }
+
+/* ── PROGRESS ── */
+.pgbar {
+  background: var(--white); border-bottom: 1px solid var(--border); padding: 10px 28px 12px;
+}
+.pgtop { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); font-weight: 500; margin-bottom: 7px; }
+.pgtrack { height: 5px; background: var(--border-soft); border-radius: 10px; overflow: hidden; }
+.pgfill { height: 100%; background: var(--grad); border-radius: 10px; transition: width 0.5s ease; width: 0%; }
+.pills { display: flex; gap: 5px; margin-top: 9px; flex-wrap: wrap; }
+.pill { font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 20px; border: 1px solid var(--border); background: var(--white); color: var(--muted); transition: all 0.3s; }
+.pill.active { background: var(--grad); color: #fff; border-color: transparent; }
+.pill.done { background: rgba(16,185,129,0.1); color: var(--green); border-color: rgba(16,185,129,0.3); }
+
+/* ── MAIN ── */
+.main { max-width: 880px; margin: 0 auto; padding: 36px 20px 80px; }
+.screen { display: none; }
+.screen.active { display: block; animation: fu 0.35s ease; }
+@keyframes fu { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── CARD ── */
+.card { background: var(--white); border-radius: 18px; border: 1px solid var(--border); box-shadow: var(--card-shadow); overflow: hidden; }
+.ch { padding: 22px 28px; background: var(--grad); color: #fff; }
+.ch .tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.8; margin-bottom: 6px; }
+.ch h2 { font-family: 'DM Serif Display', serif; font-size: 24px; line-height: 1.2; }
+.cb { padding: 28px; }
+
+/* ── HERO ── */
+.hero { text-align: center; padding: 48px 28px 40px; background: var(--white); border-radius: 20px; border: 1px solid var(--border); box-shadow: var(--card-shadow); position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--grad); }
+.hico { width: 70px; height: 70px; background: var(--grad); border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 30px; margin: 0 auto 22px; box-shadow: 0 8px 24px rgba(200,85,160,0.3); }
+.hero h1 { font-family: 'DM Serif Display', serif; font-size: 30px; line-height: 1.2; margin-bottom: 12px; }
+.hero h1 span { color: var(--pink); font-style: italic; }
+.hero p { color: var(--muted); font-size: 14px; line-height: 1.75; max-width: 560px; margin: 0 auto 28px; }
+.hstats { display: flex; gap: 18px; justify-content: center; margin-bottom: 30px; flex-wrap: wrap; }
+.hstat { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); font-weight: 500; }
+.hstat .si { width: 28px; height: 28px; background: var(--grad-soft); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; border: 1px solid var(--border); }
+.outline-panel { background: var(--grad-soft); border: 1px solid var(--border); border-radius: 14px; padding: 18px 22px; text-align: left; margin-bottom: 28px; }
+.outline-panel h3 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--purple); margin-bottom: 14px; }
+.ogrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.oi { display: flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 500; }
+.onum { width: 20px; height: 20px; background: var(--grad); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 10px; font-weight: 700; flex-shrink: 0; }
+
+/* ── BUTTONS ── */
+.btn { display: inline-flex; align-items: center; gap: 7px; padding: 12px 24px; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+.btn-p { background: var(--grad); color: #fff; box-shadow: 0 4px 14px rgba(200,85,160,0.28); }
+.btn-p:hover { transform: translateY(-1px); box-shadow: 0 7px 22px rgba(200,85,160,0.42); }
+.btn-s { background: var(--white); color: var(--purple); border: 1.5px solid var(--border); }
+.btn-s:hover { border-color: var(--purple); background: var(--grad-soft); }
+.bgrp { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+/* ── CONTENT ── */
+.slabel { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--purple); margin-bottom: 13px; display: flex; align-items: center; gap: 8px; }
+.slabel::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.intro-t { font-size: 14px; color: var(--muted); line-height: 1.75; margin-bottom: 22px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+
+/* ── TX CARDS ── */
+.txgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
+.txc { border-radius: 12px; padding: 18px; border: 1px solid; }
+.txc.pur { border-color: rgba(16,185,129,0.3); background: rgba(16,185,129,0.05); }
+.txc.ref { border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.05); }
+.txc.swt { border-color: rgba(139,92,246,0.3); background: rgba(139,92,246,0.05); }
+.txico { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 10px; }
+.txc.pur .txico { background: rgba(16,185,129,0.12); }
+.txc.ref .txico { background: rgba(245,158,11,0.12); }
+.txc.swt .txico { background: rgba(139,92,246,0.12); }
+.txc h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+.txc.pur h4 { color: var(--green); }
+.txc.ref h4 { color: #d97706; }
+.txc.swt h4 { color: var(--purple); }
+.txc p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+/* ── DOC BOXES ── */
+.dgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.dbox { background: var(--grad-soft); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+.dbox h4 { font-size: 12px; font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; color: var(--pink); }
+.dbox ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.dbox ul li { font-size: 13px; color: var(--text); line-height: 1.5; display: flex; align-items: flex-start; gap: 7px; }
+.dbox ul li::before { content: '→'; color: var(--purple); font-weight: 700; flex-shrink: 0; font-size: 11px; margin-top: 2px; }
+
+/* ── STEP ITEMS ── */
+.slist { display: flex; flex-direction: column; gap: 10px; }
+.si { display: flex; gap: 14px; align-items: flex-start; background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 14px; transition: border-color 0.2s, box-shadow 0.2s; }
+.si:hover { border-color: var(--purple); box-shadow: var(--card-hover); }
+.snum { width: 32px; height: 32px; background: var(--grad); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+.scon h4 { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+.scon p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.scon ul { list-style: none; margin-top: 5px; display: flex; flex-direction: column; gap: 3px; }
+.scon ul li { font-size: 12px; color: var(--muted); display: flex; align-items: flex-start; gap: 6px; line-height: 1.5; }
+.scon ul li::before { content: '•'; color: var(--pink); font-weight: 900; flex-shrink: 0; }
+
+/* ── ALERTS ── */
+.alert { border-radius: 11px; padding: 13px 16px; font-size: 13px; line-height: 1.6; display: flex; gap: 9px; align-items: flex-start; margin-top: 14px; }
+.alert.info { background: rgba(139,92,246,0.06); border: 1px solid rgba(139,92,246,0.2); color: #5b21b6; }
+.alert.warn { background: rgba(245,158,11,0.07); border: 1px solid rgba(245,158,11,0.25); color: #92400e; }
+.alert.ok { background: rgba(16,185,129,0.07); border: 1px solid rgba(16,185,129,0.25); color: #065f46; }
+.alert .ai { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+/* ── TABLE ── */
+.twrap { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--card-shadow); }
+.dtable { width: 100%; border-collapse: collapse; font-size: 13px; }
+.dtable th { padding: 10px 14px; text-align: left; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; background: var(--grad-soft); border-bottom: 2px solid var(--border); color: var(--purple); }
+.dtable td { padding: 10px 14px; border-bottom: 1px solid var(--border-soft); color: var(--text); line-height: 1.5; vertical-align: middle; }
+.dtable tr:last-child td { border-bottom: none; }
+.dtable tr:hover td { background: var(--grad-soft); }
+.ck { color: var(--green); font-weight: 700; font-size: 16px; }
+.na { color: var(--muted); }
+.ifr { font-size: 11px; font-weight: 600; color: var(--amber); background: rgba(245,158,11,0.1); padding: 2px 8px; border-radius: 10px; }
+
+/* ── FOCUS CARDS ── */
+.fcgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.fc { border-radius: 14px; padding: 20px; border: 1px solid var(--border); background: var(--white); }
+.fc .fci { font-size: 24px; margin-bottom: 10px; }
+.fc h4 { font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+.fc p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.fc.pur { border-color: rgba(16,185,129,0.3); background: rgba(16,185,129,0.04); }
+.fc.ref { border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.04); }
+.fc.swt { border-color: rgba(139,92,246,0.3); background: rgba(139,92,246,0.04); }
+
+/* ── NAV FOOTER ── */
+.nfooter { display: flex; justify-content: space-between; align-items: center; margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border); }
+
+/* ── QUIZ ── */
+.qhdr { padding: 20px 26px; background: var(--grad); color: #fff; display: flex; align-items: center; justify-content: space-between; }
+.qhdr h2 { font-family: 'DM Serif Display', serif; font-size: 21px; }
+.qctr { background: rgba(255,255,255,0.2); border-radius: 20px; padding: 4px 12px; font-size: 12px; font-weight: 600; }
+.qbody { padding: 28px; }
+.qpbar { height: 4px; background: var(--border); border-radius: 4px; margin-bottom: 24px; overflow: hidden; }
+.qpfill { height: 100%; background: var(--grad); border-radius: 4px; transition: width 0.4s ease; }
+.qtbadge { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 10px; border-radius: 20px; margin-bottom: 12px; }
+.qtbadge.mc { background: rgba(139,92,246,0.1); color: var(--purple); }
+.qtbadge.tf { background: rgba(200,85,160,0.1); color: var(--pink); }
+.qtext { font-size: 16px; font-weight: 600; line-height: 1.5; margin-bottom: 20px; }
+.opts { display: flex; flex-direction: column; gap: 9px; margin-bottom: 20px; }
+.opt { display: flex; align-items: flex-start; gap: 12px; padding: 13px 16px; border: 1.5px solid var(--border); border-radius: 11px; cursor: pointer; transition: all 0.2s; background: var(--white); }
+.opt:hover:not(.locked) { border-color: var(--purple); background: var(--grad-soft); }
+.opt.sel { border-color: var(--purple); background: rgba(139,92,246,0.06); }
+.opt.correct { border-color: var(--green); background: rgba(16,185,129,0.06); }
+.opt.wrong { border-color: var(--red); background: rgba(239,68,68,0.05); }
+.oltr { width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; background: var(--border); color: var(--muted); flex-shrink: 0; transition: all 0.2s; }
+.opt.sel .oltr { background: var(--purple); color: #fff; }
+.opt.correct .oltr { background: var(--green); color: #fff; }
+.opt.wrong .oltr { background: var(--red); color: #fff; }
+.otxt { font-size: 13px; line-height: 1.5; color: var(--text); padding-top: 4px; }
+.fb { border-radius: 11px; padding: 13px 16px; font-size: 13px; line-height: 1.6; margin-bottom: 18px; display: none; }
+.fb.show { display: flex; gap: 9px; align-items: flex-start; }
+.fb.correct { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.3); color: #065f46; }
+.fb.incorrect { background: rgba(239,68,68,0.07); border: 1px solid rgba(239,68,68,0.25); color: #991b1b; }
+
+/* ── CERTIFICATE ── */
+.cwrap { background: var(--white); border-radius: 20px; border: 2px solid var(--border); box-shadow: 0 12px 48px rgba(139,92,246,0.14); padding: 44px 36px; position: relative; overflow: hidden; margin-bottom: 18px; text-align: center; }
+.cwrap::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: var(--grad); }
+.cwrap::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 6px; background: var(--grad); }
+.cinner { border: 1px solid var(--border); border-radius: 14px; padding: 36px; background: linear-gradient(135deg, rgba(200,85,160,0.03) 0%, rgba(139,92,246,0.03) 100%); }
+.cseal { width: 76px; height: 76px; background: var(--grad); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 34px; margin: 0 auto 18px; box-shadow: 0 8px 28px rgba(200,85,160,0.32); }
+.cbrand { font-size: 12px; font-weight: 700; color: var(--pink); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 4px; }
+.ctitle { font-family: 'DM Serif Display', serif; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 18px; }
+.cpres { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+.cname { font-family: 'DM Serif Display', serif; font-size: 34px; color: var(--text); margin-bottom: 18px; min-height: 44px; }
+.cdesc { font-size: 13px; color: var(--muted); line-height: 1.7; max-width: 400px; margin: 0 auto 22px; }
+.cmod { font-size: 15px; font-weight: 700; color: var(--purple); padding: 9px 22px; background: var(--grad-soft); border-radius: 8px; display: inline-block; margin-bottom: 26px; }
+.cdiv { height: 1px; background: var(--border); margin-bottom: 22px; }
+.cstats { display: flex; justify-content: center; gap: 36px; flex-wrap: wrap; }
+.cstat .clabel { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 3px; }
+.cstat .cval { font-size: 14px; font-weight: 700; color: var(--text); }
+.sbadge { display: inline-flex; align-items: center; gap: 7px; padding: 10px 22px; border-radius: 40px; font-size: 19px; font-weight: 700; margin-bottom: 22px; }
+.sbadge.pass { background: rgba(16,185,129,0.1); border: 2px solid var(--green); color: #065f46; }
+.sbadge.fail { background: rgba(239,68,68,0.07); border: 2px solid var(--red); color: #991b1b; }
+.srows { margin-bottom: 22px; }
+.srow { display: flex; align-items: center; justify-content: space-between; background: var(--grad-soft); border: 1px solid var(--border); border-radius: 10px; padding: 13px 18px; margin-bottom: 9px; }
+.srow .sl { font-size: 13px; font-weight: 600; }
+.srow .sv { font-size: 13px; font-weight: 700; color: var(--purple); }
+.ninput-wrap { margin-bottom: 18px; text-align: center; }
+.ninput-wrap label { font-size: 13px; font-weight: 600; color: var(--muted); display: block; margin-bottom: 8px; }
+.ninput { width: 100%; max-width: 360px; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--text); outline: none; transition: border-color 0.2s; }
+.ninput:focus { border-color: var(--purple); }
+.pnote { font-size: 12px; color: var(--muted); text-align: center; margin-top: 8px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .txgrid, .fcgrid { grid-template-columns: 1fr; }
+  .dgrid { grid-template-columns: 1fr; }
+  .ogrid { grid-template-columns: 1fr; }
+  .cstats { gap: 18px; }
+  .cb, .qbody { padding: 18px; }
+  .main { padding: 22px 14px 60px; }
+  .hero { padding: 32px 18px 28px; }
+}
+
+@media print {
+  .hdr, .pgbar, .nfooter, .bgrp, .pnote, .btn { display: none !important; }
+  .screen { display: none !important; }
+  #s-cert { display: block !important; }
+  #cert-pass { display: block !important; }
+  body { background: white; }
+  .cwrap { box-shadow: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="logo">
+    <div class="lm">LM</div>
+    <div>
+      <div class="lname"><span>LendMate</span> VA Solutions</div>
+      <div class="lsub">Training Academy</div>
+    </div>
+  </div>
+  <div class="hbadge">📂 Document Cheat Sheet v2</div>
+</div>
+
+<!-- PROGRESS -->
+<div class="pgbar">
+  <div class="pgtop"><span id="plabel">Not started</span><span id="ppct">0%</span></div>
+  <div class="pgtrack"><div class="pgfill" id="pfill"></div></div>
+  <div class="pills" id="pills"></div>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SCREEN: INTRO                              -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="screen active" id="s-intro">
+  <div class="hero">
+    <div class="hico">📂</div>
+    <h1>Canadian Mortgage <span>Document Cheat Sheet</span></h1>
+    <p>Know exactly which documents to collect for every mortgage transaction. This module covers all three transaction types: Purchase, Refinance, and Switch/Transfer.</p>
+    <div class="hstats">
+      <div class="hstat"><div class="si">⏱</div> ~20 minutes</div>
+      <div class="hstat"><div class="si">📚</div> 6 Lessons</div>
+      <div class="hstat"><div class="si">🎯</div> 2 Quizzes</div>
+      <div class="hstat"><div class="si">🏆</div> Certificate</div>
+    </div>
+    <div class="outline-panel">
+      <h3>Module Outline</h3>
+      <div class="ogrid">
+        <div class="oi"><div class="onum">1</div> The 4 Transaction Types</div>
+        <div class="oi"><div class="onum">2</div> Purchase: Core Documents</div>
+        <div class="oi"><div class="onum">3</div> Purchase: Income & Down Payment</div>
+        <div class="oi"><div class="onum">4</div> Refinance &amp; Switch Documents</div>
+        <div class="oi"><div class="onum">5</div> Common Docs: All Files</div>
+        <div class="oi"><div class="onum">6</div> Document Requirements at a Glance</div>
+        <div class="oi"><div class="onum">Q</div> Quizzes + Certificate</div>
+      </div>
+    </div>
+    <div class="bgrp">
+      <button class="btn btn-p" onclick="go('tx')">Start Training →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SCREEN 1: TRANSACTION TYPES               -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="screen" id="s-tx">
+  <div class="card">
+    <div class="ch"><div class="tag">Lesson 1 of 6</div><h2>The 4 Mortgage Transaction Types</h2></div>
+    <div class="cb">
+      <p class="intro-t">Every mortgage file falls into one of three transaction types. Each has its own document focus. Confirming the transaction type is the first thing you do before collecting anything.</p>
+
+      <div class="slabel">Transaction Types</div>
+      <div class="txgrid" style="grid-template-columns:repeat(3,1fr);">
+        <div class="txc pur"><div class="txico">🏡</div><h4>Purchase</h4><p>Buying a property with a new mortgage. Focuses on down payment sourcing and property details. Requires the most documentation.</p></div>
+        <div class="txc ref"><div class="txico">🔁</div><h4>Refinance</h4><p>Restructuring an existing mortgage. Focuses on property equity and mortgage repayment history.</p></div>
+        <div class="txc swt"><div class="txico">🔄</div><h4>Switch / Transfer</h4><p>Moving an existing mortgage to a new lender without changing the loan amount. Focuses on credit stability and payment history.</p></div>
+      </div>
+
+      <div class="slabel">Key Differences</div>
+      <div class="twrap">
+        <table class="dtable">
+          <thead><tr><th>Factor</th><th>Purchase</th><th>Refinance</th><th>Switch</th></tr></thead>
+          <tbody>
+            <tr><td>Documentation Load</td><td>Heaviest</td><td>Medium</td><td>Lightest</td></tr>
+            <tr><td>Purchase & Sale Agreement</td><td><span class="ck">✓</span></td><td><span class="na">—</span></td><td><span class="na">—</span></td></tr>
+            <tr><td>Down Payment Proof</td><td><span class="ck">✓</span></td><td><span class="na">—</span></td><td><span class="na">—</span></td></tr>
+            <tr><td>Current Mortgage Statement</td><td><span class="na">—</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
+            <tr><td>Loan Amount Changes?</td><td>New loan</td><td>Can change</td><td>Stays same</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="alert info" style="margin-top:16px;">
+        <span class="ai">💡</span>
+        <span>Always confirm the transaction type with the broker before collecting documents. Using the wrong checklist wastes time and can delay the file.</span>
+      </div>
+
+      <div class="nfooter">
+        <button class="btn btn-s" onclick="go('intro')">← Back</button>
+        <button class="btn btn-p" onclick="go('pur-core')">Next: Purchase Core Docs →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SCREEN 2: PURCHASE CORE                   -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="screen" id="s-pur-core">
+  <div class="card">
+    <div class="ch"><div class="tag">Lesson 2 of 6</div><h2>Purchase: Core Documents</h2></div>
+    <div class="cb">
+      <p class="intro-t">Purchase files require the most documentation. These are the foundational documents that establish the transaction and verify the borrower's identity. Every purchase file needs all of these.</p>
+
+      <div class="slabel">Essential Documents</div>
+      <div class="slist" style="margin-bottom:20px;">
+        <div class="si">
+          <div class="snum">1</div>
+          <div class="scon">
+            <h4>Purchase &amp; Sale Agreement (APS)</h4>
+            <p>Must be fully signed by all parties before submission. All addendums must be attached.</p>
+            <ul>
+              <li>Confirm all pages are included and all parties have signed</li>
+              <li>Check closing date, property address, and purchase price match the file</li>
+              <li>All schedule addendums (A, B, etc.) must be present</li>
+            </ul>
+          </div>
+        </div>
+        <div class="si">
+          <div class="snum">2</div>
+          <div class="scon">
+            <h4>MLS Listing</h4>
+            <p>Required for resale properties. Confirms property type, address, lot details, and specifications the lender needs to underwrite.</p>
+            <ul>
+              <li>Property address must match exactly across all documents</li>
+              <li>For new construction, builder documents replace the MLS listing</li>
+            </ul>
+          </div>
+        </div>
+        <div class="si">
+          <div class="snum">3</div>
+          <div class="scon">
+            <h4>Government-Issued Photo ID</h4>
+            <p>Valid photo ID required for all borrowers on the file. Driver's license or passport.</p>
+            <ul>
+              <li>Must not be expired</li>
+              <li>Name on ID must match name on all mortgage documents exactly</li>
+              <li>Both sides of driver's license are typically required</li>
+            </ul>
+          </div>
+        </div>
+        <div class="si">
+          <div class="snum">4</div>
+          <div class="scon">
+            <h4>Real Estate Salesperson Info</h4>
+            <p>Contact and licensing details for the real estate agent involved in the transaction. Required by the lender to verify the agent's registration.</p>
+            <ul>
+              <li>Agent's full name and brokerage</li>
+              <li>RECO registration number (Ontario) or provincial equivalent</li>
+              <li>Contact phone and email</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert warn">
+        <span class="ai">⚠️</span>
+        <span><strong>Name match rule:</strong> The borrower's name across the ID, APS, and mortgage application must be identical. One discrepancy will generate a lender condition and delay the file.</span>
+      </div>
+
+      <div class="nfooter">
+        <button class="btn btn-s" onclick="go('tx')">← Back</button>
+        <button class="btn btn-p" onclick="go('pur-income')">Next: Income & Down Payment →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SCREEN 3: PURCHASE INCOME + DOWN PAYMENT  -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="screen" id="s-pur-income">
+  <div class="card">
+    <div class="ch"><div class="tag">Lesson 3 of 6</div><h2>Purchase: Income &amp; Down Payment</h2></div>
+    <div class="cb">
+      <p class="intro-t">After core documents, income verification and down payment sourcing are the two areas lenders scrutinize most on a purchase file. Requirements differ based on employment type.</p>
+
+      <div class="slabel">Income Verification</div>
+      <div class="dgrid" style="margin-bottom:20px;">
+        <div class="dbox">
+          <h4>💼 Employed Applicants</h4>
+          <ul>
+            <li>Pay stubs from the last 30 days</li>
+            <li>T4 slips for the past 1 to 2 years</li>
+            <li>Employment letter dated within 30 to 60 days confirming position, salary, and employment type</li>
+          </ul>
+        </div>
+        <div class="dbox">
+          <h4>🗂 Self-Employed Applicants</h4>
+          <ul>
+            <li>T1 General forms for the last 2 years</li>
+            <li>Notice of Assessment (NOA) from CRA for last 2 years</li>
+            <li>Articles of Incorporation (if incorporated)</li>
+            <li>Master Business License (if sole proprietor)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="slabel">Down Payment &amp; Source of Funds</div>
+      <div class="slist" style="margin-bottom:16px;">
+        <div class="si">
+          <div class="snum" style="background:linear-gradient(135deg,#10b981,#059669)">01</div>
+          <div class="scon">
+            <h4>Proof of Down Payment + 90-Day Bank Statements</h4>
+            <p>Documentation confirming the full amount is available. All accounts contributing must show a full 90-day transaction history. Lenders look for large unexplained deposits.</p>
+          </div>
+        </div>
+        <div class="si">
+          <div class="snum" style="background:linear-gradient(135deg,#10b981,#059669)">02</div>
+          <div class="scon">
+            <h4>Gift Letter (if applicable)</h4>
+            <p>Required if any portion of the down payment is a gift from a family member. Must be signed by the donor and confirm the funds are a gift, not a loan.</p>
+          </div>
+        </div>
+        <div class="si">
+          <div class="snum" style="background:linear-gradient(135deg,#10b981,#059669)">03</div>
+          <div class="scon">
+            <h4>RRSP / Home Buyers' Plan (HBP) Documents</h4>
+            <p>If the borrower is using their RRSP through the Home Buyers' Plan, withdrawal documents are required to confirm the amount and eligibility.</p>
+          </div>
+        </div>
+        <div class="si">
+          <div class="snum" style="background:linear-gradient(135deg,#10b981,#059669)">04</div>
+          <div class="scon">
+            <h4>Sale Agreement (if applicable)</h4>
+            <p>If down payment funds are coming from the sale of an existing property, the sale agreement and closing statement are required to trace the source of funds.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert warn">
+        <span class="ai">⚠️</span>
+        <span><strong>Common VA error:</strong> Collecting only 30 days of bank statements for the down payment. The requirement is always 90 days for all accounts contributing to the down payment. Submitting less will generate a lender condition.</span>
+      </div>
+
+      <div class="nfooter">
+        <button class="btn btn-s" onclick="go('pur-core')">← Back</button>
+        <button class="btn btn-p" onclick="go('q1')">Take Quiz 1: Purchase →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- QUIZ 1                                     -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="screen" id="s-q1">
+  <div class="card">
+    <div class="qhdr"><h2>Quiz 1: Purchase Files</h2><div class="qctr" id="q1ctr">Q 1 of 6</div></div>
+    <div class="qbody">
+      <div class="qpbar"><div class="qpfill" id="q1pf"></div></div>
+      <div id="q1body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SCREEN 4: REFINANCE / SWITCH               -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="screen" id="s-ref">
+  <div class="card">
+    <div class="ch"><div class="tag">Lesson 4 of 6</div><h2>Refinance &amp; Switch Documents</h2></div>
+    <div class="cb">
+      <p class="intro-t">Refinance and Switch/Transfer share a similar document set. The focus shifts from proving a new purchase to documenting an existing mortgage and property. The key difference between them is purpose and whether the loan amount changes.</p>
+
+      <div class="slabel">Core Documents (All Three Types)</div>
+      <div class="dgrid" style="margin-bottom:20px;">
+        <div class="dbox">
+          <h4>📄 Mortgage Documents</h4>
+          <ul>
+            <li>Current mortgage statement showing balance, rate, and payment history</li>
+            <li>Charge/Mortgage document (original registered mortgage)</li>
+            <li>Transfer/Deed of the property</li>
+            <li>Payout statement from current lender (if available for Switch)</li>
+          </ul>
+        </div>
+        <div class="dbox">
+          <h4>🏠 Property Documents</h4>
+          <ul>
+            <li>Property tax statement from municipality</li>
+            <li>Property insurance policy or binder</li>
+            <li>Mortgage repayment history (if applicable)</li>
+            <li>Property appraisal (if requested by lender)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="slabel">Income Verification</div>
+      <div class="dbox" style="margin-bottom:16px;">
+        <h4>📋 Same as Purchase When Income is Used for Qualification</h4>
+        <ul>
+          <li>Pay stubs (last 30 days) and T4 slips (last 1 to 2 years) for employed applicants</li>
+          <li>T1 General and NOA (last 2 years) for self-employed applicants</li>
+          <li>Employment letter if required by the lender</li>
+        </ul>
+      </div>
+
+      <div class="slabel">Key Differences Between the Two</div>
+      <div class="slist" style="margin-bottom:16px;">
+        <div class="si">
+          <div class="snum" style="background:linear-gradient(135deg,#f59e0b,#d97706)">Re</div>
+          <div class="scon">
+            <h4>Refinance</h4>
+            <p>Restructuring the mortgage. The loan amount may change. Focus is on property equity and mortgage history. Asset statements only needed if funds are being paid out.</p>
+          </div>
+        </div>
+        <div class="si">
+          <div class="snum" style="background:linear-gradient(135deg,#8B5CF6,#6d3fca)">Sw</div>
+          <div class="scon">
+            <h4>Switch / Transfer</h4>
+            <p>Loan amount does not change. Moving to a new lender only. Focus is on credit stability and payment record. Typically the lightest documentation load of the two.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert info">
+        <span class="ai">ℹ️</span>
+        <span>For Switch/Transfer files, you do NOT need a Purchase &amp; Sale Agreement, down payment proof, or 90-day bank statements. The loan amount is not changing, so source of funds verification is not required.</span>
+      </div>
+
+      <div class="nfooter">
+        <button class="btn btn-s" onclick="go('q1')">← Back</button>
+        <button class="btn btn-p" onclick="go('common')">Next: Common Docs →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SCREEN 5: COMMON DOCS                     -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="screen" id="s-common">
+  <div class="card">
+    <div class="ch"><div class="tag">Lesson 5 of 6</div><h2>Common Documents: All File Types</h2></div>
+    <div class="cb">
+      <p class="intro-t">Regardless of transaction type, every mortgage file requires this universal set of documents. Have these ready before submitting any application.</p>
+
+      <div class="slabel">Universal Requirements</div>
+      <div class="dgrid" style="margin-bottom:20px;">
+        <div class="dbox">
+          <h4>🪪 Government-Issued ID</h4>
+          <ul>
+            <li>Valid photo ID for all borrowers on the file</li>
+            <li>Must not be expired</li>
+            <li>Name must match all documents exactly</li>
+            <li>Both sides of driver's license if used</li>
+          </ul>
+        </div>
+        <div class="dbox">
+          <h4>📊 Credit Bureau Report</h4>
+          <ul>
+            <li>Pulled by the lender via Equifax or TransUnion</li>
+            <li>Not provided by the borrower</li>
+            <li>Your role: ensure the signed consent form is in the file before credit is pulled</li>
+          </ul>
+        </div>
+        <div class="dbox">
+          <h4>📝 Signed Application &amp; Consent Forms</h4>
+          <ul>
+            <li>All lender-required forms must be signed before the file can be processed</li>
+            <li>Consent form must be signed before any credit inquiry</li>
+            <li>Use the lender's specific forms, not generic ones</li>
+          </ul>
+        </div>
+        <div class="dbox">
+          <h4>📍 Proof of Address</h4>
+          <ul>
+            <li>May be requested depending on the file type and lender</li>
+            <li>Utility bill, bank statement, or official document showing current residential address</li>
+            <li>Check lender checklist to confirm if required</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="slabel">Key Focus Areas by Transaction Type</div>
+      <div class="fcgrid" style="margin-bottom:16px;">
+        <div class="fc pur">
+          <div class="fci">🏡</div>
+          <h4>Purchase</h4>
+          <p>Heavy focus on down payment sourcing. Every dollar must be traced with a clear paper trail. Highest documentation load.</p>
+        </div>
+        <div class="fc ref">
+          <div class="fci">🔁</div>
+          <h4>Refinance</h4>
+          <p>Emphasis on property equity and mortgage repayment history. Lenders assess how much equity exists and how reliably payments have been made.</p>
+        </div>
+        <div class="fc swt">
+          <div class="fci">🔄</div>
+          <h4>Switch / Transfer</h4>
+          <p>Focus on credit stability, payment history, and property value. Lenders want confidence the borrower is low-risk before taking on the file.</p>
+        </div>
+      </div>
+
+      <div class="alert ok">
+        <span class="ai">✅</span>
+        <span><strong>Rule of thumb:</strong> When in doubt, collect more documentation upfront. It is always easier to have it and not need it than to chase it down mid-approval.</span>
+      </div>
+
+      <div class="nfooter">
+        <button class="btn btn-s" onclick="go('ref')">← Back</button>
+        <button class="btn btn-p" onclick="go('glance')">Next: At a Glance Table →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SCREEN 6: AT A GLANCE TABLE               -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="screen" id="s-glance">
+  <div class="card">
+    <div class="ch"><div class="tag">Lesson 6 of 6</div><h2>Document Requirements at a Glance</h2></div>
+    <div class="cb">
+      <p class="intro-t">Use this table as your quick-reference every time you start a new mortgage file. It shows exactly which document categories apply to each transaction type.</p>
+
+      <div class="slabel">Quick Reference Table</div>
+      <div class="twrap" style="margin-bottom:20px;">
+        <table class="dtable">
+          <thead>
+            <tr><th>Document Category</th><th>Purchase</th><th>Refinance</th><th>Switch</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Purchase &amp; Sale Agreement</td><td><span class="ck">✓</span></td><td><span class="na">—</span></td><td><span class="na">—</span></td></tr>
+            <tr><td>Down Payment / Source of Funds</td><td><span class="ck">✓</span></td><td><span class="na">—</span></td><td><span class="na">—</span></td></tr>
+            <tr><td>Income Documents</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
+            <tr><td>Current Mortgage Statement</td><td><span class="na">—</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
+            <tr><td>Charge/Mortgage Document</td><td><span class="na">—</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
+            <tr><td>Property Tax &amp; Insurance</td><td><span class="na">—</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
+            <tr><td>Property Appraisal</td><td><span class="na">—</span></td><td><span class="ifr">If requested</span></td><td><span class="ifr">If requested</span></td></tr>
+            <tr><td>Gov. ID &amp; Consent Forms</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
+            <tr><td>Real Estate Agent Info</td><td><span class="ck">✓</span></td><td><span class="na">—</span></td><td><span class="na">—</span></td></tr>
+            <tr><td>RRSP / HBP Documents</td><td><span class="ifr">If applicable</span></td><td><span class="na">—</span></td><td><span class="na">—</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="slabel">Quick Summary</div>
+      <div class="dgrid">
+        <div class="dbox">
+          <h4>🏡 Purchase</h4>
+          <ul>
+            <li>ID + APS + MLS + Agent Info</li>
+            <li>Income documents</li>
+            <li>90-day bank statements + Down payment proof</li>
+            <li>Gift Letter / RRSP / Sale docs if applicable</li>
+          </ul>
+        </div>
+        <div class="dbox">
+          <h4>🔁 Refinance</h4>
+          <ul>
+            <li>Current mortgage statement + Charge doc + Transfer/Deed</li>
+            <li>Property tax statement + Insurance</li>
+            <li>Income documents</li>
+            <li>Appraisal if requested by lender</li>
+          </ul>
+        </div>
+        <div class="dbox">
+          <h4>🔄 Switch / Transfer</h4>
+          <ul>
+            <li>Current mortgage statement</li>
+            <li>Property tax + Insurance binder</li>
+            <li>Payout statement if available</li>
+            <li>No down payment or APS needed</li>
+          </ul>
+        </div>
+        <div class="dbox">
+          <h4>✅ Always Required</h4>
+          <ul>
+            <li>Government-issued photo ID</li>
+            <li>Credit bureau consent form</li>
+            <li>Signed application and lender forms</li>
+            <li>Proof of address (if requested)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="nfooter">
+        <button class="btn btn-s" onclick="go('common')">← Back</button>
+        <button class="btn btn-p" onclick="go('q2')">Take Final Quiz →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- QUIZ 2                                     -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="screen" id="s-q2">
+  <div class="card">
+    <div class="qhdr"><h2>Quiz 2: All Transaction Types</h2><div class="qctr" id="q2ctr">Q 1 of 6</div></div>
+    <div class="qbody">
+      <div class="qpbar"><div class="qpfill" id="q2pf"></div></div>
+      <div id="q2body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- CERTIFICATE                               -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="screen" id="s-cert">
+
+  <div id="cert-pass" style="display:none;">
+    <div class="ninput-wrap">
+      <label>Enter your full name for the certificate:</label>
+      <input type="text" class="ninput" id="cname-in" placeholder="e.g. Maria Santos" oninput="document.getElementById('cname-disp').innerText = this.value || 'Your Name'" />
+    </div>
+    <div class="cwrap" id="certificate">
+      <div class="cinner">
+        <div class="cseal">🏆</div>
+        <div class="cbrand">LendMate VA Solutions</div>
+        <div class="ctitle">Certificate of Completion</div>
+        <div class="cpres">This certifies that</div>
+        <div class="cname" id="cname-disp">Your Name</div>
+        <div class="cdesc">has successfully completed the following training module and demonstrated competency in the required knowledge areas.</div>
+        <div class="cmod">Canadian Mortgage Document Cheat Sheet</div>
+        <div class="cdiv"></div>
+        <div class="cstats">
+          <div class="cstat"><div class="clabel">Overall Score</div><div class="cval" id="cscore">-</div></div>
+          <div class="cstat"><div class="clabel">Date Completed</div><div class="cval" id="cdate">-</div></div>
+          <div class="cstat"><div class="clabel">Module Version</div><div class="cval">Doc CS v2.0</div></div>
+        </div>
+      </div>
+    </div>
+    <p class="pnote">Take a screenshot of this certificate and send it to your supervisor to confirm completion.</p>
+    <div class="bgrp" style="margin-top:16px;">
+      <button class="btn btn-p" onclick="window.print()">🖨 Print Certificate</button>
+      <button class="btn btn-s" onclick="go('intro')">← Restart Module</button>
+    </div>
+  </div>
+
+  <div id="cert-fail" style="display:none;">
+    <div class="card">
+      <div class="qhdr" style="background:linear-gradient(135deg,#ef4444,#dc2626);">
+        <h2>Keep Reviewing</h2>
+        <div class="qctr">Results</div>
+      </div>
+      <div class="qbody" style="text-align:center;">
+        <div style="font-size:48px;margin-bottom:16px;">📋</div>
+        <div class="sbadge fail" id="fail-badge" style="margin:0 auto 20px;">Total: -</div>
+        <p style="font-size:14px;color:var(--muted);margin-bottom:22px;line-height:1.7;">You need <strong>70% or higher</strong> to earn the certificate. Review the lessons and retake. You can retake as many times as needed.</p>
+        <div class="srows">
+          <div class="srow"><span class="sl">Quiz 1: Purchase Files</span><span class="sv" id="fq1">-</span></div>
+          <div class="srow"><span class="sl">Quiz 2: All Transaction Types</span><span class="sv" id="fq2">-</span></div>
+        </div>
+        <div class="bgrp">
+          <button class="btn btn-p" onclick="retake()">Retake Quizzes</button>
+          <button class="btn btn-s" onclick="go('tx')">Review Lessons</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div><!-- end .main -->
+
+<script>
+// ── QUIZ DATA ──────────────────────────────────────────────────
+const Q1 = [
+  {
+    type:'mc',
+    q:'Which document is required ONLY for a Purchase transaction and not for Refinance or Switch/Transfer?',
+    opts:['Current Mortgage Statement','Purchase & Sale Agreement (APS)','Government-Issued ID','Property Tax Statement'],
+    ans:1,
+    exp:'The Purchase & Sale Agreement is only required for Purchase transactions because it is the legal contract establishing the new property acquisition. Refinance and Switch/Transfer both involve an existing mortgage, so no purchase agreement exists.'
+  },
+  {
+    type:'tf',
+    q:'True or False: For a Purchase transaction, you only need 30 days of bank statements to verify the borrower\'s down payment.',
+    opts:['True','False'],
+    ans:1,
+    exp:'False. 90 days of bank statements are required for all accounts contributing to the down payment. 30 days is the requirement for pay stubs only. Submitting only 30 days of bank statements is one of the most common VA errors and will generate a lender condition.'
+  },
+  {
+    type:'mc',
+    q:'A self-employed borrower applies for a Purchase mortgage. Which document confirms their business registration if they operate as a sole proprietor?',
+    opts:['Articles of Incorporation','Notice of Assessment (NOA)','Master Business License','T4 slip'],
+    ans:2,
+    exp:'A Master Business License confirms registration as a sole proprietor. Articles of Incorporation apply to incorporated businesses. The NOA is a CRA tax document. T4 slips are for employed applicants, not self-employed borrowers.'
+  },
+  {
+    type:'tf',
+    q:'True or False: The Real Estate Salesperson\'s information is required as part of a Purchase file.',
+    opts:['True','False'],
+    ans:0,
+    exp:'True. The lender requires the contact and licensing details for the real estate agent involved in the transaction to verify their registration. This includes the agent\'s full name, brokerage, provincial registration number, and contact details.'
+  },
+  {
+    type:'mc',
+    q:'A borrower is using money from their RRSP toward the down payment through the Home Buyers\' Plan. What additional document is required?',
+    opts:['A Gift Letter from the RRSP institution','RRSP withdrawal documents confirming the amount and HBP eligibility','An additional 90 days of RRSP statements','A letter from CRA confirming RRSP balance'],
+    ans:1,
+    exp:'RRSP / HBP withdrawal documents are required when a borrower uses the Home Buyers\' Plan. These confirm the withdrawal amount and confirm the borrower meets HBP eligibility criteria. This is separate from regular bank statements.'
+  },
+  {
+    type:'mc',
+    q:'Which of the following must be verified on the APS before submitting to the lender?',
+    opts:['The mortgage rate and amortization period','All parties have signed, all addendums are attached, and the closing date and purchase price are correct','The borrower\'s credit score and employment status','The property tax amount and insurance premium'],
+    ans:1,
+    exp:'Before submitting the APS, confirm: all parties have signed, all addendums are attached, and the closing date, property address, and purchase price match the rest of the file. These are the most common APS errors that generate lender conditions.'
+  }
+];
+
+const Q2 = [
+  {
+    type:'mc',
+    q:'Which of the following documents is required for a Refinance but NOT for a Purchase transaction?',
+    opts:['Purchase & Sale Agreement','Government-Issued ID','Charge/Mortgage Document','90-Day Bank Statements'],
+    ans:2,
+    exp:'The Charge/Mortgage document (the original registered mortgage) is required for Refinance because this transaction involves restructuring an existing mortgage. There is no existing mortgage document in a new Purchase.'
+  },
+  {
+    type:'tf',
+    q:'True or False: In a Switch/Transfer transaction, the loan amount increases to give the borrower access to additional funds.',
+    opts:['True','False'],
+    ans:1,
+    exp:'False. In a Switch/Transfer, the loan amount stays exactly the same. Only the lender changes. If a borrower wants to access additional funds from their home, that would be a Refinance, not a Switch. This distinction affects the entire document checklist.'
+  },
+  {
+    type:'mc',
+    q:'For which transaction type does the lender most heavily scrutinize property equity and mortgage repayment history?',
+    opts:['Purchase','Switch/Transfer','Refinance','All transaction types equally'],
+    ans:2,
+    exp:'Refinance focuses heavily on property equity and mortgage repayment history. The lender needs to assess how much equity is available and whether the borrower has made payments reliably. This is distinct from Purchase (down payment sourcing focus) and Switch (credit stability focus).'
+  },
+  {
+    type:'tf',
+    q:'True or False: The Credit Bureau Report is provided by the borrower as part of their document package.',
+    opts:['True','False'],
+    ans:1,
+    exp:'False. The Credit Bureau Report is pulled by the lender directly via Equifax or TransUnion. The borrower does not provide it. Your responsibility as a VA is to ensure the signed credit consent form is in the file before any credit inquiry is made.'
+  },
+  {
+    type:'mc',
+    q:'For a Refinance transaction, when are asset or bank statements required?',
+    opts:['Always, for every refinance file','Only if funds are being paid out from accounts as part of the refinance','Never, refinances do not require any bank statements','Only for self-employed borrowers'],
+    ans:1,
+    exp:'For Refinance transactions, asset statements are only required if funds are being paid out from accounts as part of the transaction. Unlike Purchase, there is no standard 90-day bank history requirement for a refinance unless the borrower is accessing funds from a specific account.'
+  },
+  {
+    type:'mc',
+    q:'Which combination of documents is ALWAYS required regardless of transaction type?',
+    opts:['Purchase & Sale Agreement, Income Documents, Property Tax Statement','Government ID, Credit Consent Form, Signed Application','Current Mortgage Statement, Property Insurance, Payout Statement','90-Day Bank Statements, Gift Letter, RRSP Documents'],
+    ans:1,
+    exp:'Government-issued ID, the signed credit consent form, and the completed signed application are required for every mortgage file regardless of transaction type. The other combinations include documents that are specific to certain transaction types only.'
+  }
+];
+
+// ── STATE ──────────────────────────────────────────────────────
+const SCREENS = ['intro','tx','pur-core','pur-income','q1','ref','common','glance','q2','cert'];
+const LABELS  = ['Intro','Tx Types','Pur: Core','Pur: Income','Quiz 1','Ref/Switch','Common Docs','At a Glance','Quiz 2','Certificate'];
+
+let cur = 'intro';
+let q1S = {cur:0, scores:[], answered:false};
+let q2S = {cur:0, scores:[], answered:false};
+
+// ── NAVIGATION ─────────────────────────────────────────────────
+function go(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('s-' + id).classList.add('active');
+  cur = id;
+  window.scrollTo({top:0, behavior:'smooth'});
+  updateProg();
+  if (id === 'q1') renderQ(Q1, q1S, 'q1body', 'q1ctr', 'q1pf', 1);
+  if (id === 'q2') renderQ(Q2, q2S, 'q2body', 'q2ctr', 'q2pf', 2);
+}
+
+// ── PROGRESS ───────────────────────────────────────────────────
+function updateProg() {
+  const idx = SCREENS.indexOf(cur);
+  const pct = Math.round((idx / (SCREENS.length - 1)) * 100);
+  document.getElementById('pfill').style.width = pct + '%';
+  document.getElementById('ppct').innerText = pct + '%';
+  document.getElementById('plabel').innerText = LABELS[idx] || '';
+  const pc = document.getElementById('pills');
+  pc.innerHTML = '';
+  SCREENS.forEach((s, i) => {
+    const p = document.createElement('div');
+    p.className = 'pill' + (i === idx ? ' active' : i < idx ? ' done' : '');
+    p.innerText = LABELS[i];
+    pc.appendChild(p);
+  });
+}
+
+// ── QUIZ ENGINE ────────────────────────────────────────────────
+function renderQ(qs, state, bodyId, ctrId, pfId, qNum) {
+  const q = qs[state.cur];
+  const LTRS = ['A','B','C','D'];
+  document.getElementById(ctrId).innerText = `Q ${state.cur + 1} of ${qs.length}`;
+  document.getElementById(pfId).style.width = ((state.cur + 1) / qs.length * 100) + '%';
+
+  const badgeCls = q.type === 'tf' ? 'tf' : 'mc';
+  const badgeTxt = q.type === 'tf' ? 'True / False' : 'Multiple Choice';
+
+  const optsHTML = q.opts.map((o, i) => {
+    const ltr = q.type === 'tf' ? (i === 0 ? 'T' : 'F') : LTRS[i];
+    return `<div class="opt" id="opt-${qNum}-${i}" onclick="pick(${i},${qNum})">
+      <div class="oltr">${ltr}</div>
+      <div class="otxt">${o}</div>
+    </div>`;
+  }).join('');
+
+  const nextLbl = state.cur < qs.length - 1 ? 'Next Question →' : (qNum === 1 ? 'Continue to Refinance Lessons →' : 'See My Results →');
+
+  document.getElementById(bodyId).innerHTML = `
+    <span class="qtbadge ${badgeCls}">${badgeTxt}</span>
+    <div class="qtext">${q.q}</div>
+    <div class="opts" id="opts-${qNum}">${optsHTML}</div>
+    <div class="fb" id="fb-${qNum}"></div>
+    <div style="display:flex;justify-content:flex-end;">
+      <button class="btn btn-p" id="nxt-${qNum}" onclick="nextQ(${qNum})" style="display:none;">${nextLbl}</button>
+    </div>
+  `;
+  state.answered = false;
+}
+
+function pick(idx, qNum) {
+  const state = qNum === 1 ? q1S : q2S;
+  const qs = qNum === 1 ? Q1 : Q2;
+  if (state.answered) return;
+  state.answered = true;
+
+  const q = qs[state.cur];
+  document.getElementById('opts-' + qNum).classList.add('locked');
+  q.opts.forEach((_, i) => {
+    const el = document.getElementById('opt-' + qNum + '-' + i);
+    el.classList.add('locked');
+    if (i === q.ans) el.classList.add('correct');
+    else if (i === idx) el.classList.add('wrong');
+  });
+
+  const correct = idx === q.ans;
+  state.scores.push(correct ? 1 : 0);
+
+  const fb = document.getElementById('fb-' + qNum);
+  fb.className = 'fb show ' + (correct ? 'correct' : 'incorrect');
+  fb.innerHTML = `<span style="font-size:15px;flex-shrink:0;">${correct ? '✅' : '❌'}</span><span><strong>${correct ? 'Correct!' : 'Not quite.'}</strong> ${q.exp}</span>`;
+  document.getElementById('nxt-' + qNum).style.display = 'inline-flex';
+}
+
+function nextQ(qNum) {
+  const state = qNum === 1 ? q1S : q2S;
+  const qs = qNum === 1 ? Q1 : Q2;
+  state.cur++;
+  if (state.cur < qs.length) {
+    renderQ(qs, state, `q${qNum}body`, `q${qNum}ctr`, `q${qNum}pf`, qNum);
+  } else {
+    if (qNum === 1) go('ref');
+    else showResults();
+  }
+}
+
+function retake() {
+  q1S = {cur:0, scores:[], answered:false};
+  q2S = {cur:0, scores:[], answered:false};
+  go('q1');
+}
+
+function showResults() {
+  go('cert');
+  const s1 = q1S.scores.reduce((a,b) => a+b, 0) / Q1.length;
+  const s2 = q2S.scores.reduce((a,b) => a+b, 0) / Q2.length;
+  const total = (s1 + s2) / 2;
+  const p1 = Math.round(s1 * 100) + '%';
+  const p2 = Math.round(s2 * 100) + '%';
+  const pt = Math.round(total * 100) + '%';
+
+  if (total >= 0.70) {
+    document.getElementById('cert-pass').style.display = 'block';
+    document.getElementById('cert-fail').style.display = 'none';
+    document.getElementById('cscore').innerText = pt;
+    document.getElementById('cdate').innerText = new Date().toLocaleDateString('en-CA', {year:'numeric', month:'long', day:'numeric'});
+  } else {
+    document.getElementById('cert-pass').style.display = 'none';
+    document.getElementById('cert-fail').style.display = 'block';
+    document.getElementById('fail-badge').innerText = 'Total: ' + pt;
+    document.getElementById('fq1').innerText = p1;
+    document.getElementById('fq2').innerText = p2;
+  }
+}
+
+updateProg();
+</script>
+</body>
+</html>

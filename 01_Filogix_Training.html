@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Filogix Expert Training | LendMate VA Academy</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap');
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --pink:#C855A0;--pink-l:#f5d0ea;--pink-xl:#fdf0f9;
+  --purple:#8B5CF6;--purple-l:#ede9fe;--purple-xl:#f5f3ff;
+  --grad:linear-gradient(135deg,#C855A0 0%,#8B5CF6 100%);
+  --grad-soft:linear-gradient(135deg,#fdf0f9 0%,#f5f3ff 100%);
+  --dark:#1a0a2e;--text:#1a1a2e;--muted:#6b6b8a;
+  --border:#e8e0f5;--white:#ffffff;--cream:#faf9ff;
+  --green:#059669;--green-l:#d1fae5;
+  --red:#dc2626;--red-l:#fee2e2;
+  --amber:#d97706;--amber-l:#fef3c7;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);padding:28px 20px 60px;line-height:1.6;}
+.page{max-width:960px;margin:0 auto;}
+
+/* PROGRESS BAR */
+.prog-wrap{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);padding:10px 20px;margin:-28px -20px 28px;display:flex;align-items:center;gap:14px;box-shadow:0 2px 12px rgba(139,92,246,.08);}
+.prog-label{font-size:10px;font-weight:700;color:var(--muted);white-space:nowrap;letter-spacing:.5px;}
+.prog-track{flex:1;height:6px;background:var(--purple-l);border-radius:10px;overflow:hidden;}
+.prog-fill{height:100%;background:var(--grad);border-radius:10px;transition:width .4s ease;width:0%;}
+.prog-pct{font-size:12px;font-weight:700;color:var(--purple);min-width:34px;text-align:right;}
+
+/* COVER */
+.cover{background:var(--grad);border-radius:20px;padding:42px 46px 34px;margin-bottom:10px;position:relative;overflow:hidden;}
+.cover::before{content:'';position:absolute;right:-80px;top:-80px;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.07);}
+.cover-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.18);color:#fff;font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:14px;}
+.cover h1{font-family:'DM Serif Display',serif;color:#fff;font-size:30px;font-weight:400;letter-spacing:-.3px;margin-bottom:10px;line-height:1.25;}
+.cover h1 em{font-style:italic;opacity:.9;}
+.cover-sub{color:rgba(255,255,255,.85);font-size:13.5px;max-width:540px;line-height:1.65;}
+.cover-meta{display:flex;gap:26px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.2);flex-wrap:wrap;}
+.cm-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:3px;}
+.cm-val{font-size:12px;color:rgba(255,255,255,.9);font-weight:500;}
+
+/* OUTLINE */
+.outline{background:var(--white);border-radius:14px;padding:20px 24px;margin-bottom:10px;box-shadow:0 2px 16px rgba(139,92,246,.06);border:1px solid var(--border);}
+.outline-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+.outline-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.outline-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:var(--cream);border:1px solid var(--border);text-decoration:none;color:var(--text);font-size:12.5px;font-weight:600;transition:all .15s;}
+.outline-item:hover{background:var(--purple-xl);border-color:var(--purple-l);color:var(--purple);}
+.outline-num{width:22px;height:22px;border-radius:6px;background:var(--grad);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.outline-item.quiz-link{background:var(--amber-l);border-color:#fcd34d;color:var(--amber);}
+.outline-item.quiz-link .outline-num{background:var(--amber);}
+
+/* SECTION */
+.section{background:var(--white);border-radius:18px;padding:32px 36px;margin-bottom:10px;box-shadow:0 2px 20px rgba(139,92,246,.07);border:1px solid var(--border);}
+.sh{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px;padding-bottom:18px;border-bottom:2px solid var(--border);}
+.sh-icon{width:44px;height:44px;border-radius:12px;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.sh-text h2{font-size:18px;font-weight:700;color:var(--dark);letter-spacing:-.3px;}
+.sh-text p{font-size:12.5px;color:var(--muted);margin-top:3px;}
+.sst{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin:24px 0 12px;display:flex;align-items:center;gap:10px;}
+.sst::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* LESSON CONTENT */
+.lesson-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.lesson-card{background:var(--grad-soft);border:1px solid var(--pink-l);border-left:3px solid var(--pink);border-radius:12px;padding:16px 18px;}
+.lesson-card.full{grid-column:1/-1;}
+.lc-title{font-size:13px;font-weight:700;color:var(--dark);margin-bottom:6px;}
+.lc-body{font-size:12.5px;color:var(--muted);line-height:1.65;}
+.lc-badge{display:inline-block;margin-top:8px;font-size:10px;font-weight:700;padding:2px 10px;border-radius:4px;}
+.lc-badge.tip{background:var(--purple-l);color:var(--purple);}
+.lc-badge.note{background:var(--green-l);color:var(--green);}
+.lc-badge.warn{background:var(--amber-l);color:var(--amber);}
+
+/* STEPS */
+.steps{display:flex;flex-direction:column;gap:0;}
+.step{display:flex;gap:16px;}
+.step-left{display:flex;flex-direction:column;align-items:center;}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;}
+.step-line{width:2px;flex:1;min-height:14px;background:var(--border);margin:4px 0;}
+.step-body{flex:1;padding-bottom:20px;}
+.step-title{font-size:13.5px;font-weight:700;color:var(--dark);margin-bottom:4px;padding-top:4px;}
+.step-detail{font-size:12.5px;color:var(--muted);line-height:1.65;}
+
+/* INFO BOX */
+.info-box{border-radius:12px;padding:16px 20px;margin:12px 0;}
+.info-box.purple{background:var(--purple-xl);border:1px solid var(--purple-l);}
+.info-box.amber{background:var(--amber-l);border:1px solid #fcd34d;}
+.info-box.green{background:var(--green-l);border:1px solid #86efac;}
+.ib-title{font-size:11px;font-weight:700;margin-bottom:8px;}
+.info-box.purple .ib-title{color:var(--purple);}
+.info-box.amber .ib-title{color:var(--amber);}
+.info-box.green .ib-title{color:var(--green);}
+.ib-body{font-size:12.5px;line-height:1.7;color:var(--text);}
+
+/* CHECKLIST */
+.check-list{display:flex;flex-direction:column;gap:7px;}
+.check-item{display:flex;align-items:flex-start;gap:10px;font-size:12.5px;line-height:1.55;}
+.ci{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;margin-top:1px;font-weight:700;}
+.ci.g{background:var(--green-l);color:var(--green);}
+.ci.p{background:var(--purple-l);color:var(--purple);}
+.ci.r{background:var(--red-l);color:var(--red);}
+
+/* QUIZ */
+.quiz-intro{background:var(--amber-l);border-radius:12px;padding:16px 20px;margin-bottom:24px;border:1px solid #fcd34d;}
+.qi-title{font-size:12px;font-weight:700;color:var(--amber);margin-bottom:6px;}
+.qi-body{font-size:12.5px;color:#78350f;line-height:1.65;}
+.name-row{display:flex;gap:12px;align-items:center;margin-bottom:28px;}
+.name-row label{font-size:13px;font-weight:600;color:var(--dark);white-space:nowrap;}
+.name-row input{flex:1;padding:10px 16px;border:2px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);background:var(--cream);outline:none;transition:border-color .15s;}
+.name-row input:focus{border-color:var(--purple);}
+.q-block{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border);}
+.q-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.q-num{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:6px;}
+.q-text{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:14px;line-height:1.5;}
+.q-options{display:flex;flex-direction:column;gap:8px;}
+.q-option{display:flex;align-items:center;gap:12px;padding:11px 16px;border:2px solid var(--border);border-radius:10px;cursor:pointer;font-size:13px;color:var(--text);transition:all .15s;user-select:none;background:var(--white);}
+.q-option:hover{border-color:var(--purple);background:var(--purple-xl);}
+.q-option input{accent-color:var(--purple);width:16px;height:16px;flex-shrink:0;}
+.q-option.correct{border-color:var(--green);background:var(--green-l);font-weight:600;}
+.q-option.wrong{border-color:var(--red);background:var(--red-l);}
+.q-option.show-correct{border-color:var(--green);background:var(--green-l);}
+.q-feedback{margin-top:10px;font-size:12px;padding:9px 13px;border-radius:8px;line-height:1.6;}
+.q-feedback.correct{background:var(--green-l);color:#064e3b;border:1px solid #86efac;}
+.q-feedback.wrong{background:var(--red-l);color:#7f1d1d;border:1px solid #fca5a5;}
+.submit-btn{display:block;margin:28px auto 0;padding:13px 46px;background:var(--grad);color:#fff;border:none;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 4px 20px rgba(200,85,160,.3);transition:opacity .15s,transform .1s;}
+.submit-btn:hover{opacity:.92;transform:translateY(-1px);}
+.result-pass{background:var(--green-l);border:2px solid #86efac;border-radius:14px;padding:26px 30px;text-align:center;}
+.result-fail{background:var(--red-l);border:2px solid #fca5a5;border-radius:14px;padding:26px 30px;text-align:center;}
+.result-score{font-size:50px;font-weight:700;margin-bottom:6px;line-height:1;}
+.result-pass .result-score{color:var(--green);}
+.result-fail .result-score{color:var(--red);}
+.result-msg{font-size:15px;font-weight:700;margin-bottom:6px;}
+.result-sub{font-size:13px;color:var(--muted);}
+.retry-btn{margin-top:16px;padding:10px 30px;background:var(--red);color:#fff;border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
+
+/* CERTIFICATE */
+#certificate{display:none;margin-bottom:10px;}
+.cert-wrap{background:var(--white);border-radius:20px;padding:52px 46px;text-align:center;box-shadow:0 8px 50px rgba(139,92,246,.15);border:3px solid var(--pink);position:relative;overflow:hidden;}
+.cert-corner{position:absolute;width:88px;height:88px;border-style:solid;border-color:var(--purple);border-width:0;}
+.cert-corner.tl{top:0;left:0;border-top-width:5px;border-left-width:5px;border-radius:18px 0 0 0;}
+.cert-corner.tr{top:0;right:0;border-top-width:5px;border-right-width:5px;border-radius:0 18px 0 0;}
+.cert-corner.bl{bottom:0;left:0;border-bottom-width:5px;border-left-width:5px;border-radius:0 0 0 18px;}
+.cert-corner.br{bottom:0;right:0;border-bottom-width:5px;border-right-width:5px;border-radius:0 0 18px 0;}
+.cert-badge{display:inline-block;background:var(--grad);color:#fff;font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:5px 18px;border-radius:20px;margin-bottom:14px;}
+.cert-org{font-size:13px;color:var(--muted);margin-bottom:20px;}
+.cert-div{width:180px;height:2px;background:var(--grad);margin:0 auto 20px;border-radius:2px;}
+.cert-intro{font-size:14px;color:var(--muted);margin-bottom:8px;}
+.cert-name{font-family:'DM Serif Display',serif;font-size:36px;color:var(--dark);margin-bottom:10px;font-style:italic;}
+.cert-completed{font-size:14px;color:var(--muted);margin-bottom:6px;}
+.cert-module{font-size:19px;font-weight:700;color:var(--pink);margin-bottom:20px;}
+.cert-score-badge{display:inline-block;background:var(--grad-soft);border:2px solid var(--pink-l);border-radius:50px;padding:8px 28px;font-size:15px;font-weight:700;color:var(--purple);margin-bottom:24px;}
+.cert-sigs{display:flex;justify-content:center;gap:70px;margin-bottom:18px;}
+.cert-sig-line{width:130px;height:1px;background:#ccc;margin-bottom:6px;}
+.cert-sig-name{font-size:11px;font-weight:600;color:var(--muted);}
+.cert-sig-role{font-size:10px;color:#aaa;}
+.cert-ref{font-size:10px;color:#ccc;font-family:'DM Mono',monospace;margin-top:4px;}
+.print-btn{margin-top:20px;padding:10px 30px;background:var(--grad);color:#fff;border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(200,85,160,.3);}
+
+/* FOOTER */
+.footer{background:var(--dark);border-radius:14px;padding:16px 30px;margin-top:10px;display:flex;justify-content:space-between;align-items:center;}
+.footer-left{font-size:11px;color:rgba(255,255,255,.5);}
+.footer-right{font-family:'DM Mono',monospace;font-size:10px;color:#c4b5fd;}
+
+@media print{
+  body{background:#fff;padding:0;}
+  .prog-wrap,.outline,#quiz-section,.footer{display:none!important;}
+  #certificate{display:block!important;}
+  .section{box-shadow:none;border:1px solid #eee;}
+}
+.anchor{display:block;height:0;visibility:hidden;}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- PROGRESS BAR -->
+<div class="prog-wrap">
+  <div class="prog-label">PROGRESS</div>
+  <div class="prog-track"><div class="prog-fill" id="pb-fill"></div></div>
+  <div class="prog-pct" id="pb-pct">0%</div>
+</div>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-badge">🏠 LendMate VA Training Academy</div>
+  <h1>Filogix Expert<br><em>CRM Training Module</em></h1>
+  <p class="cover-sub">A practical training guide for LendMate VAs. Learn how to navigate Filogix Expert — from creating mortgage applications to submitting files to lenders.</p>
+  <div class="cover-meta">
+    <div><div class="cm-label">Platform</div><div class="cm-val">Filogix Expert</div></div>
+    <div><div class="cm-label">Module</div><div class="cm-val">CRM-FIL-001</div></div>
+    <div><div class="cm-label">Pass Score</div><div class="cm-val">70% (11/15 questions)</div></div>
+    <div><div class="cm-label">VA Role</div><div class="cm-val">Navigate · Enter · Submit · Verify</div></div>
+  </div>
+</div>
+
+<!-- OUTLINE -->
+<div class="outline">
+  <div class="outline-title">Training Outline</div>
+  <div class="outline-grid">
+    <a href="#s1" class="outline-item"><div class="outline-num">1</div>Platform Overview</a>
+    <a href="#s2" class="outline-item"><div class="outline-num">2</div>Client Information</a>
+    <a href="#s3" class="outline-item"><div class="outline-num">3</div>Employment &amp; Income</a>
+    <a href="#s4" class="outline-item"><div class="outline-num">4</div>Assets &amp; Liabilities</a>
+    <a href="#s5" class="outline-item"><div class="outline-num">5</div>Property &amp; Application</a>
+    <a href="#s6" class="outline-item"><div class="outline-num">6</div>Documents &amp; Submission</a>
+    <a href="#quiz" class="outline-item quiz-link"><div class="outline-num">✎</div>Knowledge Quiz</a>
+  </div>
+</div>
+
+<!-- S1: OVERVIEW -->
+<span class="anchor" id="s1"></span>
+<div class="section" data-s="1">
+  <div class="sh"><div class="sh-icon">🖥️</div><div class="sh-text"><h2>Platform Overview</h2><p>What Filogix Expert is, what it does, and how to navigate it as a VA.</p></div></div>
+  <div class="sst">What is Filogix Expert</div>
+  <div class="lesson-grid">
+    <div class="lesson-card"><div class="lc-title">Primary Purpose</div><div class="lc-body">Filogix Expert is a mortgage origination platform used by Canadian mortgage brokers. VAs use it to create and manage mortgage applications, enter borrower data, and submit files directly to lenders and insurers (CMHC, Sagen, Canada Guaranty).</div><span class="lc-badge tip">Most common platform in Canadian brokerage</span></div>
+    <div class="lesson-card"><div class="lc-title">Application Types</div><div class="lc-body">Filogix supports three transaction types: <strong>Purchase</strong> (buying a new property), <strong>Refinance</strong> (changing terms on an existing mortgage), and <strong>Switch/Transfer</strong> (moving to a new lender without borrowing more). Each type has its own required fields.</div><span class="lc-badge note">Know which type before opening a file</span></div>
+    <div class="lesson-card full"><div class="lc-title">Key Advantages for VAs</div><div class="lc-body">Filogix automatically calculates qualifying income based on the income types you enter. It flags errors and warnings before submission so you can catch problems early. It also connects directly to lender systems — no manual email required for integrated lenders.</div><span class="lc-badge tip">Always check the Errors/Warnings panel before submitting</span></div>
+  </div>
+  <div class="sst">How to Log In and Navigate</div>
+  <div class="steps">
+    <div class="step"><div class="step-left"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-title">Log In Securely</div><div class="step-detail">Always use the Log Out button when finished — do not just close the browser. Closing without logging out can leave the session active, which is a compliance and security risk.</div></div></div>
+    <div class="step"><div class="step-left"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-title">Find an Existing File</div><div class="step-detail">Use the Find/Search function to locate existing applications. Never scroll through the full list manually — use the search by borrower name, file number, or date.</div></div></div>
+    <div class="step"><div class="step-left"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-title">Access Help &amp; Training Resources</div><div class="step-detail">Training guides and user documentation are available under the Help section within Filogix. Check here first if you are unsure how a field works before escalating to the broker.</div></div></div>
+  </div>
+</div>
+
+<!-- S2: CLIENT INFO -->
+<span class="anchor" id="s2"></span>
+<div class="section" data-s="2">
+  <div class="sh"><div class="sh-icon">👤</div><div class="sh-text"><h2>Client Information</h2><p>Where and how to enter borrower and co-applicant details in Filogix.</p></div></div>
+  <div class="sst">Borrower Details Section</div>
+  <div class="info-box purple"><div class="ib-title">Where to Enter Personal Information</div><div class="ib-body">All borrower personal data goes into the <strong>Borrower Details section</strong> — not the Mortgage Request tab, not the Notes section. Minimum required to create a new applicant: <strong>Full name and date of birth</strong>. SIN, address, and employment are filled in next.</div></div>
+  <div class="lesson-grid">
+    <div class="lesson-card"><div class="lc-title">Adding a Co-Applicant</div><div class="lc-body">Use the <strong>"Add Applicant"</strong> button inside the existing file — do not create a separate application. All borrowers on the same mortgage must be inside the same Filogix file.</div><span class="lc-badge note">Never create duplicate files for co-applicants</span></div>
+    <div class="lesson-card"><div class="lc-title">Required Minimum Fields</div><div class="lc-body">To save and move forward, you need at minimum: legal name (as on government ID) and date of birth. Everything else — SIN, address, marital status — follows in the same section before submission.</div><span class="lc-badge tip">Match name exactly to government ID</span></div>
+  </div>
+</div>
+
+<!-- S3: EMPLOYMENT -->
+<span class="anchor" id="s3"></span>
+<div class="section" data-s="3">
+  <div class="sh"><div class="sh-icon">💼</div><div class="sh-text"><h2>Employment &amp; Income</h2><p>How to enter income data correctly so Filogix calculates qualifying income accurately.</p></div></div>
+  <div class="sst">Employment/Income Section</div>
+  <div class="lesson-grid">
+    <div class="lesson-card"><div class="lc-title">Where to Enter It</div><div class="lc-body">All employment and income data is entered in the <strong>Employment/Income section</strong> — not under Assets, not under the Mortgage Request tab. Each income source gets its own entry.</div></div>
+    <div class="lesson-card"><div class="lc-title">Valid Income Types</div><div class="lc-body">Accepted: Salary, Hourly, Commission, Self-Employment, Rental, Pension/CPP, and other CRA-recognized income. <strong>Cryptocurrency staking returns are not an accepted income type</strong> in Filogix — flag to broker if client lists this.</div><span class="lc-badge warn">Crypto income = flag to broker</span></div>
+    <div class="lesson-card full"><div class="lc-title">How Qualifying Income is Calculated</div><div class="lc-body">Filogix calculates total qualifying income <strong>automatically</strong> based on the income types and amounts you enter. You do not calculate it manually. Your job is to enter the data accurately — the system does the math. Always cross-check the calculated amount against the income documents provided.</div><span class="lc-badge note">Your job: accurate data entry. Filogix does the calculation.</span></div>
+  </div>
+</div>
+
+<!-- S4: ASSETS & LIABILITIES -->
+<span class="anchor" id="s4"></span>
+<div class="section" data-s="4">
+  <div class="sh"><div class="sh-icon">⚖️</div><div class="sh-text"><h2>Assets &amp; Liabilities</h2><p>Understanding what counts as an asset vs. a liability, and how to update each.</p></div></div>
+  <div class="sst">Assets vs. Liabilities — Know the Difference</div>
+  <div class="lesson-grid">
+    <div class="lesson-card"><div class="lc-title">Assets (What the Borrower Owns)</div><div class="lc-body">Examples: savings account balances, RRSP/TFSA/investment accounts, vehicle value, real estate equity. These are things that have positive monetary value that the borrower owns outright or partially owns.</div><span class="lc-badge note">Down payment funds are an asset</span></div>
+    <div class="lesson-card"><div class="lc-title">Liabilities (What the Borrower Owes)</div><div class="lc-body">Examples: mortgage loans, car loans, student loans, credit card balances, lines of credit. These reduce the borrower's net worth and affect their debt service ratios. Enter all active liabilities — do not omit any.</div><span class="lc-badge warn">Never omit a liability — it affects qualification</span></div>
+    <div class="lesson-card full"><div class="lc-title">Updating an Existing Liability</div><div class="lc-body">To edit an existing liability entry, <strong>double-click the liability</strong> to open its fields for editing. Do not delete the entire record and re-enter — this creates duplicate entries and compliance issues. Update the relevant field, save, and move on.</div><span class="lc-badge tip">Double-click to edit — never delete and re-enter</span></div>
+  </div>
+</div>
+
+<!-- S5: PROPERTY -->
+<span class="anchor" id="s5"></span>
+<div class="section" data-s="5">
+  <div class="sh"><div class="sh-icon">🏠</div><div class="sh-text"><h2>Property &amp; Application Details</h2><p>Where property data lives in Filogix and how to verify the file before submission.</p></div></div>
+  <div class="sst">Property Details Tab</div>
+  <div class="lesson-grid">
+    <div class="lesson-card"><div class="lc-title">Where Property Info Goes</div><div class="lc-body">All property-related data (address, type, value, occupancy) is entered in the <strong>Property Details tab</strong>. Loan amounts, interest rates, amortization, and term go in the <strong>Mortgage Request section</strong>. These are two separate tabs — do not mix them up.</div><span class="lc-badge tip">Property Details tab ≠ Mortgage Request section</span></div>
+    <div class="lesson-card"><div class="lc-title">Verifying Required Fields</div><div class="lc-body">Before submitting any file, check the <strong>Errors/Warnings panel</strong>. This panel flags every incomplete or incorrect field. Do not rely on the broker to catch missing fields — run this check yourself as the last step before handing the file over.</div><span class="lc-badge note">Errors/Warnings panel = your pre-submission checklist</span></div>
+  </div>
+</div>
+
+<!-- S6: DOCUMENTS & SUBMISSION -->
+<span class="anchor" id="s6"></span>
+<div class="section" data-s="6">
+  <div class="sh"><div class="sh-icon">📤</div><div class="sh-text"><h2>Documents, Compliance &amp; Lender Submission</h2><p>How to upload documents, manage consent, record notes, and submit to lenders.</p></div></div>
+  <div class="sst">Document Management</div>
+  <div class="lesson-grid">
+    <div class="lesson-card"><div class="lc-title">Uploading Documents</div><div class="lc-body">All supporting documents are uploaded through the <strong>Documents tab</strong> inside the file — not in Assets, not in the Mortgage Request section. Consent forms must be uploaded before a credit check can be run.</div></div>
+    <div class="lesson-card"><div class="lc-title">Why Consent is Required</div><div class="lc-body">The consent form gives the lender legal permission to run the borrower's credit bureau. Without it, running credit is a privacy law violation. This is not optional — collect consent before any credit pull.</div><span class="lc-badge warn">No consent = no credit pull. Period.</span></div>
+  </div>
+  <div class="sst">Lender Submission</div>
+  <div class="steps">
+    <div class="step"><div class="step-left"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-title">Select Lenders</div><div class="step-detail">Use the <strong>Lender List checkbox menu</strong> to select which lenders to submit to. Filogix does not auto-select lenders — the broker decides, the VA executes. Never submit to a lender without broker confirmation.</div></div></div>
+    <div class="step"><div class="step-left"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-title">Review Before Submitting</div><div class="step-detail">Check: all data is accurate, all documents are uploaded, no Errors/Warnings outstanding. Do not submit a file with known issues.</div></div></div>
+    <div class="step"><div class="step-left"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-title">Check Lender Responses</div><div class="step-detail">After submission, monitor the <strong>Lender Conditions/Messages section</strong> — not your email inbox. Lender responses, conditions, and requests for additional information all come through this section.</div></div></div>
+  </div>
+  <div class="sst">Compliance Notes</div>
+  <div class="info-box green"><div class="ib-title">Why Notes Matter</div><div class="ib-body">All compliance notes go in the <strong>Notes/Compliance section</strong>. These notes create a record of client conversations, decisions, and instructions. In the event of a compliance audit, missing notes = missing evidence. Log every significant action or client instruction in notes immediately.</div></div>
+</div>
+
+<!-- QUIZ -->
+<span class="anchor" id="quiz"></span>
+<div id="quiz-section">
+<div class="section" data-s="q" style="border:2px solid var(--amber-l);">
+  <div class="sh"><div class="sh-icon">✎</div><div class="sh-text"><h2>Knowledge Quiz — Filogix Expert</h2><p>15 questions · 70% to pass · Enter your name to generate your certificate.</p></div></div>
+  <div class="quiz-intro"><div class="qi-title">Before You Start</div><div class="qi-body">Answer all 15 questions, then click Submit. You need at least 11 correct (70%) to pass and receive your certificate. Review the lessons above before starting.</div></div>
+  <div class="name-row"><label for="va-name">Your Full Name:</label><input type="text" id="va-name" placeholder="e.g. Maria Santos"></div>
+  <div id="quiz-questions"></div>
+  <div id="quiz-result" style="display:none;margin-top:24px;"></div>
+  <button class="submit-btn" onclick="submitQuiz()">Submit Quiz →</button>
+</div>
+</div>
+
+<!-- CERTIFICATE -->
+<div id="certificate">
+  <div class="cert-wrap">
+    <div class="cert-corner tl"></div><div class="cert-corner tr"></div>
+    <div class="cert-corner bl"></div><div class="cert-corner br"></div>
+    <div class="cert-badge">Certificate of Completion</div>
+    <div class="cert-org">LendMate VA Training Academy</div>
+    <div class="cert-div"></div>
+    <div class="cert-intro">This certifies that</div>
+    <div class="cert-name" id="cert-name"></div>
+    <div class="cert-completed">has successfully completed</div>
+    <div class="cert-module">Filogix Expert — CRM Training Module</div>
+    <div class="cert-score-badge" id="cert-score"></div>
+    <div class="cert-div"></div>
+    <div class="cert-sigs">
+      <div><div class="cert-sig-line"></div><div class="cert-sig-name">Training Team</div><div class="cert-sig-role">KeyPlayers</div></div>
+      <div><div class="cert-sig-name" id="cert-date" style="margin-bottom:6px;"></div><div class="cert-sig-line"></div><div class="cert-sig-name">Date Issued</div></div>
+    </div>
+    <div class="cert-ref" id="cert-ref"></div>
+    <button class="print-btn" onclick="window.print()">🖨 Print Certificate</button>
+  </div>
+</div>
+
+<div class="footer"><div class="footer-left">KeyPlayers · LendMate VA Training Academy · lendmate.ca</div><div class="footer-right">CRM-FIL-001 · Filogix Expert</div></div>
+</div>
+
+<script>
+const questions=[
+  {q:"What is Filogix Expert primarily used for in a Canadian mortgage brokerage?",options:["Real estate marketing and property listings","Mortgage application creation, data entry, and lender submission","Performing property appraisals and inspections","Issuing final mortgage commitment letters to borrowers"],correct:1,feedback:"Filogix Expert is a mortgage origination platform. VAs use it to create and manage mortgage applications, enter borrower data, and submit files to lenders and insurers."},
+  {q:"Which three transaction types can be created in Filogix Expert?",options:["Purchase, construction, and commercial only","Purchase, refinance, and switch/transfer","Refinance, bridge financing, and private lending","Purchase and refinance only — switch is not supported"],correct:1,feedback:"Filogix supports Purchase, Refinance, and Switch/Transfer applications. Each has its own required fields and documentation requirements."},
+  {q:"A client mentions their primary income source is cryptocurrency staking returns. How do you handle this in Filogix?",options:["Enter it under 'Other Income' in the Employment section","Filogix has a dedicated crypto income field — use it","Flag it to the broker — cryptocurrency staking is not a valid Filogix income type","Enter it as investment income since it is similar"],correct:2,feedback:"Cryptocurrency staking returns are not a recognized income type in Filogix. Flag this to the broker before entering anything — the broker decides how to handle non-standard income sources."},
+  {q:"Where do you enter a borrower's personal information such as name, SIN, and date of birth?",options:["Mortgage Request tab","Liabilities tab","Borrower Details section","Notes section"],correct:2,feedback:"All borrower personal data is entered in the Borrower Details section. The Mortgage Request tab is for loan parameters, not borrower identity information."},
+  {q:"What is the minimum information required to create a new applicant record in Filogix?",options:["SIN and email address","Name and date of birth","Address and employer name","Marital status and phone number"],correct:1,feedback:"You only need the borrower's full legal name and date of birth to create the applicant record. All other fields — SIN, address, employment — are added next within the same section."},
+  {q:"A file has two borrowers applying together. How do you add the second borrower?",options:["Create a completely separate Filogix application for the co-applicant","Use the Add Applicant button within the existing file","Upload a document naming the co-applicant","Send a separate email to the lender with the second borrower's details"],correct:1,feedback:"Always use the Add Applicant button inside the existing file. Creating separate applications for co-borrowers breaks the file structure and causes submission errors."},
+  {q:"Where is employment history and income data entered in Filogix?",options:["Under the Assets tab","In the Employment/Income section","Under the Mortgage Request tab","In the Documents section"],correct:1,feedback:"All employment and income information is entered in the Employment/Income section. Each income source gets its own entry. The system then calculates total qualifying income automatically."},
+  {q:"Which of the following is an asset in Filogix?",options:["Car loan balance","Credit card balance","Savings account balance","Student loan"],correct:2,feedback:"A savings account balance is an asset — it is something the borrower owns. Car loans, credit cards, and student loans are liabilities — they are amounts owed."},
+  {q:"A VA needs to correct an incorrect liability balance. What is the correct way to update it?",options:["Delete the liability and create a new one","Double-click the liability entry to edit its fields","Submit the file and let the lender correct it","Add a note in the compliance section describing the error"],correct:1,feedback:"Double-click the existing liability entry to open it for editing. Deleting and re-entering creates duplicate records and compliance issues. Always edit in place."},
+  {q:"Where do you enter property address, property type, and estimated value?",options:["Assets tab","Mortgage Request section","Property Details tab","Borrower Details section"],correct:2,feedback:"Property information goes in the Property Details tab. The Mortgage Request section is for loan parameters — loan amount, rate, term, and amortization."},
+  {q:"Before submitting a file to a lender, which tool in Filogix helps you verify all required fields are complete?",options:["Run the Compliance Wizard","Check the Errors/Warnings panel","Submit the file and wait for lender feedback","There is no way to verify — rely on the broker"],correct:1,feedback:"The Errors/Warnings panel flags all incomplete or incorrect fields before submission. Always run this check as your final step before handing the file to the broker or submitting."},
+  {q:"Why is the borrower consent form required before running a credit check?",options:["It allows lenders to send promotional mortgage offers","It gives legal permission to access the borrower's credit data — required by law","It confirms the property value for the appraisal","It closes the file once the mortgage is funded"],correct:1,feedback:"Consent is a legal requirement under Canadian privacy law (PIPEDA). Running a credit bureau without written consent is a serious compliance violation. Collect consent before any credit pull."},
+  {q:"After submitting a file to a lender in Filogix, where do you monitor lender responses and conditions?",options:["In your email inbox","Refresh the Property Details tab","In the Lender Conditions/Messages section","Under Employment History"],correct:2,feedback:"All lender responses, conditions, and requests for additional documents come through the Lender Conditions/Messages section inside Filogix — not email. Check this section regularly after submission."},
+  {q:"Where are compliance notes and records of client conversations recorded?",options:["Document Upload tab","Notes/Compliance section","Under the Assets tab","In the credit report"],correct:1,feedback:"The Notes/Compliance section is the designated location for logging client conversations, broker instructions, and compliance-related decisions. Missing notes = missing audit trail."},
+  {q:"What is the correct way to search for an existing file in Filogix?",options:["Scroll through all applications manually","Use the Find/Search function by borrower name or file number","Contact lender support to locate the file","Restart Filogix and the file appears on the dashboard"],correct:0,feedback:"Use the Find/Search function. Searching by borrower name, file number, or date is the correct and efficient method. Manual scrolling is not acceptable and wastes time."}
+];
+
+function buildQuiz(){
+  const c=document.getElementById('quiz-questions');c.innerHTML='';
+  questions.forEach((q,i)=>{
+    const b=document.createElement('div');b.className='q-block';b.id='qb'+i;
+    b.innerHTML=`<div class="q-num">Question ${i+1} of ${questions.length}</div><div class="q-text">${q.q}</div><div class="q-options">${q.options.map((o,j)=>`<label class="q-option" id="opt${i}_${j}"><input type="radio" name="q${i}" value="${j}"><span>${o}</span></label>`).join('')}</div><div class="q-feedback" id="fb${i}" style="display:none;"></div>`;
+    c.appendChild(b);
+  });
+}
+
+function submitQuiz(){
+  const name=document.getElementById('va-name').value.trim();
+  if(!name){alert('Please enter your name before submitting.');return;}
+  let score=0,all=true;
+  questions.forEach((q,i)=>{
+    const sel=document.querySelector(`input[name="q${i}"]:checked`);
+    if(!sel){all=false;return;}
+    const val=parseInt(sel.value);
+    const fb=document.getElementById('fb'+i);
+    q.options.forEach((_,j)=>{const o=document.getElementById(`opt${i}_${j}`);o.style.pointerEvents='none';if(j===q.correct)o.classList.add('show-correct');});
+    const chosen=document.getElementById(`opt${i}_${val}`);
+    if(val===q.correct){score++;chosen.classList.add('correct');fb.className='q-feedback correct';fb.innerHTML=`✓ Correct. ${q.feedback}`;}
+    else{chosen.classList.add('wrong');fb.className='q-feedback wrong';fb.innerHTML=`✗ Incorrect. ${q.feedback}`;}
+    fb.style.display='block';
+  });
+  if(!all){alert('Please answer all questions before submitting.');return;}
+  const pass=score>=11;
+  const rd=document.getElementById('quiz-result');rd.style.display='block';
+  if(pass){
+    rd.innerHTML=`<div class="result-pass"><div class="result-score">${score}/${questions.length}</div><div class="result-msg">Passed.</div><div class="result-sub">Score: ${score} out of ${questions.length}. Your certificate is below — screenshot and send to your trainer.</div></div>`;
+    showCert(name,score);
+  }else{
+    rd.innerHTML=`<div class="result-fail"><div class="result-score">${score}/${questions.length}</div><div class="result-msg">Not passed — you need 11/15 to pass.</div><div class="result-sub">Review the incorrect answers above, then retry.</div><button class="retry-btn" onclick="resetQuiz()">↺ Retry</button></div>`;
+  }
+  rd.scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelector('.submit-btn').style.display='none';
+}
+
+function showCert(name,score){
+  const c=document.getElementById('certificate');c.style.display='block';
+  document.getElementById('cert-name').textContent=name;
+  const pct=Math.round(score/questions.length*100);
+  document.getElementById('cert-score').textContent=`Score: ${score}/${questions.length} — ${pct}%`;
+  const now=new Date();
+  document.getElementById('cert-date').textContent=now.toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('cert-ref').textContent=`Certificate ID: LM-FIL-${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}-${Math.floor(Math.random()*9000+1000)}`;
+  setTimeout(()=>c.scrollIntoView({behavior:'smooth',block:'start'}),400);
+}
+
+function resetQuiz(){
+  document.getElementById('quiz-result').style.display='none';document.getElementById('quiz-result').innerHTML='';
+  document.getElementById('certificate').style.display='none';document.getElementById('va-name').value='';
+  document.querySelector('.submit-btn').style.display='block';buildQuiz();
+  document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'});
+}
+
+// Progress
+const secs=document.querySelectorAll('.section[data-s]');
+function updateProg(){
+  const sy=window.scrollY+window.innerHeight*.6;let v=0;
+  secs.forEach(s=>{if(s.offsetTop<=sy)v++;});
+  const p=Math.round(v/secs.length*100);
+  document.getElementById('pb-fill').style.width=p+'%';
+  document.getElementById('pb-pct').textContent=p+'%';
+}
+window.addEventListener('scroll',updateProg,{passive:true});updateProg();
+buildQuiz();
+</script>
+</body>
+</html>

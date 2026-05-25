@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finmo Training | LendMate VA Academy</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap');
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --pink:#C855A0;--pink-l:#f5d0ea;--pink-xl:#fdf0f9;
+  --purple:#8B5CF6;--purple-l:#ede9fe;--purple-xl:#f5f3ff;
+  --grad:linear-gradient(135deg,#C855A0 0%,#8B5CF6 100%);
+  --grad-soft:linear-gradient(135deg,#fdf0f9 0%,#f5f3ff 100%);
+  --dark:#1a0a2e;--text:#1a1a2e;--muted:#6b6b8a;
+  --border:#e8e0f5;--white:#ffffff;--cream:#faf9ff;
+  --green:#059669;--green-l:#d1fae5;
+  --red:#dc2626;--red-l:#fee2e2;
+  --amber:#d97706;--amber-l:#fef3c7;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);padding:28px 20px 60px;line-height:1.6;}
+.page{max-width:960px;margin:0 auto;}
+.prog-wrap{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);padding:10px 20px;margin:-28px -20px 28px;display:flex;align-items:center;gap:14px;box-shadow:0 2px 12px rgba(139,92,246,.08);}
+.prog-label{font-size:10px;font-weight:700;color:var(--muted);white-space:nowrap;letter-spacing:.5px;}
+.prog-track{flex:1;height:6px;background:var(--purple-l);border-radius:10px;overflow:hidden;}
+.prog-fill{height:100%;background:var(--grad);border-radius:10px;transition:width .4s ease;width:0%;}
+.prog-pct{font-size:12px;font-weight:700;color:var(--purple);min-width:34px;text-align:right;}
+.cover{background:var(--grad);border-radius:20px;padding:42px 46px 34px;margin-bottom:10px;position:relative;overflow:hidden;}
+.cover::before{content:'';position:absolute;right:-80px;top:-80px;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.07);}
+.cover-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.18);color:#fff;font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:14px;}
+.cover h1{font-family:'DM Serif Display',serif;color:#fff;font-size:30px;font-weight:400;margin-bottom:10px;line-height:1.25;}
+.cover h1 em{font-style:italic;opacity:.9;}
+.cover-sub{color:rgba(255,255,255,.85);font-size:13.5px;max-width:540px;line-height:1.65;}
+.cover-meta{display:flex;gap:26px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.2);flex-wrap:wrap;}
+.cm-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:3px;}
+.cm-val{font-size:12px;color:rgba(255,255,255,.9);font-weight:500;}
+.outline{background:var(--white);border-radius:14px;padding:20px 24px;margin-bottom:10px;box-shadow:0 2px 16px rgba(139,92,246,.06);border:1px solid var(--border);}
+.outline-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+.outline-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.outline-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:var(--cream);border:1px solid var(--border);text-decoration:none;color:var(--text);font-size:12.5px;font-weight:600;transition:all .15s;}
+.outline-item:hover{background:var(--purple-xl);border-color:var(--purple-l);color:var(--purple);}
+.outline-num{width:22px;height:22px;border-radius:6px;background:var(--grad);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.outline-item.quiz-link{background:var(--amber-l);border-color:#fcd34d;color:var(--amber);}
+.outline-item.quiz-link .outline-num{background:var(--amber);}
+.section{background:var(--white);border-radius:18px;padding:32px 36px;margin-bottom:10px;box-shadow:0 2px 20px rgba(139,92,246,.07);border:1px solid var(--border);}
+.sh{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px;padding-bottom:18px;border-bottom:2px solid var(--border);}
+.sh-icon{width:44px;height:44px;border-radius:12px;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.sh-text h2{font-size:18px;font-weight:700;color:var(--dark);}
+.sh-text p{font-size:12.5px;color:var(--muted);margin-top:3px;}
+.sst{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin:24px 0 12px;display:flex;align-items:center;gap:10px;}
+.sst::after{content:'';flex:1;height:1px;background:var(--border);}
+.lesson-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.lesson-card{background:var(--grad-soft);border:1px solid var(--pink-l);border-left:3px solid var(--pink);border-radius:12px;padding:16px 18px;}
+.lesson-card.full{grid-column:1/-1;}
+.lc-title{font-size:13px;font-weight:700;color:var(--dark);margin-bottom:6px;}
+.lc-body{font-size:12.5px;color:var(--muted);line-height:1.65;}
+.lc-badge{display:inline-block;margin-top:8px;font-size:10px;font-weight:700;padding:2px 10px;border-radius:4px;}
+.lc-badge.tip{background:var(--purple-l);color:var(--purple);}
+.lc-badge.note{background:var(--green-l);color:var(--green);}
+.lc-badge.warn{background:var(--amber-l);color:var(--amber);}
+.steps{display:flex;flex-direction:column;}
+.step{display:flex;gap:16px;}
+.step-left{display:flex;flex-direction:column;align-items:center;}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;}
+.step-line{width:2px;flex:1;min-height:14px;background:var(--border);margin:4px 0;}
+.step-body{flex:1;padding-bottom:20px;}
+.step-title{font-size:13.5px;font-weight:700;color:var(--dark);margin-bottom:4px;padding-top:4px;}
+.step-detail{font-size:12.5px;color:var(--muted);line-height:1.65;}
+.info-box{border-radius:12px;padding:16px 20px;margin:12px 0;}
+.info-box.purple{background:var(--purple-xl);border:1px solid var(--purple-l);}
+.info-box.amber{background:var(--amber-l);border:1px solid #fcd34d;}
+.info-box.green{background:var(--green-l);border:1px solid #86efac;}
+.info-box.red{background:var(--red-l);border:1px solid #fca5a5;}
+.ib-title{font-size:11px;font-weight:700;margin-bottom:8px;}
+.info-box.purple .ib-title{color:var(--purple);}
+.info-box.amber .ib-title{color:var(--amber);}
+.info-box.green .ib-title{color:var(--green);}
+.info-box.red .ib-title{color:var(--red);}
+.ib-body{font-size:12.5px;line-height:1.7;color:var(--text);}
+.quiz-intro{background:var(--amber-l);border-radius:12px;padding:16px 20px;margin-bottom:24px;border:1px solid #fcd34d;}
+.qi-title{font-size:12px;font-weight:700;color:var(--amber);margin-bottom:6px;}
+.qi-body{font-size:12.5px;color:#78350f;line-height:1.65;}
+.name-row{display:flex;gap:12px;align-items:center;margin-bottom:28px;}
+.name-row label{font-size:13px;font-weight:600;color:var(--dark);white-space:nowrap;}
+.name-row input{flex:1;padding:10px 16px;border:2px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);background:var(--cream);outline:none;transition:border-color .15s;}
+.name-row input:focus{border-color:var(--purple);}
+.q-block{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border);}
+.q-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.q-num{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:6px;}
+.q-text{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:14px;line-height:1.5;}
+.q-options{display:flex;flex-direction:column;gap:8px;}
+.q-option{display:flex;align-items:center;gap:12px;padding:11px 16px;border:2px solid var(--border);border-radius:10px;cursor:pointer;font-size:13px;color:var(--text);transition:all .15s;user-select:none;background:var(--white);}
+.q-option:hover{border-color:var(--purple);background:var(--purple-xl);}
+.q-option input{accent-color:var(--purple);width:16px;height:16px;flex-shrink:0;}
+.q-option.correct{border-color:var(--green);background:var(--green-l);font-weight:600;}
+.q-option.wrong{border-color:var(--red);background:var(--red-l);}
+.q-option.show-correct{border-color:var(--green);background:var(--green-l);}
+.q-feedback{margin-top:10px;font-size:12px;padding:9px 13px;border-radius:8px;line-height:1.6;}
+.q-feedback.correct{background:var(--green-l);color:#064e3b;border:1px solid #86efac;}
+.q-feedback.wrong{background:var(--red-l);color:#7f1d1d;border:1px solid #fca5a5;}
+.submit-btn{display:block;margin:28px auto 0;padding:13px 46px;background:var(--grad);color:#fff;border:none;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 4px 20px rgba(200,85,160,.3);transition:opacity .15s,transform .1s;}
+.submit-btn:hover{opacity:.92;transform:translateY(-1px);}
+.result-pass{background:var(--green-l);border:2px solid #86efac;border-radius:14px;padding:26px 30px;text-align:center;}
+.result-fail{background:var(--red-l);border:2px solid #fca5a5;border-radius:14px;padding:26px 30px;text-align:center;}
+.result-score{font-size:50px;font-weight:700;margin-bottom:6px;line-height:1;}
+.result-pass .result-score{color:var(--green);}
+.result-fail .result-score{color:var(--red);}
+.result-msg{font-size:15px;font-weight:700;margin-bottom:6px;}
+.result-sub{font-size:13px;color:var(--muted);}
+.retry-btn{margin-top:16px;padding:10px 30px;background:var(--red);color:#fff;border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
+#certificate{display:none;margin-bottom:10px;}
+.cert-wrap{background:var(--white);border-radius:20px;padding:52px 46px;text-align:center;box-shadow:0 8px 50px rgba(139,92,246,.15);border:3px solid var(--pink);position:relative;}
+.cert-corner{position:absolute;width:88px;height:88px;border-style:solid;border-color:var(--purple);border-width:0;}
+.cert-corner.tl{top:0;left:0;border-top-width:5px;border-left-width:5px;border-radius:18px 0 0 0;}
+.cert-corner.tr{top:0;right:0;border-top-width:5px;border-right-width:5px;border-radius:0 18px 0 0;}
+.cert-corner.bl{bottom:0;left:0;border-bottom-width:5px;border-left-width:5px;border-radius:0 0 0 18px;}
+.cert-corner.br{bottom:0;right:0;border-bottom-width:5px;border-right-width:5px;border-radius:0 0 18px 0;}
+.cert-badge{display:inline-block;background:var(--grad);color:#fff;font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:5px 18px;border-radius:20px;margin-bottom:14px;}
+.cert-org{font-size:13px;color:var(--muted);margin-bottom:20px;}
+.cert-div{width:180px;height:2px;background:var(--grad);margin:0 auto 20px;border-radius:2px;}
+.cert-intro{font-size:14px;color:var(--muted);margin-bottom:8px;}
+.cert-name{font-family:'DM Serif Display',serif;font-size:36px;color:var(--dark);margin-bottom:10px;font-style:italic;}
+.cert-completed{font-size:14px;color:var(--muted);margin-bottom:6px;}
+.cert-module{font-size:19px;font-weight:700;color:var(--pink);margin-bottom:20px;}
+.cert-score-badge{display:inline-block;background:var(--grad-soft);border:2px solid var(--pink-l);border-radius:50px;padding:8px 28px;font-size:15px;font-weight:700;color:var(--purple);margin-bottom:24px;}
+.cert-sigs{display:flex;justify-content:center;gap:70px;margin-bottom:18px;}
+.cert-sig-line{width:130px;height:1px;background:#ccc;margin-bottom:6px;}
+.cert-sig-name{font-size:11px;font-weight:600;color:var(--muted);}
+.cert-sig-role{font-size:10px;color:#aaa;}
+.cert-ref{font-size:10px;color:#ccc;font-family:'DM Mono',monospace;margin-top:4px;}
+.print-btn{margin-top:20px;padding:10px 30px;background:var(--grad);color:#fff;border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
+.footer{background:var(--dark);border-radius:14px;padding:16px 30px;margin-top:10px;display:flex;justify-content:space-between;align-items:center;}
+.footer-left{font-size:11px;color:rgba(255,255,255,.5);}
+.footer-right{font-family:'DM Mono',monospace;font-size:10px;color:#c4b5fd;}
+@media print{body{background:#fff;padding:0;}.prog-wrap,.outline,#quiz-section,.footer{display:none!important;}#certificate{display:block!important;}.section{box-shadow:none;border:1px solid #eee;}}
+.anchor{display:block;height:0;visibility:hidden;}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="prog-wrap"><div class="prog-label">PROGRESS</div><div class="prog-track"><div class="prog-fill" id="pb-fill"></div></div><div class="prog-pct" id="pb-pct">0%</div></div>
+
+<div class="cover">
+  <div class="cover-badge">🏠 LendMate VA Training Academy</div>
+  <h1>Finmo<br><em>CRM Training Module</em></h1>
+  <p class="cover-sub">Learn how to use Finmo — from inviting borrowers and collecting documents to submitting applications and managing compliance as a LendMate VA.</p>
+  <div class="cover-meta">
+    <div><div class="cm-label">Platform</div><div class="cm-val">Finmo</div></div>
+    <div><div class="cm-label">Module</div><div class="cm-val">CRM-FNM-002</div></div>
+    <div><div class="cm-label">Pass Score</div><div class="cm-val">70% (11/15 questions)</div></div>
+    <div><div class="cm-label">VA Role</div><div class="cm-val">Invite · Collect · Review · Submit</div></div>
+  </div>
+</div>
+
+<div class="outline">
+  <div class="outline-title">Training Outline</div>
+  <div class="outline-grid">
+    <a href="#s1" class="outline-item"><div class="outline-num">1</div>Platform Basics</a>
+    <a href="#s2" class="outline-item"><div class="outline-num">2</div>Borrower Application Workflow</a>
+    <a href="#s3" class="outline-item"><div class="outline-num">3</div>Documents &amp; Smart Docs</a>
+    <a href="#s4" class="outline-item"><div class="outline-num">4</div>Lender Submission</a>
+    <a href="#s5" class="outline-item"><div class="outline-num">5</div>Compliance &amp; Permissions</div></a>
+    <a href="#quiz" class="outline-item quiz-link"><div class="outline-num">✎</div>Knowledge Quiz</a>
+  </div>
+</div>
+
+<span class="anchor" id="s1"></span>
+<div class="section" data-s="1">
+  <div class="sh"><div class="sh-icon">🖥️</div><div class="sh-text"><h2>Platform Basics</h2><p>What Finmo is, how it is structured, and the key navigation areas VAs use daily.</p></div></div>
+  <div class="sst">What is Finmo</div>
+  <div class="lesson-grid">
+    <div class="lesson-card"><div class="lc-title">Primary Purpose</div><div class="lc-body">Finmo is a mortgage application and submission platform used by Canadian mortgage brokers. It handles the full application workflow — from inviting a borrower to collecting documents to submitting to lenders. VAs use it to manage files, collect documents, and support submissions.</div><span class="lc-badge tip">Not a CRM — it is a mortgage origination platform</span></div>
+    <div class="lesson-card"><div class="lc-title">Key Navigation Areas</div><div class="lc-body"><strong>Pipeline:</strong> Shows all active and in-progress applications. This is your main working view as a VA. <strong>Tasks:</strong> Tracks pending actions, follow-ups, and deadlines. <strong>Contacts:</strong> Borrower and referral partner records. <strong>Library:</strong> Templates and document resources.</div><span class="lc-badge note">Pipeline = your daily working tab</span></div>
+    <div class="lesson-card full"><div class="lc-title">User Roles in Finmo</div><div class="lc-body">There are three main roles: <strong>Admin</strong> — full access including team settings, integrations, and permission management. <strong>Agent/Broker</strong> — manages applications and client communication. <strong>Referral Partner</strong> — limited view access. As a VA, you will typically operate under the Agent role or a custom VA role assigned by your broker. Only Admins can change team settings.</div><span class="lc-badge warn">Never change team settings without broker authorization</span></div>
+  </div>
+</div>
+
+<span class="anchor" id="s2"></span>
+<div class="section" data-s="2">
+  <div class="sh"><div class="sh-icon">👤</div><div class="sh-text"><h2>Borrower Application Workflow</h2><p>How borrowers enter the system and what information they complete.</p></div></div>
+  <div class="sst">Inviting a Borrower</div>
+  <div class="info-box purple"><div class="ib-title">How Borrower Invitations Work</div><div class="ib-body">When you invite a borrower through Finmo, they receive a <strong>personalized application link</strong> — not a PDF form, not an email with attachments. This link opens their own secure application portal where they complete their information directly. This reduces manual data entry errors and keeps everything in one place.</div></div>
+  <div class="sst">What Borrowers Complete</div>
+  <div class="lesson-grid">
+    <div class="lesson-card"><div class="lc-title">Required Application Sections</div><div class="lc-body">Personal details (name, DOB, SIN, address), employment and income information, assets and liabilities, and the property details. These are the core sections every mortgage application requires.</div><span class="lc-badge note">All four sections must be complete before submission</span></div>
+    <div class="lesson-card"><div class="lc-title">What is NOT Required</div><div class="lc-body">Non-mortgage-related information such as preferred property flooring material, interior design preferences, or lifestyle choices are not part of the application. If a borrower asks what to fill in, direct them to the four core sections only.</div><span class="lc-badge tip">Keep borrowers focused on the four required sections</span></div>
+    <div class="lesson-card full"><div class="lc-title">Credit Report Pull — Consent First</div><div class="lc-body">Before pulling a borrower's credit report in Finmo, <strong>written consent must be obtained</strong>. A driver's license, SIN card, or proof of employment is not a substitute for consent. Consent is a legal requirement under Canadian privacy law (PIPEDA). Pull credit only after consent is on file and the broker has confirmed it is time to do so.</div><span class="lc-badge warn">No consent = no credit pull. No exceptions.</span></div>
+  </div>
+</div>
+
+<span class="anchor" id="s3"></span>
+<div class="section" data-s="3">
+  <div class="sh"><div class="sh-icon">📄</div><div class="sh-text"><h2>Documents &amp; Smart Docs</h2><p>How Finmo handles document collection and what happens after upload.</p></div></div>
+  <div class="sst">Finmo Smart Docs</div>
+  <div class="lesson-grid">
+    <div class="lesson-card full"><div class="lc-title">What Smart Docs Does</div><div class="lc-body">Smart Docs automatically generates document requests based on the application data the borrower has entered. Instead of manually listing every required document, Finmo looks at the file and sends a targeted request — income docs for salaried borrowers, self-employment docs for business owners, etc. This saves time and reduces the chance of missing documents.</div><span class="lc-badge note">Smart Docs = automated, application-specific doc requests</span></div>
+    <div class="lesson-card"><div class="lc-title">Income Verification Documents</div><div class="lc-body">The most commonly requested income document is a <strong>pay stub or T4</strong>. Not an MLS listing, not a purchase agreement, not a void cheque (that is for banking, not income). When reviewing income documents, confirm the document type matches the income type entered in the application.</div></div>
+    <div class="lesson-card"><div class="lc-title">What Happens After Upload</div><div class="lc-body">When a borrower uploads a document, it appears in the <strong>Documents section</strong> for the broker or VA to review. Documents do not auto-send to the lender, they do not expire after 24 hours, and they are not hidden from the broker. Review every upload promptly.</div><span class="lc-badge tip">Check the Documents section after each borrower upload</span></div>
+  </div>
+</div>
+
+<span class="anchor" id="s4"></span>
+<div class="section" data-s="4">
+  <div class="sh"><div class="sh-icon">📤</div><div class="sh-text"><h2>Lender Submission Workflow</h2><p>What needs to happen before submitting, and how non-integrated lenders are handled.</p></div></div>
+  <div class="sst">Pre-Submission Steps</div>
+  <div class="steps">
+    <div class="step"><div class="step-left"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-title">Map Documents to Lender Requirements</div><div class="step-detail">Before submitting, documents must be mapped to the lender's specific requirements inside Finmo. This ensures the lender receives the correctly labelled documents they need. Skipping this step results in incomplete submissions.</div></div></div>
+    <div class="step"><div class="step-left"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-title">Add a Submission Note</div><div class="step-detail">A Submission Note gives the lender a summary or supporting rationale for the deal — explaining strengths, addressing weaknesses, or flagging unusual circumstances. The broker typically writes this, but the VA may be asked to draft it based on broker guidance.</div></div></div>
+    <div class="step"><div class="step-left"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-title">Non-Integrated Lenders</div><div class="step-detail">If a lender is not integrated with Finmo, the application must be <strong>exported as a PDF</strong> and sent manually. Do not attempt to create a custom landing page or add co-borrowers as workarounds — export PDF is the correct step.</div></div></div>
+  </div>
+</div>
+
+<span class="anchor" id="s5"></span>
+<div class="section" data-s="5">
+  <div class="sh"><div class="sh-icon">🔒</div><div class="sh-text"><h2>Compliance &amp; Permissions</h2><p>What information must be protected and who can do what in Finmo.</p></div></div>
+  <div class="sst">Data Confidentiality</div>
+  <div class="lesson-grid">
+    <div class="lesson-card"><div class="lc-title">Most Sensitive Data</div><div class="lc-body">Credit bureau details — including credit score, payment history, and outstanding debts — must be handled with the highest level of confidentiality. This data is legally protected. Never share, screenshot, or forward credit data outside of the platform without explicit broker authorization.</div><span class="lc-badge warn">Credit data = highest confidentiality classification</span></div>
+    <div class="lesson-card"><div class="lc-title">Admin-Only Actions</div><div class="lc-body">Only an Admin-level user can edit team settings and permission configurations. As a VA, you can create borrower files, upload documents, and invite borrowers — but you cannot change who has access to what. If a permission issue arises, escalate to the broker.</div><span class="lc-badge tip">Permission changes = broker/Admin only</span></div>
+  </div>
+  <div class="info-box green"><div class="ib-title">Consent is a Legal Requirement</div><div class="ib-body">Canadian privacy law requires borrower consent before accessing credit data. This is not optional, not a recommendation, and not waivable under any circumstance. Consent must be on file before a credit pull. If you are ever in doubt, wait and ask the broker.</div></div>
+</div>
+
+<span class="anchor" id="quiz"></span>
+<div id="quiz-section">
+<div class="section" data-s="q" style="border:2px solid var(--amber-l);">
+  <div class="sh"><div class="sh-icon">✎</div><div class="sh-text"><h2>Knowledge Quiz — Finmo</h2><p>15 questions · 70% to pass · Enter your name to generate your certificate.</p></div></div>
+  <div class="quiz-intro"><div class="qi-title">Before You Start</div><div class="qi-body">Answer all 15 questions, then click Submit. You need at least 11 correct (70%) to pass. Review the lessons above before starting.</div></div>
+  <div class="name-row"><label for="va-name">Your Full Name:</label><input type="text" id="va-name" placeholder="e.g. Maria Santos"></div>
+  <div id="quiz-questions"></div>
+  <div id="quiz-result" style="display:none;margin-top:24px;"></div>
+  <button class="submit-btn" onclick="submitQuiz()">Submit Quiz →</button>
+</div>
+</div>
+
+<div id="certificate">
+  <div class="cert-wrap">
+    <div class="cert-corner tl"></div><div class="cert-corner tr"></div><div class="cert-corner bl"></div><div class="cert-corner br"></div>
+    <div class="cert-badge">Certificate of Completion</div>
+    <div class="cert-org">LendMate VA Training Academy</div>
+    <div class="cert-div"></div>
+    <div class="cert-intro">This certifies that</div>
+    <div class="cert-name" id="cert-name"></div>
+    <div class="cert-completed">has successfully completed</div>
+    <div class="cert-module">Finmo — CRM Training Module</div>
+    <div class="cert-score-badge" id="cert-score"></div>
+    <div class="cert-div"></div>
+    <div class="cert-sigs">
+      <div><div class="cert-sig-line"></div><div class="cert-sig-name">Training Team</div><div class="cert-sig-role">KeyPlayers</div></div>
+      <div><div class="cert-sig-name" id="cert-date" style="margin-bottom:6px;"></div><div class="cert-sig-line"></div><div class="cert-sig-name">Date Issued</div></div>
+    </div>
+    <div class="cert-ref" id="cert-ref"></div>
+    <button class="print-btn" onclick="window.print()">🖨 Print Certificate</button>
+  </div>
+</div>
+<div class="footer"><div class="footer-left">KeyPlayers · LendMate VA Training Academy · lendmate.ca</div><div class="footer-right">CRM-FNM-002 · Finmo</div></div>
+</div>
+
+<script>
+const questions=[
+  {q:"What is Finmo primarily used for?",options:["Property appraisal and market analysis","Mortgage application management and lender submission","Credit score monitoring for borrowers","CRM for real estate agents only"],correct:1,feedback:"Finmo is a mortgage application and submission platform. VAs use it to manage borrower applications, collect documents, and submit files to lenders — it is not a general CRM or appraisal tool."},
+  {q:"Which tab in Finmo shows all active and in-progress applications that a VA works from daily?",options:["Tasks","Pipeline","Library","Contacts"],correct:1,feedback:"The Pipeline tab is the main working view showing all active applications. Tasks is for follow-ups and deadlines. Library is for templates. Contacts is for borrower records."},
+  {q:"Which user role in Finmo has full access to manage team settings and integrations?",options:["Agent","Borrower","Admin","Referral Partner"],correct:2,feedback:"Only Admin-level users can manage team settings, permission configurations, and integrations. VAs typically operate at the Agent level — they cannot change system-wide settings."},
+  {q:"When a borrower is invited through Finmo, what do they receive?",options:["A printable PDF form to complete manually","A personalized application link to their own portal","Their credit score automatically","A video tutorial on mortgage basics"],correct:1,feedback:"Borrowers receive a personalized application link that opens their secure portal. They complete their information directly in the system — no PDF, no manual form."},
+  {q:"Which of the following is NOT a required section in a Finmo borrower application?",options:["Personal details","Employment and income","Preferred property flooring material","Assets and liabilities"],correct:2,feedback:"Flooring material preferences are irrelevant to a mortgage application. The four required sections are: personal details, employment and income, assets and liabilities, and property details."},
+  {q:"Before pulling a borrower's credit report in Finmo, what must be obtained?",options:["A copy of their driver's license","Written borrower consent","Proof of employment","Their SIN card photo"],correct:1,feedback:"Written consent is a legal requirement under PIPEDA before any credit bureau access. A driver's license or SIN card is not a substitute. Never pull credit without consent on file."},
+  {q:"What does Finmo Smart Docs do?",options:["Automatically generates appraisal reports","Automates document requests based on the borrower's application data","Files lender tax documents","Sends bulk messages to all borrowers at once"],correct:1,feedback:"Smart Docs looks at the borrower's application data and automatically generates targeted document requests based on what the file shows — income type, employment status, etc. It reduces manual guesswork."},
+  {q:"A salaried borrower needs to provide income verification. Which document is most appropriate?",options:["Purchase agreement","Pay stub or T4","MLS listing","Void cheque"],correct:1,feedback:"For income verification, a pay stub or T4 is the correct document. A void cheque is for banking information, a purchase agreement is for the property, and an MLS listing is not an income document."},
+  {q:"After a borrower uploads a document in Finmo, where does it appear?",options:["It is automatically sent to the lender","In the Documents section for broker/VA review","It gets deleted after 24 hours","It is only visible to the borrower"],correct:1,feedback:"Uploaded documents appear in the Documents section for the VA or broker to review. Documents do not auto-send to lenders, they do not expire, and they are visible to authorized team members."},
+  {q:"Before submitting an application to a lender through Finmo, which step must be completed?",options:["Approving the borrower's real estate agent","Mapping documents to the lender's specific requirements","Running a property inspection","Assigning a referral fee"],correct:1,feedback:"Documents must be mapped to lender requirements before submission. This ensures the lender receives correctly labelled documents. Skipping this step results in an incomplete or rejected submission."},
+  {q:"What is the purpose of a Submission Note in Finmo?",options:["To generate mortgage rates automatically","To provide a summary or supporting rationale explaining the deal to the lender","To invite borrowers to complete their application","To create promotional material for the deal"],correct:1,feedback:"A Submission Note allows the broker (or VA when directed) to explain the deal, address potential concerns, or highlight strengths. It is a written communication to the underwriter — not an automated tool."},
+  {q:"A lender is not integrated with Finmo. What is the correct step to submit the application?",options:["Export the application as a PDF and send it manually","Create a custom landing page for the lender","Use only electronic signatures and wait","Add a co-borrower as a workaround"],correct:0,feedback:"For non-integrated lenders, the correct process is to export the application as a PDF and submit it manually through that lender's own channel. No workarounds — follow the export PDF process."},
+  {q:"Why is borrower consent legally required before pulling a credit report?",options:["It is optional but recommended best practice","Lenders use it for marketing targeting","It is a legal requirement for accessing personal credit data under Canadian privacy law","It speeds up the application process"],correct:2,feedback:"Canadian privacy law (PIPEDA) requires explicit consent before accessing any personal credit data. This is non-negotiable — there are no exceptions, no workarounds, and no 'it's okay this time' situations."},
+  {q:"Which type of borrower information carries the highest confidentiality requirement?",options:["Borrower's hobby preferences","Credit bureau details including score and payment history","Property listing photos","The borrower's home address only"],correct:1,feedback:"Credit bureau data — score, payment history, outstanding debts — is legally protected under Canadian privacy law and carries the highest confidentiality requirement. Never share or forward this data outside the platform without explicit broker authorization."},
+  {q:"Which action in Finmo can only be performed by an Admin-level user?",options:["Creating a new borrower file","Editing team settings and permission configurations","Uploading supporting documents","Inviting a borrower to complete their application"],correct:1,feedback:"Only Admins can edit team-level settings and permissions. VAs at the Agent level can create files, upload documents, and invite borrowers — but cannot modify who has access to what within the platform."}
+];
+
+function buildQuiz(){
+  const c=document.getElementById('quiz-questions');c.innerHTML='';
+  questions.forEach((q,i)=>{
+    const b=document.createElement('div');b.className='q-block';
+    b.innerHTML=`<div class="q-num">Question ${i+1} of ${questions.length}</div><div class="q-text">${q.q}</div><div class="q-options">${q.options.map((o,j)=>`<label class="q-option" id="opt${i}_${j}"><input type="radio" name="q${i}" value="${j}"><span>${o}</span></label>`).join('')}</div><div class="q-feedback" id="fb${i}" style="display:none;"></div>`;
+    c.appendChild(b);
+  });
+}
+function submitQuiz(){
+  const name=document.getElementById('va-name').value.trim();
+  if(!name){alert('Please enter your name before submitting.');return;}
+  let score=0,all=true;
+  questions.forEach((q,i)=>{
+    const sel=document.querySelector(`input[name="q${i}"]:checked`);
+    if(!sel){all=false;return;}
+    const val=parseInt(sel.value);const fb=document.getElementById('fb'+i);
+    q.options.forEach((_,j)=>{const o=document.getElementById(`opt${i}_${j}`);o.style.pointerEvents='none';if(j===q.correct)o.classList.add('show-correct');});
+    const ch=document.getElementById(`opt${i}_${val}`);
+    if(val===q.correct){score++;ch.classList.add('correct');fb.className='q-feedback correct';fb.innerHTML=`✓ Correct. ${q.feedback}`;}
+    else{ch.classList.add('wrong');fb.className='q-feedback wrong';fb.innerHTML=`✗ Incorrect. ${q.feedback}`;}
+    fb.style.display='block';
+  });
+  if(!all){alert('Please answer all questions before submitting.');return;}
+  const pass=score>=11;const rd=document.getElementById('quiz-result');rd.style.display='block';
+  if(pass){rd.innerHTML=`<div class="result-pass"><div class="result-score">${score}/${questions.length}</div><div class="result-msg">Passed.</div><div class="result-sub">Score: ${score} out of ${questions.length}. Screenshot your certificate below and send to your trainer.</div></div>`;showCert(name,score);}
+  else{rd.innerHTML=`<div class="result-fail"><div class="result-score">${score}/${questions.length}</div><div class="result-msg">Not passed — you need 11/15 to pass.</div><div class="result-sub">Review the incorrect answers and retry.</div><button class="retry-btn" onclick="resetQuiz()">↺ Retry</button></div>`;}
+  rd.scrollIntoView({behavior:'smooth',block:'start'});document.querySelector('.submit-btn').style.display='none';
+}
+function showCert(name,score){
+  const c=document.getElementById('certificate');c.style.display='block';
+  document.getElementById('cert-name').textContent=name;
+  document.getElementById('cert-score').textContent=`Score: ${score}/${questions.length} — ${Math.round(score/questions.length*100)}%`;
+  const now=new Date();
+  document.getElementById('cert-date').textContent=now.toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('cert-ref').textContent=`Certificate ID: LM-FNM-${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}-${Math.floor(Math.random()*9000+1000)}`;
+  setTimeout(()=>c.scrollIntoView({behavior:'smooth',block:'start'}),400);
+}
+function resetQuiz(){
+  document.getElementById('quiz-result').style.display='none';document.getElementById('quiz-result').innerHTML='';
+  document.getElementById('certificate').style.display='none';document.getElementById('va-name').value='';
+  document.querySelector('.submit-btn').style.display='block';buildQuiz();
+  document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'});
+}
+const secs=document.querySelectorAll('.section[data-s]');
+function updateProg(){
+  const sy=window.scrollY+window.innerHeight*.6;let v=0;
+  secs.forEach(s=>{if(s.offsetTop<=sy)v++;});
+  const p=Math.round(v/secs.length*100);
+  document.getElementById('pb-fill').style.width=p+'%';document.getElementById('pb-pct').textContent=p+'%';
+}
+window.addEventListener('scroll',updateProg,{passive:true});updateProg();buildQuiz();
+</script>
+</body>
+</html>

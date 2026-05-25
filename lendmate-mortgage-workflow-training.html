@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LendMate | Mortgage Workflow Training Guide for VAs</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap');
+
+:root {
+  --pink: #C855A0;
+  --purple: #8B5CF6;
+  --grad: linear-gradient(135deg, #C855A0 0%, #8B5CF6 100%);
+  --grad-r: linear-gradient(135deg, #8B5CF6 0%, #C855A0 100%);
+  --soft: linear-gradient(135deg, rgba(200,85,160,0.07) 0%, rgba(139,92,246,0.07) 100%);
+  --bg: #F9F8FE;
+  --white: #ffffff;
+  --text: #1a1a2e;
+  --muted: #64748b;
+  --border: #e5e0f5;
+  --bordersoft: #ede9fb;
+  --green: #10b981;
+  --amber: #f59e0b;
+  --red: #ef4444;
+  --blue: #3b82f6;
+  --shadow: 0 2px 16px rgba(139,92,246,0.08);
+  --shadow-lg: 0 8px 40px rgba(139,92,246,0.16);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:15px;line-height:1.6;}
+
+/* HEADER */
+.hdr{background:var(--white);border-bottom:1px solid var(--border);padding:13px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(139,92,246,0.06);}
+.logo{display:flex;align-items:center;gap:10px;}
+.lm{width:34px;height:34px;background:var(--grad);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;flex-shrink:0;}
+.lname{font-size:17px;font-weight:700;}.lname span{color:var(--pink);}
+.lsub{font-size:10px;color:var(--muted);}
+.hbadge{background:var(--soft);border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:600;color:var(--purple);}
+
+/* PROGRESS */
+.pgbar{background:var(--white);border-bottom:1px solid var(--border);padding:10px 28px 12px;}
+.pgtop{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);font-weight:500;margin-bottom:7px;}
+.pgtrack{height:5px;background:var(--bordersoft);border-radius:10px;overflow:hidden;}
+.pgfill{height:100%;background:var(--grad);border-radius:10px;transition:width 0.5s ease;width:0%;}
+.pills{display:flex;gap:5px;margin-top:9px;flex-wrap:wrap;}
+.pill{font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px;border:1px solid var(--border);background:var(--white);color:var(--muted);transition:all 0.3s;cursor:default;}
+.pill.active{background:var(--grad);color:#fff;border-color:transparent;}
+.pill.done{background:rgba(16,185,129,0.1);color:var(--green);border-color:rgba(16,185,129,0.3);}
+
+/* MAIN */
+.main{max-width:880px;margin:0 auto;padding:36px 20px 80px;}
+.screen{display:none;}
+.screen.active{display:block;animation:fu 0.35s ease;}
+@keyframes fu{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+
+/* CARD */
+.card{background:var(--white);border-radius:18px;border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden;}
+.ch{padding:22px 28px;background:var(--grad);color:#fff;}
+.ch .tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.8;margin-bottom:6px;}
+.ch h2{font-family:'DM Serif Display',serif;font-size:24px;line-height:1.2;}
+.ch p{font-size:13px;opacity:0.85;margin-top:6px;line-height:1.5;}
+.cb{padding:28px;}
+
+/* HERO */
+.hero{text-align:center;padding:48px 28px 40px;background:var(--white);border-radius:20px;border:1px solid var(--border);box-shadow:var(--shadow);position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--grad);}
+.hico{width:70px;height:70px;background:var(--grad);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 22px;box-shadow:0 8px 24px rgba(200,85,160,0.3);}
+.hero h1{font-family:'DM Serif Display',serif;font-size:30px;line-height:1.2;margin-bottom:12px;}
+.hero h1 span{color:var(--pink);font-style:italic;}
+.hero p{color:var(--muted);font-size:14px;line-height:1.75;max-width:560px;margin:0 auto 28px;}
+.hstats{display:flex;gap:18px;justify-content:center;margin-bottom:30px;flex-wrap:wrap;}
+.hstat{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);font-weight:500;}
+.hstat .si{width:28px;height:28px;background:var(--soft);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;border:1px solid var(--border);}
+.opanel{background:var(--soft);border:1px solid var(--border);border-radius:14px;padding:18px 22px;text-align:left;margin-bottom:28px;}
+.opanel h3{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--purple);margin-bottom:14px;}
+.ogrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.oi{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:500;}
+.on{width:20px;height:20px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;flex-shrink:0;}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:12px 24px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
+.bp{background:var(--grad);color:#fff;box-shadow:0 4px 14px rgba(200,85,160,0.28);}
+.bp:hover{transform:translateY(-1px);box-shadow:0 7px 22px rgba(200,85,160,0.42);}
+.bs{background:var(--white);color:var(--purple);border:1.5px solid var(--border);}
+.bs:hover{border-color:var(--purple);background:var(--soft);}
+.bgrp{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+
+/* CONTENT ELEMENTS */
+.slabel{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--purple);margin-bottom:13px;display:flex;align-items:center;gap:8px;}
+.slabel::after{content:'';flex:1;height:1px;background:var(--border);}
+.intro-t{font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:22px;padding-bottom:20px;border-bottom:1px solid var(--border);}
+
+/* TWO COL BOXES */
+.twobox{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+.dbox{background:var(--soft);border:1px solid var(--border);border-radius:12px;padding:16px;}
+.dbox h4{font-size:12px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px;color:var(--pink);}
+.dbox ul{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.dbox ul li{font-size:13px;color:var(--text);line-height:1.5;display:flex;align-items:flex-start;gap:7px;}
+.dbox ul li::before{content:'→';color:var(--purple);font-weight:700;flex-shrink:0;font-size:11px;margin-top:2px;}
+.dbox.red{border-color:rgba(239,68,68,0.25);background:rgba(239,68,68,0.04);}
+.dbox.red h4{color:#dc2626;}
+.dbox.red ul li::before{color:var(--red);}
+.dbox.green{border-color:rgba(16,185,129,0.25);background:rgba(16,185,129,0.04);}
+.dbox.green h4{color:#059669;}
+.dbox.green ul li::before{color:var(--green);}
+
+/* STEP ITEMS */
+.slist{display:flex;flex-direction:column;gap:10px;}
+.si{display:flex;gap:14px;align-items:flex-start;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:14px;transition:border-color 0.2s,box-shadow 0.2s;}
+.si:hover{border-color:var(--purple);box-shadow:var(--shadow-lg);}
+.snum{min-width:32px;height:32px;background:var(--grad);border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:12px;flex-shrink:0;}
+.scon h4{font-size:13px;font-weight:700;margin-bottom:3px;}
+.scon p{font-size:13px;color:var(--muted);line-height:1.5;}
+.scon ul{list-style:none;margin-top:5px;display:flex;flex-direction:column;gap:3px;}
+.scon ul li{font-size:12px;color:var(--muted);display:flex;align-items:flex-start;gap:6px;line-height:1.5;}
+.scon ul li::before{content:'•';color:var(--pink);font-weight:900;flex-shrink:0;}
+
+/* ALERTS */
+.alert{border-radius:11px;padding:13px 16px;font-size:13px;line-height:1.6;display:flex;gap:9px;align-items:flex-start;margin-top:14px;}
+.alert.info{background:rgba(139,92,246,0.06);border:1px solid rgba(139,92,246,0.2);color:#5b21b6;}
+.alert.warn{background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.25);color:#92400e;}
+.alert.ok{background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.25);color:#065f46;}
+.alert.red{background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.25);color:#991b1b;}
+.alert .ai{font-size:15px;flex-shrink:0;margin-top:1px;}
+
+/* THREE COLUMN */
+.threecol{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;}
+.tc{background:var(--soft);border:1px solid var(--border);border-radius:12px;padding:16px;}
+.tc .tico{font-size:22px;margin-bottom:8px;}
+.tc h4{font-size:13px;font-weight:700;margin-bottom:6px;color:var(--purple);}
+.tc p{font-size:12px;color:var(--muted);line-height:1.6;}
+
+/* STAGE BADGE */
+.stage-badge{display:inline-flex;align-items:center;gap:8px;background:var(--grad);color:#fff;border-radius:20px;padding:4px 14px;font-size:12px;font-weight:700;margin-bottom:16px;}
+
+/* TIMELINE */
+.timeline{display:flex;flex-direction:column;gap:0;}
+.tl-item{display:flex;gap:16px;position:relative;}
+.tl-item:not(:last-child)::after{content:'';position:absolute;left:15px;top:36px;bottom:0;width:2px;background:var(--bordersoft);}
+.tl-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0;z-index:1;}
+.tl-con{padding-bottom:20px;}
+.tl-con h4{font-size:13px;font-weight:700;margin-bottom:2px;}
+.tl-con p{font-size:13px;color:var(--muted);line-height:1.5;}
+
+/* NAV */
+.nfooter{display:flex;justify-content:space-between;align-items:center;margin-top:26px;padding-top:20px;border-top:1px solid var(--border);}
+
+/* QUIZ */
+.qhdr{padding:20px 26px;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:space-between;}
+.qhdr h2{font-family:'DM Serif Display',serif;font-size:21px;}
+.qctr{background:rgba(255,255,255,0.2);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:600;}
+.qbody{padding:28px;}
+.qpbar{height:4px;background:var(--border);border-radius:4px;margin-bottom:24px;overflow:hidden;}
+.qpfill{height:100%;background:var(--grad);border-radius:4px;transition:width 0.4s ease;}
+.qtbadge{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:3px 10px;border-radius:20px;margin-bottom:12px;}
+.qtbadge.mc{background:rgba(139,92,246,0.1);color:var(--purple);}
+.qtbadge.tf{background:rgba(200,85,160,0.1);color:var(--pink);}
+.qtext{font-size:16px;font-weight:600;line-height:1.5;margin-bottom:20px;}
+.opts{display:flex;flex-direction:column;gap:9px;margin-bottom:20px;}
+.opt{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border:1.5px solid var(--border);border-radius:11px;cursor:pointer;transition:all 0.2s;background:var(--white);}
+.opt:hover:not(.locked){border-color:var(--purple);background:var(--soft);}
+.opt.sel{border-color:var(--purple);background:rgba(139,92,246,0.06);}
+.opt.correct{border-color:var(--green);background:rgba(16,185,129,0.06);}
+.opt.wrong{border-color:var(--red);background:rgba(239,68,68,0.05);}
+.oltr{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;background:var(--border);color:var(--muted);flex-shrink:0;transition:all 0.2s;}
+.opt.sel .oltr{background:var(--purple);color:#fff;}
+.opt.correct .oltr{background:var(--green);color:#fff;}
+.opt.wrong .oltr{background:var(--red);color:#fff;}
+.otxt{font-size:13px;line-height:1.5;color:var(--text);padding-top:4px;}
+.fb{border-radius:11px;padding:13px 16px;font-size:13px;line-height:1.6;margin-bottom:18px;display:none;}
+.fb.show{display:flex;gap:9px;align-items:flex-start;}
+.fb.correct{background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.3);color:#065f46;}
+.fb.incorrect{background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.25);color:#991b1b;}
+
+/* CERTIFICATE */
+.cwrap{background:var(--white);border-radius:20px;border:2px solid var(--border);box-shadow:0 12px 48px rgba(139,92,246,0.14);padding:44px 36px;position:relative;overflow:hidden;margin-bottom:18px;text-align:center;}
+.cwrap::before{content:'';position:absolute;top:0;left:0;right:0;height:6px;background:var(--grad);}
+.cwrap::after{content:'';position:absolute;bottom:0;left:0;right:0;height:6px;background:var(--grad);}
+.cinner{border:1px solid var(--border);border-radius:14px;padding:36px;background:linear-gradient(135deg,rgba(200,85,160,0.03) 0%,rgba(139,92,246,0.03) 100%);}
+.cseal{width:76px;height:76px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 18px;box-shadow:0 8px 28px rgba(200,85,160,0.32);}
+.cbrand{font-size:12px;font-weight:700;color:var(--pink);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:4px;}
+.ctitle{font-family:'DM Serif Display',serif;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:18px;}
+.cpres{font-size:12px;color:var(--muted);margin-bottom:6px;}
+.cname{font-family:'DM Serif Display',serif;font-size:34px;color:var(--text);margin-bottom:18px;min-height:44px;}
+.cdesc{font-size:13px;color:var(--muted);line-height:1.7;max-width:420px;margin:0 auto 22px;}
+.cmod{font-size:15px;font-weight:700;color:var(--purple);padding:9px 22px;background:var(--soft);border-radius:8px;display:inline-block;margin-bottom:26px;}
+.cdiv{height:1px;background:var(--border);margin-bottom:22px;}
+.cstats{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;}
+.cstat .clabel{font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:3px;}
+.cstat .cval{font-size:14px;font-weight:700;color:var(--text);}
+.sbadge{display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:40px;font-size:19px;font-weight:700;margin-bottom:22px;}
+.sbadge.pass{background:rgba(16,185,129,0.1);border:2px solid var(--green);color:#065f46;}
+.sbadge.fail{background:rgba(239,68,68,0.07);border:2px solid var(--red);color:#991b1b;}
+.srows{margin-bottom:22px;}
+.srow{display:flex;align-items:center;justify-content:space-between;background:var(--soft);border:1px solid var(--border);border-radius:10px;padding:13px 18px;margin-bottom:9px;}
+.srow .sl{font-size:13px;font-weight:600;}
+.srow .sv{font-size:13px;font-weight:700;color:var(--purple);}
+.ninwrap{margin-bottom:18px;text-align:center;}
+.ninwrap label{font-size:13px;font-weight:600;color:var(--muted);display:block;margin-bottom:8px;}
+.nin{width:100%;max-width:360px;padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--text);outline:none;transition:border-color 0.2s;}
+.nin:focus{border-color:var(--purple);}
+.pnote{font-size:12px;color:var(--muted);text-align:center;margin-top:8px;}
+
+/* KEY PLATFORM BOX */
+.kp-box{background:rgba(139,92,246,0.06);border:1px solid rgba(139,92,246,0.2);border-radius:12px;padding:14px 16px;font-size:13px;color:#5b21b6;line-height:1.6;margin-top:16px;display:flex;gap:9px;align-items:flex-start;}
+.kp-box strong{font-weight:700;}
+
+/* STAT CARDS */
+.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;}
+.statc{background:var(--grad);border-radius:14px;padding:20px;text-align:center;color:#fff;}
+.statc .sv{font-family:'DM Serif Display',serif;font-size:36px;font-weight:400;line-height:1;}
+.statc .sl{font-size:12px;opacity:0.85;margin-top:6px;}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  .twobox,.threecol,.ogrid,.statgrid{grid-template-columns:1fr;}
+  .cstats{gap:18px;}
+  .cb,.qbody{padding:18px;}
+  .main{padding:22px 14px 60px;}
+  .hero{padding:32px 18px 28px;}
+}
+
+@media print{
+  .hdr,.pgbar,.nfooter,.bgrp,.pnote,.btn{display:none!important;}
+  .screen{display:none!important;}
+  #s-cert{display:block!important;}
+  #cert-pass{display:block!important;}
+  body{background:white;}
+  .cwrap{box-shadow:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="logo">
+    <div class="lm">LM</div>
+    <div>
+      <div class="lname"><span>LendMate</span> VA Solutions</div>
+      <div class="lsub">Training Academy</div>
+    </div>
+  </div>
+  <div class="hbadge">🏡 Mortgage Workflow Module</div>
+</div>
+
+<!-- PROGRESS -->
+<div class="pgbar">
+  <div class="pgtop"><span id="plabel">Not started</span><span id="ppct">0%</span></div>
+  <div class="pgtrack"><div class="pgfill" id="pfill"></div></div>
+  <div class="pills" id="pills"></div>
+</div>
+
+<div class="main">
+
+<!-- ═══════ INTRO ═══════ -->
+<div class="screen active" id="s-intro">
+  <div class="hero">
+    <div class="hico">🏡</div>
+    <h1>Mortgage Workflow <span>Training Guide</span> for VAs</h1>
+    <p>Your comprehensive guide to supporting mortgage brokers throughout the entire client journey — from application to post-close. Know every stage, your exact role, and what you can and cannot do.</p>
+    <div class="hstats">
+      <div class="hstat"><div class="si">⏱</div> ~30 minutes</div>
+      <div class="hstat"><div class="si">📚</div> 9 Stages</div>
+      <div class="hstat"><div class="si">🎯</div> 2 Quizzes</div>
+      <div class="hstat"><div class="si">🏆</div> Certificate</div>
+    </div>
+    <div class="opanel">
+      <h3>Module Outline</h3>
+      <div class="ogrid">
+        <div class="oi"><div class="on">1</div> Introduction &amp; VA Role</div>
+        <div class="oi"><div class="on">2</div> Application Stage</div>
+        <div class="oi"><div class="on">3</div> Document Collection</div>
+        <div class="oi"><div class="on">4</div> Credit Check</div>
+        <div class="oi"><div class="on">5</div> Lender Search &amp; Submission</div>
+        <div class="oi"><div class="on">6</div> Conditional Approval</div>
+        <div class="oi"><div class="on">7</div> Fulfillment of Conditions</div>
+        <div class="oi"><div class="on">8</div> File Sent to Lawyer &amp; Closing</div>
+        <div class="oi"><div class="on">9</div> Post-Close</div>
+      </div>
+    </div>
+    <div class="bgrp">
+      <button class="btn bp" onclick="go('intro2')">Start Training →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ SCREEN 1: INTRODUCTION ═══════ -->
+<div class="screen" id="s-intro2">
+  <div class="card">
+    <div class="ch">
+      <div class="tag">Introduction</div>
+      <h2>Your Role as a Mortgage VA</h2>
+      <p>Understand what you are here to do — and what is strictly off-limits.</p>
+    </div>
+    <div class="cb">
+      <p class="intro-t">As a Mortgage VA, your role is to support the broker and their clients throughout the entire mortgage process. While you cannot provide advice or make lending decisions, you are a crucial part of the admin, document management, and client communication workflow. Every agent or broker does things a little differently — but this overview gives you a solid understanding of the typical mortgage process.</p>
+
+      <div class="slabel">Your Core Functions</div>
+      <div class="twobox">
+        <div class="dbox green">
+          <h4>✅ What You Do</h4>
+          <ul>
+            <li>Administrative support</li>
+            <li>Document management and tracking</li>
+            <li>Client communication (as directed by broker)</li>
+            <li>Process coordination</li>
+            <li>CRM updates and file organization</li>
+            <li>Status updates and follow-ups</li>
+          </ul>
+        </div>
+        <div class="dbox red">
+          <h4>❌ What You Cannot Do</h4>
+          <ul>
+            <li>Provide mortgage advice to clients</li>
+            <li>Make lending decisions</li>
+            <li>Pull credit reports</li>
+            <li>Negotiate mortgage terms</li>
+            <li>Give opinions on which lender to use</li>
+            <li>Access client financial data unsupervised</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="alert warn">
+        <span class="ai">⚠️</span>
+        <span><strong>Critical boundary:</strong> If a client asks you a question about rates, qualifications, or mortgage advice, your answer is always: "I will pass that along to your broker who will follow up with you shortly." Never attempt to answer mortgage-specific questions yourself.</span>
+      </div>
+
+      <div class="slabel">The 9-Stage Mortgage Journey</div>
+      <div class="slist">
+        <div class="si"><div class="snum">1</div><div class="scon"><h4>Application Stage</h4><p>Borrower completes application. VA ensures completeness and uploads to CRM.</p></div></div>
+        <div class="si"><div class="snum">2</div><div class="scon"><h4>Document Collection</h4><p>VA collects, tracks, and organizes all required borrower documents.</p></div></div>
+        <div class="si"><div class="snum">3</div><div class="scon"><h4>Credit Check</h4><p>Broker pulls credit. VA stores securely and cross-checks liabilities.</p></div></div>
+        <div class="si"><div class="snum">4</div><div class="scon"><h4>Lender Search &amp; Submission</h4><p>Broker selects lender. VA formats documents and verifies submission package.</p></div></div>
+        <div class="si"><div class="snum">5</div><div class="scon"><h4>Conditional Approval</h4><p>Lender issues commitment letter. VA tracks conditions and collects additional docs.</p></div></div>
+        <div class="si"><div class="snum">6</div><div class="scon"><h4>Fulfillment of Conditions</h4><p>VA follows up, organizes, and verifies all conditions are satisfied.</p></div></div>
+        <div class="si"><div class="snum">7</div><div class="scon"><h4>File Sent to Lawyer</h4><p>VA sends complete package to lawyer and confirms receipt.</p></div></div>
+        <div class="si"><div class="snum">8</div><div class="scon"><h4>Closing</h4><p>Lawyer manages closing. VA marks file closed and archives documents.</p></div></div>
+        <div class="si"><div class="snum">9</div><div class="scon"><h4>Post-Close</h4><p>VA manages database, follow-ups, renewals, and referral programs.</p></div></div>
+      </div>
+
+      <div class="nfooter">
+        <button class="btn bs" onclick="go('intro')">← Back</button>
+        <button class="btn bp" onclick="go('s1')">Stage 1: Application →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ STAGE 1: APPLICATION ═══════ -->
+<div class="screen" id="s-s1">
+  <div class="card">
+    <div class="ch">
+      <div class="tag">Stage 1 of 9</div>
+      <h2>Application Stage</h2>
+      <p>The mortgage process starts here. Accuracy at this stage prevents problems at every stage after it.</p>
+    </div>
+    <div class="cb">
+      <p class="intro-t">The broker sends out a borrower application form via platforms like Finmo, Velocity, or Filogix. The client completes it with personal info, employment details, assets, and liabilities, and provides consent for a credit check. Your job is to make sure nothing is missing before the file moves forward.</p>
+
+      <div class="slabel">Broker's Actions at This Stage</div>
+      <div class="slist" style="margin-bottom:20px;">
+        <div class="si"><div class="snum">→</div><div class="scon"><h4>Sends Application Form</h4><p>Sends borrower application via Finmo, Velocity, Filogix, or similar platforms.</p></div></div>
+        <div class="si"><div class="snum">→</div><div class="scon"><h4>Client Completes Application</h4><p>Client fills in personal info, employment details, assets, and liabilities.</p></div></div>
+        <div class="si"><div class="snum">→</div><div class="scon"><h4>Obtains Credit Consent</h4><p>Broker obtains the client's signed consent for a credit check before proceeding.</p></div></div>
+      </div>
+
+      <div class="slabel">Your VA Tasks</div>
+      <div class="slist" style="margin-bottom:16px;">
+        <div class="si"><div class="snum">✓</div><div class="scon"><h4>Review for Completeness</h4><p>Check all required fields are filled in. Flag any missing employer names, addresses, or other key information before the broker reviews.</p></div></div>
+        <div class="si"><div class="snum">✓</div><div class="scon"><h4>Upload to CRM</h4><p>Upload the completed application into the CRM system and organize the borrower's profile with correct folder structure.</p></div></div>
+        <div class="si"><div class="snum">✓</div><div class="scon"><h4>Create Borrower Profile</h4><p>Set up the borrower's file in the system. Ensure contact details, property address, and file reference numbers are correctly entered.</p></div></div>
+      </div>
+
+      <div class="kp-box">
+        <span style="font-size:15px;">💻</span>
+        <span><strong>Key Platforms:</strong> Familiarize yourself with Finmo, Velocity, and Filogix. These are the primary tools brokers use for application management. Your broker will tell you which one they use.</span>
+      </div>
+
+      <div class="nfooter">
+        <button class="btn bs" onclick="go('intro2')">← Back</button>
+        <button class="btn bp" onclick="go('s2')">Stage 2: Document Collection →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ STAGE 2: DOCUMENT COLLECTION ═══════ -->
+<div class="screen" id="s-s2">
+  <div class="card">
+    <div class="ch">
+      <div class="tag">Stage 2 of 9</div>
+      <h2>Document Collection</h2>
+      <p>The foundation of every mortgage. Document quality directly impacts approval speed.</p>
+    </div>
+    <div class="cb">
+      <p class="intro-t">Document collection is where accuracy and organization become critical. The broker requests supporting documents based on borrower type (salaried, self-employed, etc.) and needs accurate documents to submit to lenders. Your role covers collection, tracking, and quality control.</p>
+
+      <div class="slabel">The 3-Step Collection Process</div>
+      <div class="threecol" style="margin-bottom:20px;">
+        <div class="tc"><div class="tico">📋</div><h4>01 Broker Requests</h4><p>Broker requests supporting documents based on borrower type. Needs accurate docs to submit to lenders.</p></div>
+        <div class="tc"><div class="tico">📥</div><h4>02 VA Collects &amp; Tracks</h4><p>Collect and track borrower documents, ensuring all materials are legible, recent, and complete.</p></div>
+        <div class="tc"><div class="tico">🗂</div><h4>03 Organize &amp; QC</h4><p>Organize files into correct folders in broker's system and flag discrepancies without confronting client.</p></div>
+      </div>
+
+      <div class="slabel">Essential Documents Checklist</div>
+      <div class="twobox">
+        <div class="dbox">
+          <h4>💼 Employed Borrowers</h4>
+          <ul>
+            <li>2 recent pay stubs (last 30 days)</li>
+            <li>T4 slips for the last 1 to 2 years</li>
+            <li>Employment letter (dated within 30 to 60 days)</li>
+            <li>Government-issued photo ID (both sides)</li>
+            <li>NOA (Notice of Assessment) from CRA</li>
+            <li>Bank statements (last 90 days)</li>
+          </ul>
+        </div>
+        <div class="dbox">
+          <h4>🗂 Self-Employed Borrowers</h4>
+          <ul>
+            <li>T1 General (last 2 years)</li>
+            <li>NOA (Notice of Assessment) from CRA</li>
+            <li>Articles of Incorporation or Business License</li>
+            <li>Bank statements (last 90 days)</li>
+            <li>Government-issued photo ID (both sides)</li>
+            <li>Any additional borrower-specific documentation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="slabel">VA Quality Standards</div>
+      <div class="slist" style="margin-bottom:16px;">
+        <div class="si"><div class="snum">✓</div><div class="scon"><h4>Check Legibility</h4><p>Every document must be clearly readable. If a scan is too dark, blurry, or cut off, request a new copy before uploading.</p></div></div>
+        <div class="si"><div class="snum">✓</div><div class="scon"><h4>Check Currency</h4><p>Pay stubs must be within 30 days. Employment letters within 30 to 60 days. Bank statements within 90 days. Flag anything outside these windows.</p></div></div>
+        <div class="si"><div class="snum">✓</div><div class="scon"><h4>Flag Discrepancies Correctly</h4><p>If something does not match (name spelling, address, employer name), do not confront the client. Flag it to the broker with a specific note in the file.</p></div></div>
+      </div>
+
+      <div class="alert warn">
+        <span class="ai">⚠️</span>
+        <span><strong>Common error:</strong> Uploading documents before checking they are complete and legible. A blurry or cut-off document will be rejected by the lender and come back as a condition, causing delays.</span>
+      </div>
+
+      <div class="nfooter">
+        <button class="btn bs" onclick="go('s1')">← Back</button>
+        <button class="btn bp" onclick="go('s3')">Stage 3: Credit Check →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ STAGE 3: CREDIT CHECK ═══════ -->
+<div class="screen" id="s-s3">
+  <div class="card">
+    <div class="ch">
+      <div class="tag">Stage 3 of 9</div>
+      <h2>Credit Check</h2>
+      <p>The broker pulls credit. Your role here is purely administrative.</p>
+    </div>
+    <div class="cb">
+      <p class="intro-t">The broker runs the credit bureau through Equifax or TransUnion via the mortgage platform. They match the credit report with liabilities listed in the application and analyze credit score and payment history. This is a broker-only function. Your role is secure storage and cross-referencing.</p>
+
+      <div class="slabel">Broker Responsibilities (Not Your Job)</div>
+      <div class="dbox" style="margin-bottom:20px;">
+        <h4>🔒 Broker Does This — Not You</h4>
+        <ul>
+          <li>Runs credit bureau through Equifax or TransUnion via mortgage platform</li>
+          <li>Matches credit report with liabilities listed in application</li>
+          <li>Analyzes credit score and payment history</li>
+          <li>Makes decisions based on the credit report</li>
+        </ul>
+      </div>
+
+      <div class="slabel">Your VA Critical Tasks</div>
+      <div class="slist" style="margin-bottom:16px;">
+        <div class="si">
+          <div class="snum" style="background:linear-gradient(135deg,#ef4444,#dc2626)">!</div>
+          <div class="scon">
+            <h4>Never Pull Credit Yourself</h4>
+            <p>Credit pulls can only be performed by licensed mortgage professionals. If you are ever asked to pull a credit report, decline and notify the broker immediately. This is a legal boundary.</p>
+          </div>
+        </div>
+        <div class="si"><div class="snum">✓</div><div class="scon"><h4>Secure Storage</h4><p>Ensure the credit report is uploaded and stored securely in the correct folder in the broker's system. Access should be restricted to authorized personnel only.</p></div></div>
+        <div class="si"><div class="snum">✓</div><div class="scon"><h4>Cross-Check Liabilities</h4><p>Cross-check the liabilities listed in the file (car loans, credit cards, student loans, etc.) to confirm they match what the borrower disclosed in the application. Flag any discrepancies to the broker.</p></div></div>
+      </div>
+
+      <div class="alert red">
+        <span class="ai">🚫</span>
+        <span><strong>Important:</strong> Credit pulls can only be performed by licensed mortgage professionals. Your role is purely administrative — secure storage and cross-referencing existing information. Never attempt to access credit bureau systems.</span>
+      </div>
+
+      <div class="nfooter">
+        <button class="btn bs" onclick="go('s2')">← Back</button>
+        <button class="btn bp" onclick="go('s4')">Stage 4: Lender Search →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ STAGE 4: LENDER SEARCH ═══════ -->
+<div class="screen" id="s-s4">
+  <div class="card">
+    <div class="ch">
+      <div class="tag">Stage 4 of 9</div>
+      <h2>Lender Search &amp; Submission</h2>
+      <p>The broker selects the lender. You prepare and verify the submission package.</p>
+    </div>
+    <div class="cb">
+      <p class="intro-t">The broker compares different lender products including rates, terms, and conditions to find the best fit. Once selected, a comprehensive mortgage submission package is prepared and submitted through the appropriate lender portal. Your role is to support package preparation and verification.</p>
+
+      <div class="slabel">Broker's Actions (Context for You)</div>
+      <div class="threecol" style="margin-bottom:20px;">
+        <div class="tc"><div class="tico">🔍</div><h4>01 Lender Comparison</h4><p>Broker compares lender products including rates, terms, and conditions to find the best fit for the borrower.</p></div>
+        <div class="tc"><div class="tico">📦</div><h4>02 Package Preparation</h4><p>Broker selects the most suitable lender and prepares the comprehensive mortgage submission package.</p></div>
+        <div class="tc"><div class="tico">📤</div><h4>03 Submission</h4><p>Complete package is submitted through the appropriate lender portal or system.</p></div>
+      </div>
+
+      <div class="slabel">Your VA Tasks</div>
+      <div class="slist" style="margin-bottom:16px;">
+        <div class="si"><div class="snum">✓</div><div class="scon">
+          <h4>Format &amp; Label Documents</h4>
+          <p>Format documents clearly and label them for easy identification and processing.</p>
+          <ul>
+            <li>Use consistent naming: e.g., "T4_2023.pdf", "PayStub_Mar2025.pdf"</li>
+            <li>Group by category: Income, ID, Property, Application</li>
+            <li>Remove duplicate or outdated versions from the folder</li>
+          </ul>
+        </div></div>
+        <div class="si"><div class="snum">✓</div><div class="scon">
+          <h4>Package Verification</h4>
+          <p>Double-check submission package completeness before the broker submits. Confirm these are all present:</p>
+          <ul>
+            <li>Completed application form</li>
+            <li>Credit bureau consent (signed)</li>
+            <li>Income documents (pay stubs, T4s, NOA)</li>
+            <li>Down payment proof (for purchase files)</li>
+            <li>Property details / MLS listing</li>
+          </ul>
+        </div></div>
+        <div class="si"><div class="snum">✓</div><div class="scon"><h4>Portal Upload</h4><p>Upload the package into the lender portal when directed by the broker, ensuring all documents are properly categorized. Never submit without explicit broker direction.</p></div></div>
+      </div>
+
+      <div class="alert info">
+        <span class="ai">💡</span>
+        <span>You assist with document preparation and upload — but the broker decides which lender to use and makes the submission decision. Never select a lender or submit independently.</span>
+      </div>
+
+      <div class="nfooter">
+        <button class="btn bs" onclick="go('s3')">← Back</button>
+        <button class="btn bp" onclick="go('q1')">Take Quiz 1 →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ QUIZ 1 ═══════ -->
+<div class="screen" id="s-q1">
+  <div class="card">
+    <div class="qhdr"><h2>Quiz 1: Stages 1 to 4</h2><div class="qctr" id="q1ctr">Q 1 of 6</div></div>
+    <div class="qbody">
+      <div class="qpbar"><div class="qpfill" id="q1pf"></div></div>
+      <div id="q1body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ STAGE 5: CONDITIONAL APPROVAL ═══════ -->
+<div class="screen" id="s-s5">
+  <div class="card">
+    <div class="ch">
+      <div class="tag">Stage 5 of 9</div>
+      <h2>Conditional Approval ("Commitment Letter")</h2>
+      <p>A major milestone — but conditions must be satisfied before final approval.</p>
+    </div>
+    <div class="cb">
+      <p class="intro-t">Receiving a commitment letter is a major milestone. The lender reviews the submission package and issues a conditional approval letter listing what still needs to be satisfied — commonly things like an employment letter, updated bank statements, or a property appraisal. The broker discusses these conditions with the borrower. Your job is to track and action every single condition.</p>
+
+      <div class="slabel">What the Lender Issues</div>
+      <div class="slist" style="margin-bottom:20px;">
+        <div class="si"><div class="snum">📄</div><div class="scon"><h4>Commitment Letter</h4><p>The lender's conditional approval. Lists all conditions that must be satisfied before they will fund the mortgage. Read it carefully.</p></div></div>
+        <div class="si"><div class="snum">📋</div><div class="scon"><h4>Condition List</h4><p>Typically includes items like: updated employment letter, bank statements, property appraisal, signed commitment by borrower, and any borrower-specific conditions.</p></div></div>
+      </div>
+
+      <div class="slabel">Your VA Tasks</div>
+      <div class="threecol" style="margin-bottom:16px;">
+        <div class="tc"><div class="tico">📊</div><h4>Track Conditions</h4><p>Maintain a detailed checklist of all lender conditions and their current status. Update it every time something is received or submitted.</p></div>
+        <div class="tc"><div class="tico">📥</div><h4>Document Collection</h4><p>Request and collect additional documents from the borrower as specified in the conditions list. Follow up promptly.</p></div>
+        <div class="tc"><div class="tico">🔔</div><h4>Status Updates</h4><p>Keep the broker informed on condition fulfillment progress and any challenges or delays as they arise.</p></div>
+      </div>
+
+      <div class="alert ok">
+        <span class="ai">✅</span>
+        <span><strong>Best practice:</strong> As soon as you receive the commitment letter, create a condition tracking sheet. List every condition, the document needed, the date requested from borrower, and the date received. Share this with the broker daily.</span>
+      </div>
+
+      <div class="nfooter">
+        <button class="btn bs" onclick="go('q1')">← Back</button>
+        <button class="btn bp" onclick="go('s6')">Stage 6: Fulfillment →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ STAGE 6: FULFILLMENT ═══════ -->
+<div class="screen" id="s-s6">
+  <div class="card">
+    <div class="ch">
+      <div class="tag">Stage 6 of 9</div>
+      <h2>Fulfillment of Conditions</h2>
+      <p>All conditions must be satisfied. The lender then issues "file complete" status.</p>
+    </div>
+    <div class="cb">
+      <p class="intro-t">The broker ensures all lender conditions are met and prepares a resubmission package with additional documentation. The lender reviews completed conditions and issues "file complete" status once satisfied. This is your most active tracking and follow-up stage.</p>
+
+      <div class="slabel">The Fulfillment Flow</div>
+      <div class="timeline" style="margin-bottom:20px;">
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--grad);">1</div>
+          <div class="tl-con"><h4>Condition Satisfaction</h4><p>Broker ensures all lender conditions are met and prepares resubmission package with additional documentation.</p></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:linear-gradient(135deg,#f59e0b,#d97706);">2</div>
+          <div class="tl-con"><h4>Lender Review</h4><p>Lender reviews completed conditions and additional documents to verify compliance with requirements.</p></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:linear-gradient(135deg,#10b981,#059669);">3</div>
+          <div class="tl-con"><h4>File Complete Status</h4><p>Lender issues "file complete" status once satisfied with all conditions and documentation. This triggers the next stage.</p></div>
+        </div>
+      </div>
+
+      <div class="slabel">Your VA Tasks</div>
+      <div class="slist" style="margin-bottom:16px;">
+        <div class="si"><div class="snum">✓</div><div class="scon"><h4>Follow Up with Borrower</h4><p>Maintain regular contact with the borrower for any outstanding documents or information. Be specific about what is needed and by when.</p></div></div>
+        <div class="si"><div class="snum">✓</div><div class="scon"><h4>Organize Condition Documents</h4><p>Upload and organize all condition documents in appropriate system folders immediately upon receipt. Label clearly using the condition name.</p></div></div>
+        <div class="si"><div class="snum">✓</div><div class="scon"><h4>Verify Lender Checkboxes</h4><p>Confirm all lender checkboxes are satisfied in the mortgage platform system before the broker resubmits. Do not assume — check each one explicitly.</p></div></div>
+        <div class="si"><div class="snum">✓</div><div class="scon"><h4>Update Condition Tracker</h4><p>Update your condition tracking sheet daily. Mark items as received, pending, or still outstanding. Share updated status with broker at each check-in.</p></div></div>
+      </div>
+
+      <div class="alert info">
+        <span class="ai">💡</span>
+        <span>When "file complete" status is issued by the lender, notify the broker immediately. This is the trigger for Stage 7 — File Sent to Lawyer.</span>
+      </div>
+
+      <div class="nfooter">
+        <button class="btn bs" onclick="go('s5')">← Back</button>
+        <button class="btn bp" onclick="go('s7')">Stage 7: File to Lawyer →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ STAGE 7: FILE TO LAWYER ═══════ -->
+<div class="screen" id="s-s7">
+  <div class="card">
+    <div class="ch">
+      <div class="tag">Stage 7 of 9</div>
+      <h2>File Sent to Lawyer</h2>
+      <p>Once "file complete" is issued, the mortgage moves to legal processing.</p>
+    </div>
+    <div class="cb">
+      <p class="intro-t">Once the lender issues "file complete" status, the mortgage file is ready for legal processing and closing preparation. Detailed instructions are sent to the borrower's lawyer or notary public for final document preparation. Your role is to ensure the package reaches the right lawyer with everything included, and that receipt is confirmed.</p>
+
+      <div class="slabel">What Happens at This Stage</div>
+      <div class="slist" style="margin-bottom:20px;">
+        <div class="si"><div class="snum">📄</div><div class="scon"><h4>File Complete Issued</h4><p>Lender issues "file complete" status. The mortgage file is now ready for legal processing and closing preparation. This is the trigger for this stage.</p></div></div>
+        <div class="si"><div class="snum">⚖️</div><div class="scon"><h4>Instructions to Lawyer</h4><p>Detailed instructions are sent to the borrower's lawyer or notary public for final document preparation — mortgage registration, title search, and disbursement calculations.</p></div></div>
+        <div class="si"><div class="snum">📋</div><div class="scon"><h4>Legal Document Prep</h4><p>Lawyer prepares final closing documents. This is managed by the lawyer, not the broker or VA — but you ensure they have everything they need.</p></div></div>
+      </div>
+
+      <div class="slabel">Your VA Tasks</div>
+      <div class="slist" style="margin-bottom:16px;">
+        <div class="si"><div class="snum">✓</div><div class="scon"><h4>Package Delivery</h4><p>Send the complete package to the lawyer when directed by the broker. Ensure all documents are included and properly organized before sending.</p></div></div>
+        <div class="si"><div class="snum">✓</div><div class="scon"><h4>Contact Verification</h4><p>Confirm the lawyer's contact details are accurate and update CRM with current information for seamless communication between broker and lawyer.</p></div></div>
+        <div class="si"><div class="snum">✓</div><div class="scon"><h4>Receipt Tracking</h4><p>Track and confirm when the lawyer acknowledges receipt of the package and reviews contents for completeness. Log the date and time of confirmation in the file.</p></div></div>
+      </div>
+
+      <div class="alert warn">
+        <span class="ai">⚠️</span>
+        <span>Never send the package to the lawyer without the broker's explicit direction. Always double-check the lawyer's contact details match the file — sending to the wrong lawyer causes serious delays.</span>
+      </div>
+
+      <div class="nfooter">
+        <button class="btn bs" onclick="go('s6')">← Back</button>
+        <button class="btn bp" onclick="go('s8')">Stage 8: Closing →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ STAGE 8: CLOSING ═══════ -->
+<div class="screen" id="s-s8">
+  <div class="card">
+    <div class="ch">
+      <div class="tag">Stage 8 of 9</div>
+      <h2>Closing</h2>
+      <p>The culmination of weeks or months of preparation. Your job is clean file closure.</p>
+    </div>
+    <div class="cb">
+      <p class="intro-t">Closing day is when all the hard work pays off. The lawyer coordinates all final details — signing, title transfer, and funding — while the broker confirms everything proceeds smoothly. Your role at closing is minimal in real-time but critical in terms of file completion and post-closing admin.</p>
+
+      <div class="slabel">Who Does What at Closing</div>
+      <div class="threecol" style="margin-bottom:20px;">
+        <div class="tc"><div class="tico">⚖️</div><h4>Lawyer</h4><p>Manages signing, title transfer, and funding processes. Coordinates all legal aspects of the transaction.</p></div>
+        <div class="tc"><div class="tico">🤝</div><h4>Broker</h4><p>Confirms closing completed successfully and follows up with client. Ensures client is satisfied.</p></div>
+        <div class="tc"><div class="tico">🖥</div><h4>VA (You)</h4><p>Mark file closed in CRM, archive all documents, and set up post-closing tasks for the client.</p></div>
+      </div>
+
+      <div class="slabel">Your VA Closing Tasks</div>
+      <div class="slist" style="margin-bottom:16px;">
+        <div class="si"><div class="snum">✓</div><div class="scon"><h4>Mark File Closed</h4><p>Update the CRM system to reflect the completed transaction status and close the active file. This keeps the pipeline clean and accurate.</p></div></div>
+        <div class="si"><div class="snum">✓</div><div class="scon"><h4>Archive Documents</h4><p>Properly organize and archive all transaction documents according to compliance requirements. Documents must be stored and accessible for audit purposes.</p></div></div>
+        <div class="si"><div class="snum">✓</div><div class="scon"><h4>Post-Closing Tasks</h4><p>Send a thank-you email on behalf of the broker, request a testimonial from the client, and move them into post-close nurture campaigns in the CRM.</p></div></div>
+      </div>
+
+      <div class="nfooter">
+        <button class="btn bs" onclick="go('s7')">← Back</button>
+        <button class="btn bp" onclick="go('s9')">Stage 9: Post-Close →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ STAGE 9: POST-CLOSE ═══════ -->
+<div class="screen" id="s-s9">
+  <div class="card">
+    <div class="ch">
+      <div class="tag">Stage 9 of 9</div>
+      <h2>Post-Close</h2>
+      <p>Building long-term success through renewals and referrals.</p>
+    </div>
+    <div class="cb">
+      <p class="intro-t">The post-close phase is where lasting relationships are built. Your role in maintaining client connections directly contributes to the broker's long-term success through renewals and referrals. Clients who stay engaged post-close have an 80% renewal rate and generate an average of 3x referral potential.</p>
+
+      <div class="slabel">The Impact</div>
+      <div class="statgrid">
+        <div class="statc"><div class="sv">80%</div><div class="sl">Renewal Rate for Engaged Clients</div></div>
+        <div class="statc" style="background:var(--grad-r);"><div class="sv">3x</div><div class="sl">Average Referral Potential</div></div>
+        <div class="statc"><div class="sv">6mo</div><div class="sl">First Check-In Interval</div></div>
+      </div>
+
+      <div class="slabel">Your Post-Close VA Tasks</div>
+      <div class="slist" style="margin-bottom:16px;">
+        <div class="si"><div class="snum">✓</div><div class="scon"><h4>Database Management</h4><p>Add the client to the newsletter list and maintain updated contact information in the CRM. Ensure their profile is tagged correctly for future outreach.</p></div></div>
+        <div class="si"><div class="snum">✓</div><div class="scon"><h4>Follow-Up Scheduling</h4><p>Schedule 6-month check-ins and annual mortgage reviews in the CRM calendar. Set automated reminders so no client falls through the cracks.</p></div></div>
+        <div class="si"><div class="snum">✓</div><div class="scon"><h4>Renewal Preparation</h4><p>Track renewal dates for all clients and prepare renewal outreach 3 to 4 months before the mortgage term ends. Renewals are a major revenue opportunity for the broker.</p></div></div>
+        <div class="si"><div class="snum">✓</div><div class="scon"><h4>Relationship Maintenance</h4><p>Support the broker's client retention and referral strategies. This includes birthday messages, holiday greetings, and market update emails as directed by the broker.</p></div></div>
+        <div class="si"><div class="snum">✓</div><div class="scon"><h4>Referral Programs</h4><p>Implement systems to encourage and track client referrals. When a client refers someone, ensure the referral is logged and the referring client is acknowledged.</p></div></div>
+      </div>
+
+      <div class="alert ok">
+        <span class="ai">✅</span>
+        <span><strong>Remember:</strong> Your attention to detail and client care throughout the entire mortgage process directly impacts the broker's reputation and future business success. Every interaction matters.</span>
+      </div>
+
+      <div class="nfooter">
+        <button class="btn bs" onclick="go('s8')">← Back</button>
+        <button class="btn bp" onclick="go('q2')">Take Final Quiz →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ QUIZ 2 ═══════ -->
+<div class="screen" id="s-q2">
+  <div class="card">
+    <div class="qhdr"><h2>Quiz 2: Stages 5 to 9</h2><div class="qctr" id="q2ctr">Q 1 of 6</div></div>
+    <div class="qbody">
+      <div class="qpbar"><div class="qpfill" id="q2pf"></div></div>
+      <div id="q2body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ CERTIFICATE ═══════ -->
+<div class="screen" id="s-cert">
+  <div id="cert-pass" style="display:none;">
+    <div class="ninwrap">
+      <label>Enter your full name for the certificate:</label>
+      <input type="text" class="nin" id="cname-in" placeholder="e.g. Maria Santos" oninput="document.getElementById('cname-disp').innerText=this.value||'Your Name'"/>
+    </div>
+    <div class="cwrap" id="certificate">
+      <div class="cinner">
+        <div class="cseal">🏆</div>
+        <div class="cbrand">LendMate VA Solutions</div>
+        <div class="ctitle">Certificate of Completion</div>
+        <div class="cpres">This certifies that</div>
+        <div class="cname" id="cname-disp">Your Name</div>
+        <div class="cdesc">has successfully completed the following training module and demonstrated competency in the required knowledge areas.</div>
+        <div class="cmod">Mortgage Workflow Training Guide for VAs (Canada)</div>
+        <div class="cdiv"></div>
+        <div class="cstats">
+          <div class="cstat"><div class="clabel">Overall Score</div><div class="cval" id="cscore">-</div></div>
+          <div class="cstat"><div class="clabel">Date Completed</div><div class="cval" id="cdate">-</div></div>
+          <div class="cstat"><div class="clabel">Module Version</div><div class="cval">WF v1.0</div></div>
+        </div>
+      </div>
+    </div>
+    <p class="pnote">Take a screenshot of this certificate and send it to your supervisor to confirm completion.</p>
+    <div class="bgrp" style="margin-top:16px;">
+      <button class="btn bp" onclick="window.print()">🖨 Print Certificate</button>
+      <button class="btn bs" onclick="go('intro')">← Restart Module</button>
+    </div>
+  </div>
+
+  <div id="cert-fail" style="display:none;">
+    <div class="card">
+      <div class="qhdr" style="background:linear-gradient(135deg,#ef4444,#dc2626);">
+        <h2>Review &amp; Retry</h2><div class="qctr">Results</div>
+      </div>
+      <div class="qbody" style="text-align:center;">
+        <div style="font-size:48px;margin-bottom:16px;">📋</div>
+        <div class="sbadge fail" id="fail-badge" style="margin:0 auto 20px;">Total: -</div>
+        <p style="font-size:14px;color:var(--muted);margin-bottom:22px;line-height:1.7;">You need <strong>70% or higher</strong> to earn the certificate. Review the lessons and retake. You can retake as many times as needed.</p>
+        <div class="srows">
+          <div class="srow"><span class="sl">Quiz 1: Stages 1 to 4</span><span class="sv" id="fq1">-</span></div>
+          <div class="srow"><span class="sl">Quiz 2: Stages 5 to 9</span><span class="sv" id="fq2">-</span></div>
+        </div>
+        <div class="bgrp">
+          <button class="btn bp" onclick="retake()">Retake Quizzes</button>
+          <button class="btn bs" onclick="go('intro2')">Review Lessons</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end .main -->
+
+<script>
+// ── QUIZ DATA ──────────────────────────────────────────────
+const Q1 = [
+  {
+    type:'tf',
+    q:'True or False: As a Mortgage VA, you can provide mortgage advice to clients if the broker is unavailable.',
+    opts:['True','False'],
+    ans:1,
+    exp:'False. You must never provide mortgage advice under any circumstances. If a client asks a mortgage-specific question, always redirect: "I will pass that along to your broker who will follow up with you shortly." This is a non-negotiable boundary regardless of the situation.'
+  },
+  {
+    type:'mc',
+    q:'A borrower\'s application is received but the employer name is missing from the employment section. What is the correct VA action?',
+    opts:[
+      'Leave it and let the broker notice during their review',
+      'Contact the borrower directly and ask them to correct it',
+      'Flag the missing information to the broker with a specific note in the file before uploading',
+      'Fill in the employer name based on other documents in the file'
+    ],
+    ans:2,
+    exp:'You flag the discrepancy to the broker with a specific note in the file — you do not contact the client independently or fill in information yourself. The broker manages client communication on substantive matters like missing application data.'
+  },
+  {
+    type:'mc',
+    q:'Which of the following platforms are commonly used by brokers for mortgage application management?',
+    opts:[
+      'DocuSign, SignNow, and Adobe Sign',
+      'Finmo, Velocity, and Filogix',
+      'Salesforce, HubSpot, and Zoho',
+      'QuickBooks, FreshBooks, and Wave'
+    ],
+    ans:1,
+    exp:'Finmo, Velocity, and Filogix are the primary mortgage application management platforms used by brokers in Canada. DocuSign and SignNow are eSign platforms used for document signing — a different purpose.'
+  },
+  {
+    type:'tf',
+    q:'True or False: A VA can pull a credit bureau report if the broker asks them to.',
+    opts:['True','False'],
+    ans:1,
+    exp:'False. Credit pulls can only be performed by licensed mortgage professionals. This is a legal boundary — not just a preference. If a broker asks you to pull credit, decline politely and notify them that this must be done by a licensed professional.'
+  },
+  {
+    type:'mc',
+    q:'A borrower submits a pay stub that is 45 days old. What do you do?',
+    opts:[
+      'Accept it since it is close enough to 30 days',
+      'Upload it and add a note that it may need updating',
+      'Flag it to the broker — pay stubs must be within 30 days and this one is outside that window',
+      'Request a new pay stub from the borrower directly without consulting the broker'
+    ],
+    ans:2,
+    exp:'Pay stubs must be within 30 days. A 45-day-old pay stub is outside the acceptable window. Flag it to the broker — do not accept it as-is. The broker will decide whether to request a new one or handle it differently for that specific lender.'
+  },
+  {
+    type:'mc',
+    q:'When verifying the submission package before the broker submits to the lender, which of the following should you confirm is included for a purchase file?',
+    opts:[
+      'Credit bureau report pulled by the VA, tax returns, and agent commission agreement',
+      'Completed application, signed credit consent, income documents, down payment proof, and property details',
+      'Commitment letter, condition checklist, and lawyer contact information',
+      'Title search, mortgage registration, and disbursement calculations'
+    ],
+    ans:1,
+    exp:'The submission package for a purchase file should include: completed application, signed credit consent, income documents, down payment proof, and property details. The other options reference documents that come at later stages of the process.'
+  }
+];
+
+const Q2 = [
+  {
+    type:'mc',
+    q:'The lender has issued the commitment letter. What is the FIRST thing you should do?',
+    opts:[
+      'Send the package to the lawyer immediately',
+      'Create a condition tracking sheet listing every condition, document needed, date requested, and date received',
+      'Mark the file as approved in the CRM',
+      'Contact the borrower to congratulate them on the approval'
+    ],
+    ans:1,
+    exp:'The first action upon receiving a commitment letter is to create a condition tracking sheet. List every condition, the document needed, the date requested from the borrower, and the date received. This is your working document for Stages 5 and 6. Sending to the lawyer comes much later.'
+  },
+  {
+    type:'tf',
+    q:'True or False: "File complete" status issued by the lender means the mortgage is fully funded and the transaction is done.',
+    opts:['True','False'],
+    ans:1,
+    exp:'False. "File complete" status means the lender is satisfied that all conditions have been met — it does NOT mean the mortgage is funded. It is the trigger to send the file to the lawyer for legal processing and closing preparation. Actual funding happens at closing.'
+  },
+  {
+    type:'mc',
+    q:'When sending the package to the lawyer, what must you do BEFORE sending?',
+    opts:[
+      'Get explicit direction from the broker and verify the lawyer\'s contact details are accurate',
+      'Call the borrower to confirm they are happy with their lawyer',
+      'Email the lender to notify them the file is being sent to legal',
+      'Archive all documents first, then send'
+    ],
+    ans:0,
+    exp:'Never send the package to the lawyer without the broker\'s explicit direction. Always verify the lawyer\'s contact details match the file before sending. Sending to the wrong lawyer or without broker direction can cause serious legal and timing issues.'
+  },
+  {
+    type:'mc',
+    q:'A client\'s mortgage renewal date is coming up in 5 months. What is the correct VA action at this stage?',
+    opts:[
+      'Wait until 1 month before renewal to contact the client',
+      'Begin renewal outreach preparation 3 to 4 months before the term ends and notify the broker',
+      'Contact the lender directly to begin renewal negotiations',
+      'Archive the file since the original mortgage transaction is complete'
+    ],
+    ans:1,
+    exp:'Renewals should be actioned 3 to 4 months before the mortgage term ends. At 5 months out, you should begin preparing renewal outreach and notify the broker. Early preparation maximizes the broker\'s ability to retain the client and explore better rates.'
+  },
+  {
+    type:'tf',
+    q:'True or False: After a mortgage closes, your VA responsibilities for that client are complete.',
+    opts:['True','False'],
+    ans:1,
+    exp:'False. Post-close responsibilities include database management, follow-up scheduling (6-month check-ins, annual reviews), renewal tracking, relationship maintenance, and referral program support. These ongoing tasks directly impact the broker\'s long-term revenue through renewals and referrals.'
+  },
+  {
+    type:'mc',
+    q:'A condition from the lender requires an updated bank statement from the borrower. Three days have passed with no response. What do you do?',
+    opts:[
+      'Mark the condition as complete and wait for the broker to notice',
+      'Submit what you have to the lender and explain the statement is coming',
+      'Follow up with the borrower immediately and update the condition tracker; notify the broker of the delay',
+      'Close the condition in the system since it has been requested'
+    ],
+    ans:2,
+    exp:'No response after 3 days requires immediate follow-up with the borrower. Update the condition tracker to reflect the outstanding item and notify the broker of the delay. Conditions have deadlines — a lapsed condition can result in the commitment letter expiring.'
+  }
+];
+
+// ── STATE ──────────────────────────────────────────────────
+const SCREENS=['intro','intro2','s1','s2','s3','s4','q1','s5','s6','s7','s8','s9','q2','cert'];
+const LABELS=['Intro','VA Role','Application','Doc Collection','Credit Check','Lender Sub','Quiz 1','Cond. Approval','Fulfillment','To Lawyer','Closing','Post-Close','Quiz 2','Certificate'];
+
+let cur='intro';
+let q1S={cur:0,scores:[],answered:false};
+let q2S={cur:0,scores:[],answered:false};
+
+function go(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s-'+id).classList.add('active');
+  cur=id;
+  window.scrollTo({top:0,behavior:'smooth'});
+  updateProg();
+  if(id==='q1') renderQ(Q1,q1S,'q1body','q1ctr','q1pf',1);
+  if(id==='q2') renderQ(Q2,q2S,'q2body','q2ctr','q2pf',2);
+}
+
+function updateProg(){
+  const idx=SCREENS.indexOf(cur);
+  const pct=Math.round((idx/(SCREENS.length-1))*100);
+  document.getElementById('pfill').style.width=pct+'%';
+  document.getElementById('ppct').innerText=pct+'%';
+  document.getElementById('plabel').innerText=LABELS[idx]||'';
+  const pc=document.getElementById('pills');
+  pc.innerHTML='';
+  SCREENS.forEach((s,i)=>{
+    const p=document.createElement('div');
+    p.className='pill'+(i===idx?' active':i<idx?' done':'');
+    p.innerText=LABELS[i];
+    pc.appendChild(p);
+  });
+}
+
+function renderQ(qs,state,bodyId,ctrId,pfId,qNum){
+  const q=qs[state.cur];
+  const LTRS=['A','B','C','D'];
+  document.getElementById(ctrId).innerText=`Q ${state.cur+1} of ${qs.length}`;
+  document.getElementById(pfId).style.width=((state.cur+1)/qs.length*100)+'%';
+  const bc=q.type==='tf'?'tf':'mc';
+  const bt=q.type==='tf'?'True / False':'Multiple Choice';
+  const oh=q.opts.map((o,i)=>{
+    const l=q.type==='tf'?(i===0?'T':'F'):LTRS[i];
+    return `<div class="opt" id="opt-${qNum}-${i}" onclick="pick(${i},${qNum})"><div class="oltr">${l}</div><div class="otxt">${o}</div></div>`;
+  }).join('');
+  const nl=state.cur<qs.length-1?'Next Question →':(qNum===1?'Continue to Stage 5 →':'See My Results →');
+  document.getElementById(bodyId).innerHTML=`
+    <span class="qtbadge ${bc}">${bt}</span>
+    <div class="qtext">${q.q}</div>
+    <div class="opts" id="opts-${qNum}">${oh}</div>
+    <div class="fb" id="fb-${qNum}"></div>
+    <div style="display:flex;justify-content:flex-end;">
+      <button class="btn bp" id="nxt-${qNum}" onclick="nextQ(${qNum})" style="display:none;">${nl}</button>
+    </div>`;
+  state.answered=false;
+}
+
+function pick(idx,qNum){
+  const state=qNum===1?q1S:q2S;
+  const qs=qNum===1?Q1:Q2;
+  if(state.answered)return;
+  state.answered=true;
+  const q=qs[state.cur];
+  document.getElementById('opts-'+qNum).classList.add('locked');
+  q.opts.forEach((_,i)=>{
+    const el=document.getElementById('opt-'+qNum+'-'+i);
+    el.classList.add('locked');
+    if(i===q.ans)el.classList.add('correct');
+    else if(i===idx)el.classList.add('wrong');
+  });
+  const ok=idx===q.ans;
+  state.scores.push(ok?1:0);
+  const fb=document.getElementById('fb-'+qNum);
+  fb.className='fb show '+(ok?'correct':'incorrect');
+  fb.innerHTML=`<span style="font-size:15px;flex-shrink:0;">${ok?'✅':'❌'}</span><span><strong>${ok?'Correct!':'Not quite.'}</strong> ${q.exp}</span>`;
+  document.getElementById('nxt-'+qNum).style.display='inline-flex';
+}
+
+function nextQ(qNum){
+  const state=qNum===1?q1S:q2S;
+  const qs=qNum===1?Q1:Q2;
+  state.cur++;
+  if(state.cur<qs.length){
+    renderQ(qs,state,`q${qNum}body`,`q${qNum}ctr`,`q${qNum}pf`,qNum);
+  } else {
+    if(qNum===1)go('s5');
+    else showResults();
+  }
+}
+
+function retake(){
+  q1S={cur:0,scores:[],answered:false};
+  q2S={cur:0,scores:[],answered:false};
+  go('q1');
+}
+
+function showResults(){
+  go('cert');
+  const s1=q1S.scores.reduce((a,b)=>a+b,0)/Q1.length;
+  const s2=q2S.scores.reduce((a,b)=>a+b,0)/Q2.length;
+  const total=(s1+s2)/2;
+  const p1=Math.round(s1*100)+'%';
+  const p2=Math.round(s2*100)+'%';
+  const pt=Math.round(total*100)+'%';
+  if(total>=0.70){
+    document.getElementById('cert-pass').style.display='block';
+    document.getElementById('cert-fail').style.display='none';
+    document.getElementById('cscore').innerText=pt;
+    document.getElementById('cdate').innerText=new Date().toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'});
+  } else {
+    document.getElementById('cert-pass').style.display='none';
+    document.getElementById('cert-fail').style.display='block';
+    document.getElementById('fail-badge').innerText='Total: '+pt;
+    document.getElementById('fq1').innerText=p1;
+    document.getElementById('fq2').innerText=p2;
+  }
+}
+
+updateProg();
+</script>
+</body>
+</html>
